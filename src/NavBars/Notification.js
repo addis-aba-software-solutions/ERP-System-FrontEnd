@@ -25,7 +25,7 @@ const useStyles = makeStyles({
 });
 
 function generate(element) {
-    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 ,13 ,23 ,23 ,23].map((value) =>
+    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 23, 23, 23].map((value) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -39,7 +39,7 @@ export default function Notification() {
 
         <React.Fragment>
 
-        <Title
+            <Title
             > Urgent Notifications  </Title>
 
 
@@ -60,10 +60,10 @@ export default function Notification() {
                                             </Avatar>
                                         </Badge>
                                     </ListItemAvatar>
-                                    
+
                                     <ListItemText className={classes.notificationText}
                                         primary="Some Notification Goes Here"
-                                        
+
                                         secondary="Description Goes Here"
                                     />
                                     <ListItemSecondaryAction>
