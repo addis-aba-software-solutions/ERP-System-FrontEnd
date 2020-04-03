@@ -9,16 +9,16 @@ import {
   CardContent,
   IconButton,
   Divider,
-  Typography
 } from '@material-ui/core';
-import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
+// import LaptopMacIcon from '@material-ui/icons/LaptopMac';
+// import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import RefreshIcon from '@material-ui/icons/Refresh';
-import TabletMacIcon from '@material-ui/icons/TabletMac';
+// import TabletMacIcon from '@material-ui/icons/TabletMac';
 
 const useStyles = makeStyles( ({
   root: {
-    height: '100%'
+    // height: '100%'
+    flex: 1
   },
   chartContainer: {
     position: 'relative',
@@ -82,26 +82,26 @@ const UsersByDevice = props => {
     }
   };
 
-  const devices = [
-    {
-      title: 'Desktop',
-      value: '63',
-      icon: <LaptopMacIcon />,
-      color: '#11669F',
-    },
-    {
-      title: 'Tablet',
-      value: '15',
-      icon: <TabletMacIcon />,
-      color: '#11669F',
-    },
-    {
-      title: 'Mobile',
-      value: '23',
-      icon: <PhoneIphoneIcon />,
-      color: '#11669F',
-    }
-  ];
+  // const devices = [
+  //   {
+  //     title: 'Desktop',
+  //     value: '63',
+  //     icon: <LaptopMacIcon />,
+  //     color: '#11669F',
+  //   },
+  //   {
+  //     title: 'Tablet',
+  //     value: '15',
+  //     icon: <TabletMacIcon />,
+  //     color: '#11669F',
+  //   },
+  //   {
+  //     title: 'Mobile',
+  //     value: '23',
+  //     icon: <PhoneIphoneIcon />,
+  //     color: '#11669F',
+  //   }
+  // ];
 
   return (
     <Card
@@ -124,23 +124,7 @@ const UsersByDevice = props => {
             options={options}
           />
         </div>
-        <div className={classes.stats}>
-          {devices.map(device => (
-            <div
-              className={classes.device}
-              key={device.title}
-            >
-              <span className={classes.deviceIcon}>{device.icon}</span>
-              <Typography variant="body1">{device.title}</Typography>
-              <Typography
-                style={{ color: device.color }}
-                variant="h2"
-              >
-                {device.value}%
-              </Typography>
-            </div>
-          ))}
-        </div>
+
       </CardContent>
     </Card>
   );

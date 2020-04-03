@@ -25,32 +25,32 @@ import Orders from './Orders';
 import Notification from './Notification';
 import Box from '@material-ui/core/Box';
 import Meetings from './Meetings';
-import LatestSales from '../LatestSales/LatestSales';
-import Budget from '../Budget/Budget';
-import TotalUsers from '../Budget/TotalUsers';
+import LatestSales from './LatestSales';
+import Budget from './Budget/Budget';
+import TotalUsers from './Budget/TotalUsers';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 // import UsersByDevice from '../Budget/UsersByDevice';
-import TasksProgress from '../Budget/TasksProgress';
+import TasksProgress from './Budget/TasksProgress';
 
-
-
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {'Copyright © '}
-//       <Link color="inherit" href="https://material-ui.com/">
-//         Your Website
-//       </Link>{' '}
-//       {new Date().getFullYear()}
-//       {'.'}
-//     </Typography>
-//   );
-// }
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+  },
+  difference: {
+    marginTop: 10,
+    display: 'flex',
+    alignItems: 'center'
+  },
+  differenceIcon: {
+    color: "#00970F",
+    marginLeft: 90
+  },
+  differenceValue: {
+    color: "#00970F",
+    marginRight: 10
   },
   budgetTracking: {
     display: 'flex',
@@ -118,11 +118,14 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
+    background: '#DADADA',
+
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
   },
   container: {
+    
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
@@ -162,7 +165,7 @@ export default function HomeNavBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
+            onMouseEnter={handleDrawerOpen}
             className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
           >
             <MenuIcon />
@@ -222,29 +225,77 @@ export default function HomeNavBar() {
           </Typography>
 
             </Grid>
-            <Grid item xs={12} >
+            {/* <Grid >
+
+              <UsersByDevice />
+
+            </Grid> */}
+            <Grid item xs={8} >
 
               <Typography style={{
                 fontSize: 20,
-                color: '#000000',
+                color: '#818181',
                 marginLeft: 50
               }}>
-                Some Category Goes Here
-</Typography>
-
-            </Grid>
-            <Grid item xs={12} >
-
+                Total Sales
+      </Typography>
               <Typography style={{
-                fontSize: 20,
+                fontSize: 30,
                 color: '#000000',
                 marginLeft: 50
               }}>
-                Some Category Goes Here
-</Typography>
+  7,465,363.5 ETB
+              </Typography>
+              <div className={classes.difference}>
+                <ArrowUpwardIcon className={classes.differenceIcon} />
+                <Typography
+                  className={classes.differenceValue}
+                  variant="body2"
+                >
+                  87%
+          </Typography>
+                <Typography
+                  className={classes.caption}
+                  variant="caption"
+                >
+                  Compared to Last Year
+          </Typography>
+              </div>
 
             </Grid>
+            <Grid item xs={4} >
 
+<Typography style={{
+  fontSize: 20,
+  color: '#818181',
+  marginLeft: 50
+}}>
+  Total Sales
+</Typography>
+<Typography style={{
+  fontSize: 30,
+  color: '#000000',
+  marginLeft: 50
+}}>
+  7,465,363.5 ETB
+</Typography>
+<div className={classes.difference}>
+  <ArrowUpwardIcon className={classes.differenceIcon} />
+  <Typography
+    className={classes.differenceValue}
+    variant="body2"
+  >
+    87%
+</Typography>
+  <Typography
+    className={classes.caption}
+    variant="caption"
+  >
+    Compared to Last Year
+</Typography>
+</div>
+
+</Grid>
 
             <Grid item xs={12} >
 
@@ -302,8 +353,8 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Some Category Goes Here
-</Typography>
+                Some Category Goes Hereee
+            </Typography>
 
             </Grid>
             <Grid item xs={12} md={8} lg={9}>
@@ -342,20 +393,17 @@ export default function HomeNavBar() {
         </Container>
       </main>
 
-
-
-
-
-
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container className={classes.container}>
           {/* Notification */}
+          
           <Grid item xs={12} md={8} lg={12}>
             <Paper className={fixedHeightPaper}>
               <Notification />
             </Paper>
           </Grid>
+
           <Box style={{
             height: 20
           }} >
@@ -380,7 +428,6 @@ export default function HomeNavBar() {
           <Box style={{
             height: 20
           }} >
-
           </Box>
           <Grid item xs={12} md={8} lg={12}>
             <Paper className={fixedHeightPaper}>

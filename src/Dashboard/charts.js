@@ -11,6 +11,7 @@ export const data = {
     {
       label: 'Last year',
       backgroundColor: '#EDE388',
+      
       data: [11, 20, 12, 29, 30, 25, 13, 11, 20, 12, 29]
     }
   ]
