@@ -23,6 +23,13 @@ import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
 import Notification from './Notification';
+import Box from '@material-ui/core/Box';
+import Meetings from './Meetings';
+import LatestSales from '../LatestSales/LatestSales';
+import Budget from '../Budget/Budget';
+import TotalUsers from '../Budget/TotalUsers';
+// import UsersByDevice from '../Budget/UsersByDevice';
+import TasksProgress from '../Budget/TasksProgress';
 
 
 
@@ -45,7 +52,15 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
+  budgetTracking: {
+    display: 'flex',
+    overflow: 'auto',
+    flexDirection: 'column',
+    width: 290,
+    borderRadius: 20
+  },
   toolbar: {
+
     paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
@@ -81,9 +96,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   drawerPaper: {
-
     position: 'relative',
     whiteSpace: 'nowrap',
+
     width: drawerWidth,
     transition: theme.transitions.create('width', {
       easing: theme.transitions.easing.sharp,
@@ -110,7 +125,6 @@ const useStyles = makeStyles((theme) => ({
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
-    width: 'vh'
   },
   paper: {
     borderRadius: 16,
@@ -122,6 +136,9 @@ const useStyles = makeStyles((theme) => ({
   },
   fixedHeight: {
     height: 240,
+  },
+  fixedNotificationHeight: {
+    height: 350,
   },
 }));
 
@@ -162,7 +179,7 @@ export default function HomeNavBar() {
           </IconButton>
           <img src={require('../Assets/ww.jpg')}
             style={{ width: 35, height: 35, borderRadius: 60 / 2, boxShadow: 190, marginRight: 10 }}
-            alt="Smiley face"
+            alt="YRUGAY"
           />
 
           <Typography variant="h8" color="inherit">
@@ -191,11 +208,104 @@ export default function HomeNavBar() {
         <List>{secondaryListItems}</List>
       </Drawer>
       <main className={classes.content}>
-
         <div className={classes.appBarSpacer} />
         <Container className={classes.container}>
-          <Grid container spacing={3}>
+          <Grid container spacing={2}>
             {/* Chart */}
+            <Grid item xs={12} >
+
+              <Typography style={{
+                fontSize: 30,
+                color: '#818181',
+              }}>
+                Some Category Goes Here
+          </Typography>
+
+            </Grid>
+            <Grid item xs={12} >
+
+              <Typography style={{
+                fontSize: 20,
+                color: '#000000',
+                marginLeft: 50
+              }}>
+                Some Category Goes Here
+</Typography>
+
+            </Grid>
+            <Grid item xs={12} >
+
+              <Typography style={{
+                fontSize: 20,
+                color: '#000000',
+                marginLeft: 50
+              }}>
+                Some Category Goes Here
+</Typography>
+
+            </Grid>
+
+
+            <Grid item xs={12} >
+
+              <LatestSales />
+
+            </Grid>
+
+            <Grid item xs={12} >
+
+              <Typography style={{
+                fontSize: 20,
+                color: '#818181',
+              }}>
+                Some Category Goes Here
+          </Typography>
+
+            </Grid>
+
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <Budget />
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <TotalUsers />
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <TasksProgress />
+              </Paper>
+            </Grid>
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <Budget />
+              </Paper>
+            </Grid>
+
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <TotalUsers />
+              </Paper>
+            </Grid>
+
+            <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <Budget />
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} >
+
+              <Typography style={{
+                fontSize: 20,
+                color: '#818181',
+              }}>
+                Some Category Goes Here
+</Typography>
+
+            </Grid>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
                 <Chart />
@@ -215,43 +325,67 @@ export default function HomeNavBar() {
                 <Orders />
               </Paper>
             </Grid>
-                        {/* Recent Orders */}
-                        <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
+
+
+            {/* <Grid item>
+              <Paper className={classes.budgetTracking}>
+                <TasksProgress />
               </Paper>
-            </Grid>            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
+            </Grid>  */}
+            {/* 
+            <Grid item>
+              <Paper>
+                <UsersByDevice />
               </Paper>
-            </Grid>            {/* Recent Orders */}
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
-              </Paper>
-            </Grid>
-            
+            </Grid> */}
           </Grid>
         </Container>
       </main>
-      <main className={classes.content}>
 
+
+
+
+
+
+      <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container className={classes.container}>
-          <Grid container spacing={3}
-            style={{
-              flex: 1
-            }}
-          >
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={12}
-            >
-              <Paper className={classes.paper
-} style={{width:350}}>
-                <Notification />
-              </Paper>
-            </Grid>
+          {/* Notification */}
+          <Grid item xs={12} md={8} lg={12}>
+            <Paper className={fixedHeightPaper}>
+              <Notification />
+            </Paper>
+          </Grid>
+          <Box style={{
+            height: 20
+          }} >
+
+          </Box>
+
+          <Grid item xs={12} md={8} lg={12}>
+            <Paper className={fixedHeightPaper} >
+              <Meetings />
+            </Paper>
+          </Grid>
+          <Box style={{
+            height: 20
+          }} >
+
+          </Box>
+          <Grid item xs={12} md={8} lg={12}>
+            <Paper className={fixedHeightPaper} style={{}}>
+              <Notification />
+            </Paper>
+          </Grid>
+          <Box style={{
+            height: 20
+          }} >
+
+          </Box>
+          <Grid item xs={12} md={8} lg={12}>
+            <Paper className={fixedHeightPaper}>
+              <Notification />
+            </Paper>
           </Grid>
 
         </Container>

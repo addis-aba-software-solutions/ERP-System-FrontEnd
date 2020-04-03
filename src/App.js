@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import HomeNavBar from './NavBars/HomeNavBar'
+import HomeNavBar from './Dashboard/HomeNavBar'
 
 function App() {
   return (

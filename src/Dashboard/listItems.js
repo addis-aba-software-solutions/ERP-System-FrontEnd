@@ -11,27 +11,39 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 
 export const mainListItems = (
   <div>
-    <ListItem button>
+    <ListItem button >
       <ListItemIcon>
-        <DashboardIcon />
+        <DashboardIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Dashboard" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <ShoppingCartIcon />
+        <ShoppingCartIcon style={{
+    color: '#11669F',
+        
+        }} />
       </ListItemIcon>
       <ListItemText primary="Orders" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <PeopleIcon />
+        <PeopleIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Top Customers" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <BarChartIcon />
+        <BarChartIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Reports" />
     </ListItem>
@@ -43,19 +55,28 @@ export const secondaryListItems = (
     <ListSubheader inset>Saved reports</ListSubheader>
     <ListItem button>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AssignmentIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Current month" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AssignmentIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Last quarter" />
     </ListItem>
     <ListItem button>
       <ListItemIcon>
-        <AssignmentIcon />
+        <AssignmentIcon style={{
+    color: '#11669F',
+        
+        }}/>
       </ListItemIcon>
       <ListItemText primary="Year-end sale" />
     </ListItem>
