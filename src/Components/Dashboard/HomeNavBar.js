@@ -180,7 +180,7 @@ export default function HomeNavBar() {
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <img src={require('../Assets/ww.jpg')}
+          <img src={require('../../Assets/ww.jpg')}
             style={{ width: 35, height: 35, borderRadius: 60 / 2, boxShadow: 190, marginRight: 10 }}
             alt="YRUGAY"
           />

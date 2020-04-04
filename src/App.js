@@ -1,14 +1,12 @@
 import React from 'react';
 import './App.css';
-// import HomeNavBar from './Dashboard/HomeNavBar';
-// import Calendar from './Dashboard/Calendar';
-import Login from './Login/Login'
+import Routes from './Routes/Routes';
+
 function App() {
   return (
-    <>
-    <Login />
-
-    </>
+    <div className="App">
+      <Routes />
+    </div>
   );
 }
 
