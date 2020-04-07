@@ -4,22 +4,27 @@ import history from './history';
 
 
 import SignIn from '../Components/SignIn/SignIn';
-import HomeNavBar from '../Components/Dashboard/HomeNavBar'
-// import AddProduct from './image';
-// import HrDashboard from './HrDashboard';
-// import LevelDashboard from './levelDashboard';
+import HomeNavBar from '../Components/Dashboard/HomeNavBar';
+// import UserList from '../Components/HR/UserList';
+import Home from '../Components/Dashboard/Home';
+import SearchBar from '../Components/SearchBar/SearchBar'
+import Production from '../Production'
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" exact component={SignIn} />
+                    {/* <Route path="/" exact component={Production} /> */}
+                    <Route path="/" exact component={Home} />
+
                     <Route path="/Dashboard" component={HomeNavBar} />
-                    {/* <Route path="/HrDashboard" component={HrDashboard} />
-                    <Route path="/LevelDashboard" component={LevelDashboard} /> */}
+                    <Route path="/UserList" component={SignIn} />
                 </Switch>
             </Router>
         )
     }
 }
+
+
+

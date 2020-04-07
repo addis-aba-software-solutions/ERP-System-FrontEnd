@@ -66,13 +66,6 @@ const classes = ({
 
 class SignIn extends React.Component {
 
-    post(e) {
-        e.preventDefault();
-        this.props.history.push("/dashboard");
-
-    }
-
-
     render() {
 
         return (

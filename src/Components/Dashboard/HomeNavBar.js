@@ -2,45 +2,37 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+
+// import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import IconButton from '@material-ui/core/IconButton';
-import Badge from '@material-ui/core/Badge';
-import Container from '@material-ui/core/Container';
+
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-// import Link from '@material-ui/core/Link';
-import MenuIcon from '@material-ui/icons/Menu';
-import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
-import NotificationsIcon from '@material-ui/icons/Notifications';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { mainListItems, secondaryListItems } from './listItems';
+
 import Chart from './Chart';
 import Deposits from './Deposits';
 import Orders from './Orders';
-import Notification from './Notification';
-import Box from '@material-ui/core/Box';
-import Meetings from './Meetings';
+
 import LatestSales from './LatestSales';
 import Budget from './Budget/Budget';
 import TotalUsers from './Budget/TotalUsers';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 // import UsersByDevice from '../Budget/UsersByDevice';
 import TasksProgress from './Budget/TasksProgress';
+import Container from '@material-ui/core/Container';
 
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    justifyContent: 'flex-end',
+
   },
   difference: {
-    marginTop: 10,
+    // marginTop: 10,
+    marginLeft: 90,
     display: 'flex',
     alignItems: 'center'
   },
@@ -118,14 +110,11 @@ const useStyles = makeStyles((theme) => ({
   },
   appBarSpacer: theme.mixins.toolbar,
   content: {
-    background: '#DADADA',
-
     flexGrow: 1,
     height: '100vh',
     overflow: 'auto',
   },
   container: {
-    
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
@@ -147,19 +136,12 @@ const useStyles = makeStyles((theme) => ({
 
 export default function HomeNavBar() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+      {/* <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             edge="start"
@@ -192,8 +174,8 @@ export default function HomeNavBar() {
             <ArrowDropDownIcon fontSize="large" />
           </IconButton>
         </Toolbar>
-      </AppBar>
-      <Drawer
+      </AppBar> */}
+      {/* <Drawer
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -206,16 +188,14 @@ export default function HomeNavBar() {
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
-        <Divider />
-        <List>{secondaryListItems}</List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
+      </Drawer> */}
+
+      <main>
+        {/* <div className={classes.appBarSpacer} /> */}
+        <Container >
           <Grid container spacing={2}>
-            {/* Chart */}
-            <Grid item xs={12} >
+            <Grid item xs={5}
+            >
 
               <Typography style={{
                 fontSize: 30,
@@ -225,17 +205,14 @@ export default function HomeNavBar() {
           </Typography>
 
             </Grid>
-            {/* <Grid >
-
-              <UsersByDevice />
-
-            </Grid> */}
-            <Grid item xs={8} >
+            <Grid item xs={6} style={{
+              // marginLeft: 100
+            }}>
 
               <Typography style={{
                 fontSize: 20,
                 color: '#818181',
-                marginLeft: 50
+                // marginLeft: 50
               }}>
                 Total Sales
       </Typography>
@@ -244,7 +221,7 @@ export default function HomeNavBar() {
                 color: '#000000',
                 marginLeft: 50
               }}>
-  7,465,363.5 ETB
+                7,465,363.5 ETB
               </Typography>
               <div className={classes.difference}>
                 <ArrowUpwardIcon className={classes.differenceIcon} />
@@ -263,40 +240,6 @@ export default function HomeNavBar() {
               </div>
 
             </Grid>
-            <Grid item xs={4} >
-
-<Typography style={{
-  fontSize: 20,
-  color: '#818181',
-  marginLeft: 50
-}}>
-  Total Sales
-</Typography>
-<Typography style={{
-  fontSize: 30,
-  color: '#000000',
-  marginLeft: 50
-}}>
-  7,465,363.5 ETB
-</Typography>
-<div className={classes.difference}>
-  <ArrowUpwardIcon className={classes.differenceIcon} />
-  <Typography
-    className={classes.differenceValue}
-    variant="body2"
-  >
-    87%
-</Typography>
-  <Typography
-    className={classes.caption}
-    variant="caption"
-  >
-    Compared to Last Year
-</Typography>
-</div>
-
-</Grid>
-
             <Grid item xs={12} >
 
               <LatestSales />
@@ -362,7 +305,6 @@ export default function HomeNavBar() {
                 <Chart />
               </Paper>
             </Grid>
-            {/* Recent Deposits */}
             <Grid item xs={12} md={1} lg={3}
             >
               <Paper className={fixedHeightPaper}>
@@ -370,73 +312,16 @@ export default function HomeNavBar() {
               </Paper>
             </Grid>
 
-            {/* Recent Orders */}
             <Grid item xs={12}>
               <Paper className={classes.paper}>
                 <Orders />
               </Paper>
             </Grid>
-
-
-            {/* <Grid item>
-              <Paper className={classes.budgetTracking}>
-                <TasksProgress />
-              </Paper>
-            </Grid>  */}
-            {/* 
-            <Grid item>
-              <Paper>
-                <UsersByDevice />
-              </Paper>
-            </Grid> */}
           </Grid>
         </Container>
       </main>
 
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
-          {/* Notification */}
-          
-          <Grid item xs={12} md={8} lg={12}>
-            <Paper className={fixedHeightPaper}>
-              <Notification />
-            </Paper>
-          </Grid>
 
-          <Box style={{
-            height: 20
-          }} >
-
-          </Box>
-
-          <Grid item xs={12} md={8} lg={12}>
-            <Paper className={fixedHeightPaper} >
-              <Meetings />
-            </Paper>
-          </Grid>
-          <Box style={{
-            height: 20
-          }} >
-
-          </Box>
-          <Grid item xs={12} md={8} lg={12}>
-            <Paper className={fixedHeightPaper} style={{}}>
-              <Notification />
-            </Paper>
-          </Grid>
-          <Box style={{
-            height: 20
-          }} >
-          </Box>
-          <Grid item xs={12} md={8} lg={12}>
-            <Paper className={fixedHeightPaper}>
-              <Notification />
-            </Paper>
-          </Grid>
-
-        </Container>
-      </main>
     </div>
   );
 }

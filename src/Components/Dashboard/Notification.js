@@ -20,7 +20,6 @@ const useStyles = makeStyles({
         fontSize: 10
     }
 });
-
 function generate(element) {
     return [0, 1, 2, 3, 4, 5, 6, 7].map((value) =>
         React.cloneElement(element, {
@@ -35,13 +34,9 @@ export default function Notification() {
     return (
 
         <React.Fragment>
-
             <Title
             > Urgent Notifications  </Title>
-
-
-
-            <Grid item xs={12} md={12}>
+            <Grid item xs={12} md={12} >
                 <div className={classes.notificationText}>
                     <List dense={dense}>
                         {generate(
