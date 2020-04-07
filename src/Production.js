@@ -17,8 +17,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
-import SearchBar from './Components/SearchBar/SearchBar'
-import UserList from './Components/HR/UserList'
+import SearchBar from './Components/SearchBar/SearchBar';
+import UserList from './Components/HR/UserList';
+import SalesOrder from './Components/Sales/salesOrder';
 
 
 
@@ -166,7 +167,7 @@ export default function Production() {
       <main className={classes.content}>
         <div className={classes.toolbar} /> 
 
-        <UserList />     
+        <SalesOrder />     
          </main>
     </div>
   );

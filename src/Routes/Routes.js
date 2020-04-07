@@ -7,8 +7,8 @@ import SignIn from '../Components/SignIn/SignIn';
 import HomeNavBar from '../Components/Dashboard/HomeNavBar';
 // import UserList from '../Components/HR/UserList';
 import Home from '../Components/Dashboard/Home';
-import SearchBar from '../Components/SearchBar/SearchBar'
-import Production from '../Production'
+import SearchBar from '../Components/SearchBar/SearchBar';
+import Production from '../Production';
 
 export default class Routes extends Component {
     render() {
