@@ -19,6 +19,7 @@ import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
 import SearchBar from './Components/SearchBar/SearchBar';
 import UserList from './Components/HR/UserList';
+import UsersCategory from './Components/HR/UsersCategory';
 import SalesOrder from './Components/Sales/salesOrder';
 
 
@@ -36,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
   },
-
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
@@ -165,10 +165,10 @@ export default function Production() {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.toolbar} /> 
+        <div className={classes.toolbar} />
 
-        <SalesOrder />     
-         </main>
+        <UsersCategory />
+      </main>
     </div>
   );
 }

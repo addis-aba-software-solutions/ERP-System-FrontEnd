@@ -5,10 +5,14 @@ import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import MoneyIcon from '@material-ui/icons/Money';
+import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
-    height: '100%'
+    height: '100%',
+
   },
   content: {
     alignItems: 'center',
@@ -18,26 +22,17 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 700
   },
   avatar: {
-    backgroundColor: '#F00000',
-    height: 56,
-    width: 56
+    marginTop: 10,
+    padding: 10,
+    marginLeft: 10,
+    backgroundColor: '#11669F',
+    height: 70,
+    width: 70
   },
   icon: {
     height: 32,
     width: 32
   },
-  difference: {
-    marginTop: 10,
-    display: 'flex',
-    alignItems: 'center'
-  },
-  differenceIcon: {
-    color: '#F00000'
-  },
-  differenceValue: {
-    color: '#F00000',
-    marginRight: 10
-  }
 }));
 
 const Level = props => {
@@ -56,37 +51,25 @@ const Level = props => {
           justify="space-between"
         >
           <Grid item>
+            <Avatar className={classes.avatar}>
+              <PeopleAltIcon className={classes.icon} />
+            </Avatar>
+          </Grid>
+          <Grid item style={{
+            marginRight: 20
+          }}>
             <Typography
               className={classes.title}
               color="textSecondary"
               gutterBottom
-              variant="body2"
+              variant="h6"
             >
-              WHAPAAA
+              FINANCE
             </Typography>
-            <Typography variant="h3">000</Typography>
+            <Typography variant="h3">45</Typography>
           </Grid>
-          <Grid item>
-            <Avatar className={classes.avatar}>
-              <MoneyIcon className={classes.icon} />
-            </Avatar>
-          </Grid>
+
         </Grid>
-        <div className={classes.difference}>
-          <ArrowDownwardIcon className={classes.differenceIcon} />
-          <Typography
-            className={classes.differenceValue}
-            variant="body2"
-          >
-            12%
-          </Typography>
-          <Typography
-            className={classes.caption}
-            variant="caption"
-          >
-            Since SOMETHING
-          </Typography>
-        </div>
       </CardContent>
     </Card>
   );

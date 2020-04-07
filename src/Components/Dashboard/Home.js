@@ -30,9 +30,10 @@ import ListItemText from "@material-ui/core/ListItemText";
 import Notification from '../Dashboard/Notification';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-import Contents from './HRContents'
-import HomeNavBar from './HomeNavBar'
-import SearchBar from '../SearchBar/SearchBar'
+import Contents from './HRContents';
+import HomeNavBar from './HomeNavBar';
+import SearchBar from '../SearchBar/SearchBar';
+import UsersCategory from '../HR/UsersCategory';
 
 
 // import Chart from './Chart';
@@ -170,8 +171,26 @@ const routes = [
         path: "/Three",
         sidebar: () => <div>Sales</div>,
         main: () => <div>
-            <SearchBar />
-        </div>
+            <Grid container spacing={2} >
+                <Grid item xs={9}>
+                    <UsersCategory />
+                </Grid>
+                <Grid item xs={3}>
+                    <Paper style={{
+                        borderRadius: 20,
+                        padding: 20
+                    }}>
+                        <Notification />
+                    </Paper>
+                    <Paper style={{
+                        borderRadius: 20,
+                        marginTop: 10,
+                        padding: 20
+                    }}>
+                        <Meetings />
+                    </Paper>
+                </Grid>
+            </Grid>        </div>
     },
 ];
 
