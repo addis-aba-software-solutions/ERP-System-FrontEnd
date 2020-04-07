@@ -105,24 +105,8 @@ import { Button, Form, FormGroup, Label, Input, Table } from 'reactstrap';
 //             </div>
 //         )
 //     }
-//     // render(){
-//     //     return(
 
-//     //             {/* <ul>
-//     //                 {this.items.map((item)=><li>{item}</li>)}
-//     //             </ul> */}
-//     //             {this.renderSuggestions()}
-
-//     //     );
-//     // }
 // }
-
-
-
-
-
-
-
 
 class SalesOrder extends Component {
  
