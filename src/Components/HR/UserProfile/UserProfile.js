@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { withStyles } from '@material-ui/core';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Paper from '@material-ui/core/Paper';
@@ -26,7 +26,7 @@ import Box from '@material-ui/core/Box';
 
 
 
-const useStyles = makeStyles((theme) => ({
+const styles = theme => ({
   appBar: {
     position: 'relative',
   },
@@ -61,37 +61,83 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
   },
-}));
+}
+);
 
 
 
-export default function UserProfile() {
 
-  const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
+// const useStyles = makeStyles((theme) => ({
+//   appBar: {
+//     position: 'relative',
+//   },
+//   layout: {
+//     width: 'auto',
+//     marginLeft: theme.spacing(2),
+//     marginRight: theme.spacing(2),
+//     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+//       width: 600,
+//       marginLeft: 'auto',
+//       marginRight: 'auto',
+//     },
+//   },
+//   paper: {
+//     marginTop: theme.spacing(3),
+//     marginBottom: theme.spacing(3),
+//     padding: theme.spacing(2),
+//     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
+//       marginTop: theme.spacing(6),
+//       marginBottom: theme.spacing(6),
+//       padding: theme.spacing(3),
+//     },
+//   },
+//   stepper: {
+//     padding: theme.spacing(3, 0, 5),
+//   },
+//   buttons: {
+//     display: 'flex',
+//     justifyContent: 'flex-end',
+//   },
+//   button: {
+//     marginTop: theme.spacing(3),
+//     marginLeft: theme.spacing(1),
+//   },
+// }));
 
-  const [age, setAge] = React.useState('');
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
 
-  const SuccessAlert = () => {
-    Swal.fire({
-      // position: 'top-end',
-      icon: 'success',
-      title: 'Registered',
-      showConfirmButton: false,
-      timer: 700
-    }).then(history.push('/Production'))
+// const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
-  }
+// const [age, setAge] = React.useState('');
 
-  const classes = useStyles();
+// const handleChange = (event) => {
+//   setAge(event.target.value);
+// };
 
+// const handleDateChange = (date) => {
+//   setSelectedDate(date);
+// };
+
+const SuccessAlert = () => {
+  Swal.fire({
+    // position: 'top-end',
+    icon: 'success',
+    title: 'Registered',
+    showConfirmButton: false,
+    timer: 700
+  }).then(history.push('/Production'))
+
+}
+
+
+
+class UserProfile extends React.Component {
+
+
+ render() {
+
+  const { classes } = this.props;
 
   return (
     <React.Fragment>
@@ -203,9 +249,9 @@ export default function UserProfile() {
                     id="date-picker-dialog"
                     label="Birth Date"
                     format="MM/dd/yyyy"
-                    value={selectedDate}
+                    value={null}
                     fullWidth
-                    onChange={handleDateChange}
+                    // onChange={handleDateChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}
@@ -218,8 +264,8 @@ export default function UserProfile() {
                     label="Hired Date"
                     format="MM/dd/yyyy"
                     fullWidth
-                    value={selectedDate}
-                    onChange={handleDateChange}
+                    value={null}
+                    // onChange={handleDateChange}
                     KeyboardButtonProps={{
                       'aria-label': 'change date',
                     }}
@@ -232,8 +278,8 @@ export default function UserProfile() {
 
                   </Box>
                   <Select
-                    value={age}
-                    onChange={handleChange}
+                    value={null}
+                    // onChange={handleChange}
                     displayEmpty
                     fullWidth
                     className={classes.selectEmpty}
@@ -258,8 +304,8 @@ export default function UserProfile() {
 
                   </Box>
                   <Select
-                    value={age}
-                    onChange={handleChange}
+                    value={null}
+                    // onChange={handleChange}
                     displayEmpty
                     fullWidth
                     className={classes.selectEmpty}
@@ -296,4 +342,11 @@ export default function UserProfile() {
       </main>
     </React.Fragment>
   )
+ }
+
+
 }
+
+// export default UserProfile;
+
+export default withStyles(styles)(UserProfile);
