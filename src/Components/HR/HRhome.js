@@ -27,15 +27,12 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 // import InboxIcon from "@material-ui/icons/MoveToInbox";
 // import MailIcon from "@material-ui/icons/Mail";
-import Notification from '../Dashboard/Notification';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 // import Contents from './HRContents';
-import HomeNavBar from './HomeNavBar';
-import SearchBar from '../SearchBar/SearchBar';
-import UsersCategory from '../HR/UsersCategory';
+
 import UserProfile from '../HR/UserProfile/UserProfile';
-import HRHome from '../HR/HRhome';
+
 
 
 // import Chart from './Chart';
@@ -43,7 +40,6 @@ import HRHome from '../HR/HRhome';
 // import Orders from './Orders';
 // import Box from '@material-ui/core/Box';
 
-import Meetings from './Meetings';
 
 // import LatestSales from './LatestSales';
 // import Budget from './Budget/Budget';
@@ -52,7 +48,6 @@ import Meetings from './Meetings';
 // import UsersByDevice from '../Budget/UsersByDevice';
 // import TasksProgress from './Budget/TasksProgress';
 
-import UserList from '../HR/UserList'
 
 // import classes from "*.module.css";
 // mport AssignmentIcon from "@material-ui/icons/AssignmentIcon";
@@ -141,23 +136,9 @@ export const routes = [
             <>
                 <Grid container spacing={2} >
                     <Grid item xs={9}>
-                        <HomeNavBar />
+                        <UserProfile />
                     </Grid>
-                    <Grid item xs={3}>
-                        <Paper style={{
-                            borderRadius: 20,
-                            padding: 20
-                        }}>
-                            <Notification />
-                        </Paper>
-                        <Paper style={{
-                            borderRadius: 20,
-                            marginTop: 10,
-                            padding: 20
-                        }}>
-                            <Meetings />
-                        </Paper>
-                    </Grid>
+
                 </Grid>
             </>
     },
@@ -165,10 +146,7 @@ export const routes = [
         path: "/inbox",
         sidebar: () => <div>Employees</div>,
         main: () => <div>
-            <SearchBar />
-            <UserList />
-
-            {/* <Contents /> */}
+            Hello
 
         </div>
     },
@@ -176,32 +154,15 @@ export const routes = [
         path: "/Three",
         sidebar: () => <div>Sales</div>,
         main: () => <div>
-            <Grid container spacing={2} >
-                <Grid item xs={9}>
-                    <UsersCategory />
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper style={{
-                        borderRadius: 20,
-                        padding: 20
-                    }}>
-                        <Notification />
-                    </Paper>
-                    <Paper style={{
-                        borderRadius: 20,
-                        marginTop: 10,
-                        padding: 20
-                    }}>
-                        <Meetings />
-                    </Paper>
-                </Grid>
-            </Grid>        </div>
+            Sakes
+
+       </div>
     },
 ];
 
 
 
-export default function Main() {
+export default function HRHome() {
     const classes = useStyles();
 
     const theme = useTheme();

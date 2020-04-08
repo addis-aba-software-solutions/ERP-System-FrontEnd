@@ -116,7 +116,7 @@ class SignIn extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     style={classes.submit}
-                                    onClick={() => history.push('/Production')}
+                                    onClick={() => history.push('/UserList')}
                                 >
                                     Sign In
                 </Button>

@@ -16,10 +16,11 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Button,
   TablePagination
 } from '@material-ui/core';
-
-// import { getInitials } from '../getInitials';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import history from '../../../../Routes/history'
 
 const useStyles = makeStyles(theme => ({
   root: {},
@@ -119,6 +120,8 @@ const UsersTable = props => {
                   <TableCell>Location</TableCell>
                   <TableCell>Phone</TableCell>
                   <TableCell>Registration date</TableCell>
+                  <TableCell>Actions</TableCell>
+
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -156,6 +159,17 @@ const UsersTable = props => {
                     <TableCell>{user.phone}</TableCell>
                     <TableCell>
                       {moment(user.createdAt).format('DD/MM/YYYY')}
+                    </TableCell>
+                    <TableCell>
+                      <Button
+                        // variant="contained"
+                        onClick={() => history.push('/userProfile')}
+                                            color="#11669F"
+                        size="small"
+                        className={classes.button}
+                        startIcon={<VisibilityIcon color="#11669F" />}
+                      >
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))}
