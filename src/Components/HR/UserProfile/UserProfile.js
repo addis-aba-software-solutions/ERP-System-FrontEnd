@@ -408,7 +408,7 @@ class UserProfile extends Component {
 
   
   render(){
-    const { error,employeeInfo}= this.state;
+    // const { error,employeeInfo}= this.state;
     
     const {classes} = this.props;
     return (
