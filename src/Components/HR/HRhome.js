@@ -111,15 +111,16 @@ const useStyles = makeStyles(theme => ({
         }
     },
     toolbar: {
-    backgroundColor: '#11669F',
+    // backgroundColor: '#11669F',
 
-        display: "flex",
-        alignItems: "center",
+
         justifyContent: "flex-end",
         padding: theme.spacing(0, 1),
         ...theme.mixins.toolbar
     },
     content: {
+        display: "flex",
+        alignItems: "center",
         flexGrow: 1,
         padding: theme.spacing(3)
     },
@@ -269,7 +270,6 @@ export default function HRHome() {
 
 
                 <main className={classes.content}>
-                    <div className={classes.toolbar} />
                     <Switch>
                         {routes.map((route, index) => (
                             <Route

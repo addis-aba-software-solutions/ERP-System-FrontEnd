@@ -116,7 +116,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     toolbar: {
-    backgroundColor: '#11669F',
+        // backgroundColor: '#11669F',s
 
         display: "flex",
         alignItems: "center",
@@ -217,7 +217,7 @@ export default function Main() {
 
     return (
         <div className={classes.root}>
-            <CssBaseline />
+            {/* <CssBaseline /> */}
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {

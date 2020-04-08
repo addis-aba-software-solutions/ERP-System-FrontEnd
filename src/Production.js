@@ -166,7 +166,7 @@ export default function Production() {
         }}>
 
         </Box>
-        <Profile />
+        <UserProfile />
 
       </main>
     </div>
