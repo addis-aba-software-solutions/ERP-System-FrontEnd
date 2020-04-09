@@ -32,6 +32,8 @@ import PeopleIcon from '@material-ui/icons/People';
 // import Contents from './HRContents';
 
 import UserProfile from '../HR/UserProfile/UserProfile';
+import Profile from '../HR/UserProfile/Profile';
+
 
 
 
@@ -56,7 +58,8 @@ const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     root: {
-        display: "flex"
+        display: "flex",
+        height: '100vh'
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -111,7 +114,7 @@ const useStyles = makeStyles(theme => ({
         }
     },
     toolbar: {
-    // backgroundColor: '#11669F',
+        // backgroundColor: '#11669F',
 
 
         justifyContent: "flex-end",
@@ -135,19 +138,17 @@ export const routes = [
         sidebar: () => <div>Dashboard</div>,
         main: () =>
             <>
-                <Grid container spacing={2} >
-                    <Grid item xs={9}>
-                        <UserProfile />
-                    </Grid>
 
-                </Grid>
+
+                <UserProfile />
+
             </>
     },
     {
         path: "/inbox",
         sidebar: () => <div>Employees</div>,
         main: () => <div>
-            Hello
+            <Profile />
 
         </div>
     },

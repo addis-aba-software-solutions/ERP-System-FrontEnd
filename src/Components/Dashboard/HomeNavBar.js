@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     justifyContent: 'flex-end',
-
   },
   difference: {
     // marginTop: 10,
@@ -140,59 +139,10 @@ export default function HomeNavBar() {
 
   return (
     <div className={classes.root}>
-      {/* <CssBaseline /> */}
-      {/* <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
-        <Toolbar className={classes.toolbar}>
-          <IconButton
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            onMouseEnter={handleDrawerOpen}
-            className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-            EATH
-          </Typography>
-          <IconButton color="inherit"
-            style={{ marginRight: 10 }}
-          >
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
-          <img src={require('../../Assets/ww.jpg')}
-            style={{ width: 35, height: 35, borderRadius: 60 / 2, boxShadow: 190, marginRight: 10 }}
-            alt="YRUGAY"
-          />
-
-          <Typography variant="h8" color="inherit">
-            Samuel Kassa
-          </Typography>
-          <IconButton color="inherit">
-            <ArrowDropDownIcon fontSize="large" />
-          </IconButton>
-        </Toolbar>
-      </AppBar> */}
-      {/* <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-      </Drawer> */}
 
       <main>
         {/* <div className={classes.appBarSpacer} /> */}
-        <Container >
+        <Container>
           <Grid container spacing={2}>
             <Grid item xs={5}
             >

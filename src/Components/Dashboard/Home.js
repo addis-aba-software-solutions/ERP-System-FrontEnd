@@ -35,6 +35,8 @@ import HomeNavBar from './HomeNavBar';
 import SearchBar from '../SearchBar/SearchBar';
 import UsersCategory from '../HR/UsersCategory';
 import UserProfile from '../HR/UserProfile/UserProfile';
+import Profile from '../HR/UserProfile/Profile';
+
 import HRHome from '../HR/HRhome';
 
 
@@ -138,7 +140,7 @@ export const routes = [
         exact: true,
         sidebar: () => <div>Dashboard</div>,
         main: () =>
-            <>
+            <div >
                 <Grid container spacing={2} >
                     <Grid item xs={9}>
                         <HomeNavBar />
@@ -159,7 +161,7 @@ export const routes = [
                         </Paper>
                     </Grid>
                 </Grid>
-            </>
+            </div>
     },
     {
         path: "/inbox",
@@ -196,6 +198,14 @@ export const routes = [
                     </Paper>
                 </Grid>
             </Grid>        </div>
+    },
+    {
+        path: "/Four",
+        sidebar: () => <div>Sales</div>,
+        main: () => <div>
+            <Profile />
+
+       </div>
     },
 ];
 
@@ -241,7 +251,7 @@ export default function Main() {
           </Typography>
                 </Toolbar>
             </AppBar>
-            <Router>
+            <Router >
                 <Drawer
                     variant="permanent"
                     className={clsx(classes.drawer, {
@@ -307,7 +317,10 @@ export default function Main() {
                 </Drawer>
 
 
-                <main className={classes.content}>
+                <main className={classes.content} style={{
+                    backgroundColor: '#EBEBEB',
+                    height: '100%'
+                }}>
                     <div className={classes.toolbar} />
                     <Switch>
                         {routes.map((route, index) => (
