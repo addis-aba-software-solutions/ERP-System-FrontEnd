@@ -168,14 +168,11 @@ class UserProfile extends Component {
                     <FormControl className={classes.formControl}>
 
                       <InputLabel id="demo-simple-select-label">Department</InputLabel>
-                      <Select
+
                         {this.state.deps.map(
                           dep => <option key={dep.departmentId}>{dep.departmentName}</option>
                         )}
 
-                      // onChange={handleChange}
-                      >
-                      </Select>
                     </FormControl>
                   </FormGroup>
                 </Grid>
