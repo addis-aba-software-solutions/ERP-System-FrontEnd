@@ -1,7 +1,6 @@
 
 
 import React, {Component} from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Paper from '@material-ui/core/Paper';
@@ -14,7 +13,6 @@ import history from '../../../Routes/history'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
-//import { render } from '@testing-library/react';
 
 
 
@@ -58,18 +56,6 @@ const styles = theme => ({
 
 const steps = ['Personal Information'];
 
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return (
-        <React.Fragment>
-
-        </React.Fragment>
-      )
-    default:
-      throw new Error('Unknown step');
-  }
-}
 class UserProfile extends Component {
 
   constructor() {
@@ -92,7 +78,6 @@ class UserProfile extends Component {
   submit() {
     let url = "http://192.168.1.3:8001/api/v1/employe/";
     let data = this.state;
-    
     fetch(url, {
       method: 'POST',
       headers: {
@@ -109,10 +94,9 @@ class UserProfile extends Component {
     })
   }
 
-  
+
   render(){
     // const { error,employeeInfo}= this.state;
-    
     const {classes} = this.props;
     return (
       <React.Fragment>

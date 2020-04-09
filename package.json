@@ -15,6 +15,7 @@
     "date-fns": "^2.11.1",
     "electron-is-dev": "^1.1.0",
     "history": "^4.10.1",
+    "jslint": "^0.12.1",
     "ng2-charts": "^2.3.0",
     "react": "^16.13.1",
     "react-chartjs-2": "^2.9.0",

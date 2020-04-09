@@ -9,13 +9,15 @@ import UserList from '../Components/HR/UserList';
 import Home from '../Components/Dashboard/Home';
 import UserProfile from '../Components/HR/HRhome'
 import Production from '../Production';
+import Inventory from '../Components/Inventory/Inventory'
+
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" exact component={Home} />
+                    {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" exact component={Production} /> */}
                     {/* <Route path="/" exact component={UserProfile} /> */}
 
@@ -23,6 +25,7 @@ export default class Routes extends Component {
 
                     <Route path="/Dashboard" component={HomeNavBar} />
                     <Route path="/UserList" component={UserList} />
+                    <Route path="/" component={Inventory} />
                 </Switch>
             </Router>
         )

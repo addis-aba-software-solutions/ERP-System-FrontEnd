@@ -72,11 +72,6 @@ class SignIn extends React.Component {
             <>
 
                 <div style={classes.main} >
-                    <Box style={{
-                        height: 300
-                    }}>
-
-                    </Box>
                     <Container component="main" maxWidth="xs">
                         <CssBaseline />
                         <Card style={classes.paper}>
