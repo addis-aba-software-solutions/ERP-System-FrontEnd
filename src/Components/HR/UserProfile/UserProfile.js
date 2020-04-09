@@ -70,7 +70,7 @@ class UserProfile extends Component {
   }
 
   componentDidMount() {
-    fetch("http://192.168.1.3:8001/api/v1/department/")
+    fetch("http://192.168.1.7:8000/api/v1/department/")
       .then(res => res.json())
       .then(data => {
         this.setState({ deps: data });
@@ -88,7 +88,7 @@ class UserProfile extends Component {
 
   }
   submit() {
-    let url = "http://192.168.1.3:8001/api/v1/employe/";
+    let url = "http://192.168.1.7:8000/api/v1/employe/";
     let data = this.state;
     fetch(url, {
       method: 'POST',
@@ -270,43 +270,7 @@ class UserProfile extends Component {
                     onChange={(data) => { this.setState({ region: data.target.value }) }}
                   />
                 </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    id="city"
-                    name="city"
-                    label="city"
-                    fullWidth
-                    autoComplete="city"
-                    value={this.state.city}
-                    onChange={(data) => { this.setState({ region: data.target.value }) }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  {/* <TextField
-                    required
-                    id="Role"
-                    name="Role"
-                    label="Role"
-                    fullWidth
-                    autoComplete="Role"
-                  /> */}
-                  <FormGroup as="select">
 
-                    <FormControl className={classes.formControl}>
-
-                      <InputLabel id="demo-simple-select-label">label</InputLabel>
-                      <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={null}
-                      // onChange={handleChange}
-                      >
-                      </Select>
-                    </FormControl>
-                  </FormGroup>
-
-                </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField id="Location" name="Location" label="Location" fullWidth />
                 </Grid>
