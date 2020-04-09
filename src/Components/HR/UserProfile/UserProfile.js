@@ -1,5 +1,6 @@
 
 
+<<<<<<< HEAD
 // import React, {Component} from 'react';
 // import { makeStyles } from '@material-ui/core/styles';
 // import CssBaseline from '@material-ui/core/CssBaseline';
@@ -312,6 +313,9 @@
 // export default withStyles(styles)(UserProfile);
 import React,{Component} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+=======
+import React, { Component } from 'react';
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Paper from '@material-ui/core/Paper';
@@ -336,7 +340,13 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
+<<<<<<< HEAD
 import {Form, FormGroup, Label, Input, Table } from 'reactstrap';
+=======
+import FormHelperText from '@material-ui/core/FormHelperText';
+import { FormControl, InputLabel, FormGroup } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
 
 
 
@@ -383,6 +393,7 @@ const styles = theme => ({
   let data = this.state;
   let date = this.state;
 
+<<<<<<< HEAD
   fetch(url, {
     method: 'POST',
     headers: {
@@ -455,6 +466,53 @@ class UserProfile extends Component {
       .then(data=>{
         this.setState({deps:data});
 
+=======
+const steps = ['Personal Information'];
+
+class UserProfile extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+      employeeInfo: [],
+      deps: []
+    }
+  }
+
+  componentDidMount() {
+    fetch("http://192.168.1.7:8000/api/v1/department/")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ deps: data });
+
+      })
+  }
+  SuccessAlert = () => {
+    Swal.fire({
+      // position: 'top-end',
+      icon: 'success',
+      title: 'Registered',
+      showConfirmButton: false,
+      timer: 700
+    }).then(history.push('/Production'))
+
+  }
+  submit() {
+    let url = "http://192.168.1.7:8000/api/v1/employe/";
+    let data = this.state;
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((result) => {
+      result.json().then((resp) => {
+
+        console.log("resp", resp)
+        alert("data is submitted")
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
       })
     }
 
@@ -462,6 +520,7 @@ class UserProfile extends Component {
 
 
 
+<<<<<<< HEAD
   render(){
    const { error,employeeInfo}= this.state;
 
@@ -473,6 +532,16 @@ class UserProfile extends Component {
       <main className={classes.layout}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
+=======
+
+  render() {
+    // const { error,employeeInfo}= this.state;
+    const { classes } = this.props;
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main className={classes.layout}>
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
           <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
               Employee Registration
@@ -485,7 +554,11 @@ class UserProfile extends Component {
                 Employee Information
          </Typography>
               <Grid container spacing={3}>
+<<<<<<< HEAD
                 <Grid item xs={12}>
+=======
+                <Grid item xs={12} sm={6}>
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                   <TextField
                     required
                     id="Employee_ID"
@@ -495,7 +568,12 @@ class UserProfile extends Component {
                     disabled
                     autoComplete="Employee_ID"
                     value={this.state.employeId}
+<<<<<<< HEAD
                     onChange={(data)=>{ this.setState({employeId:data.target.value})}}
+=======
+                    onChange={(data) => { this.setState({ employeId: data.target.value }) }}
+
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -507,8 +585,40 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="fname"
                     value={this.state.firstName}
+<<<<<<< HEAD
                     onChange={(data)=>{ this.setState({firstName:data.target.value})}}
                   />
+=======
+                    onChange={(data) => { this.setState({ firstName: data.target.value }) }}
+
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+
+                  {/* <TextField
+                    required
+                    id="Department"
+                    name="lastName"
+                    label="Department"
+                    fullWidth
+                    autoComplete="department"
+                    value={this.state.department}
+                    onChange={(data) => { this.setState({ department: data.target.value }) }}
+                  /> */}
+
+                  <FormGroup as="select">
+
+                    <FormControl className={classes.formControl}>
+
+                      <InputLabel id="demo-simple-select-label">Department</InputLabel>
+
+                        {this.state.deps.map(
+                          dep => <option key={dep.departmentId}>{dep.departmentName}</option>
+                        )}
+
+                    </FormControl>
+                  </FormGroup>
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -520,11 +630,30 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="lname"
                     value={this.state.lastName}
-                    onChange={(data)=>{ this.setState({lastName:data.target.value})}}
+                    onChange={(data) => { this.setState({ lastName: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+<<<<<<< HEAD
+=======
+                    id="hiredDate"
+                    label="hiredDate"
+                    name="hiredDate"
+                    type="date"
+                    fullWidth
+                    defaultValue="2017-05-24"
+                    className={classes.textField}
+                    onChange={(data) => { this.setState({ hiredDate: data.target.value }) }}
+
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                     required
                     id="Email"
                     name="Email"
@@ -532,9 +661,13 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="Email"
                     value={this.state.email}
-                    onChange={(data)=>{ this.setState({email:data.target.value})}}
+                    onChange={(data) => { this.setState({ email: data.target.value }) }}
                   />
                 </Grid>
+<<<<<<< HEAD
+=======
+
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                 <Grid item xs={12}>
                   <TextField
                     id="PhoneNumber"
@@ -543,9 +676,10 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="PhoneNumber"
                     value={this.state.telephone}
-                    onChange={(data)=>{ this.setState({telephone:data.target.value})}}
+                    onChange={(data) => { this.setState({ telephone: data.target.value }) }}
                   />
                 </Grid>
+<<<<<<< HEAD
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
@@ -554,8 +688,50 @@ class UserProfile extends Component {
                     label="Role"
                     fullWidth
                     autoComplete="Role"
+=======
+                <Grid item xs={12}>
+
+                  <TextField
+                    id="birthDate"
+                    label="birthDate"
+                    name="birthDate"
+                    type="date"
+                    fullWidth
+                    defaultValue="2017-05-24"
+                    className={classes.textField}
+                    onChange={(data) => { this.setState({ birthDate: data.target.value }) }}
+
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    id="country"
+                    name="country"
+                    label="country"
+                    fullWidth
+                    autoComplete="country"
+                    value={this.state.country}
+                    onChange={(data) => { this.setState({ country: data.target.value }) }}
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    id="region"
+                    name="region"
+                    label="region"
+                    fullWidth
+                    autoComplete="region"
+                    value={this.state.region}
+                    onChange={(data) => { this.setState({ region: data.target.value }) }}
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
+                  />
+                </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <TextField id="Location" name="Location" label="Location" fullWidth />
                 </Grid>
@@ -697,7 +873,11 @@ class UserProfile extends Component {
               <Button
                 variant="contained"
                 color="primary"
+<<<<<<< HEAD
                 onClick={submit}
+=======
+                onClick={this.submit}
+>>>>>>> f9a48729fb42a52bddfae34a0ad2959a63057e5b
                 className={classes.button}
               >
                 Register

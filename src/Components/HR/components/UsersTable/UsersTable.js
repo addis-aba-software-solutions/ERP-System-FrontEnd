@@ -164,7 +164,7 @@ const UsersTable = props => {
                       <Button
                         // variant="contained"
                         onClick={() => history.push('/userProfile')}
-                                            color="#11669F"
+                        color="#11669F"
                         size="small"
                         className={classes.button}
                         startIcon={<VisibilityIcon color="#11669F" />}

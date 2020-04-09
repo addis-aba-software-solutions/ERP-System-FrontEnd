@@ -161,12 +161,8 @@ export default function Production() {
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
-        <Box style={{
-          height: 20
-        }}>
 
-        </Box>
-        <UserProfile />
+        <Profile />
 
       </main>
     </div>
