@@ -1,6 +1,6 @@
 
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
 import Paper from '@material-ui/core/Paper';
@@ -13,6 +13,9 @@ import history from '../../../Routes/history'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import { withStyles } from '@material-ui/core/styles';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import { FormControl, InputLabel, FormGroup } from '@material-ui/core';
+import Select from '@material-ui/core/Select';
 
 
 
@@ -61,11 +64,20 @@ class UserProfile extends Component {
   constructor() {
     super();
     this.state = {
-      employeeInfo: []
+      employeeInfo: [],
+      deps: []
     }
   }
 
- SuccessAlert = () => {
+  componentDidMount() {
+    fetch("http://192.168.1.3:8001/api/v1/department/")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ deps: data });
+
+      })
+  }
+  SuccessAlert = () => {
     Swal.fire({
       // position: 'top-end',
       icon: 'success',
@@ -95,14 +107,14 @@ class UserProfile extends Component {
   }
 
 
-  render(){
+  render() {
     // const { error,employeeInfo}= this.state;
-    const {classes} = this.props;
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
-        <Paper className={classes.paper}>
+          <Paper className={classes.paper}>
             <Typography component="h1" variant="h4" align="center">
               Employee Registration
           </Typography>
@@ -113,7 +125,7 @@ class UserProfile extends Component {
         </Typography>
               <Grid container spacing={3}>
                 <Grid item xs={12} sm={6}>
-                <TextField
+                  <TextField
                     required
                     id="employeeId"
                     name="employeeId"
@@ -121,12 +133,12 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="fname"
                     value={this.state.employeId}
-                    onChange={(data)=>{ this.setState({employeId:data.target.value})}}
-                    
+                    onChange={(data) => { this.setState({ employeId: data.target.value }) }}
+
                   />
-                  </Grid>
-                 <Grid item xs={12} sm={6}>
-                 <TextField
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                  <TextField
                     required
                     id="firstName"
                     name="firstName"
@@ -134,9 +146,38 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="fname"
                     value={this.state.firstName}
-                    onChange={(data)=>{ this.setState({firstName:data.target.value})}}
+                    onChange={(data) => { this.setState({ firstName: data.target.value }) }}
 
-                  />                 
+                  />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+
+                  {/* <TextField
+                    required
+                    id="Department"
+                    name="lastName"
+                    label="Department"
+                    fullWidth
+                    autoComplete="department"
+                    value={this.state.department}
+                    onChange={(data) => { this.setState({ department: data.target.value }) }}
+                  /> */}
+
+                  <FormGroup as="select">
+
+                    <FormControl className={classes.formControl}>
+
+                      <InputLabel id="demo-simple-select-label">Department</InputLabel>
+                      <Select
+                        {this.state.deps.map(
+                          dep => <option key={dep.departmentId}>{dep.departmentName}</option>
+                        )}
+
+                      // onChange={handleChange}
+                      >
+                      </Select>
+                    </FormControl>
+                  </FormGroup>
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -147,19 +188,23 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="lname"
                     value={this.state.lastName}
-                    onChange={(data)=>{ this.setState({lastName:data.target.value})}}
+                    onChange={(data) => { this.setState({ lastName: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    required
                     id="hiredDate"
+                    label="hiredDate"
                     name="hiredDate"
-                    label="Hired Date"
+                    type="date"
                     fullWidth
-                    autoComplete="Email"
-                    value={this.state.hiredDate}
-                    onChange={(data)=>{ this.setState({hiredDate:data.target.value})}}
+                    defaultValue="2017-05-24"
+                    className={classes.textField}
+                    onChange={(data) => { this.setState({ hiredDate: data.target.value }) }}
+
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -171,10 +216,10 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="Email"
                     value={this.state.email}
-                    onChange={(data)=>{ this.setState({email:data.target.value})}}
+                    onChange={(data) => { this.setState({ email: data.target.value }) }}
                   />
                 </Grid>
-              
+
                 <Grid item xs={12}>
                   <TextField
                     required
@@ -184,19 +229,24 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="telephone"
                     value={this.state.telephone}
-                    onChange={(data)=>{ this.setState({telephone:data.target.value})}}
+                    onChange={(data) => { this.setState({ telephone: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12}>
+
                   <TextField
-                    required
                     id="birthDate"
-                    name="birthDate"
                     label="birthDate"
+                    name="birthDate"
+                    type="date"
                     fullWidth
-                    autoComplete="birthDate"
-                    value={this.state.birthDate}
-                    onChange={(data)=>{ this.setState({birthDate:data.target.value})}}
+                    defaultValue="2017-05-24"
+                    className={classes.textField}
+                    onChange={(data) => { this.setState({ birthDate: data.target.value }) }}
+
+                    InputLabelProps={{
+                      shrink: true,
+                    }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -208,11 +258,11 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="country"
                     value={this.state.country}
-                    onChange={(data)=>{ this.setState({country:data.target.value})}}
+                    onChange={(data) => { this.setState({ country: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12}>
-                <TextField
+                  <TextField
                     required
                     id="region"
                     name="region"
@@ -220,7 +270,7 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="region"
                     value={this.state.region}
-                    onChange={(data)=>{ this.setState({region:data.target.value})}}
+                    onChange={(data) => { this.setState({ region: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -232,18 +282,33 @@ class UserProfile extends Component {
                     fullWidth
                     autoComplete="city"
                     value={this.state.city}
-                    onChange={(data)=>{ this.setState({region:data.target.value})}}
+                    onChange={(data) => { this.setState({ region: data.target.value }) }}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <TextField
+                  {/* <TextField
                     required
                     id="Role"
                     name="Role"
                     label="Role"
                     fullWidth
                     autoComplete="Role"
-                  />
+                  /> */}
+                  <FormGroup as="select">
+
+                    <FormControl className={classes.formControl}>
+
+                      <InputLabel id="demo-simple-select-label">label</InputLabel>
+                      <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        value={null}
+                      // onChange={handleChange}
+                      >
+                      </Select>
+                    </FormControl>
+                  </FormGroup>
+
                 </Grid>
                 <Grid item xs={12} sm={6}>
                   <TextField id="Location" name="Location" label="Location" fullWidth />
@@ -273,7 +338,7 @@ class UserProfile extends Component {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={this.SuccessAlert}
+                onClick={this.submit}
                 className={classes.button}
               >
                 Register
