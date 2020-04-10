@@ -27,11 +27,11 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import AddNewProduct from './components/AddNewProduct'
+// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-import InventoryStatus from './components/InventoryStatus';
-import Card from '@material-ui/core/Card';
-import UsersList from './components/UsersList'
+// import InventoryStatus from './components/InventoryStatus';
+// import Card from '@material-ui/core/Card';
+// import UsersList from './components/UsersList'
 
 // import Profile from './Components/HR/UserProfile/Profile'
 
@@ -130,29 +130,32 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () =>
-            <AddNewProduct />
+        <div></div>
+            // <AddNewProduct />
     },
     {
         path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
-        main: () =>
+        main: () =>        <div></div>
 
-            <InventoryStatus />
+
+            // <InventoryStatus />
 
     },
     {
         path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
-        main: () =>
+        main: () =>        <div></div>
 
-            <UsersList />
+
+            // <UsersList />
 
     }
 ]
 
-export default function Inventory() {
+export default function Finance() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {

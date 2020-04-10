@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Button, Divider, Typography, Grid, withStyles, Paper, TextField } from '@material-ui/core';
 import RecentOrders from './RecentOrders';
 import SearchBar from '../../SearchBar/SearchBar'
-import Category from './Category'
-
+import Level from './Level'
+import UsersListTable from './UsersListTable'
 const styles = theme => ({
     container: {
         padding: 20,
@@ -22,11 +22,11 @@ const styles = theme => ({
     },
     spacer: {
         margin: 10,
-        marginBottom: 30,   
+        marginBottom: 30
     },
 });
 
-class InventoryStatus extends React.Component {
+class UserList extends React.Component {
     render() {
         const { classes } = this.props;
         return (
@@ -42,7 +42,7 @@ class InventoryStatus extends React.Component {
                         }}>
                         <Grid item className={classes.header}>
                             <Typography variant='h3' color="textSecondary">
-                                Employees
+                                Finance
                             </Typography>
                         </Grid>
                         <Grid item style={{
@@ -54,11 +54,12 @@ class InventoryStatus extends React.Component {
                     </Grid>
                     <div >
                     </div>
-                    <div>
                         <Divider className={classes.spacer}></Divider>
+                        <Level />
+                        <Divider className={classes.spacer}></Divider>
+                        <UsersListTable />
 
-                        <Category />
-                    </div>
+                        
                 </div>
 
             </>
@@ -67,4 +68,4 @@ class InventoryStatus extends React.Component {
 
 }
 
-export default withStyles(styles)(InventoryStatus);
+export default withStyles(styles)(UserList);
