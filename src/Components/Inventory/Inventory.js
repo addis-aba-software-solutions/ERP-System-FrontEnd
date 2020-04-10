@@ -31,7 +31,7 @@ import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
 import InventoryStatus from './components/InventoryStatus';
 import Card from '@material-ui/core/Card';
-import UsersList from './components/UsersList'
+import ItemList from './components/ItemList'
 
 // import Profile from './Components/HR/UserProfile/Profile'
 
@@ -147,7 +147,7 @@ export const routes = [
         sidebar: () => '',
         main: () =>
 
-            <UsersList />
+            <ItemList />
 
     }
 ]

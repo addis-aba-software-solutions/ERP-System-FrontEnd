@@ -3,7 +3,7 @@ import { Button, Divider, Typography, Grid, withStyles, Paper, TextField } from 
 import RecentOrders from './RecentOrders';
 import SearchBar from '../../SearchBar/SearchBar'
 import Level from './Level'
-import UsersListTable from './UsersListTable'
+import InventoryListTable from './InventoryListTable'
 const styles = theme => ({
     container: {
         padding: 20,
@@ -26,7 +26,7 @@ const styles = theme => ({
     },
 });
 
-class UserList extends React.Component {
+class ItemList extends React.Component {
     render() {
         const { classes } = this.props;
         return (
@@ -42,7 +42,7 @@ class UserList extends React.Component {
                         }}>
                         <Grid item className={classes.header}>
                             <Typography variant='h3' color="textSecondary">
-                                Finance
+                                Edibles
                             </Typography>
                         </Grid>
                         <Grid item style={{
@@ -54,10 +54,10 @@ class UserList extends React.Component {
                     </Grid>
                     <div >
                     </div>
+                        {/* <Divider className={classes.spacer}></Divider>
+                        <Level /> */}
                         <Divider className={classes.spacer}></Divider>
-                        <Level />
-                        <Divider className={classes.spacer}></Divider>
-                        <UsersListTable />
+                        <InventoryListTable />
 
                         
                 </div>
@@ -68,4 +68,4 @@ class UserList extends React.Component {
 
 }
 
-export default withStyles(styles)(UserList);
+export default withStyles(styles)(ItemList);

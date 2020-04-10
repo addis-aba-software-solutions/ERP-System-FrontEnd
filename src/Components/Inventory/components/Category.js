@@ -87,18 +87,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                Finance
+                Edibles
             </Typography>
-              <Typography
+            <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                76 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -130,18 +130,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                Inventory
+                Clothing
             </Typography>
-              <Typography
+            <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                88 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -173,18 +173,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                Logistics
+                Hair Products
             </Typography>
               <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                26 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -214,18 +214,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                IT
+                Skin Care Products
             </Typography>
-              <Typography
+            <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                26 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -255,18 +255,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                Procurment
+               Cosmetics
             </Typography>
-              <Typography
+            <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                97 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -298,18 +298,18 @@ const Category = props => {
                 className={classes.title}
                 color="textSecondary"
                 // gutterBottom
-                variant="h4"
+                variant="h5"
 
               >
-                Sales
+                Writing Materials
             </Typography>
-              <Typography
+            <Typography
                 className={classes.subtitle}
                 color="textSecondary"
                 // gutterBottom
-                variant="h5"
+                variant="h9"
               >
-                89 Employees
+               <b>in Stock</b> 2690
             </Typography>
             </Grid>
 
@@ -319,6 +319,89 @@ const Category = props => {
         </CardContent>
       </Card>
 
+      <Card className={classes.Card}
+      >
+        <CardContent>
+
+          <Grid
+            container
+            display='flex'
+            justify="space-between"
+          >
+            <Grid item>
+              <Avatar className={classes.avatar}>
+                <PeopleAltIcon className={classes.icon} />
+              </Avatar>
+            </Grid>
+            <Grid item style={{
+              marginTop: 20,
+              paddingRight: 40
+            }}>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                // gutterBottom
+                variant="h5"
+
+              >
+                Sanitation Products
+            </Typography>
+            <Typography
+                className={classes.subtitle}
+                color="textSecondary"
+                // gutterBottom
+                variant="h9"
+              >
+               <b>in Stock</b> 2690
+            </Typography>
+            </Grid>
+
+          </Grid>
+
+
+        </CardContent>
+      </Card>      <Card className={classes.Card}
+      >
+        <CardContent>
+
+          <Grid
+            container
+            display='flex'
+            justify="space-between"
+          >
+            <Grid item>
+              <Avatar className={classes.avatar}>
+                <PeopleAltIcon className={classes.icon} />
+              </Avatar>
+            </Grid>
+            <Grid item style={{
+              marginTop: 20,
+              paddingRight: 40
+            }}>
+              <Typography
+                className={classes.title}
+                color="textSecondary"
+                // gutterBottom
+                variant="h5"
+
+              >
+                Others
+            </Typography>
+            <Typography
+                className={classes.subtitle}
+                color="textSecondary"
+                // gutterBottom
+                variant="h9"
+              >
+               <b>in Stock</b> 2690
+            </Typography>
+            </Grid>
+
+          </Grid>
+
+
+        </CardContent>
+      </Card>
 
 
 

@@ -38,11 +38,18 @@ class InventoryStatus extends React.Component {
                         style={{
                             padding: 20,
                             paddingBottom: 20,
-
                         }}>
                         <Grid item className={classes.header}>
-                            <Typography variant='h3' color="textSecondary">
-                                Employees
+                            <Typography variant='h5' color="textSecondary">
+                                <b>Warehouse Name</b> : GurdSholla Warehouse
+                            </Typography>
+                            <Typography variant='h5' color="textSecondary">
+                            <b>Warehouse ID</b> : YTFHGFTY556HHG
+                            </Typography>                            
+                            <Typography style={{
+                                marginLeft:200
+                            }} variant='h5' color="textSecondary">
+                            <b>Location</b> : GurdSholla infront of 'Top 10' Hotel
                             </Typography>
                         </Grid>
                         <Grid item style={{
@@ -56,7 +63,6 @@ class InventoryStatus extends React.Component {
                     </div>
                     <div>
                         <Divider className={classes.spacer}></Divider>
-
                         <Category />
                     </div>
                 </div>

@@ -17,7 +17,6 @@ import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 
 import EditIcon from '@material-ui/icons/Edit';
-import PersonActivity from './PersonActivity'
 
 
 
@@ -648,9 +647,6 @@ export default function Profile() {
                 <Typography>
                     <h3>Recent Activities Of Yelekal</h3>
                 </Typography>
-                                    
-                <PersonActivity />
-
 
 
             </React.Fragment>
