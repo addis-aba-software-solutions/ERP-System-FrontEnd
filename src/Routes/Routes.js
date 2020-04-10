@@ -11,6 +11,7 @@ import UserProfile from '../Components/HR/HRhome'
 import Production from '../Production';
 import Inventory from '../Components/Inventory/Inventory'
 import Finance from '../Components/Finance/Finance'
+import Sales from '../Components/Saless/ViewAllOrders'
 
 export default class Routes extends Component {
     render() {
@@ -25,7 +26,9 @@ export default class Routes extends Component {
 
                     <Route path="/Dashboard" component={HomeNavBar} />
                     <Route path="/UserList" component={UserList} />
-                    <Route path="/" component={Inventory} />
+                    {/* <Route path="/" component={Inventory} /> */}
+                    <Route path="/" component={Sales} />
+
                     {/* <Route path="/" component={Finance} /> */}
 
                 </Switch>
