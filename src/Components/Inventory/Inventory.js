@@ -29,7 +29,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-
+import InventoryStatus from './components/InventoryStatus';
 import Card from '@material-ui/core/Card';
 
 // import Profile from './Components/HR/UserProfile/Profile'
@@ -136,10 +136,9 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () =>
-            <>
-                <Card style={{ height: 100 }} />
-                    <b />
-            </>
+
+        <InventoryStatus />
+
     }
 ]
 

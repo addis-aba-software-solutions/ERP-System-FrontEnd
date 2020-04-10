@@ -45,7 +45,6 @@ const UsersCategory = () => {
                     spacing={4} style={{
                         // marginLeft: 20,
                         padding: 10,
-
                     }}>
                     <Grid item>
                         <Paper className={classes.budgetTracking}>
