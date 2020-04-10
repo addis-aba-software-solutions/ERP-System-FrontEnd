@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import { makeStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 import {
   Card,
   CardActions,
@@ -21,8 +24,8 @@ import {
 } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import history from '../../../../Routes/history'
+const styles = theme => ({
 
-const useStyles = makeStyles(theme => ({
   root: {},
   content: {
     padding: 0
@@ -40,162 +43,266 @@ const useStyles = makeStyles(theme => ({
   actions: {
     justifyContent: 'flex-end'
   }
-}));
+});
 
-const UsersTable = props => {
-  const { className, users, ...rest } = props;
+class UsersTable extends React.Component {
 
-  const classes = useStyles();
 
-  const [selectedUsers, setSelectedUsers] = useState([]);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [page, setPage] = useState(0);
+  // const Employees=props=>(
+  state = {
+    employeeInfo: []
+  }
 
-  const handleSelectAll = event => {
-    const { users } = props;
 
-    let selectedUsers;
+  componentDidMount() {
+    axios.get("http://192.168.1.9:8000/api/v1/employe/")
+      .then(res => {
+        this.setState({
+          employeeInfo: res.data
+        })
+        //   console.log(res.data.data.children);
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
+  render() {
 
-    if (event.target.checked) {
-      selectedUsers = users.map(user => user.id);
-    } else {
-      selectedUsers = [];
+    const {classes} = this.props
+    const { error, employeeInfo } = this.state;
+
+    if (error) {
+      return (
+        <div>
+          Error:{error.message}
+        </div>
+      )
     }
+    else {
+      return (
+        //     <div>
+        //     <Table>
+        // <TableHead>
 
-    setSelectedUsers(selectedUsers);
-  };
+        //   <TableRow>
+        //     <th style={{ width: 50 }} score="col">employeId</th>
+        //     <th style={{ width: 100 }} score="col">First Name</th>
+        //     <th style={{ width: 100 }} score="col">Last Name</th>
+        //     <th style={{ width: 100 }} score="col">Department</th>
+        //     <th style={{ width: 100 }} score="col">Job Title</th>
+        //     <th style={{ width: 100 }} score="col">Position</th>
+        //     {/* <th style={{ width: 100 }} score="col">Salary</th> */}
+        //     <th style={{ width: 100 }} score="col">Employment Status</th>
+        //     {/* <th style={{ width: 100 }} score="col">Location</th> */}
+        //     <th style={{ width: 50 }} score="col">__</th>
+        //   </TableRow>
+        // </TableHead>
+        // <TableBody>
+        //   {employeeInfo.map(employeeInfos =>  (
+        //       <TableRow key={employeeInfos.employeId}>
+        //       <TableCell>{employeeInfos.employeId}</TableCell>
+        //       <TableCell>{employeeInfos.firstName}</TableCell>
+        //       <TableCell>{employeeInfos.lastName}</TableCell>
+        //       {/* <TableCell>{employeeInfos.email}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.telephone}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.country}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.region}</TableCell> */}
+        //       {/* <TableCell>{employeeInfos.city}</TableCell> */}
+        //       <TableCell>{employeeInfos.department}</TableCell>
+        //       <TableCell>{employeeInfos.role}</TableCell>
+        //       <TableCell>{employeeInfos.level}</TableCell>
+        //       <TableCell>{employeeInfos.termOfEmployment}</TableCell>
+        //       <TableCell><button>
+        //            <Link to={{
+        //              pathname:`/employe/${employeeInfos.employeId}`,
+        //              state:{employeeInfos: employeeInfos.employeId}
+        //           }}>View</Link>
+        //           </button></TableCell>
 
-  const handleSelectOne = (event, id) => {
-    const selectedIndex = selectedUsers.indexOf(id);
-    let newSelectedUsers = [];
 
-    if (selectedIndex === -1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers, id);
-    } else if (selectedIndex === 0) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(1));
-    } else if (selectedIndex === selectedUsers.length - 1) {
-      newSelectedUsers = newSelectedUsers.concat(selectedUsers.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelectedUsers = newSelectedUsers.concat(
-        selectedUsers.slice(0, selectedIndex),
-        selectedUsers.slice(selectedIndex + 1)
+        //       {/* <TableCell>{employeeInfos.Location}</TableCell> */}
+
+        //     </TableRow>
+        //     )
+
+        // )  }
+        // </TableBody>
+        // </Table>
+        //   </div>
+
+
+
+
+
+
+        // export default withStyles(styles)(UsersTable);
+
+
+        <Card
+        >
+          <CardContent className={classes.content}>
+            <PerfectScrollbar>
+              <div className={classes.inner}>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                    <TableCell>Id</TableCell>
+
+                      <TableCell>First Name</TableCell>
+                      <TableCell>Last Name</TableCell>
+
+                      <TableCell>Phone Number</TableCell>
+                      <TableCell>Department</TableCell>
+                      {/* <TableCell>Phone</TableCell> */}
+                      <TableCell>Role</TableCell>
+                      <TableCell>Actions</TableCell>
+
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {employeeInfo.map(employeeInfos => (
+                      <TableRow key={employeeInfos.employeId}>
+                        <TableCell>{employeeInfos.employeId}</TableCell>
+                        <TableCell>{employeeInfos.firstName}</TableCell>
+                        <TableCell>{employeeInfos.lastName}</TableCell>
+                        {/* <TableCell>{employeeInfos.email}</TableCell> */}
+                        {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
+                        <TableCell>{employeeInfos.telephone}</TableCell>
+                        {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
+                        {/* <TableCell>{employeeInfos.country}</TableCell> */}
+                        {/* <TableCell>{employeeInfos.region}</TableCell> */}
+                        {/* <TableCell>{employeeInfos.city}</TableCell> */}
+                        <TableCell>{employeeInfos.department}</TableCell>
+                        <TableCell>{employeeInfos.role}</TableCell>
+                        {/* <TableCell>{employeeInfos.level}</TableCell> */}
+                        {/* <TableCell>{employeeInfos.termOfEmployment}</TableCell> */}
+                        <TableCell><button>
+                          <Link to={{
+                            pathname: `/employe/${employeeInfos.employeId}`,
+                            state: { employeeInfos: employeeInfos.employeId }
+                          }}>View</Link>
+                        </button></TableCell>
+
+
+                        {/* <TableCell>{employeeInfos.Location}</TableCell> */}
+
+                      </TableRow>
+                    )
+
+                    )}
+                  </TableBody>
+                </Table>
+              </div>
+            </PerfectScrollbar>
+          </CardContent>
+        </Card>
+
+
+
       );
     }
+  }
+}
+    export default withStyles(styles)(UsersTable);
 
-    setSelectedUsers(newSelectedUsers);
-  };
 
-  const handlePageChange = (event, page) => {
-    setPage(page);
-  };
+//Search
 
-  const handleRowsPerPageChange = event => {
-    setRowsPerPage(event.target.value);
-  };
+  // class App extends Component{
+  //   constructor(){
+  //     super();
+  //     this.state={
+  //       movies:[],
+  //       search:''    }
+  //   }
 
-  return (
-    <Card
-      {...rest}
-      className={clsx(classes.root, className)}
-    >
-      <CardContent className={classes.content}>
-        <PerfectScrollbar>
-          <div className={classes.inner}>
-            <Table>
-              <TableHead>
-                <TableRow>
-                  <TableCell padding="checkbox">
-                    <Checkbox
-                      checked={selectedUsers.length === users.length}
-                      color="primary"
-                      indeterminate={
-                        selectedUsers.length > 0 &&
-                        selectedUsers.length < users.length
-                      }
-                      onChange={handleSelectAll}
-                    />
-                  </TableCell>
-                  <TableCell>Name</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Location</TableCell>
-                  <TableCell>Phone</TableCell>
-                  <TableCell>Registration date</TableCell>
-                  <TableCell>Actions</TableCell>
+  //   handleSubmit=(e)=>{
+  //     e.preventDefault();
+  //     fetch(`http://192.168.1.3:8001/api/v1/employe/${this.state.search}`)
+  //     .then(data=> data.json()
+  //     .then(data=>{
+  //       console.log(data);
+  //       this.setState({movies:[...data.results]})
+  //     }))
+  //   }
+  //   handleChange=(e)=>{
+  //     this.setState({search:e.target.value})
+  //   }
+  //   render(){
+  //     return(
+  //       <form onSubmit={this.handleSubmit}>
+  //         <input onChange={this.handleChange}/>>
+  //       </form>
+  //     );
+  //   }
+  // }
 
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                {users.slice(0, rowsPerPage).map(user => (
-                  <TableRow
-                    className={classes.tableRow}
-                    hover
-                    key={user.id}
-                    selected={selectedUsers.indexOf(user.id) !== -1}
-                  >
-                    <TableCell padding="checkbox">
-                      <Checkbox
-                        checked={selectedUsers.indexOf(user.id) !== -1}
-                        color="primary"
-                        onChange={event => handleSelectOne(event, user.id)}
-                        value="true"
-                      />
-                    </TableCell>
-                    <TableCell>
-                      <div className={classes.nameContainer}>
-                        <Avatar
-                          className={classes.avatar}
-                          src={user.avatarUrl}
-                        >
-                          {user.name}
-                        </Avatar>
-                        <Typography variant="body1">{user.name}</Typography>
-                      </div>
-                    </TableCell>
-                    <TableCell>{user.email}</TableCell>
-                    <TableCell>
-                      {user.address.city}, {user.address.state},{' '}
-                      {user.address.country}
-                    </TableCell>
-                    <TableCell>{user.phone}</TableCell>
-                    <TableCell>
-                      {moment(user.createdAt).format('DD/MM/YYYY')}
-                    </TableCell>
-                    <TableCell>
-                      <Button
-                        // variant="contained"
-                        onClick={() => history.push('/userProfile')}
-                        color="#11669F"
-                        size="small"
-                        className={classes.button}
-                        startIcon={<VisibilityIcon color="#11669F" />}
-                      >
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
-            </Table>
-          </div>
-        </PerfectScrollbar>
-      </CardContent>
-      <CardActions className={classes.actions}>
-        <TablePagination
-          component="div"
-          count={users.length}
-          onChangePage={handlePageChange}
-          onChangeRowsPerPage={handleRowsPerPageChange}
-          page={page}
-          rowsPerPage={rowsPerPage}
-          rowsPerPageOptions={[5, 10, 25]}
-        />
-      </CardActions>
-    </Card>
-  );
-};
+//Filter
 
-UsersTable.propTypes = {
-  className: PropTypes.string,
-  users: PropTypes.array.isRequired
-};
+// class Filter extends Component{
 
-export default UsersTable;
+//   constructor(){
+//     super();
+//     this.state={
+//       search:''
+//     };
+//   }
+//   updateSearch(e){
+//     this.setState({
+//       search:e.target.value.substr(0,20)
+//     })
+//   }
+// render(){
+//    let filteredEmployee= this.employeeInfo.filter(
+//      (employeeInfos)=>{
+//        return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1; 
+//      }
+//    );
+//   return(
+//     <div>
+//     <ul>
+// <TableBody>
+
+//     {filteredEmployee.map(employeeInfos => (
+
+//       // <li>{employeeInfos.firstName}</li>
+//       <TableRow key={employeeInfos.employeId}>
+//       <TableCell>{employeeInfos.employeId}</TableCell>
+//       <TableCell>{employeeInfos.firstName}</TableCell>
+//       <TableCell>{employeeInfos.lastName}</TableCell>
+//       {/* <TableCell>{employeeInfos.email}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.telephone}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.country}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.region}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.city}</TableCell> */}
+//       <TableCell>{employeeInfos.department}</TableCell>
+//       <TableCell>{employeeInfos.role}</TableCell>
+//       <TableCell>{employeeInfos.level}</TableCell>
+//       <TableCell>{employeeInfos.termOfEmployment}</TableCell>
+//       <TableCell><button>
+//            <Link to={{
+//              pathname:`/employe/${employeeInfos.employeId}`,
+//              state:{employeeInfos: employeeInfos.employeId}
+//           }}>View</Link>
+//           </button></TableCell>
+
+
+//       {/* <TableCell>{employeeInfos.Location}</TableCell> */}
+
+//     </TableRow>
+//     )
+
+// )  }
+// </TableBody>
+//   </ul>
+//   <input  value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+//   </div>
+//   );
+
+//         }
+
+//       
