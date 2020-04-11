@@ -12,7 +12,7 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import ProfilePicture from '../../../Assets/hello.jpg'
+import ProfilePicture from '../../../../Assets/hello.jpg'
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 

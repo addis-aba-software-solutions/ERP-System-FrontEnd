@@ -33,9 +33,9 @@ import PeopleIcon from '@material-ui/icons/People';
 // import Contents from './HRContents';
 import HomeNavBar from './HomeNavBar';
 import SearchBar from '../SearchBar/SearchBar';
-import UsersCategory from '../HR/UsersCategory';
-import UserProfile from '../HR/UserProfile/UserProfile';
-import Profile from '../HR/UserProfile/Profile';
+// import UsersCategory from '../HR/UsersCategory';
+import UserProfile from '../HR/components/UserProfile/UserProfile';
+import Profile from '../HR/components/UserProfile/Profile';
 
 import HRHome from '../HR/HRhome';
 
@@ -54,7 +54,7 @@ import Meetings from './Meetings';
 // import UsersByDevice from '../Budget/UsersByDevice';
 // import TasksProgress from './Budget/TasksProgress';
 
-import UserList from '../HR/UserList'
+// import UserList from '../HR/UserList'
 
 // import classes from "*.module.css";
 // mport AssignmentIcon from "@material-ui/icons/AssignmentIcon";
@@ -168,7 +168,7 @@ export const routes = [
         sidebar: () => <div>Employees</div>,
         main: () => <div>
             <SearchBar />
-            <UserList />
+            <HRHome />
 
             {/* <Contents /> */}
 
@@ -180,7 +180,7 @@ export const routes = [
         main: () => <div>
             <Grid container spacing={2} >
                 <Grid item xs={9}>
-                    <UsersCategory />
+                    {/* <UsersCategory /> */}
                 </Grid>
                 <Grid item xs={3}>
                     <Paper style={{

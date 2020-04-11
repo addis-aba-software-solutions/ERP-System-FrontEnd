@@ -16,10 +16,10 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItem';
-import UsersCategory from './Components/HR/UsersCategory';
-import UserProfile from './Components/HR/UserProfile/UserProfile';
+// import UsersCategory from './Components/HR/UsersCategory';
+import UserProfile from './Components/HR/components/UserProfile/UserProfile';
 import Box from '@material-ui/core/Box';
-import Profile from './Components/HR/UserProfile/Profile'
+import Profile from './Components/HR/components/UserProfile/Profile'
 
 const drawerWidth = 240;
 

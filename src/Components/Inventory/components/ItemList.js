@@ -24,6 +24,9 @@ const styles = theme => ({
         margin: 10,
         marginBottom: 30
     },
+    header: {
+        marginLeft: 100
+    }
 });
 
 class ItemList extends React.Component {
@@ -41,8 +44,16 @@ class ItemList extends React.Component {
 
                         }}>
                         <Grid item className={classes.header}>
-                            <Typography variant='h3' color="textSecondary">
-                                Edibles
+                            <Typography variant='h5' color="textSecondary">
+                                <b>Warehouse Name</b> : GurdSholla Warehouse
+                            </Typography>
+                            <Typography variant='h5' color="textSecondary">
+                            <b>Warehouse ID</b> : YTFHGFTY556HHG
+                            </Typography>                            
+                            <Typography style={{
+                                marginRight:100
+                            }} variant='h5' color="textSecondary">
+                            <b>Category</b> : Edibles
                             </Typography>
                         </Grid>
                         <Grid item style={{

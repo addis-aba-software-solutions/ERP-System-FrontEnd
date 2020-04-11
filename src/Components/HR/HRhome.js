@@ -1,179 +1,165 @@
-import React from "react";
+
+import React from 'react';
+import clsx from 'clsx';
+import { makeStyles } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import List from '@material-ui/core/List';
+import DashboardIcon from '@material-ui/icons/Dashboard';
+import PeopleIcon from '@material-ui/icons/People';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link
 } from "react-router-dom";
-
-import clsx from "clsx";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-// import Container from '@material-ui/core/Container';
-import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
+import Typography from '@material-ui/core/Typography';
+import Divider from '@material-ui/core/Divider';
+import IconButton from '@material-ui/core/IconButton';
+import Badge from '@material-ui/core/Badge';
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import MailIcon from "@material-ui/icons/Mail";
-import DashboardIcon from '@material-ui/icons/Dashboard';
-import PeopleIcon from '@material-ui/icons/People';
-// import Contents from './HRContents';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
-import UserProfile from '../HR/UserProfile/UserProfile';
-import Profile from '../HR/UserProfile/Profile';
-
-
-
-
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
-// import Box from '@material-ui/core/Box';
-
-
-// import LatestSales from './LatestSales';
-// import Budget from './Budget/Budget';
-// import TotalUsers from './Budget/TotalUsers';
-// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-// import UsersByDevice from '../Budget/UsersByDevice';
-// import TasksProgress from './Budget/TasksProgress';
-
-
-// import classes from "*.module.css";
-// mport AssignmentIcon from "@material-ui/icons/AssignmentIcon";
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import ProfilePicture from '../../Assets/ww.jpg';
+import AddNewEmployee from './components/UserProfile/UserProfile'
+import UsersCategory from './components/UsersCategory';
+import Category from './components/Category'
+import SearchBar from '../SearchBar/SearchBar';
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
     root: {
-        display: "flex",
-        height: '100vh'
+        display: 'flex',
+    },
+    toolbar: {
+        backgroundColor: '#11669F',
+        paddingRight: 24, // keep right padding when drawer closed
+    },
+    toolbarIcon: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: '0 8px',
+        ...theme.mixins.toolbar,
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
-        transition: theme.transitions.create(["width", "margin"], {
+        transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        })
+            duration: theme.transitions.duration.leavingScreen,
+        }),
     },
     appBarShift: {
         marginLeft: drawerWidth,
         width: `calc(100% - ${drawerWidth}px)`,
-        transition: theme.transitions.create(["width", "margin"], {
+        transition: theme.transitions.create(['width', 'margin'], {
             easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen
-        })
+            duration: theme.transitions.duration.enteringScreen,
+        }),
     },
     menuButton: {
-        marginRight: 36
+        marginRight: 36,
     },
-    hide: {
-        display: "none"
+    menuButtonHidden: {
+        display: 'none',
     },
-    drawer: {
+    title: {
+        display: 'flex',
+        justify: 'flex-start',
+        flexGrow: 1,
+    },
+    drawerPaper: {
+        position: 'relative',
+        whiteSpace: 'nowrap',
         width: drawerWidth,
-        flexShrink: 0,
-        whiteSpace: "nowrap"
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerPaperClose: {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing(9),
+        },
+    },
+    appBarSpacer: theme.mixins.toolbar,
+    content: {
+        flexGrow: 1,
+        height: '100vh',
+        overflow: 'auto',
+        backgroundColor: '#EBEBEB'
+    },
+    container: {
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
+
+
     },
     paper: {
-        borderRadius: 16,
-        boxShadow: 0,
         padding: theme.spacing(2),
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
     },
-    drawerOpen: {
-        width: drawerWidth,
-        transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen
-        })
+    fixedHeight: {
+        height: 240,
     },
-    drawerClose: {
-        transition: theme.transitions.create("width", {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen
-        }),
-        overflowX: "hidden",
-        width: theme.spacing(7) + 1,
-        [theme.breakpoints.up("sm")]: {
-            width: theme.spacing(9) + 1
-        }
-    },
-    toolbar: {
-        // backgroundColor: '#11669F',
-
-
-        justifyContent: "flex-end",
-        padding: theme.spacing(0, 1),
-        ...theme.mixins.toolbar
-    },
-    content: {
-        display: "flex",
-        alignItems: "center",
-        flexGrow: 1,
-        padding: theme.spacing(3)
-    },
-
+    ProfilePicture: {
+        height: 10,
+    }
 }));
-
 
 export const routes = [
     {
-        path: "/",
+        path: '/',
         exact: true,
-        sidebar: () => <div>Dashboard</div>,
-        main: () =>
-            <>
-
-
-                <UserProfile />
-
-            </>
+        sidebar: () => '',
+        main: () => <AddNewEmployee />
     },
     {
-        path: "/inbox",
-        sidebar: () => <div>Employees</div>,
-        main: () => <div>
-            <Profile />
+        path: '/EmployeeCategories',
+        exact: true,
+        sidebar: () => '',
+        main: () => <UsersCategory />
+    },
+    {
+        path: '/EmployeeListView',
+        exact: true,
+        sidebar: () => '',
+        main: () => 
+        <>
+        <div style={{
+            padding:20
+        }}>
 
+        <SearchBar />
         </div>
-    },
-    {
-        path: "/Three",
-        sidebar: () => <div>Sales</div>,
-        main: () => <div>
-            Sakes
 
-       </div>
-    },
-];
+        <Category />
+        </>
+    }
+]
 
-
-
-export default function HRHome() {
+export default function HR() {
     const classes = useStyles();
-
-    const theme = useTheme();
     const [open, setOpen] = React.useState(false);
-
     const handleDrawerOpen = () => {
         setOpen(true);
     };
-
     const handleDrawerClose = () => {
         setOpen(false);
     };
@@ -181,109 +167,107 @@ export default function HRHome() {
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar
-                position="fixed"
-                className={clsx(classes.appBar, {
-                    [classes.appBarShift]: open
-                })}
-            >
-                <Toolbar>
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+                <Toolbar className={classes.toolbar}>
                     <IconButton
+                        edge="start"
                         color="inherit"
                         aria-label="open drawer"
                         onClick={handleDrawerOpen}
-                        edge="start"
-                        className={clsx(classes.menuButton, {
-                            [classes.hide]: open
-                        })}
+                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap>
-                        Mini variant drawer
-          </Typography>
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                        EATH
+                    </Typography>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+
+
+                    <img src={ProfilePicture} alt='' style={{
+                        height: 35,
+                        width: 35,
+                        borderRadius: 100
+                    }} />
+
+
+                    <IconButton color="inherit">
+                        <Typography variant="body2" gutterBottom>
+                            Samuel Kassa
+                        </Typography>
+
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <ArrowDropDownIcon fontSize='large' />
+                    </IconButton>
                 </Toolbar>
             </AppBar>
-            <Router>
-                <Drawer
-                    variant="permanent"
-                    className={clsx(classes.drawer, {
-                        [classes.drawerOpen]: open,
-                        [classes.drawerClose]: !open
-                    })}
-                    classes={{
-                        paper: clsx({
-                            [classes.drawerOpen]: open,
-                            [classes.drawerClose]: !open
-                        })
-                    }}
-                >
-                    <div className={classes.toolbar}>
-                        <IconButton onClick={handleDrawerClose}>
-                            {theme.direction === "rtl" ? (
-                                <ChevronRightIcon />
-                            ) : (
-                                    <ChevronLeftIcon />
-                                )}
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <Link to="/">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <DashboardIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Dashboard" />
+            <Drawer
+                variant="permanent"
+                classes={{
+                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                }}
+                open={open}
+            >
+                <div className={classes.toolbarIcon}>
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <Link to="/">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <DashboardIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/inbox">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Inbox" />
+                        </ListItem>
+                    </Link>
+                    <Link to="/EmployeeCategories">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Category" />
 
-                            </ListItem>
-                        </Link>
+                        </ListItem>
+                    </Link>
 
-                        <Link to="/Three">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Wazzzza" />
+                    <Link to="/EmployeeListView">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="ItemView" />
+                        </ListItem>
+                    </Link>
+                </List>
+                <Divider />
+                {/* <List>{secondaryListItems}</List> */}
+            </Drawer>
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/Four">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Hollup" />
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <div className={classes.appBarSpacer} />
+                <Switch>
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            exact={route.exact}
+                            children={<route.main />}
+                        />
+                    ))}
+                </Switch>
 
-                            </ListItem>
-                        </Link>
-                    </List>
-                </Drawer>
+            </main>
 
-
-                <main className={classes.content}>
-                    <Switch>
-                        {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                children={<route.main />}
-                            />
-                        ))}
-                    </Switch>
-
-                </main>
-            </Router>
         </div>
     );
 }
