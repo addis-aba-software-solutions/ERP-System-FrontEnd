@@ -449,58 +449,58 @@ class UserProfile extends Component {
 export default withStyles(styles)(UserProfile);
 
 
-const Employees=props=>(
-  <div>
-    <table className="table table-bordered">
-<thead className="thead-dark" style={{backgroundColor: "#11669F"}}>
-  {/* <h2>Product List</h2> */}
+// const Employees=props=>(
+//   <div>
+//     <table className="table table-bordered">
+// <thead className="thead-dark" style={{backgroundColor: "#11669F"}}>
+//   {/* <h2>Product List</h2> */}
 
-  <tr>
-    <th style={{ width: 50 }} score="col">employeId</th>
-    <th style={{ width: 100 }} score="col">First Name</th>
-    <th style={{ width: 100 }} score="col">Last Name</th>
-    <th style={{ width: 100 }} score="col">Department</th>
-    <th style={{ width: 100 }} score="col">Job Title</th>
-    <th style={{ width: 100 }} score="col">Position</th>
-    {/* <th style={{ width: 100 }} score="col">Salary</th> */}
-    <th style={{ width: 100 }} score="col">Employment Status</th>
-    {/* <th style={{ width: 100 }} score="col">Location</th> */}
-    <th style={{ width: 50 }} score="col">__</th>
-  </tr>
-</thead>
-<tbody>
-  {props.employeeInfo.map(employeeInfos => (
-    <tr key={employeeInfos.employeId}>
-      <td>{employeeInfos.employeId}</td>
-      <td>{employeeInfos.firstName}</td>
-      <td>{employeeInfos.lastName}</td>
-      {/* <td>{employeeInfos.email}</td> */}
-      {/* <td>{employeeInfos.hiredDate}</td> */}
-      {/* <td>{employeeInfos.telephone}</td> */}
-      {/* <td>{employeeInfos.birthDate}</td> */}
-      {/* <td>{employeeInfos.country}</td> */}
-      {/* <td>{employeeInfos.region}</td> */}
-      {/* <td>{employeeInfos.city}</td> */}
-      <td>{employeeInfos.department}</td>
-      <td>{employeeInfos.role}</td>
-      <td>{employeeInfos.level}</td>
-      <td>{employeeInfos.termOfEmployment}</td>
-      <td><button>
-           <Link to={{
-             pathname:`/employe/${employeeInfos.employeId}`,
-             state:{employeeInfos: employeeInfos.firstName}
-          }}>View</Link>
-          </button></td>
+//   <tr>
+//     <th style={{ width: 50 }} score="col">employeId</th>
+//     <th style={{ width: 100 }} score="col">First Name</th>
+//     <th style={{ width: 100 }} score="col">Last Name</th>
+//     <th style={{ width: 100 }} score="col">Department</th>
+//     <th style={{ width: 100 }} score="col">Job Title</th>
+//     <th style={{ width: 100 }} score="col">Position</th>
+//     {/* <th style={{ width: 100 }} score="col">Salary</th> */}
+//     <th style={{ width: 100 }} score="col">Employment Status</th>
+//     {/* <th style={{ width: 100 }} score="col">Location</th> */}
+//     <th style={{ width: 50 }} score="col">__</th>
+//   </tr>
+// </thead>
+// <tbody>
+//   {props.employeeInfo.map(employeeInfos => (
+//     <tr key={employeeInfos.employeId}>
+//       <td>{employeeInfos.employeId}</td>
+//       <td>{employeeInfos.firstName}</td>
+//       <td>{employeeInfos.lastName}</td>
+//       {/* <td>{employeeInfos.email}</td> */}
+//       {/* <td>{employeeInfos.hiredDate}</td> */}
+//       {/* <td>{employeeInfos.telephone}</td> */}
+//       {/* <td>{employeeInfos.birthDate}</td> */}
+//       {/* <td>{employeeInfos.country}</td> */}
+//       {/* <td>{employeeInfos.region}</td> */}
+//       {/* <td>{employeeInfos.city}</td> */}
+//       <td>{employeeInfos.department}</td>
+//       <td>{employeeInfos.role}</td>
+//       <td>{employeeInfos.level}</td>
+//       <td>{employeeInfos.termOfEmployment}</td>
+//       <td><button>
+//            <Link to={{
+//              pathname:`/employe/${employeeInfos.employeId}`,
+//              state:{employeeInfos: employeeInfos.firstName}
+//           }}>View</Link>
+//           </button></td>
 
 
-      {/* <td>{employeeInfos.Location}</td> */}
+//       {/* <td>{employeeInfos.Location}</td> */}
 
-    </tr>
-  ))}
-</tbody>
-</table>
-  </div>
-)
+//     </tr>
+//   ))}
+// </tbody>
+// </table>
+//   </div>
+// )
 
 
 // {
