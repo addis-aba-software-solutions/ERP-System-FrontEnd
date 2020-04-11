@@ -303,7 +303,7 @@ class UserProfile extends Component {
                 </Grid>
 
 
-                <Grid item xs={12} sm={6}>
+                {/* <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="Salary"
@@ -318,7 +318,7 @@ class UserProfile extends Component {
                       this.setState({newEmployeeInfo});
                     }}
                   />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
                   <TextField

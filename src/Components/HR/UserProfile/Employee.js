@@ -6,8 +6,8 @@ class Employee extends React.Component {
         singleEmployee: []
     }
     componentDidMount = () => {
-        const employeeId = this.props.location.state.employeeInfos;
-        const req =  fetch(`http://192.168.1.9:8000/api/v1/employe/${employeeId}`);
+        const employeId = this.props.location.state.employeeInfos;
+        const req =  fetch(`http://192.168.1.9:8000/api/v1/employe/${employeId}`);
         const res =  req.json();
         this.setState({ singleEmployee: res.employeeInfo[0] });
         console.log(this.state.singleEmployee);
