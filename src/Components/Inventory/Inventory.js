@@ -29,8 +29,9 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-
+import InventoryStatus from './components/InventoryStatus';
 import Card from '@material-ui/core/Card';
+import ItemList from './components/ItemList'
 
 // import Profile from './Components/HR/UserProfile/Profile'
 
@@ -119,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
         height: 240,
     },
     ProfilePicture: {
-        height:10,
+        height: 10,
     }
 }));
 
@@ -132,14 +133,22 @@ export const routes = [
             <AddNewProduct />
     },
     {
-        path: '/Second',
+        path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
         main: () =>
-            <>
-                <Card style={{ height: 100 }} />
-                    <b />
-            </>
+
+            <InventoryStatus />
+
+    },
+    {
+        path: '/CategoryListView',
+        exact: true,
+        sidebar: () => '',
+        main: () =>
+
+            <ItemList />
+
     }
 ]
 
@@ -178,10 +187,10 @@ export default function Inventory() {
 
 
                     <img src={ProfilePicture} alt='' style={{
-                        height:35,
-                        width:35,
+                        height: 35,
+                        width: 35,
                         borderRadius: 100
-                    }}/>
+                    }} />
 
 
                     <IconButton color="inherit">
@@ -196,7 +205,7 @@ export default function Inventory() {
                 </Toolbar>
 
 
-                
+
 
 
             </AppBar>
@@ -225,22 +234,22 @@ export default function Inventory() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/Second">
+                    <Link to="/InventoryStatus">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Inbox" />
+                            <ListItemText primary="Category" />
 
                         </ListItem>
                     </Link>
 
-                    <Link to="/Three">
+                    <Link to="/CategoryListView">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Wazzzza" />
+                            <ListItemText primary="ItemView" />
 
                         </ListItem>
                     </Link>

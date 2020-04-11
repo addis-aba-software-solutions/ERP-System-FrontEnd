@@ -1,7 +1,12 @@
 import React from 'react';
+import clsx from 'clsx';
+// import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
+// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+// import MoneyIcon from '@material-ui/icons/Money';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -53,6 +58,8 @@ const useStyles = makeStyles(theme => ({
 
 
 const Level = props => {
+    // const { className, } = props;
+
     const classes = useStyles();
 
     return (
@@ -61,6 +68,7 @@ const Level = props => {
                 onClick={() => alert('Finance')}
             >
                 <CardContent>
+
                     <Grid
                         container
                         display='flex'
@@ -80,11 +88,16 @@ const Level = props => {
                                 color="textSecondary"
                                 // gutterBottom
                                 variant="h4"
+
                             >
                                 Junior
             </Typography>
+
                         </Grid>
+
                     </Grid>
+
+
                 </CardContent>
             </Card>
 
@@ -111,6 +124,7 @@ const Level = props => {
                                 color="textSecondary"
                                 // gutterBottom
                                 variant="h4"
+
                             >
                                 Senior
             </Typography>
@@ -146,6 +160,7 @@ const Level = props => {
                                 color="textSecondary"
                                 // gutterBottom
                                 variant="h4"
+
                             >
                                 Someth
             </Typography>
@@ -157,6 +172,7 @@ const Level = props => {
             <Card className={classes.Card}
             >
                 <CardContent>
+
                     <Grid
                         container
                         display='flex'
@@ -176,9 +192,11 @@ const Level = props => {
                                 color="textSecondary"
                                 // gutterBottom
                                 variant="h4"
+
                             >
                                 Someth
                              </Typography>
+
                         </Grid>
                     </Grid>
                 </CardContent>

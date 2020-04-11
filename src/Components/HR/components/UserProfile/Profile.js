@@ -12,12 +12,11 @@ import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import ProfilePicture from '../../../Assets/hello.jpg'
+import ProfilePicture from '../../../../Assets/hello.jpg'
 import Divider from '@material-ui/core/Divider';
 import Box from '@material-ui/core/Box';
 
 import EditIcon from '@material-ui/icons/Edit';
-import PersonActivity from './PersonActivity'
 import { withStyles } from '@material-ui/core/styles';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import axios from 'axios';
@@ -676,15 +675,12 @@ class Profile extends React.Component {
                                                 </Box>
                                             </CardActions>
                                         </Card>
-
-                                    </Grid>
-                                </main>
-                            </Grid>
-                            <Typography>
-                                <h3>Recent Activities Of Yelekal</h3>
-                            </Typography>
-
-                            <PersonActivity />
+                        </Grid>
+                    </main>
+                </Grid>
+                <Typography>
+                    <h3>Recent Activities Of Yelekal</h3>
+                </Typography>
 
 
 

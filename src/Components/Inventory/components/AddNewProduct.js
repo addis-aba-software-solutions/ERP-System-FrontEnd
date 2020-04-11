@@ -4,11 +4,11 @@ import RecentOrders from './RecentOrders';
 
 const styles = theme => ({
     container: {
-        paddingLeft: 200,
-        paddingRight: 200,
+        paddingLeft: 10,
+        paddingRight: 10,
         paddingTop: 40,
         paddingBottom: 40,
-        height: 'auto'
+        // height: 'auto'
     },
     paper: {
         padding: 60,
@@ -32,246 +32,287 @@ class AddNewProduct extends React.Component {
         return (
             <div className={classes.recentOrders}>
                 <React.Fragment>
+                    <Grid container xs={12}
+                        display='flex'
+                        justify='space-between'>
+                        <Grid item xs={6}>
 
-                    <div className={classes.container}>
+                            <div className={classes.container}>
+                                <Paper className={classes.paper}>
+                                    <Typography variant="h6" gutterBottom style={{
+                                        display: 'flex',
+                                        justify: 'flex-start'
+                                    }}>
+                                        <b>Add New Product Form</b>
+                                    </Typography>
+                                    <Divider className={classes.spacer} />
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="ItemId"
+                                                name="ItemId"
+                                                label="Item Id"
+                                                fullWidth
+                                                autoComplete="ItemId"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="itemName"
+                                                name="itemName"
+                                                label="item Name"
+                                                fullWidth
+                                                autoComplete="itemName"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="quantity"
+                                                name="quantity"
+                                                label="Quantity"
+                                                fullWidth
+                                                autoComplete="quantity"
+                                            />
+                                        </Grid>
 
-                        <Typography variant="h5" gutterBottom>
-                            Goods Recieving Voucher
-              </Typography>
-                        <Divider className={classes.spacer} />
-                        {/* <Divider /> */}
-
-                        <Paper className={classes.paper}>
-
-                            <Typography variant="h6" gutterBottom style={{
-                                display: 'flex',
-                                justify: 'flex-start'
-                            }}>
-                                <b>General Information</b>
-                            </Typography>
-                            <Divider className={classes.spacer} />
-
-
-
-                            <Grid container spacing={3}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        id="Store"
-                                        name="Store"
-                                        label="Store/ Department"
-                                        fullWidth
-                                        autoComplete="Store"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="POnumber"
-                                        name="POnumber"
-                                        label="Purchase Order Number"
-                                        fullWidth
-                                        autoComplete="POnumber"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="GRVnumber"
-                                        name="GRVnumber"
-                                        label="GRV Number"
-                                        fullWidth
-                                        autoComplete="GRVnumber"
-                                    />
-                                </Grid>
-
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        id="Supplier"
-                                        name="Supplier"
-                                        label="Supplier"
-                                        fullWidth
-                                        autoComplete="Email"
-                                    />
-                                    {/* <Button>
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                id="retailPrice"
+                                                name="retailPrice"
+                                                label="Retail Price"
+                                                fullWidth
+                                                autoComplete="retailPrice"
+                                            />
+                                            {/* <Button>
                                     Hello
                                 </Button> */}
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="Date"
-                                        name="Date"
-                                        label="Date"
-                                        fullWidth
-                                    // autoComplete="GRVnumber"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="Location"
-                                        name="Location"
-                                        label="Location"
-                                        fullWidth
-                                    // autoComplete="GRVnumber"
-                                    />
-                                </Grid>
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="packaging"
+                                                name="pakaging"
+                                                label="Packaging"
+                                                fullWidth
+                                            // autoComplete="GRVnumber"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="Location"
+                                                name="Location"
+                                                label="Location"
+                                                fullWidth
+                                            // autoComplete="GRVnumber"
+                                            />
+                                        </Grid>
 
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="Contract_Info"
-                                        name="Contract_Info"
-                                        label="Contract Info"
-                                        fullWidth
-                                        autoComplete="Contract_Info"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="Invoice_Number"
-                                        name="Invoice_Number"
-                                        label="Invoice Number"
-                                        fullWidth
-                                    // autoComplete="Role"
-                                    />
-                                </Grid>                            <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="SIV_number"
-                                        name="SIV_number"
-                                        label="SIV Number"
-                                        fullWidth
-                                        autoComplete="SIV_number"
-                                    />
-                                </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="discount"
+                                                name="discount"
+                                                label="Discount"
+                                                fullWidth
+                                                autoComplete="Contract_Info"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="category"
+                                                name="category"
+                                                label="Category"
+                                                fullWidth
+                                            // autoComplete="Role"
+                                            />
+                                        </Grid>
+                                        <Grid container xs={12} display='flex' justify='space-between'>
+                                            <Grid>
+                                                <Button>
+                                                    Add
+                                </Button>
+                                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Clear
+                                </Button>
+                                            </Grid>
 
-                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Cancel
+                                </Button>
+                                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Print Document
+                                </Button>
+                                            </Grid>
 
-                            <Typography variant="h6" gutterBottom style={{
-                                display: 'flex',
-                                justify: 'flex-start',
-                                paddingTop: 30
-                            }}>
-                                <b>Item Information</b>
-                            </Typography>
-                            <Divider className={classes.spacer} />
+                                        </Grid>
+                                    </Grid>
 
-                            <Grid container spacing={3}>
-                                <Grid item xs={12} sm={6}>
-                                    <TextField
-                                        required
-                                        id="Store"
-                                        name="Store"
-                                        label="Store/ Department"
-                                        fullWidth
-                                        autoComplete="Store"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="POnumber"
-                                        name="POnumber"
-                                        label="Purchase Order Number"
-                                        fullWidth
-                                        autoComplete="POnumber"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="GRVnumber"
-                                        name="GRVnumber"
-                                        label="GRV Number"
-                                        fullWidth
-                                        autoComplete="GRVnumber"
-                                    />
-                                </Grid>
+                                </Paper>
 
-                                <Grid item xs={6}>
-                                    <TextField
-                                        required
-                                        id="Supplier"
-                                        name="Supplier"
-                                        label="Supplier"
-                                        fullWidth
-                                        autoComplete="Email"
-                                    />
-                                    {/* <Button>
+                            </div>
+
+
+
+
+                        </Grid>
+
+                        <Grid item xs={6}>
+
+                            <div className={classes.container}>
+                                <Paper className={classes.paper}>
+                                    <Typography variant="h6" gutterBottom style={{
+                                        display: 'flex',
+                                        justify: 'flex-start'
+                                    }}>
+                                        <b>Add New Product Form</b>
+                                    </Typography>
+                                    <Divider className={classes.spacer} />
+                                    <Grid container spacing={3}>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="ItemId"
+                                                name="ItemId"
+                                                label="Item Id"
+                                                fullWidth
+                                                autoComplete="ItemId"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="itemName"
+                                                name="itemName"
+                                                label="item Name"
+                                                fullWidth
+                                                autoComplete="itemName"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="quantity"
+                                                name="quantity"
+                                                label="Quantity"
+                                                fullWidth
+                                                autoComplete="quantity"
+                                            />
+                                        </Grid>
+
+                                        <Grid item xs={6}>
+                                            <TextField
+                                                required
+                                                id="retailPrice"
+                                                name="retailPrice"
+                                                label="Retail Price"
+                                                fullWidth
+                                                autoComplete="retailPrice"
+                                            />
+                                            {/* <Button>
                                     Hello
                                 </Button> */}
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="Date"
-                                        name="Date"
-                                        label="Date"
-                                        fullWidth
-                                    // autoComplete="GRVnumber"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={3}>
-                                    <TextField
-                                        required
-                                        id="Location"
-                                        name="Location"
-                                        label="Location"
-                                        fullWidth
-                                    // autoComplete="GRVnumber"
-                                    />
-                                </Grid>
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="packaging"
+                                                name="pakaging"
+                                                label="Packaging"
+                                                fullWidth
+                                            // autoComplete="GRVnumber"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={3}>
+                                            <TextField
+                                                required
+                                                id="Location"
+                                                name="Location"
+                                                label="Location"
+                                                fullWidth
+                                            // autoComplete="GRVnumber"
+                                            />
+                                        </Grid>
 
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="Contract_Info"
-                                        name="Contract_Info"
-                                        label="Contract Info"
-                                        fullWidth
-                                        autoComplete="Contract_Info"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="Invoice_Number"
-                                        name="Invoice_Number"
-                                        label="Invoice Number"
-                                        fullWidth
-                                    // autoComplete="Role"
-                                    />
-                                </Grid>
-                                <Grid item xs={12} sm={4}>
-                                    <TextField
-                                        required
-                                        id="SIV_number"
-                                        name="SIV_number"
-                                        label="SIV Number"
-                                        fullWidth
-                                        autoComplete="SIV_number"
-                                    />
-                                </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="discount"
+                                                name="discount"
+                                                label="Discount"
+                                                fullWidth
+                                                autoComplete="Contract_Info"
+                                            />
+                                        </Grid>
+                                        <Grid item xs={12} sm={6}>
+                                            <TextField
+                                                required
+                                                id="category"
+                                                name="category"
+                                                label="Category"
+                                                fullWidth
+                                            // autoComplete="Role"
+                                            />
+                                        </Grid>
+                                        <Grid container xs={12} display='flex' justify='space-between'>
+                                            <Grid>
+                                                <Button>
+                                                    Add
+                                </Button>
+                                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Add
+                                </Button>
+                                            </Grid>
 
-                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Add
+                                </Button>
+                                            </Grid>
+                                            <Grid>
+                                                <Button>
+                                                    Print Document
+                                </Button>
+                                            </Grid>
 
-                        </Paper>
+                                        </Grid>
+
+                                    </Grid>
+
+                                </Paper>
+
+                            </div>
 
 
 
-                    </div>
+
+                        </Grid>
+                    </Grid>
+
+
+
+
+
                     <div className={classes.recentOrders}>
 
-                    <Typography variant="h5" gutterBottom style={{
-                        display: 'flex',
-                    }}>
+                        <Typography variant="h5" gutterBottom style={{
+                            display: 'flex',
+                        }}>
                             Recent Imports
               </Typography>
-                    <RecentOrders />
+                        <RecentOrders />
                     </div>
 
                 </React.Fragment>

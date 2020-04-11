@@ -5,16 +5,12 @@ import history from './history';
 
 import SignIn from '../Components/SignIn/SignIn';
 import HomeNavBar from '../Components/Dashboard/HomeNavBar';
-import UserList from '../Components/HR/UserList';
 import Home from '../Components/Dashboard/Home';
-import UserProfile from '../Components/HR/HRhome'
+import HR from '../Components/HR/HRhome'
 import Production from '../Production';
 import Inventory from '../Components/Inventory/Inventory'
-import UsersTable from '../Components/HR/components/UsersTable/UsersTable'
-import Employee from '../Components/HR/UserProfile/Employee';
-import Profile from "../Components/HR/UserProfile/Profile";
-import ViewEmp from "../ViewEmp";
-// import Profile from  './'
+import Finance from '../Components/Finance/Finance'
+import Sales from '../Components/Saless/ViewAllOrders'
 
 export default class Routes extends Component {
     render() {
@@ -23,21 +19,14 @@ export default class Routes extends Component {
                 <Switch>
                     {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" exact component={Production} /> */}
-                    <Route path="/" exact component={ViewEmp} />
-                    {/* <Route path="/" exact component={Profile} /> */}
-
-
-                    {/* <Route path="/userProfile" exact component={UserProfile} /> */}
-                    {/* <Route path="/" component={ViewEmp} /> */}
-
-
+                    {/* <Route path="/"  component={HR} /> */}
+                    {/* <Route path="/userProfile" component={HR} />  */}
                     <Route path="/Dashboard" component={HomeNavBar} />
-                    <Route path="/UserList" component={UserList} />
-                    {/* <Route path="/" component={Inventory} /> */}
-                    <Route path="/employe/:id" component={Profile}/>
-                    <Route path="/UsersTable" component={UsersTable}/>
-                    <Route path="/" component={UsersTable}/>
+                    {/* <Route path="/UserList" component={UserList} /> */}
+                    <Route path="/" component={Inventory} />
+                    {/* <Route path="/" component={Sales} /> */}
 
+                    {/* <Route path="/" component={Finance} /> */}
 
                 </Switch>
             </Router>

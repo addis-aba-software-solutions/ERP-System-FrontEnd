@@ -27,11 +27,13 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-import AddNewEmployee from './components/UserProfile/UserProfile'
-import UsersCategory from './components/UsersCategory';
-import Category from './components/Category'
-import SearchBar from '../SearchBar/SearchBar';
+// import InventoryStatus from './components/InventoryStatus';
+// import Card from '@material-ui/core/Card';
+// import UsersList from './components/UsersList'
+
+// import Profile from './Components/HR/UserProfile/Profile'
 
 const drawerWidth = 240;
 
@@ -101,7 +103,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
-        backgroundColor: '#EBEBEB'
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -128,34 +129,33 @@ export const routes = [
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => <AddNewEmployee />
+        main: () =>
+        <div></div>
+            // <AddNewProduct />
     },
     {
-        path: '/EmployeeCategories',
+        path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
-        main: () =>
+        main: () =>        <div></div>
 
-            <>
 
-                <Category />
-            </>
-
+            // <InventoryStatus />
 
     },
     {
-        path: '/EmployeeListView',
+        path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
-        main: () =>
-            <>
-                <UsersCategory />
+        main: () =>        <div></div>
 
-            </>
+
+            // <UsersList />
+
     }
 ]
 
-export default function HR() {
+export default function Finance() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -206,7 +206,14 @@ export default function HR() {
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
+
+
+
+
+
             </AppBar>
+
+
             <Drawer
                 variant="permanent"
                 classes={{
@@ -230,7 +237,7 @@ export default function HR() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/EmployeeCategories">
+                    <Link to="/InventoryStatus">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
@@ -240,19 +247,33 @@ export default function HR() {
                         </ListItem>
                     </Link>
 
-                    <Link to="/EmployeeListView">
+                    <Link to="/CategoryListView">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
                             <ListItemText primary="ItemView" />
+
+                        </ListItem>
+                    </Link>
+                    <Link to="/Four">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            {/* <ListItemText primary="Hollup" /> */}
+
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
+                {/* <List>{secondaryListItems}</List> */}
             </Drawer>
 
-            <main className={classes.content}>
+            <main className={classes.content} style={{
+                backgroundColor: '#EBEBEB',
+                height: '100vh  '
+            }}>
                 <div className={classes.toolbar} />
                 <div className={classes.appBarSpacer} />
                 <Switch>
