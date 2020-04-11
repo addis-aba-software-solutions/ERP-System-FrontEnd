@@ -61,7 +61,6 @@ class CreateOrder extends React.Component {
 
   submit = () => {
     Swal.fire({
-      // position: 'top-end',
       icon: 'success',
       title: 'Ordered',
       showConfirmButton: false,

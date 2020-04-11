@@ -302,7 +302,6 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -327,17 +326,11 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg'
-// import InventoryStatus from './components/InventoryStatus';
-import Card from '@material-ui/core/Card';
-//import SearchBar from './SearchBar'
 import { withStyles } from '@material-ui/core/styles';
 import SearchBar from '../SearchBar/SearchBar';
 import Orders from './components/orders'
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-import TablePagination from '@material-ui/core/TablePagination';
+
 import axios from 'axios'
 
 

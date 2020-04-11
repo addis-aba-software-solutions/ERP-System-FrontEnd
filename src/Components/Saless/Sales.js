@@ -34,6 +34,8 @@ import Notification from './components/Notification';
 import Meetings from './components/Meetings'
 import CreateOrder from './components/CreateOrder'
 import ViewAllOrders from './components/ViewAllOrders'
+import ViewSingleOrder from './components/ViewSingleOrder'
+
 
 
 const drawerWidth = 240;
@@ -171,6 +173,17 @@ export const routes = [
         </div>
 
 
+    },
+    {
+        path: '/ViewSingleOrder',
+        exact: true,
+        sidebar: () => '',
+        main: () => <div>
+        <ViewSingleOrder />
+
+        </div>
+
+
     }
 ]
 
@@ -270,7 +283,7 @@ export default function Sales() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/Four">
+                    <Link to="/ViewSingleOrder">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
