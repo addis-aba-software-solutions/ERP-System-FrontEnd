@@ -19,11 +19,11 @@ export default class Routes extends Component {
                 <Switch>
                     {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" exact component={Production} /> */}
-                    <Route path="/"  component={HR} />
+                    {/* <Route path="/"  component={HR} /> */}
                     {/* <Route path="/userProfile" component={HR} />  */}
                     <Route path="/Dashboard" component={HomeNavBar} />
                     {/* <Route path="/UserList" component={UserList} /> */}
-                    {/* <Route path="/" component={Inventory} /> */}
+                    <Route path="/" component={Inventory} />
                     {/* <Route path="/" component={Sales} /> */}
 
                     {/* <Route path="/" component={Finance} /> */}

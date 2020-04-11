@@ -6,6 +6,7 @@ import { Card, CardContent, Grid, Divider, Typography, Avatar } from '@material-
 // import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 // import MoneyIcon from '@material-ui/icons/Money';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
+import SearchBar from '../../SearchBar/SearchBar'
 
 
 const useStyles = makeStyles(theme => ({
@@ -63,12 +64,38 @@ const Category = props => {
 
     return (
         <div>
+            <div style={{
+                margin: 20
+            }}>
+                <Grid container display='flex' justify='space-between' className={classes.header}>
+                    <Grid item style={{
+                        paddingLeft: 50,
+                        marginTop: 10
+                    }}>
+                        <Typography variant='h4' color='textSecondary'>
+                            <b>Employees</b>
+                        </Typography>
+                        <Typography variant='h6' style={{
+                            marginLeft: 50
+                        }}>
+                            Based on Category
+                        </Typography>
 
-            <Divider style= {{
-                marginBottom:20
+                    </Grid>
+                    <Grid item>
+                        <SearchBar />
+                    </Grid>
+
+
+
+                </Grid>
+            </div>
+
+            <Divider style={{
+                marginBottom: 20
             }}>
             </Divider>
-  
+
             <Grid container className={classes.content}>
                 <Card className={classes.Card}
                     onClick={() => alert('Finance')}
@@ -168,7 +195,7 @@ const Category = props => {
                                     variant="h5"
 
                                 >
-                                   IT Technicians
+                                    IT Technicians
             </Typography>
 
                             </Grid>

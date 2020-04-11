@@ -131,7 +131,7 @@ export const routes = [
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => 
+        main: () =>
             <Orders />
     },
     {
@@ -140,7 +140,7 @@ export const routes = [
         sidebar: () => '',
         main: () => <div></div>
 
-            // <InventoryStatus />
+        // <InventoryStatus />
 
     },
     {
@@ -149,7 +149,7 @@ export const routes = [
         sidebar: () => '',
         main: () => <div></div>
 
-            // <ItemList />
+        // <ItemList />
 
     }
 ]
@@ -277,12 +277,12 @@ export default function ViewAllOrders() {
                 <div className={classes.appBarSpacer} />
                 {/* <div className={classes.appBarSpacer} /> */}
 
-            <div style={{
-                padding: 30
-            }}>
-            <SearchBar />
+                <div style={{
+                    padding: 30
+                }}>
+                    <SearchBar />
 
-            </div>
+                </div>
                 <Switch>
                     {routes.map((route, index) => (
                         <Route

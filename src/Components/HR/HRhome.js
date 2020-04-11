@@ -134,23 +134,24 @@ export const routes = [
         path: '/EmployeeCategories',
         exact: true,
         sidebar: () => '',
-        main: () => <UsersCategory />
+        main: () =>
+
+            <>
+
+                <Category />
+            </>
+
+
     },
     {
         path: '/EmployeeListView',
         exact: true,
         sidebar: () => '',
-        main: () => 
-        <>
-        <div style={{
-            padding:20
-        }}>
+        main: () =>
+            <>
+                <UsersCategory />
 
-        <SearchBar />
-        </div>
-
-        <Category />
-        </>
+            </>
     }
 ]
 
@@ -249,7 +250,6 @@ export default function HR() {
                     </Link>
                 </List>
                 <Divider />
-                {/* <List>{secondaryListItems}</List> */}
             </Drawer>
 
             <main className={classes.content}>
