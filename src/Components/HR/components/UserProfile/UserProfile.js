@@ -226,7 +226,7 @@ class UserProfile extends Component {
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={6}>
+                  <Grid item xs={12} cc>
                     <TextField
                       required
                       id="lastName"

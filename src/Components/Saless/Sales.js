@@ -26,15 +26,15 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
 import SalesDashboard from './components/HomeNavBar'
 import HomeNavBar from '../Dashboard/HomeNavBar';
 import { Paper, Grid } from '@material-ui/core'
 import Notification from './components/Notification';
 import Meetings from './components/Meetings'
-// import InventoryStatus from './components/InventoryStatus';
-// import ItemList from './components/ItemList';
+import CreateOrder from './components/CreateOrder'
+import ViewAllOrders from './components/ViewAllOrders'
+
 
 const drawerWidth = 240;
 
@@ -155,19 +155,21 @@ export const routes = [
         </div>
     },
     {
-        path: '/InventoryStatus',
+        path: '/CreateOrder',
         exact: true,
         sidebar: () => '',
-        main: () => <div></div>
-        // <InventoryStatus />
+        main: () => 
+        <ViewAllOrders />
     },
     {
         path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
-        main: () => <div></div>
+        main: () => <div>
+        <CreateOrder />
 
-        // <ItemList />
+        </div>
+
 
     }
 ]
@@ -250,7 +252,7 @@ export default function Sales() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/InventoryStatus">
+                    <Link to="/CreateOrder">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
@@ -259,7 +261,6 @@ export default function Sales() {
 
                         </ListItem>
                     </Link>
-
                     <Link to="/CategoryListView">
                         <ListItem button>
                             <ListItemIcon>
