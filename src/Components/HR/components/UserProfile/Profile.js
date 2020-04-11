@@ -27,8 +27,6 @@ import { Link } from 'react-router-dom';
 
 
 const styles = theme => ({
-
-
     appBar: {
         position: 'relative',
     },
@@ -74,7 +72,6 @@ const styles = theme => ({
         justifyContent: 'flex-end',
     },
     button: {
-        // backgroundColor: '#11669F',
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
     },
@@ -104,8 +101,8 @@ class Profile extends React.Component {
 
         return (
             <div>
-            {
-                this.state.singleEmployee.length !== 0 &&
+                {
+                    this.state.singleEmployee.length !== 0 &&
                     <div style={{
                         backgroundColor: '#EBEBEB',
                         height: '100vh',
@@ -144,9 +141,7 @@ class Profile extends React.Component {
 
                                         }}>
                                             <Button
-                                                // variant="contained"
                                                 className={classes.button}
-                                                // onClick={() => }
 
                                                 startIcon={<EditIcon />
 
@@ -165,7 +160,6 @@ class Profile extends React.Component {
                                                 <CardActionArea>
 
                                                     <Typography variant="h6" component="p" style={{
-                                                        // marginTop: 10,
                                                         padding: 10
                                                     }}>
                                                         <b>Personal Information</b>
@@ -206,9 +200,8 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-right',
 
                                                                 }}>
-                                                                   {/* // Yelekal Solomon */}
                                                                     {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -233,15 +226,14 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     67
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            // paddingLeft: 10,
-                                                            // paddingRight: 10
+
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -257,9 +249,8 @@ class Profile extends React.Component {
                                                                     display: 'flex',
                                                                     justifyContent: 'flex-center'
                                                                 }}>
-                                                                   {/* // Senior Accountant */}
                                                                     {employeeInfos.role}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -285,7 +276,7 @@ class Profile extends React.Component {
                                                                 }}>
                                                                     {/* GurdSholla Warehouse */}
                                                                     {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -310,7 +301,7 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     15 Years
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -335,7 +326,7 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     MBA
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -409,8 +400,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Yelekal Solomon */}
 
-                                                                    {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
-                                        </Typography>
+                                                                        {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -459,8 +450,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Senior Accountant */}
 
-                                                                    {employeeInfos.role}
-                                        </Typography>
+                                                                        {employeeInfos.role}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -485,8 +476,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* GurdSholla Warehouse */}
 
-                                                                    {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -542,7 +533,7 @@ class Profile extends React.Component {
 
                                                                     }}>
                                                                         {employeeInfos.telephone}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -567,7 +558,7 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* 67 */}
                                                                         {employeeInfos.level}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -592,7 +583,7 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Senior Accountant */}
                                                                         {employeeInfos.role}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -617,8 +608,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* GurdSholla Warehouse */}
 
-                                                                    {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -675,18 +666,18 @@ class Profile extends React.Component {
                                                 </Box>
                                             </CardActions>
                                         </Card>
-                        </Grid>
-                    </main>
-                </Grid>
-                <Typography>
-                    <h3>Recent Activities Of Yelekal</h3>
-                </Typography>
+                                    </Grid>
+                                </main>
+                            </Grid>
+                            <Typography>
+                                <h3>Recent Activities Of Yelekal</h3>
+                            </Typography>
 
 
 
                         </React.Fragment>
                     </div>
-            }
+                }
             </div>
         )
     }

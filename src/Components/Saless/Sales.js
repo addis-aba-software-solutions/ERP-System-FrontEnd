@@ -23,16 +23,18 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-import AddNewEmployee from './components/UserProfile/UserProfile'
-import UsersCategory from './components/UsersCategory';
-import Category from './components/Category'
-import SearchBar from '../SearchBar/SearchBar';
-import Profile from './components/UserProfile/Profile'
+import SalesDashboard from './components/HomeNavBar'
+import HomeNavBar from '../Dashboard/HomeNavBar';
+import { Paper, Grid } from '@material-ui/core'
+import Notification from './components/Notification';
+import Meetings from './components/Meetings'
+// import InventoryStatus from './components/InventoryStatus';
+// import ItemList from './components/ItemList';
 
 const drawerWidth = 240;
 
@@ -102,13 +104,10 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
-        backgroundColor: '#EBEBEB'
     },
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
-
-
     },
     paper: {
         padding: theme.spacing(2),
@@ -129,44 +128,51 @@ export const routes = [
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => <AddNewEmployee />
+        main: () => <div style={{
+            padding: 20,
+            marginTop: 10
+        }}>
+            <Grid container spacing={2} >
+                <Grid item xs={9}>
+                    <HomeNavBar />
+                </Grid>
+                <Grid item xs={3}>
+                    <Paper style={{
+                        borderRadius: 20,
+                        padding: 20
+                    }}>
+                        <Notification />
+                    </Paper>
+                    <Paper style={{
+                        borderRadius: 20,
+                        marginTop: 10,
+                        padding: 20
+                    }}>
+                        <Meetings />
+                    </Paper>
+                </Grid>
+            </Grid>
+        </div>
     },
     {
-        path: '/EmployeeCategories',
+        path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
-        main: () =>
-
-            <>
-
-                <Category />
-            </>
-
-
+        main: () => <div></div>
+        // <InventoryStatus />
     },
     {
-        path: '/EmployeeListView',
+        path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
-        main: () =>
-            <>
-                <UsersCategory />
+        main: () => <div></div>
 
-            </>
-    },
-    {
-        path: '/EmployeeProfileView',
-        exact: true,
-        sidebar: () => '',
-        main: () =>
-            <>
-                <Profile />
+        // <ItemList />
 
-            </>
     }
 ]
 
-export default function HR() {
+export default function Sales() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -179,6 +185,7 @@ export default function HR() {
     return (
         <div className={classes.root}>
             <CssBaseline />
+
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
@@ -218,6 +225,8 @@ export default function HR() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+
+
             <Drawer
                 variant="permanent"
                 classes={{
@@ -241,7 +250,7 @@ export default function HR() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/EmployeeCategories">
+                    <Link to="/InventoryStatus">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
@@ -251,30 +260,36 @@ export default function HR() {
                         </ListItem>
                     </Link>
 
-                    <Link to="/EmployeeListView">
+                    <Link to="/CategoryListView">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Employee List View" />
+                            <ListItemText primary="ItemView" />
+
                         </ListItem>
                     </Link>
-
-                    <Link to="/EmployeeProfileView">
+                    <Link to="/Four">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Profile View" />
+                            {/* <ListItemText primary="Hollup" /> */}
+
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
+                {/* <List>{secondaryListItems}</List> */}
             </Drawer>
 
-            <main className={classes.content}>
+            <main className={classes.content} style={{
+                backgroundColor: '#EBEBEB',
+                height: '100vh  '
+            }}>
                 <div className={classes.toolbar} />
                 <div className={classes.appBarSpacer} />
+
                 <Switch>
                     {routes.map((route, index) => (
                         <Route

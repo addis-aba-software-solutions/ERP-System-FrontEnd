@@ -6,11 +6,10 @@ import history from './history';
 import SignIn from '../Components/SignIn/SignIn';
 import HomeNavBar from '../Components/Dashboard/HomeNavBar';
 import Home from '../Components/Dashboard/Home';
-import HR from '../Components/HR/HRhome'
-import Production from '../Production';
-import Inventory from '../Components/Inventory/Inventory'
-import Finance from '../Components/Finance/Finance'
-import Sales from '../Components/Saless/ViewAllOrders'
+import HR from '../Components/HR/HRhome';
+import Inventory from '../Components/Inventory/Inventory';
+import Finance from '../Components/Finance/Finance';
+import Sales from '../Components/Saless/Sales';
 
 export default class Routes extends Component {
     render() {
@@ -18,16 +17,13 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                     {/* <Route path="/" exact component={Home} /> */}
-                    {/* <Route path="/" exact component={Production} /> */}
                     {/* <Route path="/"  component={HR} /> */}
                     {/* <Route path="/userProfile" component={HR} />  */}
                     <Route path="/Dashboard" component={HomeNavBar} />
                     {/* <Route path="/UserList" component={UserList} /> */}
-                    <Route path="/" component={Inventory} />
-                    {/* <Route path="/" component={Sales} /> */}
-
+                    {/* <Route path="/" component={Inventory} /> */}
+                    <Route path="/" component={Sales} />
                     {/* <Route path="/" component={Finance} /> */}
-
                 </Switch>
             </Router>
         )

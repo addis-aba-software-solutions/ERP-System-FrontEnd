@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
@@ -6,7 +6,7 @@ import Paper from '@material-ui/core/Paper';
 
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-  import Swal from 'sweetalert2'
+import Swal from 'sweetalert2'
 import history from '../../../../Routes/history'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
@@ -23,9 +23,9 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import Box from '@material-ui/core/Box';
 import { withStyles } from '@material-ui/core/styles';
-import {Form, FormGroup, Label, Input, Table } from 'reactstrap';
+import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import axios from 'axios';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   appBar: {
@@ -65,216 +65,217 @@ const styles = theme => ({
 });
 
 
-             
+
 class UserProfile extends Component {
 
-    constructor() {
-      super();
-      this.state = {
-        employeeInfo: [], 
-        deps:[],
-          newEmployeeInfo:{
-          employeId:'',
-          firstName:'',
-          lastName:'',
-          email:'',
-          hiredDate:'',
-          telephone:'',
-          birthDate:'',
-          country:'',
-          region:'',
-          city:'',
-          department:'',
-          termOfEmployment:'',
-          salery:''
-          
+  constructor() {
+    super();
+    this.state = {
+      employeeInfo: [],
+      deps: [],
+      newEmployeeInfo: {
+        employeId: '',
+        firstName: '',
+        lastName: '',
+        email: '',
+        hiredDate: '',
+        telephone: '',
+        birthDate: '',
+        country: '',
+        region: '',
+        city: '',
+        department: '',
+        termOfEmployment: '',
+        salery: ''
 
-        }        
+
       }
     }
+  }
 
-    componentDidMount(){
-      fetch("http://192.168.1.9:8000/api/v1/department/")
-      .then(res=>res.json())
-      .then(data=>{
-        this.setState({deps:data});
+  componentDidMount() {
+    fetch("http://192.168.1.9:8000/api/v1/department/")
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ deps: data });
 
       })
-    }
+  }
 
-     submit = () => {
-      // submit() {
-        // let url = "http://192.168.1.3:8001/api/v1/employe/";
-        // let data = this.state;
-        //let date = this.state;
-      // 
-        // fetch(url, {
-          // method: 'POST',
-          // headers: {
-            // "Content-Type": "application/json",
-            // "Accept": "application/json"
-          // },
-          // body: JSON.stringify(data)
-        // }).then((result) => {
-          // result.json().then((resp) => {
-      // 
-            // console.log("resp", resp)
-            // alert("data is submitted")
-            // Swal.fire({
-                    // position: 'top-end',
-                    // icon: 'success',
-                    // title: 'Registered',
-                    // showConfirmButton: false,
-                    // timer: 700
-                  // }).then(history.push('/Production'))
-          // })
-        // })
-        axios.post('http://192.168.1.9:8000/api/v1/employe/', this.state.newEmployeeInfo).then((response) => {
+  submit = () => {
+    // submit() {
+    // let url = "http://192.168.1.3:8001/api/v1/employe/";
+    // let data = this.state;
+    //let date = this.state;
+    // 
+    // fetch(url, {
+    // method: 'POST',
+    // headers: {
+    // "Content-Type": "application/json",
+    // "Accept": "application/json"
+    // },
+    // body: JSON.stringify(data)
+    // }).then((result) => {
+    // result.json().then((resp) => {
+    // 
+    // console.log("resp", resp)
+    // alert("data is submitted")
+    // Swal.fire({
+    // position: 'top-end',
+    // icon: 'success',
+    // title: 'Registered',
+    // showConfirmButton: false,
+    // timer: 700
+    // }).then(history.push('/Production'))
+    // })
+    // })
+    axios.post('http://192.168.1.9:8000/api/v1/employe/', this.state.newEmployeeInfo).then((response) => {
 
-          let {employeeInfo}= this.state;
-          employeeInfo.push(response.data);
-          this.setState({ employeeInfo,
-            newEmployeeInfo:{
-              employeId:'',
-              firstName:'',
-              lastName:'',
-              email:'',
-              hiredDate:'',
-              telephone:'',
-              birthDate:'',
-              country:'',
-              region:'',
-              city:'',
-              department:'',
-              termOfEmployment:'',
-              salery:''
-              
-                }    
-          }); 
-           Swal.fire({
-            position: 'top-end',
-             icon: 'success',
-             title: 'Registered',
-             showConfirmButton: false,
-             timer: 700
-           }).then(history.push('/Production'))
-  
-        })
-         
+      let { employeeInfo } = this.state;
+      employeeInfo.push(response.data);
+      this.setState({
+        employeeInfo,
+        newEmployeeInfo: {
+          employeId: '',
+          firstName: '',
+          lastName: '',
+          email: '',
+          hiredDate: '',
+          telephone: '',
+          birthDate: '',
+          country: '',
+          region: '',
+          city: '',
+          department: '',
+          termOfEmployment: '',
+          salery: ''
+
         }
-      
+      });
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Registered',
+        showConfirmButton: false,
+        timer: 700
+      }).then(history.push('/Production'))
+
+    })
+
+  }
 
 
 
 
 
-  render(){
-   const { error,employeeInfo}= this.state;
 
-   const {classes} = this.props
+  render() {
+    const { error, employeeInfo } = this.state;
 
-  return (
-    <React.Fragment>
-      <CssBaseline />
-      <main className={classes.layout}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+    const { classes } = this.props
 
-          <Paper className={classes.paper}>
-            <Typography component="h1" variant="h4" align="center">
-              Employee Registration
+    return (
+      <React.Fragment>
+        <CssBaseline />
+        <main className={classes.layout}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+
+            <Paper className={classes.paper}>
+              <Typography component="h1" variant="h4" align="center">
+                Employee Registration
            </Typography>
 
 
-            <React.Fragment>
+              <React.Fragment>
 
-              <Typography variant="h6" gutterBottom>
-                Employee Information
+                <Typography variant="h6" gutterBottom>
+                  Employee Information
          </Typography>
-              <Grid container spacing={3}>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    id="Employee_ID"
-                    name="Employee_ID"
-                    label="Employee ID"
-                    fullWidth
-                    
-                    autoComplete="Employee_ID"
-                    value={this.state.newEmployeeInfo.employeId}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.employeId= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="firstName"
-                    name="firstName"
-                    label="First name"
-                    fullWidth
-                    autoComplete="fname"
-                                  
-                    value={this.state.newEmployeeInfo.firstName}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.firstName= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="lastName"
-                    n
-                    ame="lastName"
-                    label="Last name"
-                    fullWidth
-                    autoComplete="lname"
-                   value={this.state.newEmployeeInfo.lastName}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.lastName= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                   
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    required
-                    id="Email"
-                    name="Email"
-                    label="Email"
-                    fullWidth
-                    autoComplete="Email"
-                    value={this.state.newEmployeeInfo.email}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.email= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    id="PhoneNumber"
-                    name="PhoneNumber"
-                    label="PhoneNumber"
-                    fullWidth
-                    autoComplete="PhoneNumber"
-                    value={this.state.newEmployeeInfo.telephone}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.telephone= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
-                {/* <Grid item xs={12} sm={6}>
+                <Grid container spacing={3}>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      id="Employee_ID"
+                      name="Employee_ID"
+                      label="Employee ID"
+                      fullWidth
+
+                      autoComplete="Employee_ID"
+                      value={this.state.newEmployeeInfo.employeId}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.employeId = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="firstName"
+                      name="firstName"
+                      label="First name"
+                      fullWidth
+                      autoComplete="fname"
+
+                      value={this.state.newEmployeeInfo.firstName}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.firstName = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="lastName"
+                      n
+                      ame="lastName"
+                      label="Last name"
+                      fullWidth
+                      autoComplete="lname"
+                      value={this.state.newEmployeeInfo.lastName}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.lastName = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      required
+                      id="Email"
+                      name="Email"
+                      label="Email"
+                      fullWidth
+                      autoComplete="Email"
+                      value={this.state.newEmployeeInfo.email}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.email = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextField
+                      id="PhoneNumber"
+                      name="PhoneNumber"
+                      label="PhoneNumber"
+                      fullWidth
+                      autoComplete="PhoneNumber"
+                      value={this.state.newEmployeeInfo.telephone}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.telephone = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
+                  {/* <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="Role"
@@ -284,25 +285,25 @@ class UserProfile extends Component {
                     autoComplete="Role"
                   />
                 </Grid> */}
-                
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="Type"
-                    name="Type"
-                    label="Recruitment Type"
-                    fullWidth
-                    autoComplete="Type"
-                    value={this.state.newEmployeeInfo.termOfEmployment}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.termOfEmployment= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}                  />
-                </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="Type"
+                      name="Type"
+                      label="Recruitment Type"
+                      fullWidth
+                      autoComplete="Type"
+                      value={this.state.newEmployeeInfo.termOfEmployment}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.termOfEmployment = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }} />
+                  </Grid>
 
 
-                {/* <Grid item xs={12} sm={6}>
+                  {/* <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="Salary"
@@ -319,130 +320,130 @@ class UserProfile extends Component {
                   />
                 </Grid> */}
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="country"
-                    name="country"
-                    label="country"
-                    fullWidth
-                    autoComplete="country"
-                    value={this.state.newEmployeeInfo.country}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.country= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="country"
+                      name="country"
+                      label="country"
+                      fullWidth
+                      autoComplete="country"
+                      value={this.state.newEmployeeInfo.country}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.country = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="city"
-                    name="city"
-                    label="city"
-                    fullWidth
-                    autoComplete="city"
-                    value={this.state.newEmployeeInfo.city}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.city= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="city"
+                      name="city"
+                      label="city"
+                      fullWidth
+                      autoComplete="city"
+                      value={this.state.newEmployeeInfo.city}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.city = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="region"
-                    name="region"
-                    label="region"
-                    fullWidth
-                    autoComplete="region"
-                    value={this.state.newEmployeeInfo.region}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.region= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid>
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="region"
+                      name="region"
+                      label="region"
+                      fullWidth
+                      autoComplete="region"
+                      value={this.state.newEmployeeInfo.region}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.region = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+                    />
+                  </Grid>
 
-                <Grid item xs={12} sm={6}>
-                <TextField
-                    required
-                    id="birthDate"
-                    label="Birth Date"
-                    type="date"
-                    fullWidth
-                    value={this.state.newEmployeeInfo.birthDate}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.birthDate= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
+                  <Grid item xs={12} sm={6}>
+                    <TextField
+                      required
+                      id="birthDate"
+                      label="Birth Date"
+                      type="date"
+                      fullWidth
+                      value={this.state.newEmployeeInfo.birthDate}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.birthDate = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
 
-                 
-                  />
-                  
-                </Grid>
 
-                <Grid item xs={12} sm={6}>
-                  <TextField controlId="department">
-                    <FormControl as= "select" >
-                      {this.state.deps.map(
-                        dep=> <option key={dep.departmentId}>{dep.departmentName}</option>
-                      )}
+                    />
+
+                  </Grid>
+
+                  <Grid item xs={12} sm={6}>
+                    <TextField controlId="department">
+                      <FormControl as="select" >
+                        {this.state.deps.map(
+                          dep => <option key={dep.departmentId}>{dep.departmentName}</option>
+                        )}
                         value={this.state.newEmployeeInfo.department}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.department= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                    </FormControl>
-                  </TextField>
+                    onChange={(e) => {
+                          let { newEmployeeInfo } = this.state;
+                          newEmployeeInfo.department = e.target.value;
+                          this.setState({ newEmployeeInfo });
+                        }}
+                      </FormControl>
+                    </TextField>
 
-                  <TextField
-                    required
-                    id="hiredDate"
-                    label="Hired Date"
-                  
-                    type="date"
-                    fullWidth
-                    value={this.state.newEmployeeInfo.hiredDate}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.hiredDate= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
+                    <TextField
+                      required
+                      id="hiredDate"
+                      label="Hired Date"
 
-                 
-                  />
-                  
+                      type="date"
+                      fullWidth
+                      value={this.state.newEmployeeInfo.hiredDate}
+                      onChange={(e) => {
+                        let { newEmployeeInfo } = this.state;
+                        newEmployeeInfo.hiredDate = e.target.value;
+                        this.setState({ newEmployeeInfo });
+                      }}
+
+
+                    />
+
+                  </Grid>
+
+
                 </Grid>
 
-
-              </Grid>
-
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={this.submit}
-                className={classes.button}
-              >
-                Register
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={this.submit}
+                  className={classes.button}
+                >
+                  Register
                    </Button>
-            </React.Fragment>
+              </React.Fragment>
 
-          </Paper>
-        </MuiPickersUtilsProvider>
+            </Paper>
+          </MuiPickersUtilsProvider>
 
-      </main>
-    </React.Fragment>
-  )
-}
+        </main>
+      </React.Fragment>
+    )
+  }
 }
 
 

@@ -52,10 +52,7 @@ const useStyles = makeStyles(theme => ({
     subtitle: {
         marginLeft: 80
     }
-
 }));
-
-
 
 const Category = props => {
     // const { className, } = props;
@@ -80,14 +77,10 @@ const Category = props => {
                         }}>
                             Based on Category
                         </Typography>
-
                     </Grid>
                     <Grid item>
                         <SearchBar />
                     </Grid>
-
-
-
                 </Grid>
             </div>
 

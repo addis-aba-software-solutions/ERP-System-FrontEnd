@@ -350,10 +350,8 @@ const styles = theme => ({
         margin: 20,
     },
     recentOrders: {
-        padding: 20
+        padding: 20,
     }
-
-
 });
 
 class AddNewProduct extends React.Component {
