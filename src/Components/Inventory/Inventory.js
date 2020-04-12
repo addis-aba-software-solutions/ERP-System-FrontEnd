@@ -192,6 +192,8 @@ export default function Inventory() {
                         borderRadius: 100
                     }} />
 
+                    
+
 
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>

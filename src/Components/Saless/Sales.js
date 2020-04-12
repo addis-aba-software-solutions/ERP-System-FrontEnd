@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -6,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import List from '@material-ui/core/List';
+import { List, Button } from '@material-ui/core';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import {
@@ -27,15 +26,14 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ProfilePicture from '../../Assets/ww.jpg';
-import SalesDashboard from './components/HomeNavBar'
 import HomeNavBar from '../Dashboard/HomeNavBar';
 import { Paper, Grid } from '@material-ui/core'
 import Notification from './components/Notification';
-import Meetings from './components/Meetings'
-import CreateOrder from './components/CreateOrder'
-import ViewAllOrders from './components/ViewAllOrders'
-import ViewSingleOrder from './components/ViewSingleOrder'
-
+import Meetings from './components/Meetings';
+import CreateOrder from './components/CreateOrder';
+import ViewAllOrders from './components/ViewAllOrders';
+import ViewSingleOrder from './components/ViewSingleOrder';
+import history from '../../Routes/history';
 
 
 const drawerWidth = 240;
@@ -215,20 +213,32 @@ export default function Sales() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         EATH
                     </Typography>
+                    <IconButton color="inherit"
+                        onClick={() => history.push('/Inventory')}
+                    >
+                        <Typography variant="body2" gutterBottom>
+                            Inventory
+                        </Typography>
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <Typography variant="body2" gutterBottom>
+                            Finance
+                        </Typography>
+                    </IconButton>                    <IconButton color="inherit">
+                        <Typography variant="body2" gutterBottom>
+                            HR
+                        </Typography>
+                    </IconButton>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
-
-
                     <img src={ProfilePicture} alt='' style={{
                         height: 35,
                         width: 35,
                         borderRadius: 100
                     }} />
-
-
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
                             Samuel Kassa

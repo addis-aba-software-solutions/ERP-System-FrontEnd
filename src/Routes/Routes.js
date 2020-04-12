@@ -17,13 +17,12 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                     {/* <Route path="/" exact component={Home} /> */}
-                    {/* <Route path="/"  component={HR} /> */}
-                    {/* <Route path="/userProfile" component={HR} />  */}
+                    <Route path="/HR" component={HR} /> 
                     <Route path="/Dashboard" component={HomeNavBar} />
                     {/* <Route path="/UserList" component={UserList} /> */}
-                    {/* <Route path="/" component={Inventory} /> */}
+                    <Route path="/Inventory" component={Inventory} />
                     <Route path="/" component={Sales} />
-                    {/* <Route path="/" component={Finance} /> */}
+                    <Route path="/Finance" component={Finance} />
                 </Switch>
             </Router>
         )
