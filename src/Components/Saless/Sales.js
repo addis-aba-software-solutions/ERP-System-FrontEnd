@@ -160,15 +160,15 @@ export const routes = [
         path: '/CreateOrder',
         exact: true,
         sidebar: () => '',
-        main: () => 
-        <ViewAllOrders />
+        main: () =>
+            <ViewAllOrders />
     },
     {
         path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
         main: () => <div>
-        <CreateOrder />
+            <CreateOrder />
 
         </div>
 
@@ -179,7 +179,7 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () => <div>
-        <ViewSingleOrder />
+            <ViewSingleOrder />
 
         </div>
 

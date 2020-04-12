@@ -161,11 +161,7 @@ class UserProfile extends Component {
       }).then(history.push('/Production'))
 
     })
-
   }
-
-
-
 
 
 

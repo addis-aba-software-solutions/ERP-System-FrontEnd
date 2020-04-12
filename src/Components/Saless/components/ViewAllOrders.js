@@ -58,26 +58,8 @@ class ViewAllOrders extends React.Component {
             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
             createData('Eclair', 262, 16.0, 24, 6.0),
             createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
+            createData('Gingerbread', 356, 16.0, 49, 3.9), 
+            createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
             createData('Gingerbread', 356, 16.0, 49, 3.9),
         ];
         return (
@@ -88,12 +70,16 @@ class ViewAllOrders extends React.Component {
                         xs={12}
                         style={{
                             padding: 20,
-                            // paddingBottom: 20,
-
                         }}>
                         <Grid item className={classes.header}>
-                            <Typography variant='h5' color="textSecondary">
+                            <Typography variant='h4' color="textSecondary">
+                                <b>Sales</b>
+                            </Typography>
+                            <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
                                 <b>Orders</b>
+                            </Typography>
+                            <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
+                                <b>All Orders List</b>
                             </Typography>
                         </Grid>
                         <Grid item style={{
@@ -145,12 +131,9 @@ class ViewAllOrders extends React.Component {
                                                 }}>
                                                     <IconButton>
                                                         <VisibilityIcon />
-
                                                     </IconButton>
-
                                                 </Grid>
                                             </TableCell>
-
                                         </TableRow>
                                     ))}
                                 </TableBody>

@@ -18,13 +18,6 @@ import Box from '@material-ui/core/Box';
 
 import EditIcon from '@material-ui/icons/Edit';
 import { withStyles } from '@material-ui/core/styles';
-import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-
-
-
-
 
 const styles = theme => ({
     appBar: {
