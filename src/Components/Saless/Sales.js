@@ -120,6 +120,10 @@ const useStyles = makeStyles((theme) => ({
     },
     ProfilePicture: {
         height: 10,
+    },
+    header: {
+        marginRight: 200,
+        // display: 'flex',
     }
 }));
 
@@ -213,22 +217,58 @@ export default function Sales() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         EATH
                     </Typography>
-                    <IconButton color="inherit"
-                        onClick={() => history.push('/Inventory')}
-                    >
-                        <Typography variant="body2" gutterBottom>
-                            Inventory
-                        </Typography>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <Typography variant="body2" gutterBottom>
-                            Finance
-                        </Typography>
-                    </IconButton>                    <IconButton color="inherit">
-                        <Typography variant="body2" gutterBottom>
-                            HR
-                        </Typography>
-                    </IconButton>
+
+                    <div className={classes.header}>
+                    <Grid container spacing={10} display="flex" justify="flex-end" >
+                        <Grid item>
+                            <IconButton color="inherit"
+                                // onClick={() => history.push('/Inventory')}
+                            >
+                                <Typography variant="body2" gutterBottom>
+                                    <b>Inventory</b>
+                                </Typography>
+                            </IconButton>
+                        </Grid>
+
+                        <Grid item>
+                            <IconButton color="inherit"
+                            >
+                                <Typography variant="body2" gutterBottom>
+                                    <b>Finance</b>
+                                </Typography>
+                            </IconButton>
+                        </Grid>
+
+                        <Grid item>
+                            <IconButton color="inherit"
+                            >
+                                <Typography variant="body2" gutterBottom>
+                                    <b>HR</b>
+                                </Typography>
+                            </IconButton>
+                        </Grid>
+                        <Grid item>
+                            <IconButton color="inherit"
+                            >
+                                <Typography variant="body2" gutterBottom>
+                                    <b>Logistics</b>
+                                </Typography>
+                            </IconButton>
+                        </Grid>                        <Grid item>
+                            <IconButton color="inherit"
+                            >
+                                <Typography variant="body2" gutterBottom>
+                                    <b>Sales</b>
+                                </Typography>
+                            </IconButton>
+                        </Grid>
+                    </Grid>
+                    </div>
+
+
+
+
+
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
@@ -251,82 +291,82 @@ export default function Sales() {
                 </Toolbar>
             </AppBar>
 
+            <Route>
+                <Drawer
+                    variant="permanent"
+                    classes={{
+                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                    }}
+                    open={open}
+                >
+                    <div className={classes.toolbarIcon}>
+                        <IconButton onClick={handleDrawerClose}>
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <Link to="/">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <DashboardIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Dashboard" />
 
-            <Drawer
-                variant="permanent"
-                classes={{
-                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-                }}
-                open={open}
-            >
-                <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link to="/">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <DashboardIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/CreateOrder">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Category" />
 
-                        </ListItem>
-                    </Link>
-                    <Link to="/CreateOrder">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Category" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/CategoryListView">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="ItemView" />
 
-                        </ListItem>
-                    </Link>
-                    <Link to="/CategoryListView">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="ItemView" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/ViewSingleOrder">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                {/* <ListItemText primary="Hollup" /> */}
 
-                        </ListItem>
-                    </Link>
-                    <Link to="/ViewSingleOrder">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            {/* <ListItemText primary="Hollup" /> */}
+                            </ListItem>
+                        </Link>
+                    </List>
+                    <Divider />
+                    {/* <List>{secondaryListItems}</List> */}
+                </Drawer>
 
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-                {/* <List>{secondaryListItems}</List> */}
-            </Drawer>
+                <main className={classes.content} style={{
+                    backgroundColor: '#EBEBEB',
+                    height: '100vh  '
+                }}>
+                    <div className={classes.toolbar} />
+                    <div className={classes.appBarSpacer} />
 
-            <main className={classes.content} style={{
-                backgroundColor: '#EBEBEB',
-                height: '100vh  '
-            }}>
-                <div className={classes.toolbar} />
-                <div className={classes.appBarSpacer} />
+                    <Switch>
+                        {routes.map((route, index) => (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                exact={route.exact}
+                                children={<route.main />}
+                            />
+                        ))}
+                    </Switch>
 
-                <Switch>
-                    {routes.map((route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            children={<route.main />}
-                        />
-                    ))}
-                </Switch>
-
-            </main>
-
+                </main>
+            </Route>
         </div>
     );
 }

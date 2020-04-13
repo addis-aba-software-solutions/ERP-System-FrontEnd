@@ -192,7 +192,7 @@ export default function Inventory() {
                         borderRadius: 100
                     }} />
 
-                    
+
 
 
                     <IconButton color="inherit">
@@ -205,12 +205,9 @@ export default function Inventory() {
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
-
-
-
-
-
             </AppBar>
+
+            <Route>
 
 
             <Drawer
@@ -287,6 +284,7 @@ export default function Inventory() {
                 </Switch>
 
             </main>
+            </Route>
 
         </div>
     );
