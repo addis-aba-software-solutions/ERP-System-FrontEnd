@@ -159,7 +159,7 @@ class AddNewProduct extends React.Component {
                   </Typography>
                   <Divider className={classes.spacer} />
                   <Grid container spacing={3}>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={4}>
                       <TextField
                         required
                         id="itemName"
@@ -175,7 +175,7 @@ class AddNewProduct extends React.Component {
                         }}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={4}>
                       <TextField
                         required
                         id="quantity"
@@ -191,7 +191,7 @@ class AddNewProduct extends React.Component {
                         }}
                       />
                     </Grid>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={4}>
                       <TextField
                         required
                         id="warehouseName"
@@ -225,7 +225,7 @@ class AddNewProduct extends React.Component {
                       />
 
                     </Grid>
-                    <Grid item xs={12} sm={3}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         required
                         id="packaging"
@@ -320,8 +320,8 @@ class AddNewProduct extends React.Component {
                                                 <TableCell> <b>OrderID</b></TableCell>
                                                 <TableCell align="right"> <b>Name</b></TableCell>
                                                 <TableCell align="right"><b>Viewed Date</b></TableCell>
-                                                <TableCell align="right"><b>Discount</b></TableCell>
-                                                <TableCell align="right"><b>Requested Date</b></TableCell>
+                                                <TableCell align="right"><b>Amount</b></TableCell>
+                                                <TableCell align="right"><b>Ordered Times</b></TableCell>
                                                 <TableCell align="right"><b>Actions</b></TableCell>
 
                                             </TableRow>
