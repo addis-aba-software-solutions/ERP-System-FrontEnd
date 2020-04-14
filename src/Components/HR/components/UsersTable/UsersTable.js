@@ -24,6 +24,8 @@ import {
 } from '@material-ui/core';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import history from '../../../../Routes/history'
+import SearchBar from '../../../SearchBar/SearchBar'
+
 const styles = theme => ({
 
   root: {},
@@ -48,9 +50,17 @@ const styles = theme => ({
 class UsersTable extends React.Component {
 
 
-  // const Employees=props=>(
-  state = {
-    employeeInfo: []
+  constructor() {
+    super();
+    this.state = {
+      employeeInfo: [],
+      search: ''
+    };
+  }
+  updateSearch(e) {
+    this.setState({
+      search: e.target.value.substr(0, 20)
+    })
   }
 
 
@@ -68,8 +78,18 @@ class UsersTable extends React.Component {
   }
   render() {
 
-    const {classes} = this.props
-    const { error, employeeInfo } = this.state;
+   const {employeeInfo, error}= this.state;
+  //   if(!employeeInfo) return [];
+  //   else {
+  //   let filteredEmployee = this.employeeInfo.filter(
+  //     (employeeInfos) => {
+  //       return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+  //     }
+  //   );
+  // }
+
+    const { classes } = this.props
+   // const { error, employeeInfo, empId } = this.state;
 
     if (error) {
       return (
@@ -80,82 +100,26 @@ class UsersTable extends React.Component {
     }
     else {
       return (
-        //     <div>
-        //     <Table>
-        // <TableHead>
-
-        //   <TableRow>
-        //     <th style={{ width: 50 }} score="col">employeId</th>
-        //     <th style={{ width: 100 }} score="col">First Name</th>
-        //     <th style={{ width: 100 }} score="col">Last Name</th>
-        //     <th style={{ width: 100 }} score="col">Department</th>
-        //     <th style={{ width: 100 }} score="col">Job Title</th>
-        //     <th style={{ width: 100 }} score="col">Position</th>
-        //     {/* <th style={{ width: 100 }} score="col">Salary</th> */}
-        //     <th style={{ width: 100 }} score="col">Employment Status</th>
-        //     {/* <th style={{ width: 100 }} score="col">Location</th> */}
-        //     <th style={{ width: 50 }} score="col">__</th>
-        //   </TableRow>
-        // </TableHead>
-        // <TableBody>
-        //   {employeeInfo.map(employeeInfos =>  (
-        //       <TableRow key={employeeInfos.employeId}>
-        //       <TableCell>{employeeInfos.employeId}</TableCell>
-        //       <TableCell>{employeeInfos.firstName}</TableCell>
-        //       <TableCell>{employeeInfos.lastName}</TableCell>
-        //       {/* <TableCell>{employeeInfos.email}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.telephone}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.country}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.region}</TableCell> */}
-        //       {/* <TableCell>{employeeInfos.city}</TableCell> */}
-        //       <TableCell>{employeeInfos.department}</TableCell>
-        //       <TableCell>{employeeInfos.role}</TableCell>
-        //       <TableCell>{employeeInfos.level}</TableCell>
-        //       <TableCell>{employeeInfos.termOfEmployment}</TableCell>
-        //       <TableCell><button>
-        //            <Link to={{
-        //              pathname:`/employe/${employeeInfos.employeId}`,
-        //              state:{employeeInfos: employeeInfos.employeId}
-        //           }}>View</Link>
-        //           </button></TableCell>
-
-
-        //       {/* <TableCell>{employeeInfos.Location}</TableCell> */}
-
-        //     </TableRow>
-        //     )
-
-        // )  }
-        // </TableBody>
-        // </Table>
-        //   </div>
-
-
-
-
-
-
-        // export default withStyles(styles)(UsersTable);
-
 
         <Card
         >
           <CardContent className={classes.content}>
             <PerfectScrollbar>
               <div className={classes.inner}>
+                <Button> <Link to="/UserProfile"
+                >Add New Employee</Link></Button>
+                {/* <input value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+                <SearchBar search={this.search} updateSearch={this.updateSearch}/>
                 <Table>
                   <TableHead>
                     <TableRow>
-                    <TableCell>Id</TableCell>
+                      <TableCell>Id</TableCell>
 
                       <TableCell>First Name</TableCell>
                       <TableCell>Last Name</TableCell>
 
                       <TableCell>Phone Number</TableCell>
                       <TableCell>Department</TableCell>
-                      {/* <TableCell>Phone</TableCell> */}
                       <TableCell>Role</TableCell>
                       <TableCell>Actions</TableCell>
 
@@ -167,17 +131,10 @@ class UsersTable extends React.Component {
                         <TableCell>{employeeInfos.employeId}</TableCell>
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
-                        {/* <TableCell>{employeeInfos.email}</TableCell> */}
-                        {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
                         <TableCell>{employeeInfos.telephone}</TableCell>
-                        {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
-                        {/* <TableCell>{employeeInfos.country}</TableCell> */}
-                        {/* <TableCell>{employeeInfos.region}</TableCell> */}
-                        {/* <TableCell>{employeeInfos.city}</TableCell> */}
                         <TableCell>{employeeInfos.department}</TableCell>
                         <TableCell>{employeeInfos.role}</TableCell>
-                        {/* <TableCell>{employeeInfos.level}</TableCell> */}
-                        {/* <TableCell>{employeeInfos.termOfEmployment}</TableCell> */}
+
                         <TableCell><button>
                           <Link to={{
                             pathname: `/employe/${employeeInfos.employeId}`,
@@ -185,9 +142,7 @@ class UsersTable extends React.Component {
                           }}>View</Link>
                         </button></TableCell>
 
-
-                        {/* <TableCell>{employeeInfos.Location}</TableCell> */}
-
+                        
                       </TableRow>
                     )
 
@@ -205,7 +160,7 @@ class UsersTable extends React.Component {
     }
   }
 }
-    export default withStyles(styles)(UsersTable);
+export default withStyles(styles)(UsersTable);
 
 
 //Search

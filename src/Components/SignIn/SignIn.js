@@ -12,13 +12,16 @@ import Container from '@material-ui/core/Container';
 import Cover from '../../Assets/Trial.jpg';
 import Card from '@material-ui/core/Card';
 import history from '../../Routes/history';
+import {PostData} from './PostData';
+// import {PostData} from "public/PostData";
+import {Redirect} from 'react-router-dom';
 
 
 const classes = ({
     root: {
         display: 1
     },
-    loginForm: {
+    signinForm: {
     },
     paper: {
         marginTop: 8,
@@ -66,8 +69,51 @@ const classes = ({
 
 class SignIn extends React.Component {
 
+    constructor(){
+        super();
+        this.state={
+            username:'',
+            password:'',
+            redirect: false
+        }
+        this.signin= this.signin.bind(this);
+        this.onChange= this.onChange.bind(this);
+
+    }
+    signin(e){
+        e.preventDefault();
+       // console.log("Home Page")
+       if(this.state.username && this.state.password){
+        PostData(this.state)
+        .then((result)=>{
+            //let responseJson=result;
+            console.log(result);
+            // if(result.userData){
+             sessionStorage.setItem('userData',result);
+             console.log("Home Page")
+             this.setState({redirect:true});
+             console.log(result)
+            // }
+            // else{
+          //  console.log("signin error");
+            // console.log(error)
+        // }
+        })
+       }
+       else {
+           return console.log("Login Error Yoo")
+       }
+       
+    }
+    onChange(e){
+        this.setState({[e.target.name]:e.target.value});
+        console.log("typing");
+    }
     render() {
 
+        if(this.state.redirect){
+ return(<Redirect to = '/UserProfile'/>)
+        }
         return (
             <>
 
@@ -80,29 +126,33 @@ class SignIn extends React.Component {
                             </Avatar>
                             <Typography component="h3" variant="h5">
                                 Sign in
-      </Typography>
+                            </Typography>
                             <form style={classes.form} noValidate>
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
                                     required
                                     fullWidth
-                                    id="email"
-                                    label="Personal Identification Number"
-                                    name="email"
-                                    autoComplete="email"
+                                    type="text"
+                                    id="username"
+                                    label="User Name"
+                                    name="username"
+                                    autoComplete="username"
                                     autoFocus
+                                    onChange={this.onChange}
                                 />
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
                                     required
                                     fullWidth
+                                    type="password"
                                     name="password"
                                     label="Password"
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
+                                    onChange={this.onChange}
                                 />
 
                                 <Button
@@ -111,7 +161,8 @@ class SignIn extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     style={classes.submit}
-                                    onClick={() => history.push('/UserList')}
+                                    onClick={this.signin}
+                                    // {() => history.push('/UserList')}
                                 >
                                     Sign In
                 </Button>

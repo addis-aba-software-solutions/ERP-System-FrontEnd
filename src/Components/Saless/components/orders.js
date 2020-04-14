@@ -133,54 +133,54 @@ import TableRow from '@material-ui/core/TableRow';
 import axios from 'axios'
 import { withStyles } from '@material-ui/core/styles';
 
-const columns = [
-  { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
-  {
-    id: 'population',
-    label: 'Population',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString(),
-  },
-  {
-    id: 'size',
-    label: 'Size\u00a0(km\u00b2)',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toLocaleString(),
-  },
-  {
-    id: 'density',
-    label: 'Density',
-    minWidth: 170,
-    align: 'right',
-    format: (value) => value.toFixed(2),
-  },
-];
+// const columns = [
+//   { id: 'name', label: 'Name', minWidth: 170 },
+//   { id: 'code', label: 'ISO\u00a0Code', minWidth: 100 },
+//   {
+//     id: 'population',
+//     label: 'Population',
+//     minWidth: 170,
+//     align: 'right',
+//     format: (value) => value.toLocaleString(),
+//   },
+//   {
+//     id: 'size',
+//     label: 'Size\u00a0(km\u00b2)',
+//     minWidth: 170,
+//     align: 'right',
+//     format: (value) => value.toLocaleString(),
+//   },
+//   {
+//     id: 'density',
+//     label: 'Density',
+//     minWidth: 170,
+//     align: 'right',
+//     format: (value) => value.toFixed(2),
+//   },
+// ];
 
-function createData(name, code, population, size) {
-  const density = population / size;
-  return { name, code, population, size, density };
-}
+// function createData(name, code, population, size) {
+//   const density = population / size;
+//   return { name, code, population, size, density };
+// }
 
-const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
-];
+// const rows = [
+//   createData('India', 'IN', 1324171354, 3287263),
+//   createData('China', 'CN', 1403500365, 9596961),
+//   createData('Italy', 'IT', 60483973, 301340),
+//   createData('United States', 'US', 327167434, 9833520),
+//   createData('Canada', 'CA', 37602103, 9984670),
+//   createData('Australia', 'AU', 25475400, 7692024),
+//   createData('Germany', 'DE', 83019200, 357578),
+//   createData('Ireland', 'IE', 4857000, 70273),
+//   createData('Mexico', 'MX', 126577691, 1972550),
+//   createData('Japan', 'JP', 126317000, 377973),
+//   createData('France', 'FR', 67022000, 640679),
+//   createData('United Kingdom', 'GB', 67545757, 242495),
+//   createData('Russia', 'RU', 146793744, 17098246),
+//   createData('Nigeria', 'NG', 200962417, 923768),
+//   createData('Brazil', 'BR', 210147125, 8515767),
+// ];
 
 const styles = theme => ({
   root: {
@@ -196,12 +196,31 @@ const styles = theme => ({
 });
 
 class  Orders extends React.Component {
-    state = {
-        orderInfo: []
-      }
+
+  constructor(){
+    super();
+    this.state={
+      search:'', 
+     orderInfo: []
+    };
+  }
+  updateSearch(e){
+    this.setState({
+      search:e.target.value.substr(0,20)
+    })
+  }
+// render(){
+//    let filteredOrder= this.employeeInfo.filter(
+//      (orderInfos)=>{
+//        return orderInfos.orderName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1; 
+//      }
+//    );
+//   return(
+
+  
 
       componentDidMount() {
-        axios.get("http://192.168.1.9:8000/api/v1/order/")
+        axios.get("http://192.168.1.4:8000/api/v1/order/")
           .then(res => {
             this.setState({
               orderInfo: res.data
@@ -215,8 +234,13 @@ class  Orders extends React.Component {
 
 
     render(){
-  const {classes} = this.props,
-   orderInfo = this.state;
+//   const {classes. orderInfo} = this.props,
+let filteredOrder= this.orderInfo.filter(
+       (orderInfos)=>{
+         return orderInfos.orderName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1; 
+       }
+     );
+ const {orderInfo} = this.state;
 
 
   return (
@@ -264,7 +288,7 @@ class  Orders extends React.Component {
            <Paper style={{  width: '100%', padding:20}}>
            <TableContainer style={{  maxHeight: 440}} >
            <Table stickyHeader aria-label="sticky table">
-            <TableHead className="thead-dark" style={{backgroundColor: "#11669F"}}>
+            <TableHead>
           
               <TableRow>
                 <th style={{ width: 50 }} score="col">orderId</th>
@@ -284,7 +308,7 @@ class  Orders extends React.Component {
               </TableRow>
             </TableHead>
             <TableBody>
-              {orderInfo.map(orderInfos => (
+              {filteredOrder.map(orderInfos => (
                 <TableRow key={orderInfos.orderId}>
                   <TableCell>{orderInfos.orderId}</TableCell>
                   <TableCell>{orderInfos.orderNumber}</TableCell>

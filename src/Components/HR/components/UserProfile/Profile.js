@@ -1,11 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
-
 import Card from '@material-ui/core/Card';
 import Grid from '@material-ui/core/Grid';
 import CardActionArea from '@material-ui/core/CardActionArea';
@@ -21,6 +18,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import UserProfile from './UserProfile'
 
 
 
@@ -89,10 +87,10 @@ class Profile extends React.Component {
         singleEmployee: []
     }
     componentDidMount = () => {
-        const employeeId = this.props.location.state.employeeInfos;
-        const req = fetch(`http://192.168.1.9:8000/api/v1/employe/${employeeId}`);
+        const employeId = this.props.location.state.employeeInfos;
+        const req = fetch(`http://192.168.1.9:8000/api/v1/employe/${employeId}`);
         const res = req.json();
-        this.setState({ singleEmployee: res.employeeInfo[0] });
+        this.setState({ singleEmployee: res.employeeInfo });
         console.log(this.state.singleEmployee);
     }
 
@@ -104,8 +102,8 @@ class Profile extends React.Component {
 
         return (
             <div>
-            {
-                this.state.singleEmployee.length !== 0 &&
+                {
+                    this.state.singleEmployee.length !== 0 &&
                     <div style={{
                         backgroundColor: '#EBEBEB',
                         height: '100vh',
@@ -206,9 +204,9 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-right',
 
                                                                 }}>
-                                                                   {/* // Yelekal Solomon */}
+                                                                    {/* // Yelekal Solomon */}
                                                                     {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -257,9 +255,9 @@ class Profile extends React.Component {
                                                                     display: 'flex',
                                                                     justifyContent: 'flex-center'
                                                                 }}>
-                                                                   {/* // Senior Accountant */}
+                                                                    {/* // Senior Accountant */}
                                                                     {employeeInfos.role}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -285,7 +283,7 @@ class Profile extends React.Component {
                                                                 }}>
                                                                     {/* GurdSholla Warehouse */}
                                                                     {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -409,8 +407,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Yelekal Solomon */}
 
-                                                                    {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
-                                        </Typography>
+                                                                        {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -459,8 +457,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Senior Accountant */}
 
-                                                                    {employeeInfos.role}
-                                        </Typography>
+                                                                        {employeeInfos.role}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -485,8 +483,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* GurdSholla Warehouse */}
 
-                                                                    {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -542,7 +540,7 @@ class Profile extends React.Component {
 
                                                                     }}>
                                                                         {employeeInfos.telephone}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -567,7 +565,7 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* 67 */}
                                                                         {employeeInfos.level}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -592,7 +590,7 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* Senior Accountant */}
                                                                         {employeeInfos.role}
-                                        </Typography>
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -617,8 +615,8 @@ class Profile extends React.Component {
                                                                     }}>
                                                                         {/* GurdSholla Warehouse */}
 
-                                                                    {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                        </Typography>
+                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
+                                                                    </Typography>
 
                                                                 </Grid>
                                                             </Grid>
@@ -675,18 +673,21 @@ class Profile extends React.Component {
                                                 </Box>
                                             </CardActions>
                                         </Card>
-                        </Grid>
-                    </main>
-                </Grid>
-                <Typography>
-                    <h3>Recent Activities Of Yelekal</h3>
-                </Typography>
+                                    </Grid>
+                                </main>
+                            </Grid>
+                            <Typography>
+                                <h3>Recent Activities Of Yelekal</h3>
+                            </Typography>
+
+                            <Button> <Link to="/UserTable"
+                            >Go Back</Link></Button>
 
 
 
                         </React.Fragment>
                     </div>
-            }
+                }
             </div>
         )
     }

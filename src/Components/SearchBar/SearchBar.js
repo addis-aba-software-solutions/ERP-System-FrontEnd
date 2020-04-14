@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const SearchBar = props => {
-  const { className, onChange, style, ...rest } = props;
+  const { className, onChange, style,  search,...rest } = props;
 
   const classes = useStyles();
 
@@ -83,7 +83,8 @@ const SearchBar = props => {
             {...rest}
             className={classes.input}
             disableUnderline
-            onChange={onChange}
+            onChange={props.updateSearch}
+            value={props.search}
             style={
               {
                 paddingLeft: 20
