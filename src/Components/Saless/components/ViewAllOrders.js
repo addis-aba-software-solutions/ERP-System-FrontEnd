@@ -263,11 +263,16 @@ class OrderList extends React.Component {
                         xs={12}
                         style={{
                             padding: 20,
-
                         }}>
                         <Grid item className={classes.header}>
-                            <Typography variant='h5' color="textSecondary">
+                            <Typography variant='h4' color="textSecondary">
+                                <b>Sales</b>
+                            </Typography>
+                            <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
                                 <b>Orders</b>
+                            </Typography>
+                            <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
+                                <b>All Orders List</b>
                             </Typography>
                         </Grid>
                         <Grid item style={{

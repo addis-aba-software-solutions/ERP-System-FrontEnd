@@ -193,6 +193,8 @@ export default function Inventory() {
                     }} />
 
 
+
+
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
                             Samuel Kassa
@@ -203,12 +205,9 @@ export default function Inventory() {
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
-
-
-
-
-
             </AppBar>
+
+            <Route>
 
 
             <Drawer
@@ -285,6 +284,7 @@ export default function Inventory() {
                 </Switch>
 
             </main>
+            </Route>
 
         </div>
     );

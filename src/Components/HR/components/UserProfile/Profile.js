@@ -25,8 +25,6 @@ import UserProfile from './UserProfile'
 
 
 const styles = theme => ({
-
-
     appBar: {
         position: 'relative',
     },
@@ -72,7 +70,6 @@ const styles = theme => ({
         justifyContent: 'flex-end',
     },
     button: {
-        // backgroundColor: '#11669F',
         marginTop: theme.spacing(3),
         marginLeft: theme.spacing(1),
     },
@@ -142,9 +139,7 @@ class Profile extends React.Component {
 
                                         }}>
                                             <Button
-                                                // variant="contained"
                                                 className={classes.button}
-                                                // onClick={() => }
 
                                                 startIcon={<EditIcon />
 
@@ -163,7 +158,6 @@ class Profile extends React.Component {
                                                 <CardActionArea>
 
                                                     <Typography variant="h6" component="p" style={{
-                                                        // marginTop: 10,
                                                         padding: 10
                                                     }}>
                                                         <b>Personal Information</b>
@@ -231,15 +225,14 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     67
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            // paddingLeft: 10,
-                                                            // paddingRight: 10
+
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -308,7 +301,7 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     15 Years
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>
@@ -333,7 +326,7 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     MBA
-                                        </Typography>
+                                                                </Typography>
 
                                                             </Grid>
                                                         </Grid>

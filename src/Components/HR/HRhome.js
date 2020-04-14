@@ -32,6 +32,7 @@ import AddNewEmployee from './components/UserProfile/UserProfile'
 import UsersCategory from './components/UsersCategory';
 import Category from './components/Category'
 import SearchBar from '../SearchBar/SearchBar';
+import Profile from './components/UserProfile/Profile'
 
 const drawerWidth = 240;
 
@@ -152,6 +153,16 @@ export const routes = [
                 <UsersCategory />
 
             </>
+    },
+    {
+        path: '/EmployeeProfileView',
+        exact: true,
+        sidebar: () => '',
+        main: () =>
+            <>
+                <Profile />
+
+            </>
     }
 ]
 
@@ -245,7 +256,16 @@ export default function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="ItemView" />
+                            <ListItemText primary="Employee List View" />
+                        </ListItem>
+                    </Link>
+
+                    <Link to="/EmployeeProfileView">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Profile View" />
                         </ListItem>
                     </Link>
                 </List>

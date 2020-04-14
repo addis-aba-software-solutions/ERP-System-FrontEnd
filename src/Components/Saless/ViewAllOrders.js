@@ -302,7 +302,6 @@
 
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -327,27 +326,13 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-// import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg'
-// import InventoryStatus from './components/InventoryStatus';
-import Card from '@material-ui/core/Card';
-//import SearchBar from './SearchBar'
-import { TableCell, TableRow, TableContainer,TableBody,TableHead } from '@material-ui/core';
 import { withStyles } from '@material-ui/core/styles';
 import SearchBar from '../SearchBar/SearchBar';
 import Orders from './components/orders'
-import Paper from '@material-ui/core/Paper';
-import Table from '@material-ui/core/Table';
-//import TableBody from '@material-ui/core/TableBody';
-//import TableCell from '@material-ui/core/TableCell';
-//import TableContainer from '@material-ui/core/TableContainer';
-//import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
-//import TableRow from '@material-ui/core/TableRow';
-import axios from 'axios'
-// import ItemList from './components/ItemList'
 
-// import Profile from './Components/HR/UserProfile/Profile'
+import axios from 'axios'
+
 
 const drawerWidth = 240;
 
@@ -436,25 +421,25 @@ const styles = theme => ({
     ProfilePicture: {
         height: 10,
     },
- 
-      orders: {
-          padding: 30
-      }
+
+    orders: {
+        padding: 30
+    }
 });
 
- const routes = [
+const routes = [
     {
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => 
+        main: () =>
             <Orders />
         //     <div style={{padding:30}} > 
         //     <Paper style={{  width: '100%', padding:20}}>
         //    <TableContainer style={{  maxHeight: 440}} >
         //    <Table stickyHeader aria-label="sticky table">
         //     <TableHead className="thead-dark" style={{backgroundColor: "#11669F"}}>
-          
+
         //       <TableRow>
         //         <th style={{ width: 50 }} score="col">orderId</th>
         //         <th style={{ width: 100 }} score="col">orderNumber</th>
@@ -480,7 +465,7 @@ const styles = theme => ({
 
         //           <TableCell>{orderInfos.OrderName}</TableCell>
         //           <TableCell>{orderInfos.item}</TableCell>
-                  
+
         //           <TableCell>{orderInfos.orderQuantity}</TableCell>
         //           {/* <TableCell>{orderInfos.email}</TableCell> */}
         //           {/* <TableCell>{orderInfos.hiredDate}</TableCell> */}
@@ -517,7 +502,7 @@ const styles = theme => ({
         sidebar: () => '',
         main: () => <div></div>
 
-            // <InventoryStatus />
+        // <InventoryStatus />
 
     },
     {
@@ -526,14 +511,14 @@ const styles = theme => ({
         sidebar: () => '',
         main: () => <div></div>
 
-            // <ItemList />
+        // <ItemList />
 
     }
 ]
 
 class ViewAllOrders extends React.Component {
     // const {classes} = this.props
-  
+
     // const [open, setOpen] = React.useState(false);
     // const handleDrawerOpen = () => {
     //     setOpen(true);
@@ -543,23 +528,23 @@ class ViewAllOrders extends React.Component {
     // };
     state = {
         orderInfo: []
-      }
+    }
 
-      componentDidMount() {
+    componentDidMount() {
         axios.get("http://192.168.1.9:8000/api/v1/order/")
-          .then(res => {
-            this.setState({
-              orderInfo: res.data
+            .then(res => {
+                this.setState({
+                    orderInfo: res.data
+                })
+                //   console.log(res.data.data.children);
             })
-            //   console.log(res.data.data.children);
-          })
-          .catch(error => {
-            console.log(error);
-          })
-      }
-    render(){
+            .catch(error => {
+                console.log(error);
+            })
+    }
+    render() {
 
-        const {classes} = this.props
+        const { classes } = this.props
         // const handleDrawerOpen = () => {
         //     setOpen(true);
         // };
@@ -567,146 +552,143 @@ class ViewAllOrders extends React.Component {
         //     setOpen(false);
         // };
         // const [open, setOpen] = React.useState(false);
-    return (
+        return (
 
-        <div className={classes.root}>
-            <CssBaseline />
-            <AppBar 
-            // position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}
-            >
-                <Toolbar className={classes.toolbar}>
-                    <IconButton
-                        edge="start"
-                        color="inherit"
-                        aria-label="open drawer"
+            <div className={classes.root}>
+                <CssBaseline />
+                <AppBar
+                // position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}
+                >
+                    <Toolbar className={classes.toolbar}>
+                        <IconButton
+                            edge="start"
+                            color="inherit"
+                            aria-label="open drawer"
                         // onClick={handleDrawerOpen}
                         // className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                        EATH
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                            EATH
                     </Typography>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
+                        <IconButton color="inherit">
+                            <Badge badgeContent={4} color="secondary">
+                                <NotificationsIcon />
+                            </Badge>
+                        </IconButton>
 
 
-                    <img src={ProfilePicture} alt='' style={{
-                        height: 35,
-                        width: 35,
-                        borderRadius: 100
-                    }} />
+                        <img src={ProfilePicture} alt='' style={{
+                            height: 35,
+                            width: 35,
+                            borderRadius: 100
+                        }} />
 
 
-                    <IconButton color="inherit">
-                        <Typography variant="body2" gutterBottom>
-                            Samuel Kassa
+                        <IconButton color="inherit">
+                            <Typography variant="body2" gutterBottom>
+                                Samuel Kassa
                         </Typography>
 
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <ArrowDropDownIcon fontSize='large' />
-                    </IconButton>
-                </Toolbar>
+                        </IconButton>
+                        <IconButton color="inherit">
+                            <ArrowDropDownIcon fontSize='large' />
+                        </IconButton>
+                    </Toolbar>
 
 
 
 
 
-            </AppBar>
+                </AppBar>
 
 
-            <Drawer
-                variant="permanent"
-                classes={{
-                    // paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-                }}
+                <Drawer
+                    variant="permanent"
+                    classes={{
+                        // paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                    }}
                 // open={open}
-            >
-                <div className={classes.toolbarIcon}>
-                    <IconButton 
-                    // onClick={handleDrawerClose}
-                    >
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </div>
-                <Divider />
-                <List>
-                    <Link to="/">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <DashboardIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
+                >
+                    <div className={classes.toolbarIcon}>
+                        <IconButton
+                        // onClick={handleDrawerClose}
+                        >
+                            <ChevronLeftIcon />
+                        </IconButton>
+                    </div>
+                    <Divider />
+                    <List>
+                        <Link to="/">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <DashboardIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Dashboard" />
 
-                        </ListItem>
-                    </Link>
-                    <Link to="/InventoryStatus">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="Category" />
+                            </ListItem>
+                        </Link>
+                        <Link to="/InventoryStatus">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="Category" />
 
-                        </ListItem>
-                    </Link>
+                            </ListItem>
+                        </Link>
 
-                    <Link to="/CategoryListView">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            <ListItemText primary="ItemView" />
+                        <Link to="/CategoryListView">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
+                                <ListItemText primary="ItemView" />
 
-                        </ListItem>
-                    </Link>
-                    <Link to="/Four">
-                        <ListItem button>
-                            <ListItemIcon>
-                                <PeopleIcon />
-                            </ListItemIcon>
-                            {/* <ListItemText primary="Hollup" /> */}
+                            </ListItem>
+                        </Link>
+                        <Link to="/Four">
+                            <ListItem button>
+                                <ListItemIcon>
+                                    <PeopleIcon />
+                                </ListItemIcon>
 
-                        </ListItem>
-                    </Link>
-                </List>
-                <Divider />
-                {/* <List>{secondaryListItems}</List> */}
-            </Drawer>
+                            </ListItem>
+                        </Link>
+                    </List>
+                    <Divider />
+                </Drawer>
 
-            <main className={classes.content} style={{
-                backgroundColor: '#EBEBEB',
-                height: '100vh  '
-            }}>
-                <div className={classes.toolbar} />
-                <div className={classes.appBarSpacer} />
-                {/* <div className={classes.appBarSpacer} /> */}
+                <main className={classes.content} style={{
+                    backgroundColor: '#EBEBEB',
+                    height: '100vh  '
+                }}>
+                    <div className={classes.toolbar} />
+                    <div className={classes.appBarSpacer} />
 
-            <div style={{
-                padding: 30
-            }}>
-            <SearchBar />
+                    <div style={{
+                        padding: 30
+                    }}>
+                        <SearchBar />
+
+                    </div>
+                    <Switch>
+                        {routes.map((route, index) => (
+                            <Route
+                                key={index}
+                                path={route.path}
+                                exact={route.exact}
+                                children={<route.main />}
+                            />
+                        ))}
+                    </Switch>
+
+                </main>
 
             </div>
-                <Switch>
-                    {routes.map((route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            children={<route.main />}
-                        />
-                    ))}
-                </Switch>
-
-            </main>
-
-        </div>
-    );
-} 
+        );
+    }
 }
 
 export default withStyles(styles)(ViewAllOrders);
