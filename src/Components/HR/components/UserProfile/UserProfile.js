@@ -251,7 +251,6 @@ class UserProfile extends Component {
             termOfEmployment: '',
             role: '',
             level: ''
-            // salery:''
 
           }
         });
@@ -296,25 +295,6 @@ class UserProfile extends Component {
                   Employee Information
          </Typography>
                 <Grid container spacing={3}>
-                  {/* <Grid item xs={12}>
-                  <TextField
-                    required
-                    id="Employee_ID"
-                    name="Employee_ID"
-                    label="Employee ID"
-                    fullWidth
-                    disabled
-                    defaultValue={this.props.empId}
-                    
-                    autoComplete="Employee_ID"
-                    value={this.state.newEmployeeInfo.employeId}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.employeId= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid> */}
                   <Grid item xs={12} sm={6}>
                     <TextField
                       required
@@ -381,34 +361,20 @@ class UserProfile extends Component {
                       }}
                     />
                   </Grid>
-                  {/* <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="Role"
-                    name="Role"
-                    label="Role"
-                    fullWidth
-                    autoComplete="Role"
-                  />
-                </Grid> */}
-
-                  {/* <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="termOfEmployment"
-                    name="termOfEmployment"
-                    label="Recruitment Type"
-                    fullWidth
-                    autoComplete="Type"
-                    value={this.state.newEmployeeInfo.termOfEmployment}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.termOfEmployment= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}                  />
-                </Grid> */}
                   <Grid item xs={12} sm={6}>
 
+                    <FormControl className={classes.formControl} fullWidth>
+                      <InputLabel htmlFor="grouped-native-select">Term Of Employment</InputLabel>
+                      <Select native defaultValue="" id="grouped-native-select">
+                        <option aria-label="None" value="" />
+                        <option >Permanent</option>
+                        <option >Contract</option>
+                        <option >Hourly</option>
+                      </Select>
+                    </FormControl>
+
+
+                    {/* 
                     <Form.Group controlId="termOfEmployment">
                       <Form.Label>termOfEmployment</Form.Label>
 
@@ -427,26 +393,12 @@ class UserProfile extends Component {
                         }}
                       </Form.Control>
 
-                    </Form.Group>
+                    </Form.Group> */}
+
+
+
+
                   </Grid>
-
-
-                  {/* <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="Salary"
-                    name="Salary"
-                    label="Salary"
-                    fullWidth
-                    autoComplete="Salary"
-                    value={this.state.newEmployeeInfo.salery}
-                    onChange={(e)=>{
-                      let{newEmployeeInfo}=this.state;
-                      newEmployeeInfo.salery= e.target.value;
-                      this.setState({newEmployeeInfo});
-                    }}
-                  />
-                </Grid> */}
 
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -464,6 +416,61 @@ class UserProfile extends Component {
                       }}
                     />
                   </Grid>
+
+                  <Grid item xs={12} sm={4}>
+
+<FormControl className={classes.formControl} fullWidth>
+  <InputLabel htmlFor="grouped-native-select">Department</InputLabel>
+  <Select native defaultValue="" id="grouped-native-select">
+    <option aria-label="None" value="" />
+    <option >Permanent</option>
+    <option >Contract</option>
+    <option >Hourly</option>
+  </Select>
+</FormControl>
+
+
+
+
+
+</Grid>                  <Grid item xs={12} sm={4}>
+
+<FormControl className={classes.formControl} fullWidth>
+  <InputLabel htmlFor="grouped-native-select">Level</InputLabel>
+  <Select native defaultValue="" id="grouped-native-select">
+    <option aria-label="None" value="" />
+    <option >Permanent</option>
+    <option >Contract</option>
+    <option >Hourly</option>
+  </Select>
+</FormControl>
+
+
+
+
+
+
+</Grid>
+
+<Grid item xs={12} sm={4}>
+
+<FormControl className={classes.formControl} fullWidth>
+  <InputLabel htmlFor="grouped-native-select">Role</InputLabel>
+  <Select native defaultValue="" id="grouped-native-select">
+    <option aria-label="None" value="" />
+    <option >Permanent</option>
+    <option >Contract</option>
+    <option >Hourly</option>
+  </Select>
+</FormControl>
+
+
+
+
+
+
+</Grid>
+                  
 
                   <Grid item xs={12} sm={6}>
                     <TextField
@@ -500,26 +507,24 @@ class UserProfile extends Component {
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      id="birthDate"
-                      label="Birth Date"
-                      type="date"
-                      fullWidth
-                      value={this.state.newEmployeeInfo.birthDate}
-                      onChange={(e) => {
-                        let { newEmployeeInfo } = this.state;
-                        newEmployeeInfo.birthDate = e.target.value;
-                        this.setState({ newEmployeeInfo });
-                      }}
-
-
-                    />
+                  <form className={classes.container} noValidate>
+      <TextField
+      fullWidth
+        id="date"
+        label="BirthDate"
+        type="date"
+        defaultValue="2017-05-24"
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </form>
 
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
-
+{/* 
                     <Form.Group controlId="department">
                       <Form.Label>Department</Form.Label>
 
@@ -536,11 +541,11 @@ class UserProfile extends Component {
                         }}
                       </Form.Control>
 
-                    </Form.Group>
+                    </Form.Group> */}
 
 
 
-                    <Form.Group controlId="level">
+                    {/* <Form.Group controlId="level">
                       <Form.Label>level</Form.Label>
 
                       <Form.Control as="select">
@@ -555,8 +560,8 @@ class UserProfile extends Component {
                         }}
                       </Form.Control>
 
-                    </Form.Group>
-                    <Form.Group controlId="role">
+                    </Form.Group> */}
+                    {/* <Form.Group controlId="role">
                       <Form.Label>role</Form.Label>
 
                       <Form.Control as="select">
@@ -571,23 +576,20 @@ class UserProfile extends Component {
                         }}
                       </Form.Control>
 
-                    </Form.Group>
-                    <TextField
-                      required
-                      id="hiredDate"
-                      label="Hired Date"
-
-                      type="date"
-                      fullWidth
-                      value={this.state.newEmployeeInfo.hiredDate}
-                      onChange={(e) => {
-                        let { newEmployeeInfo } = this.state;
-                        newEmployeeInfo.hiredDate = e.target.value;
-                        this.setState({ newEmployeeInfo });
-                      }}
-
-
-                    />
+                    </Form.Group> */}
+<form className={classes.container} noValidate>
+      <TextField
+      fullWidth
+        id="date"
+        label="Hired Date"
+        type="date"
+        defaultValue="2017-05-24"
+        className={classes.textField}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </form>
 
                   </Grid>
 
@@ -680,3 +682,5 @@ export default withStyles(styles)(UserProfile);
 //     );
 //   })
 // }
+
+

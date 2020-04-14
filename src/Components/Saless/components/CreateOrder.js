@@ -57,9 +57,6 @@ const styles = theme => ({
   },
 });
 
-
-
-
 class CreateOrder extends React.Component {
 
   constructor() {
@@ -215,7 +212,7 @@ class CreateOrder extends React.Component {
 
                 <Typography variant="h6" gutterBottom>
                   Order Creation
-         </Typography>
+            </Typography>
                 <Grid container spacing={3}>
 
                   <Grid item xs={12} sm={3}>
@@ -249,6 +246,7 @@ class CreateOrder extends React.Component {
                     </Form.Control>
 
                   </Form.Group>
+                  
                   <Form.Group controlId="company">
                     <Form.Label>company</Form.Label>
 

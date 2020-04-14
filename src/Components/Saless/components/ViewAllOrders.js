@@ -62,23 +62,7 @@
 //             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
 //             createData('Eclair', 262, 16.0, 24, 6.0),
 //             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9),
+
 //         ];
 //         return (
 //             <>
@@ -182,16 +166,16 @@ import {Link} from 'react-router-dom'
 const styles = theme => ({
     table: {
         maxHeight: 100,
-        padding: 20
+        // padding: 20
     },
     tableRow: {
-        padding: 15
+        // padding: 15
     },
     container: {
         padding: 20,
     },
     paper: {
-        padding: 40,
+        padding: 10,
         height: 'auto',
         bitemRadius: 20
     },
@@ -287,11 +271,11 @@ class OrderList extends React.Component {
 
                     <Divider className={classes.spacer}></Divider>
 
-                    <div style={{ padding: 30 }} >
-                        <Button> <Link to="/CreateOrder"
+                    <div >
+                        <Button variant='contained'> <Link to="/CreateOrder"
                         >Add New Order</Link></Button>
                         <br/>
-                        <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} />
+                        {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
                         <Paper className={classes.paper}>
 
@@ -301,15 +285,15 @@ class OrderList extends React.Component {
 
                                         <TableRow className={classes.table}>
 
-                                            <TableCell style={{ width: 50 }} score="col">orderNumber</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">orderName</TableCell>
+                                            <TableCell >orderNumber</TableCell>
+                                            <TableCell >orderName</TableCell>
 
-                                            <TableCell style={{ width: 100 }} score="col">item</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">company</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">salesPerson</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">shipmentAddress</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">orderDate</TableCell>
-                                            <TableCell style={{ width: 50 }} score="col">__</TableCell>
+                                            <TableCell >item</TableCell>
+                                            <TableCell >company</TableCell>
+                                            <TableCell >salesPerson</TableCell>
+                                            <TableCell >shipmentAddress</TableCell>
+                                            <TableCell >orderDate</TableCell>
+                                            <TableCell >__</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

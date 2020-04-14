@@ -22,7 +22,7 @@ export default class Routes extends Component {
                     {/* <Route path="/UserList" component={UserList} /> */}
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
-                    <Route path="/" component={Sales} />
+                    {/* <Route path="/" component={Sales} /> */}
 
                     <Route path="/Finance" component={Finance} />
                 </Switch>
