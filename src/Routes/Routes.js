@@ -8,6 +8,8 @@ import HR from '../Components/HR/HRhome';
 import Inventory from '../Components/Inventory/Inventory';
 import Finance from '../Components/Finance/Finance';
 import Sales from '../Components/Saless/Sales';
+import Logistics from '../Components/Logistics/Logistics';
+
 
 export default class Routes extends Component {
     render() {
@@ -20,6 +22,8 @@ export default class Routes extends Component {
                     {/* <Route path="/UserList" component={UserList} /> */}
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
+                    <Route path="/" component={Sales} />
+
                     <Route path="/Finance" component={Finance} />
                 </Switch>
             </Router>
