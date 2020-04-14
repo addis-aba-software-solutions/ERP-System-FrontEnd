@@ -25,11 +25,12 @@ export default class Routes extends Component {
                     {/* <Route path="/UserList" component={UserList} /> */}
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
-                    {/* <Route path="/" component={Sales} /> */}
+                    <Route path="/" component={Sales} />
 
                     <Route path="/Finance" component={Finance} />
                     {/* <Route path="/" component={UsersTable} /> */}
-                    <Route path="/" component={HR} />
+                    {/* <Route path="/" component={HR} /> */}
+                    
                     <Route path="/profile:id" component={Profile} />
 
 

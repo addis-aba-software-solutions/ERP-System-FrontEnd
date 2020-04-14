@@ -210,7 +210,7 @@ class CreateOrder extends React.Component {
             </Typography>
                 <Grid container spacing={3}>
 
-                  <Grid item xs={12} sm={3}>
+                  <Grid item xs={12} sm={8}>
                     <TextField
                       required
                       id="orderName"
@@ -227,25 +227,25 @@ class CreateOrder extends React.Component {
                     />
                   </Grid>
 
-                  <Grid item xs={12} sm={3}>
+                  <Grid item xs={12} sm={4}>
                     <TextField
                       required
-                      id="orderName"
-                      name="orderName"
+                      id="orderNumber"
+                      name="orderNumber"
                       label="Order Number"
                       fullWidth
-                      autoComplete="orderName"
-                      // value={this.state.newOrderInfo.orderName}
-                      // onChange={(e) => {
-                      //   let { newOrderInfo } = this.state;
-                      //   newOrderInfo.orderName = e.target.value;
-                      //   this.setState({ newOrderInfo });
-                      // }}
+                      autoComplete="orderNumber"
+                    value={this.state.newOrderInfo.orderNumber}
+                    onChange={(e) => {
+                      let { newOrderInfo } = this.state;
+                      newOrderInfo.orderNumber = e.target.value;
+                      this.setState({ newOrderInfo });
+                    }}
                     />
                   </Grid>
 
-                  <Grid item xs={12} sm={3}>
-                  <FormControl className={classes.formControl} fullWidth>
+                  <Grid item xs={12} sm={6}>
+                    <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Item</InputLabel>
                       <Select native defaultValue="" id="grouped-native-select">
                         <option aria-label="None" value="" />
@@ -257,8 +257,8 @@ class CreateOrder extends React.Component {
 
                   </Grid>
 
-                  <Grid item xs={12} sm={3}>
-                  <FormControl className={classes.formControl} fullWidth>
+                  <Grid item xs={12} sm={6}>
+                    <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Company</InputLabel>
                       <Select native defaultValue="" id="grouped-native-select">
                         <option aria-label="None" value="" />
@@ -270,40 +270,7 @@ class CreateOrder extends React.Component {
 
                   </Grid>
 
-                  {/* <Form.Group controlId="item">
-                    <Form.Label>item</Form.Label>
-                    <Form.Control as="select">
-                      {this.state.item.map(items =>
-                        <option key={items.itemId}>{items.itemName}</option>
-                      )}
-                        value={this.state.newOrderInfo.item}
-                        onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.item = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    </Form.Control>
-
-                  </Form.Group> */}
-
-                  {/* <Form.Group controlId="company">
-                    <Form.Label>company</Form.Label>
-
-                    <Form.Control as="select">
-                      {this.state.comp.map(companys =>
-                        <option key={companys.companyId}>{companys.companyName}</option>
-                      )}
-                        value={this.state.newOrderInfo.company}
-                        onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.company = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    </Form.Control> */}
-
-                  {/* </Form.Group> */}
-
-                  <Grid item xs={12} sm={5}>
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       required
                       id="salesPerson"
@@ -320,28 +287,13 @@ class CreateOrder extends React.Component {
                     />
                   </Grid>
 
-                  <Grid item xs={12} sm={3}>
-                    <TextField
-                      required
-                      id="quantity"
-                      name="quantity"
-                      label="quantity"
-                      fullWidth
-                      autoComplete="quantity"
-                      value={this.state.newOrderInfo.quantity}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.quantity = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={3}>
+
+                  <Grid item xs={12} sm={6}>
                     <TextField
                       required
                       id="shipmentAddress"
                       name="shipmentAddress"
-                      label="shipmentAddress"
+                      label="Shipment Address"
                       fullWidth
                       autoComplete="shipmentAddress"
                       value={this.state.newOrderInfo.shipmentAddress}
@@ -352,12 +304,31 @@ class CreateOrder extends React.Component {
                       }}
                     />
                   </Grid>
-                  <Grid item xs={12} sm={3}>
+
+                  <Grid item xs={12} sm={5}>
+                    <TextField
+                      required
+                      id="quantity"
+                      name="quantity"
+                      label="Quantity"
+                      fullWidth
+                      disabled
+                      autoComplete="quantity"
+                      value={this.state.newOrderInfo.quantity}
+                      onChange={(e) => {
+                        let { newOrderInfo } = this.state;
+                        newOrderInfo.quantity = e.target.value;
+                        this.setState({ newOrderInfo });
+                      }}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={7}>
                     <TextField
                       required
                       id="orderDate"
                       name="orderDate"
-                      label="orderDate"
+                      label="Order Date"
                       fullWidth
                       autoComplete="orderDate"
                       value={this.state.newOrderInfo.orderDate}
@@ -368,8 +339,25 @@ class CreateOrder extends React.Component {
                       }}
                     />
                   </Grid>
+                  <Grid item xs={12} sm={12}>
+                    <TextField
+                      required
+                      id="Description"
+                      name="Description"
+                      label="Description"
+                      // rowsMax= '12'
+                      multiline
+                      fullWidth
+                      autoComplete="quantity"
+                    value={this.state.newOrderInfo.description}
+                    onChange={(e) => {
+                      let { newOrderInfo } = this.state;
+                      newOrderInfo.description = e.target.value;
+                      this.setState({ newOrderInfo });
+                    }}
+                    />
+                  </Grid>
                 </Grid>
-
                 <div style={{
                   paddingTop: 20
                 }}>
@@ -377,8 +365,6 @@ class CreateOrder extends React.Component {
                     Item Information
          </Typography>
                 </div>
-
-
                 <div style={{
                   paddingTop: 20
                 }}>
@@ -386,8 +372,6 @@ class CreateOrder extends React.Component {
                     Item Information Goes Here
          </Typography>
                 </div>
-
-
                 <Button
                   variant="contained"
                   color="primary"
