@@ -316,8 +316,7 @@ class UserProfile extends Component {
                     <TextField
                       required
                       id="lastName"
-                      n
-                      ame="lastName"
+                      name="lastName"
                       label="Last name"
                       fullWidth
                       autoComplete="lname"
@@ -412,8 +411,8 @@ class UserProfile extends Component {
                     </FormControl>
 
 
-                  </Grid>            
-                <Grid item xs={12} sm={4}>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Level</InputLabel>
@@ -463,86 +462,85 @@ class UserProfile extends Component {
 
                   </Grid>
 
+                </Grid>
 
-                  <Grid item xs={12} sm={6}>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="city"
+                    name="city"
+                    label="city"
+                    fullWidth
+                    autoComplete="city"
+                    value={this.state.newEmployeeInfo.city}
+                    onChange={(e) => {
+                      let { newEmployeeInfo } = this.state;
+                      newEmployeeInfo.city = e.target.value;
+                      this.setState({ newEmployeeInfo });
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="region"
+                    name="region"
+                    label="region"
+                    fullWidth
+                    autoComplete="region"
+                    value={this.state.newEmployeeInfo.region}
+                    onChange={(e) => {
+                      let { newEmployeeInfo } = this.state;
+                      newEmployeeInfo.region = e.target.value;
+                      this.setState({ newEmployeeInfo });
+                    }}
+                  />
+                </Grid>
+
+                <Grid item xs={12} sm={6}>
+                  <form className={classes.container} noValidate>
                     <TextField
-                      required
-                      id="city"
-                      name="city"
-                      label="city"
                       fullWidth
-                      autoComplete="city"
-                      value={this.state.newEmployeeInfo.city}
-                      onChange={(e) => {
-                        let { newEmployeeInfo } = this.state;
-                        newEmployeeInfo.city = e.target.value;
-                        this.setState({ newEmployeeInfo });
+                      id="date"
+                      label="BirthDate"
+                      type="date"
+                      defaultValue="2017-05-24"
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
                       }}
                     />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      id="region"
-                      name="region"
-                      label="region"
-                      fullWidth
-                      autoComplete="region"
-                      value={this.state.newEmployeeInfo.region}
-                      onChange={(e) => {
-                        let { newEmployeeInfo } = this.state;
-                        newEmployeeInfo.region = e.target.value;
-                        this.setState({ newEmployeeInfo });
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <form className={classes.container} noValidate>
-                      <TextField
-                        fullWidth
-                        id="date"
-                        label="BirthDate"
-                        type="date"
-                        defaultValue="2017-05-24"
-                        className={classes.textField}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </form>
-
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                   
-                    <form className={classes.container} noValidate>
-                      <TextField
-                        fullWidth
-                        id="date"
-                        label="Hired Date"
-                        type="date"
-                        defaultValue="2017-05-24"
-                        className={classes.textField}
-                        InputLabelProps={{
-                          shrink: true,
-                        }}
-                      />
-                    </form>
-
-                  </Grid>
-
+                  </form>
 
                 </Grid>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.submit}
-                  className={classes.button}
-                >
-                  Register
+                <Grid item xs={12} sm={6}>
+
+                  <form className={classes.container} noValidate>
+                    <TextField
+                      fullWidth
+                      id="date"
+                      label="Hired Date"
+                      type="date"
+                      defaultValue="2017-05-24"
+                      className={classes.textField}
+                      InputLabelProps={{
+                        shrink: true,
+                      }}
+                    />
+                  </form>
+
+                </Grid>
+
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={this.submit}
+                className={classes.button}
+              >
+                Register
                    </Button>
               </React.Fragment>
 
@@ -550,7 +548,7 @@ class UserProfile extends Component {
           </MuiPickersUtilsProvider>
 
         </main>
-      </React.Fragment>
+      </React.Fragment >
     )
   }
 }

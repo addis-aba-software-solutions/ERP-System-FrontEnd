@@ -11,6 +11,10 @@ import Swal from 'sweetalert2'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+import InputLabel from '@material-ui/core/InputLabel';
+
 import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
@@ -174,8 +178,6 @@ class CreateOrder extends React.Component {
             item: '',
             shipmentAddress: ''
             //salery:''
-
-
           }
         });
         Swal.fire({
@@ -185,12 +187,8 @@ class CreateOrder extends React.Component {
           showConfirmButton: false,
           timer: 700
         }).then(history.push('/ViewAllOrder'))
-
       })
-
-
   }
-
 
   render() {
 
@@ -206,10 +204,7 @@ class CreateOrder extends React.Component {
               <Typography component="h1" variant="h4" align="center">
                 Sales
            </Typography>
-
-
               <React.Fragment>
-
                 <Typography variant="h6" gutterBottom>
                   Order Creation
             </Typography>
@@ -220,7 +215,7 @@ class CreateOrder extends React.Component {
                       required
                       id="orderName"
                       name="orderName"
-                      label="item Name"
+                      label="Order Name"
                       fullWidth
                       autoComplete="orderName"
                       value={this.state.newOrderInfo.orderName}
@@ -231,7 +226,51 @@ class CreateOrder extends React.Component {
                       }}
                     />
                   </Grid>
-                  <Form.Group controlId="item">
+
+                  <Grid item xs={12} sm={3}>
+                    <TextField
+                      required
+                      id="orderName"
+                      name="orderName"
+                      label="Order Number"
+                      fullWidth
+                      autoComplete="orderName"
+                      // value={this.state.newOrderInfo.orderName}
+                      // onChange={(e) => {
+                      //   let { newOrderInfo } = this.state;
+                      //   newOrderInfo.orderName = e.target.value;
+                      //   this.setState({ newOrderInfo });
+                      // }}
+                    />
+                  </Grid>
+
+                  <Grid item xs={12} sm={3}>
+                  <FormControl className={classes.formControl} fullWidth>
+                      <InputLabel htmlFor="grouped-native-select">Item</InputLabel>
+                      <Select native defaultValue="" id="grouped-native-select">
+                        <option aria-label="None" value="" />
+                        <option >Permanent</option>
+                        <option >Contract</option>
+                        <option >Hourly</option>
+                      </Select>
+                    </FormControl>
+
+                  </Grid>
+
+                  <Grid item xs={12} sm={3}>
+                  <FormControl className={classes.formControl} fullWidth>
+                      <InputLabel htmlFor="grouped-native-select">Company</InputLabel>
+                      <Select native defaultValue="" id="grouped-native-select">
+                        <option aria-label="None" value="" />
+                        <option >Permanent</option>
+                        <option >Contract</option>
+                        <option >Hourly</option>
+                      </Select>
+                    </FormControl>
+
+                  </Grid>
+
+                  {/* <Form.Group controlId="item">
                     <Form.Label>item</Form.Label>
                     <Form.Control as="select">
                       {this.state.item.map(items =>
@@ -245,9 +284,9 @@ class CreateOrder extends React.Component {
                       }}
                     </Form.Control>
 
-                  </Form.Group>
-                  
-                  <Form.Group controlId="company">
+                  </Form.Group> */}
+
+                  {/* <Form.Group controlId="company">
                     <Form.Label>company</Form.Label>
 
                     <Form.Control as="select">
@@ -260,15 +299,16 @@ class CreateOrder extends React.Component {
                         newOrderInfo.company = e.target.value;
                         this.setState({ newOrderInfo });
                       }}
-                    </Form.Control>
+                    </Form.Control> */}
 
-                  </Form.Group>
-                  <Grid item xs={12} sm={3}>
+                  {/* </Form.Group> */}
+
+                  <Grid item xs={12} sm={5}>
                     <TextField
                       required
                       id="salesPerson"
                       name="salesPerson"
-                      label="salesPerson"
+                      label="Sales Person"
                       fullWidth
                       autoComplete="salesPerson"
                       value={this.state.newOrderInfo.salesPerson}
