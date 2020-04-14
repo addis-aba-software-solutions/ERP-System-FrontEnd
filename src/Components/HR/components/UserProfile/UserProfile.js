@@ -397,8 +397,8 @@ class UserProfile extends Component {
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Department</InputLabel>
-                      <Select native defaultValue="" id="grouped-native-select">
-
+                      <Select native  id="grouped-native-select">
+                      <option aria-label="None" value="" />
                       {this.state.deps.map(dep =>
                           <option key={dep.departmentId}>{dep.departmentName}</option>
                         )}
@@ -417,8 +417,8 @@ class UserProfile extends Component {
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Level</InputLabel>
-                      <Select native defaultValue="" id="grouped-native-select">
-
+                      <Select native  id="grouped-native-select">
+                      <option aria-label="None" value="" />
                       {this.state.lev.map(levs =>
                           <option key={levs.levelId}>{levs.level}</option>
                         )}
@@ -442,7 +442,8 @@ class UserProfile extends Component {
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Role</InputLabel>
-                      <Select native defaultValue="" id="grouped-native-select">
+                      <Select native id="grouped-native-select">
+                      <option aria-label="None" value="" />
                       {this.state.rol.map(rols =>
                           <option key={rols.roleId}>{rols.role}</option>
                         )}
