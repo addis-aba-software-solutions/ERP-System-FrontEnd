@@ -307,15 +307,15 @@ class ItemList extends React.Component {
 
                     <TableRow className={classes.table}>
 
-                      <TableCell style={{ width: 50 }} score="col">itemId</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">itemName</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">catagory</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">quantity</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">warehouseName</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">retailPrice</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">packaging</TableCell>
-                      <TableCell style={{ width: 100 }} score="col">discount</TableCell>
-                      <TableCell style={{ width: 50 }} score="col">__</TableCell>
+                      <TableCell >itemId</TableCell>
+                      <TableCell >itemName</TableCell>
+                      <TableCell >catagory</TableCell>
+                      <TableCell >quantity</TableCell>
+                      <TableCell >warehouseName</TableCell>
+                      <TableCell >retailPrice</TableCell>
+                      <TableCell >packaging</TableCell>
+                      <TableCell >discount</TableCell>
+                      <TableCell >__</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

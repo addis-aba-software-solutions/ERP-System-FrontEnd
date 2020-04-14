@@ -65,11 +65,13 @@ class UsersTable extends React.Component {
 
 
   componentDidMount() {
-    axios.get("http://192.168.1.9:8000/api/v1/employe/")
+    axios.get("http://0.0.0.0:8000/api/v1/employe/")
       .then(res => {
         this.setState({
-          employeeInfo: res.data
+          employeeInfo: res.data,
+          
         })
+          console.log(this.employeeInfo.employeId)
         //   console.log(res.data.data.children);
       })
       .catch(error => {
@@ -79,13 +81,17 @@ class UsersTable extends React.Component {
   render() {
 
    const {employeeInfo, error}= this.state;
-  //   if(!employeeInfo) return [];
-  //   else {
-  //   let filteredEmployee = this.employeeInfo.filter(
-  //     (employeeInfos) => {
-  //       return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-  //     }
-  //   );
+
+   console.log(employeeInfo.employeId)
+    // if(!employeeInfo) return [];
+    //  else {
+    // console.log(employeeInfo.employeId);
+      
+    // let filteredEmployee = this.employeeInfo.filter(
+    //   (employeeInfos) => {
+    //     return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //   }
+    // );
   // }
 
     const { classes } = this.props
@@ -108,7 +114,7 @@ class UsersTable extends React.Component {
               <div className={classes.inner}>
                 <Button> <Link to="/UserProfile"
                 >Add New Employee</Link></Button>
-                {/* <input value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+                <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
                 <SearchBar search={this.search} updateSearch={this.updateSearch}/>
                 <Table>
                   <TableHead>
@@ -117,7 +123,6 @@ class UsersTable extends React.Component {
 
                       <TableCell>First Name</TableCell>
                       <TableCell>Last Name</TableCell>
-
                       <TableCell>Phone Number</TableCell>
                       <TableCell>Department</TableCell>
                       <TableCell>Role</TableCell>
@@ -132,12 +137,12 @@ class UsersTable extends React.Component {
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
                         <TableCell>{employeeInfos.telephone}</TableCell>
-                        <TableCell>{employeeInfos.department}</TableCell>
-                        <TableCell>{employeeInfos.role}</TableCell>
+                        <TableCell>{employeeInfos.department.departmentName}</TableCell>
+                        <TableCell>{employeeInfos.roles.role}</TableCell>
 
                         <TableCell><button>
                           <Link to={{
-                            pathname: `/employe/${employeeInfos.employeId}`,
+                            pathname: `/profile/${employeeInfos.employeId}`,
                             state: { employeeInfos: employeeInfos.employeId }
                           }}>View</Link>
                         </button></TableCell>
@@ -160,6 +165,7 @@ class UsersTable extends React.Component {
     }
   }
 }
+
 export default withStyles(styles)(UsersTable);
 
 

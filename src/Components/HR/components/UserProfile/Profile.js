@@ -85,7 +85,7 @@ class Profile extends React.Component {
     }
     componentDidMount = () => {
         const employeId = this.props.location.state.employeeInfos;
-        const req = fetch(`http://192.168.1.9:8000/api/v1/employe/${employeId}`);
+        const req = fetch(`http://192.168.1.10:8000/api/v1/employe/${employeId}`);
         const res = req.json();
         this.setState({ singleEmployee: res.employeeInfo });
         console.log(this.state.singleEmployee);

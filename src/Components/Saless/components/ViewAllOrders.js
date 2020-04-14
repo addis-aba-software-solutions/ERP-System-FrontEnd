@@ -231,7 +231,7 @@ class OrderList extends React.Component {
 
 
     componentDidMount() {
-        axios.get("http://192.168.1.4:8000/api/v1/order/")
+        axios.get("http://0.0.0.0:8000/api/v1/order/")
             .then(res => {
                 this.setState({
                     orderInfo: res.data
@@ -301,15 +301,15 @@ class OrderList extends React.Component {
 
                                         <TableRow className={classes.table}>
 
-                                            <TableCell style={{ width: 50 }} score="col">orderNumber</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">orderName</TableCell>
+                                            <TableCell >orderNumber</TableCell>
+                                            <TableCell>orderName</TableCell>
 
-                                            <TableCell style={{ width: 100 }} score="col">item</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">company</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">salesPerson</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">shipmentAddress</TableCell>
-                                            <TableCell style={{ width: 100 }} score="col">orderDate</TableCell>
-                                            <TableCell style={{ width: 50 }} score="col">__</TableCell>
+                                            <TableCell>item</TableCell>
+                                            <TableCell>company</TableCell>
+                                            <TableCell>salesPerson</TableCell>
+                                            <TableCell>shipmentAddress</TableCell>
+                                            <TableCell>orderDate</TableCell>
+                                            <TableCell >__</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -317,7 +317,6 @@ class OrderList extends React.Component {
                                             <TableRow key={orderInfos.orderNumber}>
                                                 <TableCell>{orderInfos.orderNumber}</TableCell>
                                                 <TableCell>{orderInfos.orderName}</TableCell>
-
                                                 <TableCell>{orderInfos.item}</TableCell>
                                                 <TableCell>{orderInfos.company}</TableCell>
                                                 <TableCell>{orderInfos.salesPerson}</TableCell>
