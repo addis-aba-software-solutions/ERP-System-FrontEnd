@@ -92,7 +92,6 @@ class UserProfile extends Component {
         level: ''
         //salery:''
 
-
       }
     }
     this.submit = this.submit.bind(this);

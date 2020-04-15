@@ -162,7 +162,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility'
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 const styles = theme => ({
     table: {
         maxHeight: 100,
@@ -177,7 +177,7 @@ const styles = theme => ({
     paper: {
         padding: 10,
         height: 'auto',
-        bitemRadius: 20
+        borderRadius: 20
     },
     spacer: {
         margin: 20,
@@ -229,52 +229,24 @@ class OrderList extends React.Component {
 
     render() {
         const { classes } = this.props;
-//    if(!orderInfo) return [];
-//    else {
-//         let filteredOrder = this.orderInfo.filter(
-//             (orderInfos) => {
-//                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-//             }
-//         );
-//     }
+        //    if(!orderInfo) return [];
+        //    else {
+        //         let filteredOrder = this.orderInfo.filter(
+        //             (orderInfos) => {
+        //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+        //             }
+        //         );
+        //     }
         const { orderInfo } = this.state;
 
         return (
             <>
                 <div className={classes.container}>
-                    <Grid container display='flex'
-                        justify="space-between"
-                        xs={12}
-                        style={{
-                            padding: 20,
-                        }}>
-                        <Grid item className={classes.header}>
-                            <Typography variant='h4' color="textSecondary">
-                                <b>Sales</b>
-                            </Typography>
-                            <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
-                                <b>Orders</b>
-                            </Typography>
-                            <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
-                                <b>All Orders List</b>
-                            </Typography>
-                        </Grid>
-                        <Grid item style={{
-                            display: 'flex',
-                            justify: 'flex-end'
-                        }}>
-                            <SearchBar />
-                        </Grid>
-                    </Grid>
-                    <div >
-                    </div>
-
-                    <Divider className={classes.spacer}></Divider>
 
                     <div >
                         <Button variant='contained'> <Link to="/CreateOrder"
                         >Add New Order</Link></Button>
-                        <br/>
+                        <br />
                         {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
                         <Paper className={classes.paper}>
@@ -285,15 +257,15 @@ class OrderList extends React.Component {
 
                                         <TableRow className={classes.table}>
 
-                                            <TableCell >orderNumber</TableCell>
-                                            <TableCell>orderName</TableCell>
+                                            <TableCell >Order Number</TableCell>
+                                            <TableCell>Order Name</TableCell>
 
-                                            <TableCell>item</TableCell>
-                                            <TableCell>company</TableCell>
-                                            <TableCell>salesPerson</TableCell>
-                                            <TableCell>shipmentAddress</TableCell>
-                                            <TableCell>orderDate</TableCell>
-                                            <TableCell >__</TableCell>
+                                            <TableCell>Item</TableCell>
+                                            <TableCell>Company</TableCell>
+                                            <TableCell>Sales Person</TableCell>
+                                            <TableCell>Shipment Address</TableCell>
+                                            <TableCell>Order Date</TableCell>
+                                            <TableCell >Actions</TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>

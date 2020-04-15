@@ -34,6 +34,7 @@ import CreateOrder from './components/CreateOrder';
 import ViewAllOrders from './components/ViewAllOrders';
 import ViewSingleOrder from './components/ViewSingleOrder';
 import history from '../../Routes/history';
+import SearchBar from '../SearchBar/SearchBar'
 
 
 const drawerWidth = 240;
@@ -163,13 +164,41 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () =>
-            <ViewAllOrders />
+            <>
+
+                <Grid container display='flex'
+                    justify="space-between"
+                    xs={12}
+                    style={{
+                        padding: 20,
+                    }}>
+                    <Grid item>
+                        <Typography variant='h4' color="textSecondary">
+                            <b>Sales</b>
+                        </Typography>
+                        <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
+                            <b>Orders</b>
+                        </Typography>
+                        <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
+                            <b>All Orders List</b>
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{
+                        display: 'flex',
+                        justify: 'flex-end'
+                    }}>
+                        <SearchBar />
+                    </Grid>
+                </Grid>
+                <ViewAllOrders />
+            </>
     },
     {
         path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
         main: () => <div>
+
             <CreateOrder />
 
         </div>
@@ -181,6 +210,33 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () => <div>
+                                        <Grid container display='flex'
+                    justify="space-between"
+                    xs={12}
+                    style={{
+                        padding: 20,
+                    }}>
+                    <Grid item>
+                        <Typography variant='h4' color="textSecondary">
+                            <b>Sales</b>
+                        </Typography>
+                        <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
+                            <b>Orders</b>
+                        </Typography>
+                        <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
+                            <b>All Orders List</b>
+                        </Typography>
+                    </Grid>
+                    <Grid item style={{
+                        display: 'flex',
+                        justify: 'flex-end'
+                    }}>
+                        <SearchBar />
+                    </Grid>
+                </Grid>
+                <Divider style={{margin: 10}}></Divider>
+
+            
             <ViewSingleOrder />
 
         </div>
@@ -219,50 +275,50 @@ export default function Sales() {
                     </Typography>
 
                     <div className={classes.header}>
-                    <Grid container spacing={10} display="flex" justify="flex-end" >
-                        <Grid item>
-                            <IconButton color="inherit"
+                        <Grid container spacing={10} display="flex" justify="flex-end" >
+                            <Grid item>
+                                <IconButton color="inherit"
                                 // onClick={() => history.push('/Inventory')}
-                            >
-                                <Typography variant="body2" gutterBottom>
-                                    <b>Inventory</b>
-                                </Typography>
-                            </IconButton>
-                        </Grid>
+                                >
+                                    <Typography variant="body2" gutterBottom>
+                                        <b>Inventory</b>
+                                    </Typography>
+                                </IconButton>
+                            </Grid>
 
-                        <Grid item>
-                            <IconButton color="inherit"
-                            >
-                                <Typography variant="body2" gutterBottom>
-                                    <b>Finance</b>
-                                </Typography>
-                            </IconButton>
-                        </Grid>
+                            <Grid item>
+                                <IconButton color="inherit"
+                                >
+                                    <Typography variant="body2" gutterBottom>
+                                        <b>Finance</b>
+                                    </Typography>
+                                </IconButton>
+                            </Grid>
 
-                        <Grid item>
-                            <IconButton color="inherit"
-                            >
-                                <Typography variant="body2" gutterBottom>
-                                    <b>HR</b>
-                                </Typography>
-                            </IconButton>
+                            <Grid item>
+                                <IconButton color="inherit"
+                                >
+                                    <Typography variant="body2" gutterBottom>
+                                        <b>HR</b>
+                                    </Typography>
+                                </IconButton>
+                            </Grid>
+                            <Grid item>
+                                <IconButton color="inherit"
+                                >
+                                    <Typography variant="body2" gutterBottom>
+                                        <b>Logistics</b>
+                                    </Typography>
+                                </IconButton>
+                            </Grid>                        <Grid item>
+                                <IconButton color="inherit"
+                                >
+                                    <Typography variant="body2" gutterBottom>
+                                        <b>Sales</b>
+                                    </Typography>
+                                </IconButton>
+                            </Grid>
                         </Grid>
-                        <Grid item>
-                            <IconButton color="inherit"
-                            >
-                                <Typography variant="body2" gutterBottom>
-                                    <b>Logistics</b>
-                                </Typography>
-                            </IconButton>
-                        </Grid>                        <Grid item>
-                            <IconButton color="inherit"
-                            >
-                                <Typography variant="body2" gutterBottom>
-                                    <b>Sales</b>
-                                </Typography>
-                            </IconButton>
-                        </Grid>
-                    </Grid>
                     </div>
 
 

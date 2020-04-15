@@ -19,7 +19,7 @@ import {
   MuiPickersUtilsProvider,
 } from '@material-ui/pickers';
 
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Box, Divider } from '@material-ui/core';
 
 import { Form } from 'react-bootstrap'
 
@@ -32,7 +32,8 @@ const styles = theme => ({
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
+      width: 'auto',
+      maxWidth: 1000,
       marginTop: 150,
       marginLeft: 'auto',
       marginRight: 'auto',
@@ -41,12 +42,14 @@ const styles = theme => ({
   paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
-    padding: theme.spacing(2),
+    padding: 10,
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3),
     },
+    borderRadius: 10,
+
   },
   stepper: {
     padding: theme.spacing(3, 0, 5),
@@ -56,9 +59,11 @@ const styles = theme => ({
     justifyContent: 'flex-end',
   },
   button: {
-    marginTop: theme.spacing(3),
+    margin: 30,
+    marginTop: theme.spacing(4),
     marginLeft: theme.spacing(1),
   },
+
 });
 
 class CreateOrder extends React.Component {
@@ -204,181 +209,272 @@ class CreateOrder extends React.Component {
               <Typography component="h1" variant="h4" align="center">
                 Sales
            </Typography>
+              <Divider></Divider>
               <React.Fragment>
+                <Box style={{
+                  height: 10
+                }}>
+
+                </Box>
                 <Typography variant="h6" gutterBottom>
                   Order Creation
             </Typography>
-                <Grid container spacing={3}>
+                <Divider></Divider>
+                <Grid container xs={12} display="flex" justify="space-between" style={{
+                  paddingLeft: 40, marginTop: 10
+                }} spacing={4}>
+                  <Grid container xs={6} spacing={3}>
 
-                  <Grid item xs={12} sm={8}>
-                    <TextField
-                      required
-                      id="orderName"
-                      name="orderName"
-                      label="Order Name"
-                      fullWidth
-                      autoComplete="orderName"
-                      value={this.state.newOrderInfo.orderName}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.orderName = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
+                    <Grid item xs={12} sm={12}>
+                      <Typography variant="h6" gutterBottom>
+                        <b>Order Information</b>
+                      </Typography>
+
+                    </Grid>
+
+
+                    <Grid item xs={12} sm={8}>
+                      <TextField
+                        required
+                        id="orderName"
+                        name="orderName"
+                        label="Order Name"
+                        fullWidth
+                        autoComplete="orderName"
+                        value={this.state.newOrderInfo.orderName}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.orderName = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        required
+                        id="orderNumber"
+                        name="orderNumber"
+                        label="Order Number"
+                        fullWidth
+                        autoComplete="orderNumber"
+                        value={this.state.newOrderInfo.orderNumber}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.orderNumber = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">Item</InputLabel>
+                        <Select native defaultValue="" id="grouped-native-select">
+                          <option aria-label="None" value="" />
+                          <option >Permanent</option>
+                          <option >Contract</option>
+                          <option >Hourly</option>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">Company</InputLabel>
+                        <Select native defaultValue="" id="grouped-native-select">
+                          <option aria-label="None" value="" />
+                          <option >Permanent</option>
+                          <option >Contract</option>
+                          <option >Hourly</option>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="salesPerson"
+                        name="salesPerson"
+                        label="Sales Person"
+                        fullWidth
+                        autoComplete="salesPerson"
+                        value={this.state.newOrderInfo.salesPerson}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.salesPerson = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="shipmentAddress"
+                        name="shipmentAddress"
+                        label="Shipment Address"
+                        fullWidth
+                        autoComplete="shipmentAddress"
+                        value={this.state.newOrderInfo.shipmentAddress}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.shipmentAddress = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={5}>
+                      <TextField
+                        required
+                        id="quantity"
+                        name="quantity"
+                        label="Quantity"
+                        fullWidth
+                        disabled
+                        autoComplete="quantity"
+                        value={this.state.newOrderInfo.quantity}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.quantity = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={7}>
+                      <TextField
+                        required
+                        id="orderDate"
+                        name="orderDate"
+                        label="Order Date"
+                        fullWidth
+                        autoComplete="orderDate"
+                        value={this.state.newOrderInfo.orderDate}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.orderDate = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <TextField
+                        required
+                        id="Description"
+                        name="Description"
+                        label="Description"
+                        // rowsMax= '12'
+                        multiline
+                        fullWidth
+                        autoComplete="quantity"
+                        value={this.state.newOrderInfo.description}
+                        onChange={(e) => {
+                          let { newOrderInfo } = this.state;
+                          newOrderInfo.description = e.target.value;
+                          this.setState({ newOrderInfo });
+                        }}
+                      />
+                    </Grid>
                   </Grid>
 
-                  <Grid item xs={12} sm={4}>
-                    <TextField
-                      required
-                      id="orderNumber"
-                      name="orderNumber"
-                      label="Order Number"
-                      fullWidth
-                      autoComplete="orderNumber"
-                    value={this.state.newOrderInfo.orderNumber}
-                    onChange={(e) => {
-                      let { newOrderInfo } = this.state;
-                      newOrderInfo.orderNumber = e.target.value;
-                      this.setState({ newOrderInfo });
-                    }}
-                    />
+                  <Grid container xs={6} spacing={3}>
+
+
+
+                    <Grid item xs={12} sm={12}>
+                      <Typography variant="h6" gutterBottom>
+                        <b>Item Information </b>
+                      </Typography>
+                    </Grid>
+                    <Grid item xs={12} sm={12} display='flex' justify='flex-start'>
+                      <Typography variant="h8" gutterBottom>
+                        Item #1
+            </Typography>
+                    </Grid>
+
+                    <Grid item xs={12} sm={12}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">Item Name</InputLabel>
+                        <Select native defaultValue="" id="grouped-native-select">
+                          <option aria-label="None" value="" />
+                          <option >Permanent</option>
+                          <option >Contract</option>
+                          <option >Hourly</option>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+
+                    <Grid item xs={12} sm={12}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">Item ID</InputLabel>
+                        <Select native defaultValue="" id="grouped-native-select">
+                          <option aria-label="None" value="" />
+                          <option >Permanent</option>
+                          <option >Contract</option>
+                          <option >Hourly</option>
+                        </Select>
+                      </FormControl>
+                    </Grid>
+
+
+
+                    <Grid item xs={12} sm={12}>
+                      <TextField
+                        required
+                        id="ItemQuantity"
+                        name="ItemQuantity"
+                        label="Item Quantity"
+                        fullWidth
+                        autoComplete="itemQuantity"
+
+                      />
+                    </Grid>
+
+
+                    <Grid item xs={12} sm={12}>
+                      <TextField
+                        required
+                        id="order"
+                        name="order"
+                        label="Order"
+                        fullWidth
+                        autoComplete="orderDate"
+
+                      />
+                    </Grid>
+                    <Grid xs={12} sm={12} display='flex' justify='space-between' >
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.submit}
+                        className={classes.button}
+                      >
+                        Clear
+                   </Button>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.submit}
+                        className={classes.button}
+                      >
+                        Add Another Item
+                   </Button>
+
+                    </Grid>
+
+
                   </Grid>
 
-                  <Grid item xs={12} sm={6}>
-                    <FormControl className={classes.formControl} fullWidth>
-                      <InputLabel htmlFor="grouped-native-select">Item</InputLabel>
-                      <Select native defaultValue="" id="grouped-native-select">
-                        <option aria-label="None" value="" />
-                        <option >Permanent</option>
-                        <option >Contract</option>
-                        <option >Hourly</option>
-                      </Select>
-                    </FormControl>
-
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <FormControl className={classes.formControl} fullWidth>
-                      <InputLabel htmlFor="grouped-native-select">Company</InputLabel>
-                      <Select native defaultValue="" id="grouped-native-select">
-                        <option aria-label="None" value="" />
-                        <option >Permanent</option>
-                        <option >Contract</option>
-                        <option >Hourly</option>
-                      </Select>
-                    </FormControl>
-
-                  </Grid>
-
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      id="salesPerson"
-                      name="salesPerson"
-                      label="Sales Person"
-                      fullWidth
-                      autoComplete="salesPerson"
-                      value={this.state.newOrderInfo.salesPerson}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.salesPerson = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
 
 
-                  <Grid item xs={12} sm={6}>
-                    <TextField
-                      required
-                      id="shipmentAddress"
-                      name="shipmentAddress"
-                      label="Shipment Address"
-                      fullWidth
-                      autoComplete="shipmentAddress"
-                      value={this.state.newOrderInfo.shipmentAddress}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.shipmentAddress = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={5}>
-                    <TextField
-                      required
-                      id="quantity"
-                      name="quantity"
-                      label="Quantity"
-                      fullWidth
-                      disabled
-                      autoComplete="quantity"
-                      value={this.state.newOrderInfo.quantity}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.quantity = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} sm={7}>
-                    <TextField
-                      required
-                      id="orderDate"
-                      name="orderDate"
-                      label="Order Date"
-                      fullWidth
-                      autoComplete="orderDate"
-                      value={this.state.newOrderInfo.orderDate}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.orderDate = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={12}>
-                    <TextField
-                      required
-                      id="Description"
-                      name="Description"
-                      label="Description"
-                      // rowsMax= '12'
-                      multiline
-                      fullWidth
-                      autoComplete="quantity"
-                    value={this.state.newOrderInfo.description}
-                    onChange={(e) => {
-                      let { newOrderInfo } = this.state;
-                      newOrderInfo.description = e.target.value;
-                      this.setState({ newOrderInfo });
-                    }}
-                    />
-                  </Grid>
                 </Grid>
-                <div style={{
-                  paddingTop: 20
-                }}>
-                  <Typography variant="h6" gutterBottom>
-                    Item Information
-         </Typography>
-                </div>
-                <div style={{
-                  paddingTop: 20
-                }}>
-                  <Typography variant="h6" gutterBottom>
-                    Item Information Goes Here
-         </Typography>
-                </div>
+
                 <Button
                   variant="contained"
                   color="primary"
                   onClick={this.submit}
                   className={classes.button}
+
                 >
-                  Order
+                  Place Order
                    </Button>
               </React.Fragment>
 
