@@ -92,7 +92,6 @@ class UserProfile extends Component {
         level: ''
         //salery:''
 
-
       }
     }
     this.submit = this.submit.bind(this);
@@ -350,7 +349,7 @@ class UserProfile extends Component {
                     <TextField
                       id="telephone"
                       name="telephone"
-                      label="PhoneNumber"
+                      label="Phone Number"
                       fullWidth
                       autoComplete="PhoneNumber"
                       value={this.state.newEmployeeInfo.telephone}
@@ -381,7 +380,7 @@ class UserProfile extends Component {
                       required
                       id="country"
                       name="country"
-                      label="country"
+                      label="Country"
                       fullWidth
                       autoComplete="country"
                       value={this.state.newEmployeeInfo.country}
@@ -469,7 +468,7 @@ class UserProfile extends Component {
                       required
                       id="city"
                       name="city"
-                      label="city"
+                      label="City"
                       fullWidth
                       autoComplete="city"
                       value={this.state.newEmployeeInfo.city}
@@ -486,7 +485,7 @@ class UserProfile extends Component {
                       required
                       id="region"
                       name="region"
-                      label="region"
+                      label="Region"
                       fullWidth
                       autoComplete="region"
                       value={this.state.newEmployeeInfo.region}
@@ -622,5 +621,3 @@ export default withStyles(styles)(UserProfile);
 //     );
 //   })
 // }
-
-

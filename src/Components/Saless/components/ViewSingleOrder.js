@@ -28,7 +28,7 @@ const styles = ({
 
     },
     SingleOrder: {
-        marginTop: 206
+        marginTop: 50
     }
 
 })
@@ -49,7 +49,7 @@ class ViewSingleOrder extends React.Component {
         const { classes } = this.props;
         return (
             <Grid container xs={12}>
-                <Grid>
+                <Grid sm={12}>
                     <div className={classes.Orders}>
                         <ViewAllOrders />
                     </div>

@@ -27,6 +27,8 @@ export default class Routes extends Component {
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
                     {/* <Route path="/" component={Sales} /> */}
+                    <Route path="/" component={CreateOrder} />
+
 
                     <Route path="/Finance" component={Finance} />
                     <Route path="/" component={UsersTable} />
