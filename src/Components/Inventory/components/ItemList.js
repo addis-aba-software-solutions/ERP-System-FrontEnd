@@ -262,11 +262,15 @@ class ItemList extends React.Component {
   render() {
     const { classes } = this.props;
     const {itemInfo, error}= this.state;
-    let filteredItem = itemInfo.filter(
-      (itemInfos) => {
-        return itemInfos.itemName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      }
-    );
+    // let filteredItem = itemInfo.filter(
+    //   (itemInfos) => {
+    //     return itemInfos.itemName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //   }
+    // );
+    let filteredItem = itemInfo.filter((itemInfos)=>{
+      return itemInfos.itemName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      // console.log(item);
+    })
    // const { itemInfo } = this.state;
 
     return (

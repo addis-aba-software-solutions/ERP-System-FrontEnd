@@ -3,7 +3,7 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
-import { makeStyles } from '@material-ui/styles';
+// import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
@@ -50,8 +50,8 @@ const styles = theme => ({
 class UsersTable extends React.Component {
 
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       employeeInfo: [],
       search: ''
@@ -82,7 +82,7 @@ class UsersTable extends React.Component {
   render() {
 
    const {employeeInfo, error}= this.state;
-
+   const { classes } = this.props
   //  console.log(employeeInfo)
   //  employeeInfo.map((employ)=>{
    
@@ -105,7 +105,7 @@ class UsersTable extends React.Component {
     // );
   // }
 
-    const { classes } = this.props
+  
    // const { error, employeeInfo, empId } = this.state;
 
     if (error) {
@@ -158,10 +158,13 @@ class UsersTable extends React.Component {
                         <TableCell><button>
                           <Link to={{
                             pathname: `/profile/${employeeInfos.employeId}`,
-                            state: { employeeInfos: employeeInfos.employeId }
+                            state: { employeeInfos: employeeInfos.employeId }, 
+                            // console.log(employeeInfos.employeId);
+                            
                           }}>View</Link>
                         </button></TableCell>
-
+                     
+                         console.log(employeeInfos.employeId);
                         
                       </TableRow>
                     )

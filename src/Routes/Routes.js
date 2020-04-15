@@ -14,6 +14,8 @@ import UserProfile from "../Components/HR/components/UserProfile/UserProfile";
 import ViewAllOrders from "../Components/Saless/components/ViewAllOrders";
 import Profile from "../Components/HR/components/UserProfile/Profile";
 import ItemList from "../Components/Inventory/components/ItemList";
+import ViewSingleOrder from "../Components/Saless/components/ViewSingleOrder";
+import AddNewProduct from "../Components/Inventory/components/AddNewProduct";
 
 export default class Routes extends Component {
     render() {
@@ -27,11 +29,15 @@ export default class Routes extends Component {
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
                     {/* <Route path="/" component={Sales} /> */}
-                    <Route path="/" component={CreateOrder} />
+                    {/* <Route path="/" component={CreateOrder} /> */}
+                    {/* <Route path="/" component={Sales} /> */}
+                    {/* <Route path="/" component={UsersTable} /> */}
+
+
 
 
                     <Route path="/Finance" component={Finance} />
-                    <Route path="/" component={UsersTable} />
+                    <Route path="/" component={Inventory} />
                     {/* <Route path="/" component={HR} /> */}
                     <Route path="/profile:id" component={Profile} />
 

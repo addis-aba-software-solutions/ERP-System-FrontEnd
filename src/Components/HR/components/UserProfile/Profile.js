@@ -19,6 +19,7 @@ import { Form, FormGroup, Label, Input, Table } from 'reactstrap';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserProfile from './UserProfile'
+import UserTable from '../UsersTable/UsersTable';
 
 
 
@@ -80,11 +81,17 @@ const styles = theme => ({
 
 class Profile extends React.Component {
 
-    state = {
-        singleEmployee: []
-    }
+    // constructor() {
+        // super(props);
+        state = {
+            singleEmployee: []
+        }
+    // }
+
     componentDidMount = () => {
         const employeId = this.props.location.state.employeeInfos;
+        console.log(employeId);
+
         const req = fetch(`http:/.0.0.0.0:8000/api/v1/employe/${employeId}`);
         const res = req.json();
         this.setState({ singleEmployee: res.employeeInfo });

@@ -83,7 +83,7 @@ class AddNewProduct extends React.Component {
         console.log(data);
 
 
-        this.setState({ comp: data });
+        this.setState({ cat: data });
 
       })
 
@@ -124,7 +124,7 @@ class AddNewProduct extends React.Component {
       itemInfo.push(response.data);
       this.setState({
         itemInfo: [],
-        cats: [],
+        cat: [],
         item: [],
         newItemInfo: {
           itemId: '',
@@ -305,11 +305,11 @@ class AddNewProduct extends React.Component {
                 <Grid item xs={12} sm={6}>
 
                   <Form.Group controlId="catagory">
-                    <Form.Label>Department</Form.Label>
+                    <Form.Label>catagory</Form.Label>
 
                     <Form.Control as="select">
-                      {this.state.cats.map(cat =>
-                        <option key={cat.catagoryId}>{cat.catagoryName}</option>
+                      {this.state.cat.map(cats=>
+                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
                       )}
                         value={this.state.newItemInfo.catagory}
                         onChange={(e) => {
