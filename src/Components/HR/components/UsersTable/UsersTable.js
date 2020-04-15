@@ -67,11 +67,12 @@ class UsersTable extends React.Component {
   componentDidMount() {
     axios.get("http://0.0.0.0:8000/api/v1/employe/")
       .then(res => {
+        //console.log("Log result"+res.data)
         this.setState({
           employeeInfo: res.data,
           
         })
-          console.log(this.employeeInfo.employeId)
+          // console.log(this.employeeInfo.employeId)
         //   console.log(res.data.data.children);
       })
       .catch(error => {
@@ -82,15 +83,25 @@ class UsersTable extends React.Component {
 
    const {employeeInfo, error}= this.state;
 
-   console.log(employeeInfo.employeId)
+  //  console.log(employeeInfo)
+  //  employeeInfo.map((employ)=>{
+   
+
+  //  });
+  // employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
+  console.log(employeeInfo);
+  
     // if(!employeeInfo) return [];
     //  else {
-    // console.log(employeeInfo.employeId);
+    console.log(employeeInfo.employeId);
       
-    // let filteredEmployee = this.employeeInfo.filter(
-    //   (employeeInfos) => {
-    //     return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //   }
+    let filteredEmployee = employeeInfo.filter((employeeInfos)=>{
+      return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      // console.log(item);
+    })
+      // (employeeInfos) => {
+      //   return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+      // }
     // );
   // }
 
@@ -131,7 +142,11 @@ class UsersTable extends React.Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {employeeInfo.map(employeeInfos => (
+
+
+                  {/* console.log({this.employeeInfo.map(employeeInfos=>({employeeInfos.employeId}))}) */}
+
+                    {filteredEmployee.map(employeeInfos => (
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
                         <TableCell>{employeeInfos.firstName}</TableCell>

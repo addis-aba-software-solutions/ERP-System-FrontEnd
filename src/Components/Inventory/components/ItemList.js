@@ -247,7 +247,7 @@ class ItemList extends React.Component {
 
 
   componentDidMount() {
-    axios.get("http://192.168.1.4:8000/api/v1/item/")
+    axios.get("http://0.0.0.0:8000/api/v1/item/")
       .then(res => {
         this.setState({
           itemInfo: res.data
@@ -261,13 +261,13 @@ class ItemList extends React.Component {
 
   render() {
     const { classes } = this.props;
-
-    let filteredItem = this.itemInfo.filter(
+    const {itemInfo, error}= this.state;
+    let filteredItem = itemInfo.filter(
       (itemInfos) => {
         return itemInfos.itemName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       }
     );
-    const { itemInfo } = this.state;
+   // const { itemInfo } = this.state;
 
     return (
       <>
@@ -311,10 +311,10 @@ class ItemList extends React.Component {
                       <TableCell >itemName</TableCell>
                       <TableCell >catagory</TableCell>
                       <TableCell >quantity</TableCell>
-                      <TableCell >warehouseName</TableCell>
+                      {/* <TableCell >warehouseName</TableCell> */}
                       <TableCell >retailPrice</TableCell>
                       <TableCell >packaging</TableCell>
-                      <TableCell >discount</TableCell>
+                      {/* <TableCell >discount</TableCell> */}
                       <TableCell >__</TableCell>
                     </TableRow>
                   </TableHead>
@@ -323,13 +323,16 @@ class ItemList extends React.Component {
                       <TableRow key={itemInfos.itemId}>
                         <TableCell>{itemInfos.itemId}</TableCell>
                         <TableCell>{itemInfos.itemName}</TableCell>
-                        <TableCell>{itemInfos.catagory}</TableCell>
+                        <TableCell>{itemInfos.catagory.catagoryName}</TableCell>
                         <TableCell>{itemInfos.quantity}</TableCell>
-                        <TableCell>{itemInfos.warehouseName}</TableCell>
+                        {/* <TableCell>{itemInfos.warehouseName}</TableCell> */}
                         <TableCell>{itemInfos.retailPrice}</TableCell>
                         <TableCell>{itemInfos.packaging}</TableCell>
-                        <TableCell>{itemInfos.discount}</TableCell>
+                        {/* <TableCell>{itemInfos.discount}</TableCell> */}
 
+
+                        {/* <TableCell>{employeeInfos.department.departmentName}</TableCell>
+                        <TableCell>{employeeInfos.roles.role}</TableCell> */}
 
                         {/* <TableCell><button>
                           <Link to={{

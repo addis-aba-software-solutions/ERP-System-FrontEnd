@@ -13,6 +13,7 @@ import UsersTable from "../Components/HR/components/UsersTable/UsersTable";
 import UserProfile from "../Components/HR/components/UserProfile/UserProfile";
 import ViewAllOrders from "../Components/Saless/components/ViewAllOrders";
 import Profile from "../Components/HR/components/UserProfile/Profile";
+import ItemList from "../Components/Inventory/components/ItemList";
 
 export default class Routes extends Component {
     render() {
@@ -28,12 +29,14 @@ export default class Routes extends Component {
                     {/* <Route path="/" component={Sales} /> */}
 
                     <Route path="/Finance" component={Finance} />
-                    {/* <Route path="/" component={UsersTable} /> */}
-                    <Route path="/" component={HR} />
+                    <Route path="/" component={UsersTable} />
+                    {/* <Route path="/" component={HR} /> */}
                     <Route path="/profile:id" component={Profile} />
 
 
                     {/* <Route path="/" component={UserProfile} /> */}
+                    {/* <Route path="/" component={ItemList} /> */}
+
 
                     <Route path="/sales" component={Sales} />
 

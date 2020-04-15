@@ -246,6 +246,22 @@ class CreateOrder extends React.Component {
                     </Form.Control>
 
                   </Form.Group>
+                  <Grid item xs={12} sm={3}>
+                    <TextField
+                      required
+                      id="quantity"
+                      name="quantity"
+                      label="quantity"
+                      fullWidth
+                      autoComplete="quantity"
+                      value={this.state.newOrderInfo.quantity}
+                      onChange={(e) => {
+                        let { newOrderInfo } = this.state;
+                        newOrderInfo.quantity = e.target.value;
+                        this.setState({ newOrderInfo });
+                      }}
+                    />
+                  </Grid>
                   
                   <Form.Group controlId="company">
                     <Form.Label>company</Form.Label>
@@ -279,23 +295,7 @@ class CreateOrder extends React.Component {
                       }}
                     />
                   </Grid>
-
-                  <Grid item xs={12} sm={3}>
-                    <TextField
-                      required
-                      id="quantity"
-                      name="quantity"
-                      label="quantity"
-                      fullWidth
-                      autoComplete="quantity"
-                      value={this.state.newOrderInfo.quantity}
-                      onChange={(e) => {
-                        let { newOrderInfo } = this.state;
-                        newOrderInfo.quantity = e.target.value;
-                        this.setState({ newOrderInfo });
-                      }}
-                    />
-                  </Grid>
+       
                   <Grid item xs={12} sm={3}>
                     <TextField
                       required
