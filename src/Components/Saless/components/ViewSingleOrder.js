@@ -21,14 +21,17 @@ const styles = ({
         width: 'auto'
     },
     card: {
-        maxWidth: 700,
+        // maxWidth: 1000,
+        width: 'auto',
         padding: 20,
+        // maxHeight: 100,
         // height: 'auto',
         borderRadius: 20
 
     },
     SingleOrder: {
-        marginTop: 50
+        padding: 20
+        // marginTop: 50
     }
 
 })
@@ -41,6 +44,8 @@ const rows = [
     createData(1, 159, 6.0, 24, 4.0),
     createData('Ice', 237, 9.0, 37, 4.3),
     createData('Eclair', 262, 16.0, 24, 6.0),
+    createData('Ice', 237, 9.0, 37, 4.3),
+
 
 ];
 
@@ -48,15 +53,11 @@ class ViewSingleOrder extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-            <Grid container xs={12}>
-                <Grid sm={12}>
-                    <div className={classes.Orders}>
-                        <ViewAllOrders />
-                    </div>
-                </Grid>
-                <Grid>
-                    <div className={classes.SingleOrder}>
-                        <Grid xs={12}>
+            <Grid xs={12}>
+                <div className={classes.SingleOrder}>
+
+                    <Grid container xs={12} spacing={2}>
+                        <Grid item xs={6}>
                             <Card className={classes.card}>
 
                                 <Typography variant="h6" component="p" style={{
@@ -111,42 +112,9 @@ class ViewSingleOrder extends React.Component {
                                             }}>
                                                 Something
                                                                 </Typography>
-
                                         </Grid>
                                     </Grid>
-                                    <Grid container xs={12} style={{
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
 
-                                    }}>
-                                        <Grid>
-                                            <Typography gutterBottom variant="body1" component="h3" style={{
-                                                display: 'flex',
-                                                justifyContent: 'flex-left',
-                                                paddingTop: 20,
-                                                paddingBottom: 20
-
-                                            }}>
-                                                <b>Description</b>
-                                            </Typography>
-                                        </Grid>
-                                        <Grid >
-                                            <Typography gutterBottom variant="body1" component="h3" style={{
-
-                                                paddingBottom: 20
-                                            }}>
-                                                <i>
-                                                    Some Description Here
-                                                    Some Description Here
-                                                    Some Description Here
-                                                    Some Description Here
-                                                    Some Description Here
-                                                    Some Description HereSome Description HereSome Description Here
-                                                    </i>
-
-                                            </Typography>
-                                        </Grid>
-                                    </Grid>
                                     <Grid container xs={12} style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
@@ -193,24 +161,73 @@ class ViewSingleOrder extends React.Component {
                                     <Grid container xs={12} style={{
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        // paddingLeft: 10,
+
                                     }}>
                                         <Grid>
                                             <Typography gutterBottom variant="body1" component="h3" style={{
                                                 display: 'flex',
+                                                justifyContent: 'flex-left',
+                                                paddingTop: 20,
+                                                paddingBottom: 20
+
                                             }}>
-                                                <b>Item Information</b>
+                                                <b>Description</b>
                                             </Typography>
                                         </Grid>
                                         <Grid >
-
                                             <Typography gutterBottom variant="body1" component="h3" style={{
-                                                display: 'flex',
-                                                justifyContent: 'flex-center'
+
+                                                paddingBottom: 20
                                             }}>
-                                                Item Information Goes here
-                                                </Typography>
+                                                <i>
+                                                    Some Description Here
+                                                    Some Description Here
+                                                    Some Description Here
+                                                    Some Description Here
+                                                    Some Description HereSome Description HereSome Description HereSome Description Here
+                                                    </i>
+
+                                            </Typography>
                                         </Grid>
+                                    </Grid>
+                                    <Divider></Divider>
+                                    <Divider></Divider>
+
+                                    <Grid container xs={12} >
+                                        <Grid>
+                                            <Typography gutterBottom variant="body1" component="h3">
+                                                <b>Item Information</b>
+                                            </Typography>
+                                        </Grid>
+
+                                        <TableContainer>
+                                            <Table className={classes.table} aria-label="simple table">
+                                                <TableHead>
+                                                    <TableRow>
+                                                        <TableCell> <b>#</b></TableCell>
+                                                        <TableCell align="right"> <b>Item ID</b></TableCell>
+                                                        <TableCell align="right"><b>Item Name</b></TableCell>
+                                                        <TableCell align="right"><b>Quantity</b></TableCell>
+
+
+                                                    </TableRow>
+                                                </TableHead>
+                                                <TableBody>
+                                                    {rows.map((row) => (
+                                                        <TableRow key={row.name}>
+                                                            <TableCell component="th" scope="row">
+                                                                {row.name}
+                                                            </TableCell>
+                                                            <TableCell align="right">{row.calories}</TableCell>
+                                                            <TableCell align="right">{row.fat}</TableCell>
+                                                            <TableCell align="right">{row.carbs}</TableCell>
+
+
+                                                        </TableRow>
+                                                    ))}
+                                                </TableBody>
+                                            </Table>
+                                        </TableContainer>
                                     </Grid>
                                 </CardContent>
                                 <Grid container spacing={3} style={{
@@ -240,7 +257,7 @@ class ViewSingleOrder extends React.Component {
                         }}>
 
                         </Box>
-                        <Grid xs={12}>
+                        <Grid item xs={6}>
                             <Card className={classes.card}>
                                 <Typography variant="h6" component="p" style={{
                                     padding: 10
@@ -289,6 +306,13 @@ class ViewSingleOrder extends React.Component {
                                 </TableContainer>
                             </Card>
                         </Grid>
+
+                    </Grid>
+                </div>
+
+                <Grid sm={12}>
+                    <div className={classes.Orders}>
+                        <ViewAllOrders />
                     </div>
                 </Grid>
             </Grid>
