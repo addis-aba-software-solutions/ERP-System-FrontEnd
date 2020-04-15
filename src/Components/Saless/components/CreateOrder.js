@@ -384,13 +384,13 @@ class CreateOrder extends React.Component {
                         <b>Item Information </b>
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={12} display='flex' justify='flex-start'>
+                    <Grid item xs={12} sm={12}>
                       <Typography variant="h8" gutterBottom>
                         Item #1
             </Typography>
                     </Grid>
 
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={6}>
                       <FormControl className={classes.formControl} fullWidth>
                         <InputLabel htmlFor="grouped-native-select">Item Name</InputLabel>
                         <Select native defaultValue="" id="grouped-native-select">
@@ -401,22 +401,7 @@ class CreateOrder extends React.Component {
                         </Select>
                       </FormControl>
                     </Grid>
-
-                    <Grid item xs={12} sm={12}>
-                      <FormControl className={classes.formControl} fullWidth>
-                        <InputLabel htmlFor="grouped-native-select">Item ID</InputLabel>
-                        <Select native defaultValue="" id="grouped-native-select">
-                          <option aria-label="None" value="" />
-                          <option >Permanent</option>
-                          <option >Contract</option>
-                          <option >Hourly</option>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-
-
-
-                    <Grid item xs={12} sm={12}>
+                    <Grid item xs={12} sm={6}>
                       <TextField
                         required
                         id="ItemQuantity"
@@ -428,18 +413,6 @@ class CreateOrder extends React.Component {
                       />
                     </Grid>
 
-
-                    <Grid item xs={12} sm={12}>
-                      <TextField
-                        required
-                        id="order"
-                        name="order"
-                        label="Order"
-                        fullWidth
-                        autoComplete="orderDate"
-
-                      />
-                    </Grid>
                     <Grid xs={12} sm={12} display='flex' justify='space-between' >
                       <Button
                         variant="contained"
