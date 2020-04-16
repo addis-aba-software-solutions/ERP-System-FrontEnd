@@ -210,33 +210,33 @@ export const routes = [
         exact: true,
         sidebar: () => '',
         main: () => <div>
-                                        <Grid container display='flex'
-                    justify="space-between"
-                    xs={12}
-                    style={{
-                        padding: 20,
-                    }}>
-                    <Grid item>
-                        <Typography variant='h4' color="textSecondary">
-                            <b>Sales</b>
-                        </Typography>
-                        <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
-                            <b>Orders</b>
-                        </Typography>
-                        <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
-                            <b>All Orders List</b>
-                        </Typography>
-                    </Grid>
-                    <Grid item style={{
-                        display: 'flex',
-                        justify: 'flex-end'
-                    }}>
-                        <SearchBar />
-                    </Grid>
+            <Grid container display='flex'
+                justify="space-between"
+                xs={12}
+                style={{
+                    padding: 20,
+                }}>
+                <Grid item>
+                    <Typography variant='h4' color="textSecondary">
+                        <b>Sales</b>
+                    </Typography>
+                    <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
+                        <b>Orders</b>
+                    </Typography>
+                    <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
+                        <b>All Orders List</b>
+                    </Typography>
                 </Grid>
-                <Divider style={{margin: 10}}></Divider>
+                <Grid item style={{
+                    display: 'flex',
+                    justify: 'flex-end'
+                }}>
+                    <SearchBar />
+                </Grid>
+            </Grid>
+            <Divider style={{ margin: 10 }}></Divider>
 
-            
+
             <ViewSingleOrder />
 
         </div>
