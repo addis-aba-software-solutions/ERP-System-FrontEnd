@@ -384,9 +384,6 @@ class CreateOrder extends React.Component {
                   </Grid>
 
                   <Grid container xs={6} spacing={3}>
-
-
-
                     <Grid item xs={12} sm={12}>
                       <Typography variant="h6" gutterBottom>
                         <b>Item Information </b>
@@ -417,7 +414,6 @@ class CreateOrder extends React.Component {
                         label="Item Quantity"
                         fullWidth
                         autoComplete="itemQuantity"
-
                       />
                     </Grid>
 
@@ -438,14 +434,8 @@ class CreateOrder extends React.Component {
                       >
                         Add Another Item
                    </Button>
-
                     </Grid>
-
-
                   </Grid>
-
-
-
                 </Grid>
 
                 <Button
@@ -453,7 +443,6 @@ class CreateOrder extends React.Component {
                   color="primary"
                   onClick={this.submit}
                   className={classes.button}
-
                 >
                   Place Order
                    </Button>
