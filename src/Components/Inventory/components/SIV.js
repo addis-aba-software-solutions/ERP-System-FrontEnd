@@ -116,9 +116,9 @@ class SIV extends Component {
                     <Box style={{
                         display: 'flex',
                         justifyContent: 'flex-start',
-                        padding:20
+                        padding: 20
                     }}>
-                        <Typography className={classes.text} variant='body2' color=''>
+                        <Typography className={classes.textBody} variant='body2' color=''>
                             <b>Order Number :</b> YHDGTEYHT776
                         </Typography>
                     </Box>
@@ -151,33 +151,33 @@ class SIV extends Component {
                     <Box style={{
                         display: 'flex',
                         justifyContent: 'flex-end',
-                        padding:10
+                        paddingTop: 10
                     }}>
                         <Typography className={classes.textBody} variant='body2' color=''>
                             <b>Total :</b> 67
                         </Typography>
                     </Box>
                     <div style={{
-                        paddingLeft:20
+                        paddingLeft: 20
                     }}>
 
-                    <Box style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                    }}>
-                        <Typography className={classes.textBody} variant='body2' color=''>
-                            <b>Recipient Name :</b> _______________________
+                        <Box style={{
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                        }}>
+                            <Typography className={classes.textBody} variant='body2' color=''>
+                                <b>Recipient Name :</b> _______________________
                         </Typography>
-                    </Box>
-                    <Box style={{
-                        display: 'flex',
-                        justifyContent: 'flex-start',
-                        paddingTop: 15,
-                    }}>
-                        <Typography className={classes.textBody} variant='body2' color=''>
-                            <b>Recipient Signature :</b> _______________________
+                        </Box>
+                        <Box style={{
+                            display: 'flex',
+                            justifyContent: 'flex-start',
+                            paddingTop: 15,
+                        }}>
+                            <Typography className={classes.textBody} variant='body2' color=''>
+                                <b>Recipient Signature :</b> _______________________
                         </Typography>
-                    </Box>
+                        </Box>
                     </div>
 
 

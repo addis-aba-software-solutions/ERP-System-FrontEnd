@@ -181,9 +181,9 @@ class CreateOrder extends React.Component {
             discount: '',
             salesPerson: '',
             //item: '',
-            items:{
-              itemName:'',
-              quantity:''
+            items: {
+              itemName: '',
+              quantity: ''
             },
             shipmentAddress: ''
             //salery:''

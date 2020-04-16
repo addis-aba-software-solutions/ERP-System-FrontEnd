@@ -12,9 +12,8 @@ import Container from '@material-ui/core/Container';
 import Cover from '../../Assets/Trial.jpg';
 import Card from '@material-ui/core/Card';
 import history from '../../Routes/history';
-import {PostData} from './PostData';
-// import {PostData} from "public/PostData";
-import {Redirect} from 'react-router-dom';
+import { PostData } from './PostData';
+import { Redirect, browserHistory } from 'react-router-dom';
 
 
 const classes = ({
@@ -69,67 +68,73 @@ const classes = ({
 
 class SignIn extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
-        this.state={
-            username:'',
-            password:'',
-            errorMessage:'',
+        this.state = {
+            username: '',
+            password: '',
+            errorMessage: '',
             redirect: false
         }
-        this.signin= this.signin.bind(this);
-        this.onChange= this.onChange.bind(this);
+        this.signin = this.signin.bind(this);
+        this.onChange = this.onChange.bind(this);
 
     }
-    signin(e){
+    signin(e) {
         e.preventDefault();
-       // console.log("Home Page")
-       if(this.state.username && this.state.password){
-        PostData(this.state)
-        .then((result)=>{
-            //let responseJson=result;
-            console.log(result);
-            // if(result.userData){
-             sessionStorage.setItem('userData',result);
-             console.log("Home Page")
-             this.setState({redirect:true});
-             console.log(result)
-            // }
-            // else{
-          //  console.log("signin error");
-            // console.log(error)
-        // }
+        // console.log("Home Page")
+        if (this.state.username && this.state.password) {
+            PostData(this.state)
+                .then((result) => {
+                    //let responseJson=result;
+                    console.log(result);
+                    // if(result.userData){
+                    sessionStorage.setItem('userData', result);
+                    console.log("Home Page")
+                    this.setState({ redirect: true });
+                    console.log(result)
+                    // }
+                    // else{
+                    //  console.log("signin error");
+                    // console.log(error)
+                    // }
+                }
+
+
+                )
         }
-    
-        
-        )
-       }
-       else {
-           return 
-           console.log("Login Error Yoo")
-        //    this.setState({
-        //        errorMessage: error 
-        //   //  "Your Password or Username is incorrect"
-       
-        // })
-       }
-       
+        else {
+            return
+            console.log("Login Error Yoo")
+            //    this.setState({
+            //        errorMessage: error 
+            //   //  "Your Password or Username is incorrect"
+
+            // })
+        }
+
     }
-    onChange(e){
-        this.setState({[e.target.name]:e.target.value});
+    onChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
         console.log("typing");
     }
     render() {
 
-        if(this.state.redirect){
- return(<Redirect to = '/UserProfile'/>)
-        }
+        // if (this.state.redirect) {
+        //     return (<Redirect to='/Invoice'/> )
+        // }
         return (
             <>
+
 
                 <div style={classes.main} >
                     <Container component="main" maxWidth="xs">
                         <CssBaseline />
+                        <Box style={{
+                            height: 300
+                        }}>
+
+                        </Box>
                         <Card style={classes.paper}>
                             <Avatar style={classes.avatar}>
                                 <LockOutlinedIcon />
@@ -151,7 +156,7 @@ class SignIn extends React.Component {
                                     autoFocus
                                     onChange={this.onChange}
                                 />
-                              
+
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
@@ -173,16 +178,17 @@ class SignIn extends React.Component {
                                     variant="contained"
                                     color="primary"
                                     style={classes.submit}
-                                    onClick={this.signin}
-                                    // {() => history.push('/UserList')}
+                                    // onClick={this.signin}
+                                    to="/inventory"
+
                                 >
                                     Sign In
-                </Button>
+                                </Button>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#" variant="body2">
                                             Forgot password?
-            </Link>
+                                </Link>
                                     </Grid>
                                 </Grid>
                             </form>

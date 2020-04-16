@@ -65,7 +65,7 @@ class UsersTable extends React.Component {
 
 
   componentDidMount() {
-    axios.get("http://192.168.1.7:8000/api/v1/employe/")
+    axios.get("http://192.168.1.5:8000/api/v1/employe/")
       .then(res => {
         //console.log("Log result"+res.data)
         this.setState({

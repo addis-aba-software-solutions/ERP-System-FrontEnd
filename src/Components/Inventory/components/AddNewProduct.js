@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import { Button, Divider, Typography, Grid, IconButton, Card, withStyles, Paper, TextField } from '@material-ui/core';
 import RecentOrders from './RecentOrders';
 import axios from 'axios';
+import InputLabel from '@material-ui/core/InputLabel';
+
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -11,6 +13,10 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Form } from 'react-bootstrap'
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
+
+
 
 
 const styles = theme => ({
@@ -198,16 +204,27 @@ class AddNewProduct extends React.Component {
 
                 <Grid item xs={12} sm={6}>
 
-                  <Form.Group controlId="catagory">
-                    <Form.Label>Item Name</Form.Label>
-{/* 
-                    var val = this.state.depValue;
+                  <FormControl className={classes.formControl} fullWidth>
+                    <InputLabel htmlFor="grouped-native-select">Department</InputLabel>
+                    <Select native id="grouped-native-select">
+                      <option aria-label="None" value="" />
+                      {this.state.item.map(items =>
+                        <option key={items.itemId}>{items.itemName}</option>
+                      )}
+                        value={this.state.newItemInfo.itemName}
+                        onChange={(e) => {
+                        let { newItemInfo } = this.state;
+                        newItemInfo.itemName = e.target.value;
+                        this.setState({ newItemInfo });
+                      }}
+                    </Select>
+                  </FormControl>
 
-                    departmentDropDown(e) {
-                      this.setState({
-                        depValue: e.target.value
-                      })
-                    } */}
+
+
+                  {/* <Form.Group controlId="catagory">
+                    <Form.Label>Department</Form.Label>
+
                     <Form.Control as="select">
                       {this.state.item.map(items =>
                         <option value= {items.itemId} key={items.itemId}>{items.itemName}</option>
@@ -220,7 +237,10 @@ class AddNewProduct extends React.Component {
                       }}
                     </Form.Control>
 
-                  </Form.Group>
+                  </Form.Group> */}
+
+
+
                 </Grid>
 
                 <Grid item xs={12} sm={3}>
@@ -311,12 +331,30 @@ class AddNewProduct extends React.Component {
                 </Grid>
                 <Grid item xs={12} sm={6}>
 
-                  <Form.Group controlId="catagory">
+                  <FormControl className={classes.formControl} fullWidth>
+                    <InputLabel htmlFor="grouped-native-select">Category</InputLabel>
+                    <Select native id="grouped-native-select">
+                      <option aria-label="None" value="" />
+                      {this.state.cat.map(cats =>
+                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
+                      )}
+                        value={this.state.newItemInfo.catagory}
+                        onChange={(e) => {
+                        let { newItemInfo } = this.state;
+                        newItemInfo.catagory = e.target.value;
+                        this.setState({ newItemInfo });
+                      }}
+                    </Select>
+                  </FormControl>
+
+
+
+                  {/* <Form.Group controlId="catagory">
                     <Form.Label>catagory</Form.Label>
 
                     <Form.Control as="select">
-                      {this.state.cat.map(cats=>
-                        <option value={cats.catagoryId} key={cats.catagoryId}>{cats.catagoryName}</option>
+                      {this.state.cat.map(cats =>
+                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
                       )}
                         value={this.state.newItemInfo.catagory}
                         onChange={(e) => {
@@ -326,18 +364,19 @@ class AddNewProduct extends React.Component {
                       }}
                     </Form.Control>
 
-                  </Form.Group>
-                  <Grid item xs={12} sm={6}>
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.submit}
-                      className={classes.button}
-                    >
-                      Register
-                   </Button>
-                  </Grid>
+                  </Form.Group> */}
 
+
+                </Grid>
+                <Grid item xs={12} sm={12}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.submit}
+                    className={classes.button}
+                  >
+                    Save
+                   </Button>
                 </Grid>
               </Grid>
 

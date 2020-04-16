@@ -182,7 +182,7 @@ class UserProfile extends Component {
           title: 'Registered',
           showConfirmButton: false,
           timer: 700
-        }).then(history.push('/UserTable'))
+        }).then(history.push('/UsersTable'))
 
       },
         (error) => {
@@ -192,7 +192,7 @@ class UserProfile extends Component {
             title: 'Eror',
             showConfirmButton: false,
             timer: 700
-          }).then(history.push('/UserTable'))
+          }).then(history.push('/UsersTable'))
 
         });
 
