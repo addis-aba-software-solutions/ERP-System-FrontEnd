@@ -36,7 +36,7 @@ const styles = ({
         width: '595px',
         height: '842px',
         backgroundColor: '#FFFFFF',
-        marginLeft: 100,
+        // marginLeft: 100,
         padding: 40,
     },
     logo: {
