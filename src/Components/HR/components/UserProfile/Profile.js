@@ -81,17 +81,21 @@ const styles = theme => ({
 
 class Profile extends React.Component {
 
-    // constructor() {
-        // super(props);
-        state = {
+    constructor(props) {
+        super(props);
+        this.state = {
             singleEmployee: []
         }
-    // }
 
+        
+    }
+    // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
     componentDidMount = () => {
+        //const employeId = this.props.location.state.employeeInfos;
+       // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
         const employeId = this.props.location.state.employeeInfos;
+        //console.log(employeeInfos);
         console.log(employeId);
-
         const req = fetch(`http:/.0.0.0.0:8000/api/v1/employe/${employeId}`);
         const res = req.json();
         this.setState({ singleEmployee: res.employeeInfo });

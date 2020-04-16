@@ -179,7 +179,7 @@ class AddNewProduct extends React.Component {
 
               <Grid container spacing={3}>
 
-                <Grid item xs={12} sm={3}>
+                {/* <Grid item xs={12} sm={3}>
                   <TextField
                     required
                     id="itemName"
@@ -194,16 +194,23 @@ class AddNewProduct extends React.Component {
                       this.setState({ newItemInfo });
                     }}
                   />
-                </Grid>
+                </Grid> */}
 
                 <Grid item xs={12} sm={6}>
 
                   <Form.Group controlId="catagory">
-                    <Form.Label>Department</Form.Label>
+                    <Form.Label>Item Name</Form.Label>
+{/* 
+                    var val = this.state.depValue;
 
+                    departmentDropDown(e) {
+                      this.setState({
+                        depValue: e.target.value
+                      })
+                    } */}
                     <Form.Control as="select">
                       {this.state.item.map(items =>
-                        <option key={items.itemId}>{items.itemName}</option>
+                        <option value= {items.itemId} key={items.itemId}>{items.itemName}</option>
                       )}
                         value={this.state.newItemInfo.itemName}
                         onChange={(e) => {
@@ -309,7 +316,7 @@ class AddNewProduct extends React.Component {
 
                     <Form.Control as="select">
                       {this.state.cat.map(cats=>
-                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
+                        <option value={cats.catagoryId} key={cats.catagoryId}>{cats.catagoryName}</option>
                       )}
                         value={this.state.newItemInfo.catagory}
                         onChange={(e) => {

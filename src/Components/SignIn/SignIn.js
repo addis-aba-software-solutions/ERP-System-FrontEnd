@@ -74,6 +74,7 @@ class SignIn extends React.Component {
         this.state={
             username:'',
             password:'',
+            errorMessage:'',
             redirect: false
         }
         this.signin= this.signin.bind(this);
@@ -98,10 +99,19 @@ class SignIn extends React.Component {
           //  console.log("signin error");
             // console.log(error)
         // }
-        })
+        }
+    
+        
+        )
        }
        else {
-           return console.log("Login Error Yoo")
+           return 
+           console.log("Login Error Yoo")
+        //    this.setState({
+        //        errorMessage: error 
+        //   //  "Your Password or Username is incorrect"
+       
+        // })
        }
        
     }
@@ -141,6 +151,7 @@ class SignIn extends React.Component {
                                     autoFocus
                                     onChange={this.onChange}
                                 />
+                              
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
@@ -154,6 +165,7 @@ class SignIn extends React.Component {
                                     autoComplete="current-password"
                                     onChange={this.onChange}
                                 />
+                                {/* {this.errorMessage } */}
 
                                 <Button
                                     type="submit"

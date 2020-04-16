@@ -18,7 +18,7 @@ export function PostData(userData){
         })
         .catch((error)=> {
             reject(error);
-            alert("error")
+            alert("Your Username or Password is incorrect ")
         });
     });
 }

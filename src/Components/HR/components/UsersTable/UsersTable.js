@@ -65,7 +65,7 @@ class UsersTable extends React.Component {
 
 
   componentDidMount() {
-    axios.get("http://0.0.0.0:8000/api/v1/employe/")
+    axios.get("http://192.168.1.7:8000/api/v1/employe/")
       .then(res => {
         //console.log("Log result"+res.data)
         this.setState({
@@ -88,12 +88,13 @@ class UsersTable extends React.Component {
    
 
   //  });
-  // employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
-  console.log(employeeInfo);
+  //console.log(employeeInfo.map(employeeInfos=>(employeeInfos.employeId)));
+  
+  //console.log(employeeInfo);
   
     // if(!employeeInfo) return [];
     //  else {
-    console.log(employeeInfo.employeId);
+   // console.log(employeeInfo.employeId);
       
     let filteredEmployee = employeeInfo.filter((employeeInfos)=>{
       return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
@@ -104,7 +105,7 @@ class UsersTable extends React.Component {
       // }
     // );
   // }
-
+ // console.log(employeeInfo.employeId);
   
    // const { error, employeeInfo, empId } = this.state;
 
@@ -158,13 +159,12 @@ class UsersTable extends React.Component {
                         <TableCell><button>
                           <Link to={{
                             pathname: `/profile/${employeeInfos.employeId}`,
-                            state: { employeeInfos: employeeInfos.employeId }, 
-                            // console.log(employeeInfos.employeId);
-                            
+                           
+                            state: { employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId)) },                                                   
                           }}>View</Link>
                         </button></TableCell>
                      
-                         console.log(employeeInfos.employeId);
+                       
                         
                       </TableRow>
                     )
@@ -172,6 +172,7 @@ class UsersTable extends React.Component {
                     )}
                   </TableBody>
                 </Table>
+                
               </div>
             </PerfectScrollbar>
           </CardContent>
@@ -186,6 +187,7 @@ class UsersTable extends React.Component {
 
 export default withStyles(styles)(UsersTable);
 
+// employeeInfos.employeId
 
 //Search
 
