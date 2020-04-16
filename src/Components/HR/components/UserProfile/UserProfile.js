@@ -151,6 +151,7 @@ class UserProfile extends Component {
 
   }
 
+ 
 
   submit = () => {
  
@@ -166,11 +167,9 @@ class UserProfile extends Component {
       region: this.state.regionValue,
       city:  this.state.cityValue,
       telephone:  this.state.telephoneValue,
-
       department: this.state.depValue,
       // roles:1,
       roles: this.state.rolValue,
-
       // level:1
       level: this.state.levValue,
 
@@ -195,7 +194,6 @@ class UserProfile extends Component {
           }).then(history.push('/UserTable'))
 
         });
-
 
 
 

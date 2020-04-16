@@ -6,7 +6,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 // import { makeStyles } from '@material-ui/styles';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import {
   Card,
   CardActions,
@@ -25,6 +25,7 @@ import {
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import history from '../../../../Routes/history'
 import SearchBar from '../../../SearchBar/SearchBar'
+//import {Redirect} from 'react-router-dom';
 
 const styles = theme => ({
 
@@ -54,8 +55,10 @@ class UsersTable extends React.Component {
     super(props);
     this.state = {
       employeeInfo: [],
-      search: ''
+      search: '', 
+      redirect:false
     };
+    this.logout= this.logout.bind(this);
   }
   updateSearch(e) {
     this.setState({
@@ -63,9 +66,22 @@ class UsersTable extends React.Component {
     })
   }
 
+  componentWillMount(){
+    if(sessionStorage.getItem("userData")){
+      console.log("From Login Page");
+
+    }
+    else{
+      this.setState({redirect:true});
+    }
+  }
+  logout(){
+    sessionStorage.getItem("userData");
+    sessionStorage.clear();
+  }
 
   componentDidMount() {
-    axios.get("http://192.168.1.7:8000/api/v1/employe/")
+    axios.get("http://192.168.1.5:8000/api/v1/employe/")
       .then(res => {
         //console.log("Log result"+res.data)
         this.setState({
@@ -81,6 +97,9 @@ class UsersTable extends React.Component {
   }
   render() {
 
+    if(this.state.redirect){
+      return(<Redirect to={'./login'}/>)
+    }
    const {employeeInfo, error}= this.state;
    const { classes } = this.props
   //  console.log(employeeInfo)
@@ -126,6 +145,7 @@ class UsersTable extends React.Component {
               <div className={classes.inner}>
                 <Button> <Link to="/UserProfile"
                 >Add New Employee</Link></Button>
+                <Button onClick={this.logout}></Button>
                 <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
                 <SearchBar search={this.search} updateSearch={this.updateSearch}/>
                 <Table>

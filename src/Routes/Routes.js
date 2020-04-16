@@ -37,8 +37,10 @@ export default class Routes extends Component {
 
 
                     <Route path="/Finance" component={Finance} />
-                    {/* <Route path="/" component={SignIn} /> */}
-                    <Route path="/" component={UserProfile} />
+                    <Route path="/UserTable" component={UsersTable} />
+
+                    <Route path="/" component={SignIn} />
+                    {/* <Route path="/" component={AddNewProduct} /> */}
                     <Route path="/profile:id" component={Profile} />
 
 
