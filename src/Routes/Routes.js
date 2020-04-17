@@ -18,6 +18,8 @@ import ViewSingleOrder from "../Components/Saless/components/ViewSingleOrder";
 import AddNewProduct from "../Components/Inventory/components/AddNewProduct";
 import SIV from '../Components/Inventory/components/SIV';
 import Invoice from '../Components/Finance/components/INVOICE';
+import PDFGEN from '../Components/Finance/components/PDFGenerate';
+
 import Div from '../Components/Saless/components/Div'
 
 export default class Routes extends Component {
@@ -39,9 +41,11 @@ export default class Routes extends Component {
                     {/* <Route path="/" component={Inventory} /> */}
                     {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
-                    {/* <Route path="/" component={Sales} /> */}
                     <Route path="/Invoice" component={Invoice} exact />  
                     <Route path="/" component={UserProfile} exact />
+
+
+                    <Route path="/" component={PDFGEN} />
 
 
 

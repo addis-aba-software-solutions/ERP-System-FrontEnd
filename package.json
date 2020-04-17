@@ -17,6 +17,7 @@
     "electron-is-dev": "^1.1.0",
     "history": "^4.10.1",
     "jslint": "^0.12.1",
+    "jspdf": "^1.5.3",
     "ng2-charts": "^2.3.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.0",
