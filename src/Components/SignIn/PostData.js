@@ -32,7 +32,7 @@
 
 export function PostData(userData){
     
-    let BaseUrl='http://192.168.1.2:8000/api/v1/login/';
+    let BaseUrl='http://192.168.1.5:8000/api/v1/login/';
     // 0.0.0.0:8000/api/v1/login/''
     return new Promise((resolve,reject)=>{
         fetch(BaseUrl,{

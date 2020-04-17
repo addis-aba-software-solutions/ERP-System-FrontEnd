@@ -66,15 +66,15 @@ class UsersTable extends React.Component {
     })
   }
 
-  componentWillMount(){
-    if(sessionStorage.getItem("userData")){
-      console.log("From Login Page");
+  // componentWillMount(){
+  //   if(sessionStorage.getItem("userData")){
+  //     console.log("From Login Page");
 
-    }
-    else{
-      this.setState({redirect:true});
-    }
-  }
+  //   }
+  //   else{
+  //     this.setState({redirect:true});
+  //   }
+  // }
   logout(){
     sessionStorage.getItem("userData");
     sessionStorage.clear();

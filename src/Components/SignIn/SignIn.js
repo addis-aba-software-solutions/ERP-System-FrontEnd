@@ -217,6 +217,7 @@ import history from '../../Routes/history';
 import { PostData } from './PostData';
 // import {PostData} from "public/PostData";
 import { Redirect } from 'react-router-dom';
+import Inventory from '../Inventory/Inventory';
 
 
 const classes = ({
@@ -315,17 +316,30 @@ class SignIn extends React.Component {
     render() {
 
         if (this.state.redirect) {
-            return (
-                <Redirect to='/UserTable' />
+           
+            // return (
+            //     if(sessionStorage.getItem(userData.departmentName)===Finance){
+              return(
+                    <Redirect to='/UserTable' />
                 //    history.push('/UserTable')
                 // history.push('/UserTable'))
-            );
+                );
+            //   }
+                // elseif(sessionStorage.getItem(userData.departmentName)===Inventory){
+                //     return(
+                //         <Redirect to='/UserTable' />
+                //     //    history.push('/UserTable')
+                //     // history.push('/UserTable'))
+                //     );
+                // }
+            // }
+            
         }
-        if (sessionStorage.getItem("userData")) {
-            return (
-                <Redirect to='/UserTable' />
-            )
-        }
+        // if (sessionStorage.getItem("userData")) {
+        //     return (
+        //         <Redirect to='/UserTable' />
+        //     )
+        // }
 
         return (
             <>
@@ -375,22 +389,24 @@ class SignIn extends React.Component {
                                     color="primary"
                                     style={classes.submit}
                                     onClick=
-                                {this.signin && history.push('/UserTable')}
+                                    {this.signin }
+                                    //&& history.push('/UserTable')
                                 // {this.signin}
                                 >
                                     Sign In
-                </Button>
+                                </Button>
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#" variant="body2">
                                             Forgot password?
-            </Link>
+                                        </Link>
                                     </Grid>
                                 </Grid>
                             </form>
                         </Card>
 
-                    </Container>        </div>
+                    </Container>     
+                </div>
             </>
 
         );

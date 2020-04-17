@@ -311,15 +311,15 @@ class ItemList extends React.Component {
 
                     <TableRow className={classes.table}>
 
-                      <TableCell >itemId</TableCell>
-                      <TableCell >itemName</TableCell>
-                      <TableCell >catagory</TableCell>
-                      <TableCell >quantity</TableCell>
+                      <TableCell >Item ID</TableCell>
+                      <TableCell >Item Name</TableCell>
+                      <TableCell >Category</TableCell>
+                      <TableCell >Quantity</TableCell>
                       {/* <TableCell >warehouseName</TableCell> */}
-                      <TableCell >retailPrice</TableCell>
-                      <TableCell >packaging</TableCell>
+                      <TableCell >Retail Price</TableCell>
+                      <TableCell >Packaging</TableCell>
                       {/* <TableCell >discount</TableCell> */}
-                      <TableCell >__</TableCell>
+                      <TableCell >Actions</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>

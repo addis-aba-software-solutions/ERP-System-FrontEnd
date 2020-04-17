@@ -16,30 +16,38 @@ import Profile from "../Components/HR/components/UserProfile/Profile";
 import ItemList from "../Components/Inventory/components/ItemList";
 import ViewSingleOrder from "../Components/Saless/components/ViewSingleOrder";
 import AddNewProduct from "../Components/Inventory/components/AddNewProduct";
+import SIV from '../Components/Inventory/components/SIV';
+import Invoice from '../Components/Finance/components/INVOICE';
+import Div from '../Components/Saless/components/Div'
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
                 <Switch>
+                <Route path="/" component={SignIn} exact />
+
                     {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" component={HR} />  */}
-                    <Route path="/Dashboard" component={HomeNavBar} />
+                    <Route path="/Dashboard" component={HomeNavBar} exact />
                     {/* <Route path="/UserList" component={UserList} /> */}
+                    {/* <Route path="/" component={SignIn} /> */}
+
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
-                    {/* <Route path="/" component={Sales} /> */}
+                    {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
                     {/* <Route path="/" component={Sales} /> */}
-                    {/* <Route path="/" component={UsersTable} /> */}
+                    <Route path="/Invoice" component={Invoice} />  
+                    <Route path="/UserProfile" component={UserProfile} />
 
 
 
 
-                    <Route path="/Finance" component={Finance} />
-                    <Route path="/UserTable" component={UsersTable} />
 
-                    <Route path="/" component={SignIn} />
+                    <Route path="/Finance" component={Finance} exact />
+                    <Route path="/UserTable" component={UsersTable} exact />
+
                     {/* <Route path="/" component={AddNewProduct} /> */}
                     <Route path="/profile:id" component={Profile} />
 
