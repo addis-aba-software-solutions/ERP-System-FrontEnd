@@ -26,6 +26,8 @@ export default class Routes extends Component {
             <Router history={history}>
                 <Switch>
                 <Route path="/" component={SignIn} exact />
+                {/* <Route path="/" component={CreateOrder} exact /> */}
+
 
                     {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" component={HR} />  */}
@@ -38,8 +40,9 @@ export default class Routes extends Component {
                     {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
                     {/* <Route path="/" component={Sales} /> */}
-                    <Route path="/Invoice" component={Invoice} />  
-                    <Route path="/UserProfile" component={UserProfile} />
+                    <Route path="/Invoice" component={Invoice} exact />  
+                    <Route path="/" component={UserProfile} exact />
+
 
 
 
@@ -49,14 +52,14 @@ export default class Routes extends Component {
                     <Route path="/UserTable" component={UsersTable} exact />
 
                     {/* <Route path="/" component={AddNewProduct} /> */}
-                    <Route path="/profile:id" component={Profile} />
+                    <Route path="/profile:id" component={Profile} exact />
 
 
                     {/* <Route path="/" component={UserProfile} /> */}
                     {/* <Route path="/" component={ItemList} /> */}
 
 
-                    <Route path="/sales" component={Sales} />
+                    <Route path="/sales" component={Sales} exact />
 
 
                 </Switch>

@@ -24,6 +24,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap'
+import { Redirect } from 'react-router-dom';
 
 
 const styles = theme => ({
@@ -181,7 +182,11 @@ class UserProfile extends Component {
           title: 'Registered',
           showConfirmButton: false,
           timer: 700
-        }).then(history.push('/UsersTable'))
+        }).then(
+          history.push('/UserTable')
+          // <Redirect to='/UserTable' />
+          
+          )
 
       },
         (error) => {
@@ -191,7 +196,10 @@ class UserProfile extends Component {
             title: 'Eror',
             showConfirmButton: false,
             timer: 700
-          }).then(history.push('/UsersTable'))
+          }).then(
+            history.push('/UserTable')
+            // <Redirect to='/UserTable' />
+            )
 
         });
 

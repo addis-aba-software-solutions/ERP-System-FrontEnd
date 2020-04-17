@@ -143,9 +143,9 @@ class UsersTable extends React.Component {
           <CardContent className={classes.content}>
             <PerfectScrollbar>
               <div className={classes.inner}>
-                <Button> <Link to="/UserProfile"
+                <Button> <Link to ='/UserProfile'
                 >Add New Employee</Link></Button>
-                <Button onClick={this.logout}></Button>
+                <Button onClick={this.logout}>LogOut</Button>
                 <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
                 <SearchBar search={this.search} updateSearch={this.updateSearch}/>
                 <Table>
@@ -176,13 +176,13 @@ class UsersTable extends React.Component {
                         <TableCell>{employeeInfos.department.departmentName}</TableCell>
                         <TableCell>{employeeInfos.roles.role}</TableCell>
 
-                        <TableCell><button>
+                        {/* <TableCell><button>
                           <Link to={{
                             pathname: `/profile/${employeeInfos.employeId}`,
                            
                             state: { employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId)) },                                                   
                           }}>View</Link>
-                        </button></TableCell>
+                        </button></TableCell> */}
                      
                        
                         

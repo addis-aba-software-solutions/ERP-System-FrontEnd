@@ -290,19 +290,25 @@ class SignIn extends React.Component {
             PostData(this.state)
                 .then((result) => {
                     //let responseJson=result;
-                    console.log(result);
+                    // console.log(result);
                     // if(result.userData){
+                    if(result.userData){
                     sessionStorage.setItem('userData', result);
                     console.log("Home Page")
                     this.setState({ redirect: true });
-                    console.log(result)
-                    // }
+                    console.log(result);
+                    // console.log((result).department.departmentName);
+                    // console.log((object).department.departmentname);
+
+
+                    }
                     // else{
                     //  console.log("signin error");
                     // console.log(error)
                     // }
 
                 });
+                
         }
         else {
             return console.log("Login Error Yoo")

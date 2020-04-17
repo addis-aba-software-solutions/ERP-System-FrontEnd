@@ -164,7 +164,7 @@ class CreateOrder extends React.Component {
     // }).then(history.push('/Production'))
     // })
     // })
-    axios.post('http://192.168.1.9:8000/api/v1/order/',
+    axios.post('http://192.168.1.5:8000/api/v1/order/',
       this.state.newOrderInfo)
       .then((response) => {
 
