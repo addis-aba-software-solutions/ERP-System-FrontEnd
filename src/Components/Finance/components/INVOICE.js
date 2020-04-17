@@ -92,14 +92,11 @@ const rows = [
     createData('#', '[Edibles] Moya Biscuit', 262, 16.0, 24, 6.0),
     createData('#', '[Clothing] Sweat Pants, Hoodies', 159, 6.0, 24, 4.0),
     createData('#', '[Clothing] Sweat Pants, Hoodies', 159, 6.0, 24, 4.0),
-
-
 ];
 
 class SIV extends Component {
     render() {
         const { classes } = this.props;
-
 
         return (
             <div className={classes.root}>
@@ -335,15 +332,11 @@ class SIV extends Component {
                                 }}>
                                     <Typography variant='caption' className={classes.textBody}>
                                     Sub Total
-
-    
                                 </Typography>
                                 </Grid>
                                 <Grid item>
                                 <Typography variant='caption' className={classes.textBody}>
                                 8240 ETB
-
-    
                             </Typography>
                                 </Grid>
                             </Grid>
@@ -354,15 +347,11 @@ class SIV extends Component {
                                 }}>
                                     <Typography variant='caption' className={classes.textBody}>
                                     Tax:
-
-    
                                 </Typography>
                                 </Grid>
                                 <Grid item>
                                 <Typography variant='caption' className={classes.textBody}>
                                 Something
-
-    
                                 </Typography>
                                 </Grid>
                             </Grid>
@@ -373,15 +362,11 @@ class SIV extends Component {
                                 }}>
                                     <Typography variant='caption' className={classes.textBody}>
                                     Total
-
-    
                                     </Typography>
                                 </Grid>
                                 <Grid item>
                                 <Typography variant='caption' className={classes.textBody}>
                                 8240 ETB
-
-    
                                 </Typography>
                                 </Grid>
                             </Grid>

@@ -18,6 +18,7 @@ import ViewSingleOrder from "../Components/Saless/components/ViewSingleOrder";
 import AddNewProduct from "../Components/Inventory/components/AddNewProduct";
 import SIV from '../Components/Inventory/components/SIV';
 import Invoice from '../Components/Finance/components/INVOICE';
+import Div from '../Components/Saless/components/Div'
 
 export default class Routes extends Component {
     render() {
@@ -32,9 +33,9 @@ export default class Routes extends Component {
 
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
-                    <Route path="/" component={Sales} />
+                    {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
-                    {/* <Route path="/" component={Sales} /> */}
+                    <Route path="/" component={Sales} />
                     <Route path="/Invoice" component={Invoice} />  
                     <Route path="/UserProfile" component={UserProfile} />
 

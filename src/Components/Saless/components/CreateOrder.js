@@ -83,11 +83,11 @@ class CreateOrder extends React.Component {
         discount: '',
         salesPerson: '',
         item: '',
-        shipmentAddress: ''
-        //salery:''
+        shipmentAddress: '',
+      },
+      form: '',
+      items: [{form: ''}],
 
-
-      }
     }
     this.submit = this.submit.bind(this);
   }
@@ -203,7 +203,22 @@ class CreateOrder extends React.Component {
       })
   }
 
+
+  handleAddItem = () => {
+    this.setState({
+      items: this.state.items.concat([{ item: "" }])
+    });
+  };
+
+  handleRemoveItem = idx => () => {
+    this.setState({
+      items: this.state.items.filter((s, sidx) => idx !== sidx)
+    });
+  };
+
   render() {
+    
+
 
     const { classes } = this.props
 
@@ -383,18 +398,26 @@ class CreateOrder extends React.Component {
                     </Grid>
                   </Grid>
 
+
+
                   <Grid container xs={6} spacing={3}>
                     <Grid item xs={12} sm={12}>
                       <Typography variant="h6" gutterBottom>
                         <b>Item Information </b>
                       </Typography>
                     </Grid>
-                    <Grid item xs={12} sm={12}>
+
+
+
+
+
+                    {this.state.items.map((item, idx) => (
+                      <>
+                     <Grid item xs={12} sm={12}>
                       <Typography variant="h8" gutterBottom>
-                        Item #1
+                        Item {idx+1}
             </Typography>
                     </Grid>
-
                     <Grid item xs={12} sm={6}>
                       <FormControl className={classes.formControl} fullWidth>
                         <InputLabel htmlFor="grouped-native-select">Item Name</InputLabel>
@@ -415,7 +438,13 @@ class CreateOrder extends React.Component {
                         fullWidth
                         autoComplete="itemQuantity"
                       />
-                    </Grid>
+                    </Grid> 
+                    </>
+        ))}
+
+
+
+
 
                     <Grid xs={12} sm={12} display='flex' justify='space-between' >
                       <Button
@@ -429,7 +458,8 @@ class CreateOrder extends React.Component {
                       <Button
                         variant="contained"
                         color="primary"
-                        onClick={this.submit}
+                        // onClick={this.submit}
+                        onClick={this.handleAddItem}
                         className={classes.button}
                       >
                         Add Another Item
