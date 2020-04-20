@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Paper from '@material-ui/core/Paper';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Swal from 'sweetalert2'
@@ -9,6 +12,8 @@ import history from '../../../../Routes/history'
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import DateFnsUtils from '@date-io/date-fns';
+import PropTypes from 'prop-types';
+
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -70,20 +75,21 @@ class UserProfile extends Component {
 
   constructor() {
     super();
-   
+
     this.state = {
+      route: false,
       depValue: '',
       rolValue: '',
       levValue: '',
-      firstValue:'',
-      lastValue:'',
-      emailValue:'',
-      countryValue:'',
-      regionValue:'',
-      cityValue:'',
-      termofEmploymentValue:'Hourly',
-      telephoneValue:'',
-      
+      firstValue: '',
+      lastValue: '',
+      emailValue: '',
+      countryValue: '',
+      regionValue: '',
+      cityValue: '',
+      termofEmploymentValue: 'Hourly',
+      telephoneValue: '',
+
       employeeInfo: [],
       deps: [],
       rol: [],
@@ -111,14 +117,14 @@ class UserProfile extends Component {
     this.departmentDropDown = this.departmentDropDown.bind(this);
     this.levelDropDown = this.levelDropDown.bind(this);
     this.roleDropDown = this.roleDropDown.bind(this);
-    this.firstNameChange=this.firstNameChange.bind(this);
-    this.lastNameChange=this.lastNameChange.bind(this);
-    this.emailChange=this.emailChange.bind(this);
-    this.countryChange=this.countryChange.bind(this);
-    this.regionChange=this.regionChange.bind(this);
-    this.termofEmploymentChange=this.termofEmploymentChange.bind(this);
-    this.cityChange=this.cityChange.bind(this);
-    this.telephoneChange=this.telephoneChange.bind(this);
+    this.firstNameChange = this.firstNameChange.bind(this);
+    this.lastNameChange = this.lastNameChange.bind(this);
+    this.emailChange = this.emailChange.bind(this);
+    this.countryChange = this.countryChange.bind(this);
+    this.regionChange = this.regionChange.bind(this);
+    this.termofEmploymentChange = this.termofEmploymentChange.bind(this);
+    this.cityChange = this.cityChange.bind(this);
+    this.telephoneChange = this.telephoneChange.bind(this);
 
 
 
@@ -152,22 +158,22 @@ class UserProfile extends Component {
 
   }
 
- 
+
 
   submit = () => {
- 
+
     axios.post('http://192.168.1.5:8000/api/v1/employe/', {
-      firstName:  this.state.firstValue,
+      firstName: this.state.firstValue,
       lastName: this.state.lastValue,
       email: this.state.emailValue,
       birthDate: "2020-10-10",
       hiredDate: "2020-10-10",
       termOfEmployment: 'Hourly',
       // this.state.termofEmploymentValue,
-      country:  this.state.countryValue,
+      country: this.state.countryValue,
       region: this.state.regionValue,
-      city:  this.state.cityValue,
-      telephone:  this.state.telephoneValue,
+      city: this.state.cityValue,
+      telephone: this.state.telephoneValue,
       department: this.state.depValue,
       // roles:1,
       roles: this.state.rolValue,
@@ -182,11 +188,11 @@ class UserProfile extends Component {
           title: 'Registered',
           showConfirmButton: false,
           timer: 700
-        }).then(
-          history.push('/UserTable')
-          // <Redirect to='/UserTable' />
-          
-          )
+        }).then(this.setState({
+          route: true,
+        }
+
+        ))
 
       },
         (error) => {
@@ -196,10 +202,12 @@ class UserProfile extends Component {
             title: 'Eror',
             showConfirmButton: false,
             timer: 700
-          }).then(
-            history.push('/UserTable')
-            // <Redirect to='/UserTable' />
-            )
+          })
+            .then(<Redirect to='/UsersTable' />)
+          // .then(
+          //   history.push('/UserTable')
+          //   // <Redirect to='/UserTable' />
+          //   )
 
         });
 
@@ -253,9 +261,9 @@ class UserProfile extends Component {
       countryValue: e.target.value
     })
   }
- regionChange(e) {
+  regionChange(e) {
     this.setState({
-     regionValue: e.target.value
+      regionValue: e.target.value
     })
   }
   cityChange(e) {
@@ -264,10 +272,17 @@ class UserProfile extends Component {
     })
   }
 
-
   render() {
-    const { error, newEmployeeInfo, deps, rol, lev, empId } = this.state;
 
+  const [value, setValue] = '';
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    };
+    if (this.state.route) {
+      return <Redirect to="/UsersTable" />
+    };
+    const { error, newEmployeeInfo, deps, rol, lev, empId } = this.state;
     const { classes } = this.props
     var depValue = this.state.depValue;
     var rolValue = this.state.rolValue;
@@ -282,13 +297,47 @@ class UserProfile extends Component {
     var firstValue = this.state.firstValue;
 
 
+    function TabPanel(props) {
+      const { children, value, index, ...other } = props;
+    
+      return (
+        <Typography
+          component="div"
+          role="tabpanel"
+          hidden={value !== index}
+          id={`simple-tabpanel-${index}`}
+          aria-labelledby={`simple-tab-${index}`}
+          {...other}
+        >
+          {value === index && <Box p={3}>{children}</Box>}
+        </Typography>
+      );
+    }
+    
+    TabPanel.propTypes = {
+      children: PropTypes.node,
+      index: PropTypes.any.isRequired,
+      value: PropTypes.any.isRequired,
+    };
+    
+    function a11yProps(index) {
+      return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+      };
+    }
 
 
- 
 
     return (
       <React.Fragment>
         <CssBaseline />
+
+
+
+
+
+
         <main className={classes.layout}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
 
@@ -319,8 +368,8 @@ class UserProfile extends Component {
                       //   newEmployeeInfo.firstName = e.target.value;
                       //   this.setState({ newEmployeeInfo });
                       // }}
-                      onChange={this.firstNameChange} 
-                      value={firstValue} 
+                      onChange={this.firstNameChange}
+                      value={firstValue}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -338,9 +387,8 @@ class UserProfile extends Component {
                       //   newEmployeeInfo.lastName = e.target.value;
                       //   this.setState({ newEmployeeInfo });
                       // }}
-                      onChange={this.lastNameChange} 
-                      value={lastValue} 
-
+                      onChange={this.lastNameChange}
+                      value={lastValue}
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -359,7 +407,7 @@ class UserProfile extends Component {
                       // }}
 
                       onChange={this.emailChange}
-                      value={emailValue} 
+                      value={emailValue}
 
                     />
                   </Grid>
@@ -376,15 +424,15 @@ class UserProfile extends Component {
                       //   newEmployeeInfo.telephone = e.target.value;
                       //   this.setState({ newEmployeeInfo });
                       // }}
-                      onChange={this.telephoneChange} 
-                      value={telephoneValue} 
+                      onChange={this.telephoneChange}
+                      value={telephoneValue}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Term Of Employment</InputLabel>
-                      <Select  native defaultValue="" id="grouped-native-select">
+                      <Select native defaultValue="" id="grouped-native-select">
                         <option aria-label="None" value="" />
                         <option >Permanent</option>
                         <option >Contract</option>
@@ -397,7 +445,7 @@ class UserProfile extends Component {
 
                         }} */}
                          onChange={this.termofEmploymentChange}
-                          value={termofEmploymentValue} 
+                          value={termofEmploymentValue}
                       </Select>
                     </FormControl>
 
@@ -419,7 +467,7 @@ class UserProfile extends Component {
                       //   this.setState({ newEmployeeInfo });
                       // }}
                       onChange={this.countryChange}
-                      value={countryValue} 
+                      value={countryValue}
 
 
                     />
@@ -472,7 +520,7 @@ class UserProfile extends Component {
                       <Select onChange={this.roleDropDown} value={rolValue} native id="grouped-native-select">
                         <option aria-label="None" value="" />
                         {this.state.rol.map(rols =>
-                          <option value={rols.roleId}  key={rols.roleId}>{rols.role}</option>
+                          <option value={rols.roleId} key={rols.roleId}>{rols.role}</option>
                         )}
                         {/* value={this.state.newEmployeeInfo.role}
                         onChange={(e) => {
@@ -504,7 +552,7 @@ class UserProfile extends Component {
                       //   this.setState({ newEmployeeInfo });
                       // }}
                       onChange={this.cityChange}
-                      value={cityValue} 
+                      value={cityValue}
 
 
                     />
@@ -525,7 +573,7 @@ class UserProfile extends Component {
                       //   this.setState({ newEmployeeInfo });
                       // }}
                       onChange={this.regionChange}
-                      value={regionValue} 
+                      value={regionValue}
                     />
                   </Grid>
 
@@ -579,8 +627,27 @@ class UserProfile extends Component {
 
             </Paper>
           </MuiPickersUtilsProvider>
-
         </main>
+
+
+        <AppBar position="static">
+        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
+          <Tab label="Item One" {...a11yProps(0)} />
+          <Tab label="Item Two" {...a11yProps(1)} />
+          <Tab label="Item Three" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        Item One
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        Item Three
+      </TabPanel>
+
+
       </React.Fragment>
     )
   }
@@ -588,5 +655,6 @@ class UserProfile extends Component {
 
 
 export default withStyles(styles)(UserProfile);
+
 
 

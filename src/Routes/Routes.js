@@ -27,20 +27,23 @@ export default class Routes extends Component {
         return (
             <Router history={history}>
                 <Switch>
+<<<<<<< HEAD
                 <Route path="/" component={SignIn} exact />
                 {/* <Route path="/" component={CreateOrder} exact /> */}
 
 
+=======
+                {/* <Route path="/" component={SignIn} exact /> */}
+>>>>>>> After Kidest
                     {/* <Route path="/" exact component={Home} /> */}
                     {/* <Route path="/" component={HR} />  */}
                     <Route path="/Dashboard" component={HomeNavBar} exact />
                     {/* <Route path="/UserList" component={UserList} /> */}
-                    {/* <Route path="/" component={SignIn} /> */}
-
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
                     {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
+<<<<<<< HEAD
                     <Route path="/Invoice" component={Invoice} exact />  
                     <Route path="/" component={UserProfile} exact />
 
@@ -52,10 +55,15 @@ export default class Routes extends Component {
 
 
 
+=======
+                    {/* <Route path="/" component={Sales} /> */}
+                    <Route path="/Invoice" component={Invoice} exact />  
+                    {/* <Route path="/" component={HR} /> */}
+>>>>>>> After Kidest
                     <Route path="/Finance" component={Finance} exact />
-                    <Route path="/UserTable" component={UsersTable} exact />
-
+                    <Route path="/UsersTable" component={UsersTable} exact/>
                     {/* <Route path="/" component={AddNewProduct} /> */}
+<<<<<<< HEAD
                     <Route path="/profile:id" component={Profile} exact />
 
 
@@ -66,6 +74,12 @@ export default class Routes extends Component {
                     <Route path="/sales" component={Sales} exact />
 
 
+=======
+                    <Route path="/profile:id" component={Profile} exact/>
+                    {/* <Route path="/" component={UserProfile} /> */}
+                    {/* <Route path="/" component={ItemList} /> */}
+                    <Route path="/" component={Sales} />
+>>>>>>> After Kidest
                 </Switch>
             </Router>
         )

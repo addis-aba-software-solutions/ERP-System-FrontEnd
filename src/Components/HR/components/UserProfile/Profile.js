@@ -96,7 +96,7 @@ class Profile extends React.Component {
         const employeId = this.props.location.state.employeeInfos;
         //console.log(employeeInfos);
         console.log(employeId);
-        const req = fetch(`http:/.0.0.0.0:8000/api/v1/employe/${employeId}`);
+        const req = fetch(`http://192.168.1.5:8000/api/v1/employe/${employeId}`);
         const res = req.json();
         this.setState({ singleEmployee: res.employeeInfo });
         console.log(this.state.singleEmployee);
@@ -697,3 +697,4 @@ class Profile extends React.Component {
     }
 }
 export default withStyles(styles)(Profile);
+

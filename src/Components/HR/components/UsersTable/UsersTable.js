@@ -208,7 +208,6 @@ class UsersTable extends React.Component {
 export default withStyles(styles)(UsersTable);
 
 // employeeInfos.employeId
-
 //Search
 
   // class App extends Component{

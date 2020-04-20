@@ -326,7 +326,7 @@ class SignIn extends React.Component {
             // return (
             //     if(sessionStorage.getItem(userData.departmentName)===Finance){
               return(
-                    <Redirect to='/UserTable' />
+                    <Redirect to='/UserProfile' />
                 //    history.push('/UserTable')
                 // history.push('/UserTable'))
                 );
