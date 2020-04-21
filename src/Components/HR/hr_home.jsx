@@ -171,9 +171,6 @@ export const routes = [
 ]
 
 class HR extends React.Component {
-
- 
-
     render(){
         const {classes} = this.props;
     return (
@@ -185,7 +182,6 @@ class HR extends React.Component {
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        // onClick={handleDrawerOpen}
                         className={clsx(classes.menuButton)}
                     >
                         <MenuIcon />
@@ -223,7 +219,7 @@ class HR extends React.Component {
                 classes={{
                     paper: clsx(classes.drawerPaper && classes.drawerPaperClose),
                 }}
-                // open={open}
+            
             >
                 <div className={classes.toolbarIcon}>
                     <IconButton >
@@ -268,21 +264,7 @@ class HR extends React.Component {
                 <Divider />
             </Drawer>
 
-            <main className={classes.content}>
-                <div className={classes.toolbar} />
-                <div className={classes.appBarSpacer} />
-                <Switch>
-                    {routes.map((route, index) => (
-                        <Route
-                            key={index}
-                            path={route.path}
-                            exact={route.exact}
-                            children={<route.main />}
-                        />
-                    ))}
-                </Switch>
-
-            </main>
+      
 
         </div>
     )

@@ -10,12 +10,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Card from '@material-ui/core/Card';
-import history from '../../Routes/history';
-import { PostData } from './PostData';
-import { Redirect, browserHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux'
 import actions from '../../store/login/action'
-
 import classes from '../../layout_resource/layout_resource'
 import SpinerLoader from '../../loader/loader'
 import { red } from '@material-ui/core/colors';
