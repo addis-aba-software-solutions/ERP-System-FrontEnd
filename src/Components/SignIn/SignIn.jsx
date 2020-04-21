@@ -9,124 +9,46 @@ import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
-import Cover from '../../Assets/Trial.jpg';
 import Card from '@material-ui/core/Card';
 import history from '../../Routes/history';
 import { PostData } from './PostData';
 import { Redirect, browserHistory } from 'react-router-dom';
+import { connect } from 'react-redux'
+import actions from '../../store/login/action'
 
-
-const classes = ({
-    root: {
-        display: 1
-    },
-    signinForm: {
-    },
-    paper: {
-        marginTop: 8,
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: 20,
-        backgroundColor: '#FFFFFF',
-        borderRadius: 10,
-        // width: 200
-
-
-    },
-    main: {
-        backgroundColor: '#11669F',
-        height: '100vh',
-        backgroundImage: `url(${Cover})`,
-        // marginTop: 100
-    },
-    avatar: {
-        width: 60,
-        height: 60,
-        margin: 1,
-        backgroundColor: '#11669F',
-    },
-    form: {
-        padding: 10,
-        paddingTop: 10,
-        width: '100%', // Fix IE 11 issue.
-        marginTop: 1
-
-    },
-    submit: {
-        margin: 10,
-        backgroundColor: '#11669F',
-        alignItems: 'center',
-        marginLeft: 115,
-        width: 100,
-        flex: 1,
-        // marginBottom: 10
-    },
-});
-
-
+import classes from '../../layout_resource/layout_resource'
+import SpinerLoader from '../../loader/loader'
+import { red } from '@material-ui/core/colors';
+import Error from '../../error/error'
 
 class SignIn extends React.Component {
-
     constructor() {
         super();
         this.state = {
             username: '',
             password: '',
-            errorMessage: '',
             redirect: false
         }
-        this.signin = this.signin.bind(this);
-        this.onChange = this.onChange.bind(this);
-
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    signin(e) {
-        e.preventDefault();
-        // console.log("Home Page")
-        if (this.state.username && this.state.password) {
-            PostData(this.state)
-                .then((result) => {
-                    //let responseJson=result;
-                    console.log(result);
-                    // if(result.userData){
-                    sessionStorage.setItem('userData', result);
-                    console.log("Home Page")
-                    this.setState({ redirect: true });
-                    console.log(result)
-                    // }
-                    // else{
-                    //  console.log("signin error");
-                    // console.log(error)
-                    // }
-                }
-
-
-                )
-        }
-        else {
-            return
-            console.log("Login Error Yoo")
-            //    this.setState({
-            //        errorMessage: error 
-            //   //  "Your Password or Username is incorrect"
-
-            // })
-        }
-
+    handleSubmit(e) {
+        this.setState({ submitted: true });
+        const { username, password } = this.state;
+            this.props.login(username, password);
+        
     }
-    onChange(e) {
+
+    handleChange(e) {
         this.setState({ [e.target.name]: e.target.value });
-        console.log("typing");
+
     }
     render() {
-
-        // if (this.state.redirect) {
-        //     return (<Redirect to='/Invoice'/> )
-        // }
+        if(this.props.success)
+          return <Redirect to='/' />
         return (
-            <>
-
-
+            <div>
+                
                 <div style={classes.main} >
                     <Container component="main" maxWidth="xs">
                         <CssBaseline />
@@ -142,7 +64,7 @@ class SignIn extends React.Component {
                             <Typography component="h3" variant="h5">
                                 Sign in
                             </Typography>
-                            <form style={classes.form} noValidate>
+                            <div style={classes.form}>
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
@@ -154,9 +76,9 @@ class SignIn extends React.Component {
                                     name="username"
                                     autoComplete="username"
                                     autoFocus
-                                    onChange={this.onChange}
+                                    onChange={this.handleChange}
                                 />
-
+                                <Error  error={this.props.errors.username?this.props.errors.username:null}/> 
                                 <TextField
                                     variant="outlined"
                                     margin="normal"
@@ -168,22 +90,37 @@ class SignIn extends React.Component {
                                     type="password"
                                     id="password"
                                     autoComplete="current-password"
-                                    onChange={this.onChange}
+                                    onChange={this.handleChange}
                                 />
+                                <Error  error={this.props.errors.password?this.props.errors.password:null}/> 
+                                <Error  error={this.props.errors.Unauthorized?this.props.errors.Unauthorized:null}/> 
                                 {/* {this.errorMessage } */}
-
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
-                                    style={classes.submit}
-                                    // onClick={this.signin}
-                                    to="/inventory"
-
-                                >
-                                    Sign In
-                                </Button>
+                         {this.props.loading?(
+                       <Button
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={classes.submit}
+                            
+                       
+                        >
+                           <SpinerLoader />
+                        </Button>
+                         ):(
+                          
+                            <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={classes.submit}
+                            onClick={()=>this.handleSubmit()}
+                        >
+                            Sign In
+                        </Button>
+                         )}
+                        
+                               
                                 <Grid container>
                                     <Grid item xs>
                                         <Link href="#" variant="body2">
@@ -191,15 +128,27 @@ class SignIn extends React.Component {
                                 </Link>
                                     </Grid>
                                 </Grid>
-                            </form>
+                            </div>
                         </Card>
 
                     </Container>        </div>
-            </>
+            </div>
 
         );
     }
 
 }
+function mapStateToProps(state) {
+	return {
+        loading: state.loginReducer.loading,
+        users:state.loginReducer.users,
+        errors:state.loginReducer.errors,
+        success:state.loginReducer.success
+	}
+}
+const mapDispatchToProps = {
+    login:actions.login,
+    
+};
 
-export default SignIn;
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

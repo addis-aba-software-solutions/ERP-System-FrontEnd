@@ -35,44 +35,62 @@ export default function Meetings() {
     const [dense] = React.useState(true);
     return (
 
-        <React.Fragment>
+        <
+        React.Fragment >
 
-        <Title
-            > Upcoming Meetings  </Title>
-            <Grid item xs={12} md={12}>
-                <div className={classes.notificationText}>
-                    <List dense={dense}>
-                        {generate(
-                            <>
-                                <ListItem>
-                                    <ListItemAvatar>
-                                            <Avatar style={{
-                                                background: '#FFE600',
-                                                fontSize: 20
-                                            }}>
-                                                <AlarmIcon />
-                                            </Avatar>
-                                    </ListItemAvatar>
-                                    
-                                    <ListItemText className={classes.notificationText}
-                                        primary="Meeting At 3:30"
-                                        
-                                        secondary="Today"
-                                    />
-                                    {/* <ListItemSecondaryAction>
-                                        <IconButton edge="end" aria-label="delete">
-                                            <VisibilityIcon />
-                                        </IconButton>
-                                    </ListItemSecondaryAction> */}
+        <
+        Title >
+        Upcoming Meetings < /Title> <
+        Grid item xs = { 12 }
+        md = { 12 } >
+        <
+        div className = { classes.notificationText } >
+        <
+        List dense = { dense } > {
+            generate( <
+                >
+                <
+                ListItem >
+                <
+                ListItemAvatar >
+                <
+                Avatar style = {
+                    {
+                        background: '#FFE600',
+                        fontSize: 20
+                    }
+                } >
+                <
+                AlarmIcon / >
+                <
+                /Avatar> < /
+                ListItemAvatar >
 
-                                </ListItem>
-                                <Divider></Divider>
+                <
+                ListItemText className = { classes.notificationText }
+                primary = "Meeting At 3:30"
 
-                            </>
-                        )}
-                    </List>
-                </div>
-            </Grid>
-        </React.Fragment>
+                secondary = "Today" /
+                >
+                {
+                    /* <ListItemSecondaryAction>
+                                                            <IconButton edge="end" aria-label="delete">
+                                                                <VisibilityIcon />
+                                                            </IconButton>
+                                                        </ListItemSecondaryAction> */
+                }
+
+                <
+                /ListItem> <
+                Divider > < /Divider>
+
+                <
+                />
+            )
+        } <
+        /List> < /
+        div > <
+        /Grid> < /
+        React.Fragment >
     );
 }

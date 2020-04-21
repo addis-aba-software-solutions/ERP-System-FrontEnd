@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,12 +26,13 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
-import AddNewEmployee from './components/UserProfile/UserProfile'
-import UsersCategory from './components/UsersCategory';
-import Category from './components/Category'
-import SearchBar from '../SearchBar/SearchBar';
-import Profile from './components/UserProfile/Profile'
+import InventoryStatus from './components/InventoryStatus';
+import Card from '@material-ui/core/Card';
+import ItemList from './components/ItemList'
+import { connect } from 'react-redux'
+import actions from '../../store/login/action'
 
 const drawerWidth = 240;
 
@@ -102,7 +102,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
-        backgroundColor: '#EBEBEB'
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -129,44 +128,30 @@ export const routes = [
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => <AddNewEmployee />
+        main: () =>
+            <AddNewProduct />
     },
     {
-        path: '/EmployeeCategories',
+        path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
         main: () =>
 
-            <>
-
-                <Category />
-            </>
-
+            <InventoryStatus />
 
     },
     {
-        path: '/EmployeeListView',
+        path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
         main: () =>
-            <>
-                <UsersCategory />
 
-            </>
-    },
-    {
-        path: '/EmployeeProfileView',
-        exact: true,
-        sidebar: () => '',
-        main: () =>
-            <>
-                <Profile />
+            <ItemList />
 
-            </>
     }
 ]
 
-export default function HR() {
+ function Inventory() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
     const handleDrawerOpen = () => {
@@ -199,12 +184,13 @@ export default function HR() {
                         </Badge>
                     </IconButton>
 
-
                     <img src={ProfilePicture} alt='' style={{
                         height: 35,
                         width: 35,
                         borderRadius: 100
                     }} />
+
+
 
 
                     <IconButton color="inherit">
@@ -218,6 +204,10 @@ export default function HR() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+
+            <Route>
+
+
             <Drawer
                 variant="permanent"
                 classes={{
@@ -241,7 +231,7 @@ export default function HR() {
 
                         </ListItem>
                     </Link>
-                    <Link to="/EmployeeCategories">
+                    <Link to="/InventoryStatus">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
@@ -251,28 +241,33 @@ export default function HR() {
                         </ListItem>
                     </Link>
 
-                    <Link to="/EmployeeListView">
+                    <Link to="/CategoryListView">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Employee List View" />
+                            <ListItemText primary="ItemView" />
+
                         </ListItem>
                     </Link>
-
-                    <Link to="/EmployeeProfileView">
+                    <Link to="/Four">
                         <ListItem button>
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Profile View" />
+                            {/* <ListItemText primary="Hollup" /> */}
+
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
+                {/* <List>{secondaryListItems}</List> */}
             </Drawer>
 
-            <main className={classes.content}>
+            <main className={classes.content} style={{
+                backgroundColor: '#EBEBEB',
+                height: '100vh  '
+            }}>
                 <div className={classes.toolbar} />
                 <div className={classes.appBarSpacer} />
                 <Switch>
@@ -287,7 +282,9 @@ export default function HR() {
                 </Switch>
 
             </main>
+            </Route>
 
         </div>
     );
 }
+export default Inventory
