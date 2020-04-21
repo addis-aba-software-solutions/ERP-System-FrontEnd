@@ -33,12 +33,14 @@ import Category from './components/Category'
 import SearchBar from '../SearchBar/SearchBar';
 import Profile from './components/UserProfile/Profile'
 import { connect } from 'react-redux'
-import actions from '../../store/hr/action'
+import actions from '../../store/login/action'
+
+import { withStyles } from '@material-ui/core';
 
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const styles = ((theme) => ({
     root: {
         display: 'flex',
     },
@@ -168,27 +170,23 @@ export const routes = [
     }
 ]
 
-function HR() {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
+class HR extends React.Component {
 
+ 
+
+    render(){
+        const {classes} = this.props;
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <AppBar position="absolute" className={clsx(classes.appBar)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                        // onClick={handleDrawerOpen}
+                        className={clsx(classes.menuButton)}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -215,7 +213,7 @@ function HR() {
                         </Typography>
 
                     </IconButton>
-                    <IconButton color="inherit" onClick={actions.logout}>
+                    <IconButton color="inherit" onClick={this.props.logout}>
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
@@ -223,12 +221,12 @@ function HR() {
             <Drawer
                 variant="permanent"
                 classes={{
-                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                    paper: clsx(classes.drawerPaper && classes.drawerPaperClose),
                 }}
-                open={open}
+                // open={open}
             >
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton >
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
@@ -239,7 +237,6 @@ function HR() {
                             <ListItemIcon>
                                 <DashboardIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
 
                         </ListItem>
                     </Link>
@@ -248,7 +245,6 @@ function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Category" />
 
                         </ListItem>
                     </Link>
@@ -258,7 +254,6 @@ function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Employee List View" />
                         </ListItem>
                     </Link>
 
@@ -267,7 +262,6 @@ function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Profile View" />
                         </ListItem>
                     </Link>
                 </List>
@@ -291,17 +285,16 @@ function HR() {
             </main>
 
         </div>
-    );
+    )
 }
-// function mapStateToProps(state) {
-// 	return {
-//         loading: state.loginReducer.loading,
-//         users:state.loginReducer.users,
-//         errors:state.loginReducer.errors
-// 	}
-// }
+}
+function mapStateToProps(state) {
+	return {
+        isLogin: state.loginReducer.isLogin,
+	}
+}
 const mapDispatchToProps = {
     logout:actions.logout,
     
 };
-export default  connect(null, mapDispatchToProps)(HR)
+export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HR))

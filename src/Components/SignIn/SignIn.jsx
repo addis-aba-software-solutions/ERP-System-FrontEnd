@@ -44,8 +44,9 @@ class SignIn extends React.Component {
 
     }
     render() {
-        if(this.props.success)
+        if(this.props.isLogin)
           return <Redirect to='/' />
+          
         return (
             <div>
                 
@@ -143,7 +144,8 @@ function mapStateToProps(state) {
         loading: state.loginReducer.loading,
         users:state.loginReducer.users,
         errors:state.loginReducer.errors,
-        success:state.loginReducer.success
+        isLogin:state.loginReducer.isLogin
+        
 	}
 }
 const mapDispatchToProps = {

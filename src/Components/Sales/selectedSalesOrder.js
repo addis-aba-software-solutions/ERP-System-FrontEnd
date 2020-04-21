@@ -125,29 +125,7 @@ class SelectedSalesOrder extends Component {
 
                     </div>
                     <div>
-                        {/* <div style={{marginLeft:10}}>
-                            <label for="another-input">Quantity</label>
-                        </div>
-                        <div>
-                            <input type="text" id="another-input" className="form-control" />
-                        </div>
-                        <div style={{marginLeft:10}}>
-                            <label for="to">Expected Date</label>
-                        </div>
-                        <div>
-                            <p className="input-group">
-                                <input type="text" id="to" className="form-control" />
-                                <span className="input-group-btn">
-                                    <button type="button" className="btn btn-default"><i className="glyphicon glyphicon-calendar"></i></button>
-                                </span>
-                            </p>
-                        </div>
-                        <div style={{marginLeft:10}}>
-                            <label for="another-input">Sales Person</label>
-                        </div>
-                        <div>
-                            <input type="text" id="another-input" className="form-control" />
-                        </div> */}
+                   
 
                         <div style={{ marginLeft: 10 }}>
                             <label for="another-input">Description</label>

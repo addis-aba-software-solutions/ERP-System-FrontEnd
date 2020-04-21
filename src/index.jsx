@@ -7,26 +7,14 @@ import Store from './store/store'
 import SignIn from './Components/SignIn/SignIn'
 import PrivateRoute from './auth/private_route'
 import PublicRoute from './auth/public_route'
-import Inventory from './Components/Inventory/Inventory'
+import App from './app'
+
 let storeInstance = Store();
 ReactDOM.render(
 
     <Provider store={storeInstance}>
-     <BrowserRouter>
-      <Switch>
-          <PublicRoute
-              path="/signin"
-              component={SignIn}
-              exact
-            />
-          <PrivateRoute
-              path="/"
-              component={HR}
-              exact
-            />
-        
-      </Switch>
-    </BrowserRouter> </Provider>,
+     <App />
+      </Provider>,
 
     document.getElementById("root")
 )

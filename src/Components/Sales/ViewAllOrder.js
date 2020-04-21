@@ -8,27 +8,19 @@ import Grid from '@material-ui/core/Grid';
 import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
-//import HeartIcon from '@material-ui/icons/HeartIcon';
 import CardContent from '@material-ui/core/CardContent';
 import history from './history'
 import { Button, Form, FormGroup, Label, Input, Table } from 'reactstrap';
-
 import { Link } from 'react-router-dom';
-// const electron = require('electron');
-// import { ipcRenderer } from 'electron';
-// const electron = require('electron');
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
-const Menu = electron.remote.Menu;
 
 
 class ItemList extends Component {
     state = {
         employeeInfo: []
     }
-    // singleEmployee = (image) => {
-    //     ipcRenderer.send('toggle-image', image);
-    // }
+
     singleOrderTruck = (image4) => {
         ipcRenderer.send('toggle-image4', image4);
     }

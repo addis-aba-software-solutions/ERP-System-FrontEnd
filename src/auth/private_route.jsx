@@ -1,16 +1,29 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import getToken from './token'
-
-function PrivateRoute({ component: Component, ...rest }) {
+import  getToken  from './token';
+ 
+const PrivateRoute = ({ component: Comp, loggedIn, path, ...rest }) => {
   return (
     <Route
+      path={path}
       {...rest}
-      render={(props) => getToken ? 
-      <Component {...props} /> : 
-      <Redirect to={{ pathname: '/signin'}} />}
+      render={props => {
+        return loggedIn|| getToken ? (
+          <Comp {...props} />
+        ) : (
+          <Redirect
+            to={{
+              pathname: "/signin",
+              state: {
+                prevLocation: path,
+                error: "You need to login first!",
+              },
+            }}
+          />
+        );
+      }}
     />
-  )
-}
- 
-export default PrivateRoute;
+  );
+};
+
+export default PrivateRoute

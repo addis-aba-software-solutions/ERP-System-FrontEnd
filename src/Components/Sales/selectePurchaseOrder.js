@@ -8,14 +8,9 @@ import Card from '@material-ui/core/Card';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
-//import HeartIcon from '@material-ui/icons/HeartIcon';
 import CardContent from '@material-ui/core/CardContent';
 import { Button, Form, FormGroup, Label, Input, Table } from 'reactstrap';
 
-
-// const electron = require('electron');
-// import { ipcRenderer } from 'electron';
-// const electron = require('electron');
 const electron = window.require('electron');
 const ipcRenderer = electron.ipcRenderer;
 const Menu = electron.remote.Menu;

@@ -1,10 +1,10 @@
+import {appConstants} from '../../constant/constants'
 
-import {appConstants,userConstants} from '../../constant/constants'
 import { stat } from 'fs';
 const initialState = {
     users: [],
     loading: false,
-    success:false,
+    isLogin:false,
     errors: [],
   
   }
@@ -17,13 +17,12 @@ const initialState = {
         };
       }
       case appConstants.LOGIN_SUCCESS: {
-    
         return {
           ...state,
           users: action.payload,
           errors:[],
           loading:false,
-          success:true,
+          isLogin:true
         };
       }
       case appConstants.LOGIN_FAILURE: {
@@ -31,15 +30,18 @@ const initialState = {
           ...state,
           errors: action.payload,
           loading:false,
-          success:false,
+          isLogin:false,
         };
       }
+
       case appConstants.LOGOUT: {
-        return {
-          ...state,
-          success:action.payload,
-        };
-      }
+            return {
+              ...state,
+              isLogin:action.payload,
+            };
+        
+      
+    }
 
       default:
         // ALWAYS have a default case in a reducer

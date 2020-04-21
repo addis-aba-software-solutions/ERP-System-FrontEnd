@@ -1,12 +1,11 @@
+
+import Swal from 'sweetalert2'
 import axios from 'axios'
 import API from '../../api/API'
-import {appConstants,userConstants} from '../../constant/constants'
- const actions = {
-  login,
-  logout,
-};
+import {appConstants} from '../../constant/constants'
+
 function login(username, password) {
-  return dispatch => {
+  return (dispatch)  => {
     var data={
       username:username,
       password:password
@@ -27,24 +26,20 @@ function login(username, password) {
       data:data
     })
       .then((user) => {          
-        localStorage.setItem('token',user.data.token);
-        localStorage.setItem('id',user.data.id);
-        localStorage.setItem('username',user.data.username);
-        alert("dep before")
-        localStorage.setItem('department',user.data.department);
-        localStorage.setItem('role',user.data.role);
-        localStorage.setItem('level',user.data.level);
-      
+        localStorage.setItem('token',user.data.user.token);
+        localStorage.setItem('id',user.data.user.id);
+        localStorage.setItem('username',user.data.user.username);
+        localStorage.setItem('department',user.data.user.department);
+        localStorage.setItem('role',user.data.user.role);
+        localStorage.setItem('level',user.data.user.level);
         dispatch({
           type: appConstants.LOGIN_SUCCESS,
-          payload:user.data
+          payload:user.data.user
         }
         );
-        alert("afeter")
-       
+      
       })
       .catch(error => {  
-        console.log(error);
         
         dispatch({
           type: appConstants.LOGIN_FAILURE,
@@ -56,16 +51,43 @@ function login(username, password) {
   }
   
 
-
-
-
 function logout() {
-  return { 
-    type: userConstants.LOGOUT,
-    payload:false
-  };
- 
+    return (dispatch)  => {
+      removeStorage()
+      Swal.fire({
+  title: 'Are you sure?',
+  text: "You won't be able to revert this!",
+  icon: 'warning',
+  showCancelButton: true,
+  confirmButtonColor: '#3085d6',
+  cancelButtonColor: '#d33',
+  confirmButtonText: 'Yes'
+}).then((result) => {
+  if (result.value) {
+    dispatch({
+      type: appConstants.LOGOUT,
+      payload:false
+    }
+    ); 
+  }
+});
+      
+    }
 }
+
+function removeStorage(){
+      localStorage.setItem("username","");
+      localStorage.setItem("id","");
+      localStorage.setItem("token","");
+      localStorage.setItem("department","");
+      localStorage.setItem("level","");
+      localStorage.setItem("role","");
+}
+const actions = {
+  login,
+  logout,
+  removeStorage,
+};
 
 
 export default actions
