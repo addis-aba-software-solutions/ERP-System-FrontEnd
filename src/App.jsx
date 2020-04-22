@@ -32,7 +32,12 @@ class App extends React.Component {
                 loggedIn={this.props.isLogin}
                 exact
               />
-            
+             <PrivateRoute
+                path="/inventory"
+                component={Inventory}
+                loggedIn={this.props.isLogin}
+                exact
+              />
             </Switch>
             </BrowserRouter>
 

@@ -347,26 +347,6 @@ class AddNewProduct extends React.Component {
                     </Select>
                   </FormControl>
 
-
-
-                  {/* <Form.Group controlId="catagory">
-                    <Form.Label>catagory</Form.Label>
-
-                    <Form.Control as="select">
-                      {this.state.cat.map(cats =>
-                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
-                      )}
-                        value={this.state.newItemInfo.catagory}
-                        onChange={(e) => {
-                        let { newItemInfo } = this.state;
-                        newItemInfo.catagory = e.target.value;
-                        this.setState({ newItemInfo });
-                      }}
-                    </Form.Control>
-
-                  </Form.Group> */}
-
-
                 </Grid>
                 <Grid item xs={12} sm={12}>
                   <Button

@@ -171,6 +171,12 @@ export const routes = [
 ]
 
 class HR extends React.Component {
+    constructor(){
+        super()
+    }
+    home(){
+        alert()
+    }
     render(){
         const {classes} = this.props;
     return (
@@ -178,6 +184,7 @@ class HR extends React.Component {
             <CssBaseline />
             <AppBar position="absolute" className={clsx(classes.appBar)}>
                 <Toolbar className={classes.toolbar}>
+                    
                     <IconButton
                         edge="start"
                         color="inherit"
@@ -191,6 +198,8 @@ class HR extends React.Component {
                     </Typography>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
+
+                          
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
@@ -221,6 +230,7 @@ class HR extends React.Component {
                 }}
             
             >
+                
                 <div className={classes.toolbarIcon}>
                     <IconButton >
                         <ChevronLeftIcon />
@@ -228,7 +238,7 @@ class HR extends React.Component {
                 </div>
                 <Divider />
                 <List>
-                    <Link to="/">
+                    <Link  to="/">
                         <ListItem button>
                             <ListItemIcon>
                                 <DashboardIcon />
@@ -264,8 +274,25 @@ class HR extends React.Component {
                 <Divider />
             </Drawer>
 
-      
+            <main className={classes.content} style={{
+                backgroundColor: '#EBEBEB',
+                height: '100vh  '
+            }}>
+                <div className={classes.toolbar} />
+                <div className={classes.appBarSpacer} />
+                <Switch>
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            exact={route.exact}
+                            children={<route.main />}
+                        />
+                    ))}
+                </Switch>
 
+            </main>
+     
         </div>
     )
 }
