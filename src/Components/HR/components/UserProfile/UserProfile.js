@@ -24,6 +24,7 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap'
+import Api from '../../../../api/API'
 
 
 const styles = theme => ({
@@ -74,37 +75,11 @@ class UserProfile extends Component {
       depValue: '',
       rolValue: '',
       levValue: '',
-      firstValue:'',
-      lastValue:'',
-      emailValue:'',
-      countryValue:'',
-      regionValue:'',
-      cityValue:'',
-      termofEmploymentValue:'Hourly',
-      telephoneValue:'',
-      
-      employeeInfo: [],
+
       deps: [],
       rol: [],
       lev: [],
-      newEmployeeInfo: {
-        employeId: '',
-        firstName: '',
-        lastName: '',
-        email: '',
-        hiredDate: '1999-06-06',
-        telephone: '',
-        birthDate: '1999-06-06',
-        country: '',
-        region: '',
-        city: '',
-        termOfEmployment: "Hourly",
-        department: '',
-        roles: '',
-        level: ''
-        //salery:''
-
-      }
+    
     }
     this.submit = this.submit.bind(this);
     this.departmentDropDown = this.departmentDropDown.bind(this);
@@ -118,43 +93,30 @@ class UserProfile extends Component {
     this.termofEmploymentChange=this.termofEmploymentChange.bind(this);
     this.cityChange=this.cityChange.bind(this);
     this.telephoneChange=this.telephoneChange.bind(this);
-
-
-
   }
-
   componentDidMount() {
-    fetch("http://192.168.1.5:8000/api/v1/department/")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-
-        this.setState({ deps: data });
-
+    axios.request({
+      method: 'GET',
+      url: API+"department/",
+      responseType: 'json',
+      headers: {
+        "Content-Type":"application/json"
+      }, 
+    })
+      .then((user) => {         
+      console.log(user);
+      
       })
-    fetch("http://192.168.1.5:8000/api/v1/role/")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-
-
-        this.setState({ rol: data });
-
+      .catch(error => {  
+        console.log(user);
       })
-    fetch("http://192.168.1.5:8000/api/v1/level/")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-        this.setState({ lev: data });
-
-      })
-
-  }
+    }
+  
 
 
   submit = () => {
  
-    axios.post('http://192.168.1.5:8000/api/v1/employe/', {
+    axios.post('http://0.0.0.0:8000/api/v1/employe/', {
       firstName:  this.state.firstValue,
       lastName: this.state.lastValue,
       email: this.state.emailValue,

@@ -32,10 +32,15 @@ import UsersCategory from './components/UsersCategory';
 import Category from './components/Category'
 import SearchBar from '../SearchBar/SearchBar';
 import Profile from './components/UserProfile/Profile'
+import { connect } from 'react-redux'
+import actions from '../../store/login/action'
+
+import { withStyles } from '@material-ui/core';
+
 
 const drawerWidth = 240;
 
-const useStyles = makeStyles((theme) => ({
+const styles = ((theme) => ({
     root: {
         display: 'flex',
     },
@@ -165,27 +170,24 @@ export const routes = [
     }
 ]
 
-export default function HR() {
-    const classes = useStyles();
-    const [open, setOpen] = React.useState(false);
-    const handleDrawerOpen = () => {
-        setOpen(true);
-    };
-    const handleDrawerClose = () => {
-        setOpen(false);
-    };
-
+class HR extends React.Component {
+    constructor(){
+        super()
+    }
+   
+    render(){
+        const {classes} = this.props;
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
+            <AppBar position="absolute" className={clsx(classes.appBar)}>
                 <Toolbar className={classes.toolbar}>
+                    
                     <IconButton
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        onClick={handleDrawerOpen}
-                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
+                        className={clsx(classes.menuButton)}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -194,6 +196,8 @@ export default function HR() {
                     </Typography>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
+
+                          
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
@@ -208,11 +212,11 @@ export default function HR() {
 
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
-                            Samuel Kassa
+                           {localStorage.getItem('username')}
                         </Typography>
 
                     </IconButton>
-                    <IconButton color="inherit">
+                    <IconButton color="inherit" onClick={this.props.logout}>
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
@@ -220,23 +224,23 @@ export default function HR() {
             <Drawer
                 variant="permanent"
                 classes={{
-                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                    paper: clsx(classes.drawerPaper && classes.drawerPaperClose),
                 }}
-                open={open}
+            
             >
+                
                 <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
+                    <IconButton >
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    <Link to="/">
+                    <Link  to="/">
                         <ListItem button>
                             <ListItemIcon>
                                 <DashboardIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Dashboard" />
 
                         </ListItem>
                     </Link>
@@ -245,7 +249,6 @@ export default function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Category" />
 
                         </ListItem>
                     </Link>
@@ -255,7 +258,6 @@ export default function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Employee List View" />
                         </ListItem>
                     </Link>
 
@@ -264,14 +266,16 @@ export default function HR() {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Profile View" />
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
             </Drawer>
 
-            <main className={classes.content}>
+            <main className={classes.content} style={{
+                backgroundColor: '#EBEBEB',
+                height: '100vh  '
+            }}>
                 <div className={classes.toolbar} />
                 <div className={classes.appBarSpacer} />
                 <Switch>
@@ -286,7 +290,18 @@ export default function HR() {
                 </Switch>
 
             </main>
-
+     
         </div>
-    );
+    )
 }
+}
+function mapStateToProps(state) {
+	return {
+        isLogin: state.loginReducer.isLogin,
+	}
+}
+const mapDispatchToProps = {
+    logout:actions.logout,
+    
+};
+export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HR))
