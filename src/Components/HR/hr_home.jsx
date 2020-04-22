@@ -32,15 +32,10 @@ import UsersCategory from './components/UsersCategory';
 import Category from './components/Category'
 import SearchBar from '../SearchBar/SearchBar';
 import Profile from './components/UserProfile/Profile'
-import { connect } from 'react-redux'
-import actions from '../../store/login/action'
-
-import { withStyles } from '@material-ui/core';
-
 
 const drawerWidth = 240;
 
-const styles = ((theme) => ({
+const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
     },
@@ -170,26 +165,27 @@ export const routes = [
     }
 ]
 
-class HR extends React.Component {
-    constructor(){
-        super()
-    }
-    home(){
-        alert()
-    }
-    render(){
-        const {classes} = this.props;
+export default function HR() {
+    const classes = useStyles();
+    const [open, setOpen] = React.useState(false);
+    const handleDrawerOpen = () => {
+        setOpen(true);
+    };
+    const handleDrawerClose = () => {
+        setOpen(false);
+    };
+
     return (
         <div className={classes.root}>
             <CssBaseline />
-            <AppBar position="absolute" className={clsx(classes.appBar)}>
+            <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
-                    
                     <IconButton
                         edge="start"
                         color="inherit"
                         aria-label="open drawer"
-                        className={clsx(classes.menuButton)}
+                        onClick={handleDrawerOpen}
+                        className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -198,8 +194,6 @@ class HR extends React.Component {
                     </Typography>
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
-
-                          
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
@@ -214,11 +208,11 @@ class HR extends React.Component {
 
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
-                           {localStorage.getItem('username')}
+                            Samuel Kassa
                         </Typography>
 
                     </IconButton>
-                    <IconButton color="inherit" onClick={this.props.logout}>
+                    <IconButton color="inherit">
                         <ArrowDropDownIcon fontSize='large' />
                     </IconButton>
                 </Toolbar>
@@ -226,23 +220,23 @@ class HR extends React.Component {
             <Drawer
                 variant="permanent"
                 classes={{
-                    paper: clsx(classes.drawerPaper && classes.drawerPaperClose),
+                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
                 }}
-            
+                open={open}
             >
-                
                 <div className={classes.toolbarIcon}>
-                    <IconButton >
+                    <IconButton onClick={handleDrawerClose}>
                         <ChevronLeftIcon />
                     </IconButton>
                 </div>
                 <Divider />
                 <List>
-                    <Link  to="/">
+                    <Link to="/">
                         <ListItem button>
                             <ListItemIcon>
                                 <DashboardIcon />
                             </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
 
                         </ListItem>
                     </Link>
@@ -251,6 +245,7 @@ class HR extends React.Component {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
+                            <ListItemText primary="Category" />
 
                         </ListItem>
                     </Link>
@@ -260,6 +255,7 @@ class HR extends React.Component {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
+                            <ListItemText primary="Employee List View" />
                         </ListItem>
                     </Link>
 
@@ -268,16 +264,14 @@ class HR extends React.Component {
                             <ListItemIcon>
                                 <PeopleIcon />
                             </ListItemIcon>
+                            <ListItemText primary="Profile View" />
                         </ListItem>
                     </Link>
                 </List>
                 <Divider />
             </Drawer>
 
-            <main className={classes.content} style={{
-                backgroundColor: '#EBEBEB',
-                height: '100vh  '
-            }}>
+            <main className={classes.content}>
                 <div className={classes.toolbar} />
                 <div className={classes.appBarSpacer} />
                 <Switch>
@@ -292,18 +286,7 @@ class HR extends React.Component {
                 </Switch>
 
             </main>
-     
+
         </div>
-    )
+    );
 }
-}
-function mapStateToProps(state) {
-	return {
-        isLogin: state.loginReducer.isLogin,
-	}
-}
-const mapDispatchToProps = {
-    logout:actions.logout,
-    
-};
-export default  connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(HR))
