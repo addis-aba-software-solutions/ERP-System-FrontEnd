@@ -5,7 +5,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import { List, Button } from '@material-ui/core';
+import List from '@material-ui/core/List';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import {
@@ -22,21 +22,13 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import ProfilePicture from '../../Assets/ww.jpg';
-import HomeNavBar from '../Dashboard/HomeNavBar';
-import { Paper, Grid } from '@material-ui/core'
-import Notification from './components/Notification';
-import Meetings from './components/Meetings';
-import CreateOrder from './components/CreateOrder';
-import ViewAllOrders from './components/ViewAllOrders';
-import ViewSingleOrder from './components/ViewSingleOrder';
-import history from '../../Routes/history';
-import SearchBar from '../SearchBar/SearchBar'
-
-
+// import ScheduleDelievery from './components/SchedualDelievery'
+import ViewAllOrders from './components/ViewAllOrders'
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -105,10 +97,13 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+        backgroundColor: '#EBEBEB'
     },
     container: {
         paddingTop: theme.spacing(4),
         paddingBottom: theme.spacing(4),
+
+
     },
     paper: {
         padding: theme.spacing(2),
@@ -121,10 +116,6 @@ const useStyles = makeStyles((theme) => ({
     },
     ProfilePicture: {
         height: 10,
-    },
-    header: {
-        marginRight: 200,
-        // display: 'flex',
     }
 }));
 
@@ -133,117 +124,30 @@ export const routes = [
         path: '/',
         exact: true,
         sidebar: () => '',
-        main: () => <div style={{
-            padding: 20,
-            marginTop: 10
-        }}>
-            <Grid container spacing={2} >
-                <Grid item xs={9}>
-                    <HomeNavBar />
-                </Grid>
-                <Grid item xs={3}>
-                    <Paper style={{
-                        borderRadius: 20,
-                        padding: 20
-                    }}>
-                        <Notification />
-                    </Paper>
-                    <Paper style={{
-                        borderRadius: 20,
-                        marginTop: 10,
-                        padding: 20
-                    }}>
-                        <Meetings />
-                    </Paper>
-                </Grid>
-            </Grid>
-        </div>
+        main: () => 
+            <ViewAllOrders />
     },
     {
-        path: '/CreateOrder',
+        path: '/InventoryStatus',
         exact: true,
         sidebar: () => '',
-        main: () =>
-            <>
+        main: () => <div>
+            SchedualDelievery
+        </div>
+            // <ScheduleDelievery />
 
-                <Grid container display='flex'
-                    justify="space-between"
-                    xs={12}
-                    style={{
-                        padding: 20,
-                    }}>
-                    <Grid item>
-                        <Typography variant='h4' color="textSecondary">
-                            <b>Sales</b>
-                        </Typography>
-                        <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
-                            <b>Orders</b>
-                        </Typography>
-                        <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
-                            <b>All Orders List</b>
-                        </Typography>
-                    </Grid>
-                    <Grid item style={{
-                        display: 'flex',
-                        justify: 'flex-end'
-                    }}>
-                        <SearchBar />
-                    </Grid>
-                </Grid>
-                <ViewAllOrders />
-            </>
     },
     {
         path: '/CategoryListView',
         exact: true,
         sidebar: () => '',
-        main: () => <div>
+        main: () => <div></div>
 
-            <CreateOrder />
-
-        </div>
-
-
-    },
-    {
-        path: '/ViewSingleOrder',
-        exact: true,
-        sidebar: () => '',
-        main: () => <div>
-            <Grid container display='flex'
-                justify="space-between"
-                xs={12}
-                style={{
-                    padding: 20,
-                }}>
-                <Grid item>
-                    <Typography variant='h4' color="textSecondary">
-                        <b>Sales</b>
-                    </Typography>
-                    <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
-                        <b>Orders</b>
-                    </Typography>
-                    <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
-                        <b>All Orders List</b>
-                    </Typography>
-                </Grid>
-                <Grid item style={{
-                    display: 'flex',
-                    justify: 'flex-end'
-                }}>
-                    <SearchBar />
-                </Grid>
-            </Grid>
-            <Divider style={{ margin: 10 }}></Divider>
-
-
-            <ViewSingleOrder />
-
-        </div>
-
+        // <ItemList />
 
     }
 ]
+
 
 export default function Sales() {
     const classes = useStyles();
@@ -258,7 +162,6 @@ export default function Sales() {
     return (
         <div className={classes.root}>
             <CssBaseline />
-
             <AppBar position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}>
                 <Toolbar className={classes.toolbar}>
                     <IconButton
@@ -273,68 +176,20 @@ export default function Sales() {
                     <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
                         EATH
                     </Typography>
-
-                    <div className={classes.header}>
-                        <Grid container spacing={10} display="flex" justify="flex-end" >
-                            <Grid item>
-                                <IconButton color="inherit"
-                                // onClick={() => history.push('/Inventory')}
-                                >
-                                    <Typography variant="body2" gutterBottom>
-                                        <b>Inventory</b>
-                                    </Typography>
-                                </IconButton>
-                            </Grid>
-
-                            <Grid item>
-                                <IconButton color="inherit"
-                                >
-                                    <Typography variant="body2" gutterBottom>
-                                        <b>Finance</b>
-                                    </Typography>
-                                </IconButton>
-                            </Grid>
-
-                            <Grid item>
-                                <IconButton color="inherit"
-                                >
-                                    <Typography variant="body2" gutterBottom>
-                                        <b>HR</b>
-                                    </Typography>
-                                </IconButton>
-                            </Grid>
-                            <Grid item>
-                                <IconButton color="inherit"
-                                >
-                                    <Typography variant="body2" gutterBottom>
-                                        <b>Logistics</b>
-                                    </Typography>
-                                </IconButton>
-                            </Grid>                        <Grid item>
-                                <IconButton color="inherit"
-                                >
-                                    <Typography variant="body2" gutterBottom>
-                                        <b>Sales</b>
-                                    </Typography>
-                                </IconButton>
-                            </Grid>
-                        </Grid>
-                    </div>
-
-
-
-
-
                     <IconButton color="inherit">
                         <Badge badgeContent={4} color="secondary">
                             <NotificationsIcon />
                         </Badge>
                     </IconButton>
+
+
                     <img src={ProfilePicture} alt='' style={{
                         height: 35,
                         width: 35,
                         borderRadius: 100
                     }} />
+
+
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
                             Samuel Kassa
@@ -346,83 +201,68 @@ export default function Sales() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
+            <Drawer
+                variant="permanent"
+                classes={{
+                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                }}
+                open={open}
+            >
+                <div className={classes.toolbarIcon}>
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <Link to="/">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <DashboardIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
 
-            <Route>
-                <Drawer
-                    variant="permanent"
-                    classes={{
-                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-                    }}
-                    open={open}
-                >
-                    <div className={classes.toolbarIcon}>
-                        <IconButton onClick={handleDrawerClose}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <Link to="/">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <DashboardIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Dashboard" />
+                        </ListItem>
+                    </Link>
+                    <Link to="/InventoryStatus">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Category" />
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/CreateOrder">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Category" />
+                        </ListItem>
+                    </Link>
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/CategoryListView">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="ItemView" />
+                    <Link to="/CategoryListView">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Employee List View" />
+                        </ListItem>
+                    </Link>
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/ViewSingleOrder">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                {/* <ListItemText primary="Hollup" /> */}
+                </List>
+                <Divider />
+            </Drawer>
 
-                            </ListItem>
-                        </Link>
-                    </List>
-                    <Divider />
-                    {/* <List>{secondaryListItems}</List> */}
-                </Drawer>
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <div className={classes.appBarSpacer} />
+                <Switch>
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            exact={route.exact}
+                            children={<route.main />}
+                        />
+                    ))}
+                </Switch>
 
-                <main className={classes.content} style={{
-                    backgroundColor: '#EBEBEB',
-                    height: '100vh  '
-                }}>
-                    <div className={classes.toolbar} />
-                    <div className={classes.appBarSpacer} />
+            </main>
 
-                    <Switch>
-                        {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                children={<route.main />}
-                            />
-                        ))}
-                    </Switch>
-
-                </main>
-            </Route>
         </div>
     );
 }

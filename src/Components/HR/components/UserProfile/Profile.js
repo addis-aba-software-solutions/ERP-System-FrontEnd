@@ -81,118 +81,294 @@ const styles = theme => ({
 
 class Profile extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            singleEmployee: []
-        }
 
-        
-    }
-    // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
-    componentDidMount = () => {
-        //const employeId = this.props.location.state.employeeInfos;
-       // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
-        const employeId = this.props.location.state.employeeInfos;
-        //console.log(employeeInfos);
-        console.log(employeId);
-        const req = fetch(`http://192.168.1.5:8000/api/v1/employe/${employeId}`);
-        const res = req.json();
-        this.setState({ singleEmployee: res.employeeInfo });
-        console.log(this.state.singleEmployee);
-    }
 
     render() {
 
         const { classes } = this.props;
-        const employeeInfos = this.state.singleEmployee;
-        console.log(this.props);
+
 
         return (
             <div>
-                {
-                    this.state.singleEmployee.length !== 0 &&
-                    <div style={{
-                        backgroundColor: '#EBEBEB',
-                        height: '100vh',
-                        padding: 30,
-                    }}>
 
-                        <React.Fragment >
-                            <CssBaseline />
-                            <Grid container xs={12} style={{
-                                display: 'flex',
-                                justifyContent: 'center',
-                                paddingleft: 120,
-                                paddingRight: 120,
-                                paddingBottom: 40
-                                // marginLeft: 180,
+                <div style={{
+                    backgroundColor: '#EBEBEB',
+                    height: '100vh',
+                    padding: 30,
+                }}>
+
+                    <React.Fragment >
+                        <CssBaseline />
+                        <Grid container xs={12} style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            paddingleft: 120,
+                            paddingRight: 120,
+                            paddingBottom: 40
+                            // marginLeft: 180,
+                        }}>
+                            <Grid style={{
+                                paddingLeft: 100
+
                             }}>
-                                <Grid style={{
-                                    paddingLeft: 100
+                                <Grid container style={{
+                                    marginTop: 30
 
-                                }}>
-                                    <Grid container style={{
-                                        marginTop: 30
+                                }} >
+                                    <Grid style={{
+                                        display: 'flex',
+                                        justify: 'flex-start',
+                                    }}>
+                                        <Typography>
+                                            <h3><b>PROFILE</b></h3>
+                                        </Typography>
 
-                                    }} >
-                                        <Grid style={{
-                                            display: 'flex',
-                                            justify: 'flex-start',
-                                        }}>
-                                            <Typography>
-                                                <h3><b>PROFILE</b></h3>
-                                            </Typography>
+                                    </Grid>
+                                    <Grid style={{
+                                        marginLeft: 150
 
-                                        </Grid>
-                                        <Grid style={{
-                                            marginLeft: 150
+                                    }}>
+                                        <Button
+                                            className={classes.button}
 
-                                        }}>
-                                            <Button
-                                                className={classes.button}
+                                            startIcon={<EditIcon />
 
-                                                startIcon={<EditIcon />
-
-                                                }
-                                            >
-                                                EDIT
+                                            }
+                                        >
+                                            EDIT
       </Button>
 
-                                        </Grid>
                                     </Grid>
+                                </Grid>
 
 
-                                    <main className={classes.layout}>
-                                        <Grid xs={12}>
-                                            <Card className={classes.card}>
-                                                <CardActionArea>
+                                <main className={classes.layout}>
+                                    <Grid xs={12}>
+                                        <Card className={classes.card}>
+                                            <CardActionArea>
 
-                                                    <Typography variant="h6" component="p" style={{
-                                                        padding: 10
+                                                <Typography variant="h6" component="p" style={{
+                                                    padding: 10
+                                                }}>
+                                                    <b>Personal Information</b>
+                                                </Typography>
+                                                <Divider></Divider>
+                                                <CardMedia
+                                                    component="img"
+                                                    alt="Profile Picture"
+                                                    height="140"
+                                                    image={ProfilePicture}
+                                                    title="Profile Picture"
+                                                    style={{
+                                                        padding: 10,
+                                                        height: 'auto'
+                                                    }}
+                                                />
+                                                <Divider></Divider>
+
+                                                <CardContent >
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        paddingLeft: 20,
+                                                        paddingRight: 20
                                                     }}>
-                                                        <b>Personal Information</b>
-                                                    </Typography>
-                                                    <Divider></Divider>
-                                                    <CardMedia
-                                                        component="img"
-                                                        alt="Profile Picture"
-                                                        height="140"
-                                                        image={ProfilePicture}
-                                                        title="Profile Picture"
-                                                        style={{
-                                                            padding: 10,
-                                                            height: 'auto'
-                                                        }}
-                                                    />
-                                                    <Divider></Divider>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>NAME</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-right',
+
+                                                            }}>
+                                                                // Yelekal Solomon
+                                                            </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        paddingLeft: 20,
+                                                        paddingRight: 70
+                                                    }}>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>AGE</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-center'
+                                                            }}>
+                                                                67
+                                                                </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+
+                                                    }}>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>POSITION</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-center'
+                                                            }}>
+                                                                // Senior Accountant
+                                                            </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        // paddingLeft: 10,
+                                                        // paddingRight: 10
+                                                    }}>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>LOCATION</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-center'
+                                                            }}>
+                                                                GurdSholla Warehouse
+                                                            </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        // paddingLeft: 10,
+                                                        paddingRight: 40
+                                                    }}>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>EXPERIENCE</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-center'
+                                                            }}>
+                                                                15 Years
+                                                                </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+                                                    <Grid container xs={12} style={{
+                                                        display: 'flex',
+                                                        justifyContent: 'space-between',
+                                                        // paddingLeft: 10,
+                                                        paddingRight: 60
+                                                    }}>
+                                                        <Grid>
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-left'
+                                                            }}>
+                                                                <b>DEGREE</b>
+                                                            </Typography>
+                                                        </Grid>
+                                                        <Grid >
+
+                                                            <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                display: 'flex',
+                                                                justifyContent: 'flex-center'
+                                                            }}>
+                                                                MBA
+                                                                </Typography>
+
+                                                        </Grid>
+                                                    </Grid>
+
+
+                                                </CardContent>
+                                            </CardActionArea>
+                                            <CardActions>
+
+                                                <Box style={{
+                                                    height: 10
+                                                }}>
+
+                                                </Box>
+                                            </CardActions>
+                                        </Card>
+
+                                    </Grid>
+                                </main>
+                            </Grid>
+                            <Grid>
+                            </Grid>
+
+
+                            <main className={classes.layout2}>
+                                <Grid xs={12} >
+                                    <Box style={{
+                                        height: 100
+                                    }}>
+
+                                    </Box>
+
+
+                                    <Card className={classes.card}>
+                                        <CardActionArea>
+
+                                            <Typography variant="h6" component="p" style={{
+                                                marginTop: 10,
+                                                padding: 10
+                                            }}>
+                                                More About <b>Yelekal</b>
+                                            </Typography>
+                                            <Divider></Divider>
+
+                                            <Grid container xs={12} style={{
+                                                display: 'flex',
+                                                justifyContent: 'space-between',
+                                                padding: 40
+                                            }}>
+                                                <Grid>
 
                                                     <CardContent >
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            paddingLeft: 20,
-                                                            paddingRight: 20
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -209,8 +385,8 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-right',
 
                                                                 }}>
-                                                                    {/* // Yelekal Solomon */}
-                                                                    {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
+                                                                    Yelekal Solomon
+
                                                                 </Typography>
 
                                                             </Grid>
@@ -218,8 +394,7 @@ class Profile extends React.Component {
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            paddingLeft: 20,
-                                                            paddingRight: 70
+
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -227,6 +402,136 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-left'
                                                                 }}>
                                                                     <b>AGE</b>
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid >
+
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-center'
+                                                                }}>
+                                                                    67
+                                        </Typography>
+
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container xs={12} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'space-between',
+
+                                                        }}>
+                                                            <Grid>
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-left'
+                                                                }}>
+                                                                    <b>POSITION</b>
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid >
+
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-center'
+                                                                }}>
+                                                                    Senior Accountant
+
+                                                                </Typography>
+
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container xs={12} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'space-between',
+
+                                                        }}>
+                                                            <Grid>
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-left'
+                                                                }}>
+                                                                    <b>LOCATION</b>
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid >
+
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-center'
+                                                                }}>
+                                                                    GurdSholla Warehouse
+
+                                                                </Typography>
+
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container xs={12} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'space-between',
+
+                                                        }}>
+                                                            <Grid>
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-left'
+                                                                }}>
+                                                                    <b>EXPERIENCE</b>
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid >
+
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-center'
+                                                                }}>
+                                                                    15 Years
+                                        </Typography>
+
+                                                            </Grid>
+                                                        </Grid>
+
+                                                    </CardContent>
+
+                                                </Grid>
+                                                <Grid>
+
+                                                    <CardContent >
+                                                        <Grid container xs={12} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'space-between',
+
+                                                        }}>
+                                                            <Grid>
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-left'
+                                                                }}>
+                                                                    <b>PHONE</b>
+                                                                </Typography>
+                                                            </Grid>
+                                                            <Grid >
+
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-right',
+
+                                                                }}>
+                                                                    Phone Number
+                                                                </Typography>
+
+                                                            </Grid>
+                                                        </Grid>
+                                                        <Grid container xs={12} style={{
+                                                            display: 'flex',
+                                                            justifyContent: 'space-between',
+
+                                                        }}>
+                                                            <Grid>
+                                                                <Typography gutterBottom variant="body1" component="h3" style={{
+                                                                    display: 'flex',
+                                                                    justifyContent: 'flex-left'
+                                                                }}>
+                                                                    <b>CAREER LEVEL</b>
                                                                 </Typography>
                                                             </Grid>
                                                             <Grid >
@@ -259,8 +564,7 @@ class Profile extends React.Component {
                                                                     display: 'flex',
                                                                     justifyContent: 'flex-center'
                                                                 }}>
-                                                                    {/* // Senior Accountant */}
-                                                                    {employeeInfos.role}
+                                                                    Senior Accountant
                                                                 </Typography>
 
                                                             </Grid>
@@ -268,8 +572,7 @@ class Profile extends React.Component {
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            // paddingLeft: 10,
-                                                            // paddingRight: 10
+
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -285,8 +588,8 @@ class Profile extends React.Component {
                                                                     display: 'flex',
                                                                     justifyContent: 'flex-center'
                                                                 }}>
-                                                                    {/* GurdSholla Warehouse */}
-                                                                    {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
+                                                                    GurdSholla Warehouse
+
                                                                 </Typography>
 
                                                             </Grid>
@@ -294,8 +597,7 @@ class Profile extends React.Component {
                                                         <Grid container xs={12} style={{
                                                             display: 'flex',
                                                             justifyContent: 'space-between',
-                                                            // paddingLeft: 10,
-                                                            paddingRight: 40
+
                                                         }}>
                                                             <Grid>
                                                                 <Typography gutterBottom variant="body1" component="h3" style={{
@@ -312,389 +614,57 @@ class Profile extends React.Component {
                                                                     justifyContent: 'flex-center'
                                                                 }}>
                                                                     15 Years
-                                                                </Typography>
-
-                                                            </Grid>
-                                                        </Grid>
-                                                        <Grid container xs={12} style={{
-                                                            display: 'flex',
-                                                            justifyContent: 'space-between',
-                                                            // paddingLeft: 10,
-                                                            paddingRight: 60
-                                                        }}>
-                                                            <Grid>
-                                                                <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                    display: 'flex',
-                                                                    justifyContent: 'flex-left'
-                                                                }}>
-                                                                    <b>DEGREE</b>
-                                                                </Typography>
-                                                            </Grid>
-                                                            <Grid >
-
-                                                                <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                    display: 'flex',
-                                                                    justifyContent: 'flex-center'
-                                                                }}>
-                                                                    MBA
-                                                                </Typography>
+                                        </Typography>
 
                                                             </Grid>
                                                         </Grid>
 
 
                                                     </CardContent>
-                                                </CardActionArea>
-                                                <CardActions>
-
-                                                    <Box style={{
-                                                        height: 10
-                                                    }}>
-
-                                                    </Box>
-                                                </CardActions>
-                                            </Card>
-
-                                        </Grid>
-                                    </main>
-                                </Grid>
-                                <Grid>
-                                </Grid>
-
-
-                                <main className={classes.layout2}>
-                                    <Grid xs={12} >
-                                        <Box style={{
-                                            height: 100
-                                        }}>
-
-                                        </Box>
-
-
-                                        <Card className={classes.card}>
-                                            <CardActionArea>
-
-                                                <Typography variant="h6" component="p" style={{
-                                                    marginTop: 10,
-                                                    padding: 10
-                                                }}>
-                                                    More About <b>Yelekal</b>
-                                                </Typography>
-                                                <Divider></Divider>
-
-                                                <Grid container xs={12} style={{
-                                                    display: 'flex',
-                                                    justifyContent: 'space-between',
-                                                    padding: 40
-                                                }}>
-                                                    <Grid>
-
-                                                        <CardContent >
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>NAME</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-right',
-
-                                                                    }}>
-                                                                        {/* Yelekal Solomon */}
-
-                                                                        {employeeInfos.firstName}&nbsp;{employeeInfos.lastName}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>AGE</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        67
-                                        </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>POSITION</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        {/* Senior Accountant */}
-
-                                                                        {employeeInfos.role}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>LOCATION</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        {/* GurdSholla Warehouse */}
-
-                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>EXPERIENCE</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        15 Years
-                                        </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-
-                                                        </CardContent>
-
-                                                    </Grid>
-                                                    <Grid>
-
-                                                        <CardContent >
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>PHONE</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-right',
-
-                                                                    }}>
-                                                                        {employeeInfos.telephone}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>CAREER LEVEL</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        {/* 67 */}
-                                                                        {employeeInfos.level}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>POSITION</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        {/* Senior Accountant */}
-                                                                        {employeeInfos.role}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>LOCATION</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        {/* GurdSholla Warehouse */}
-
-                                                                        {employeeInfos.country}&nbsp;{employeeInfos.region}&nbsp;{employeeInfos.city}
-                                                                    </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-                                                            <Grid container xs={12} style={{
-                                                                display: 'flex',
-                                                                justifyContent: 'space-between',
-
-                                                            }}>
-                                                                <Grid>
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-left'
-                                                                    }}>
-                                                                        <b>EXPERIENCE</b>
-                                                                    </Typography>
-                                                                </Grid>
-                                                                <Grid >
-
-                                                                    <Typography gutterBottom variant="body1" component="h3" style={{
-                                                                        display: 'flex',
-                                                                        justifyContent: 'flex-center'
-                                                                    }}>
-                                                                        15 Years
-                                        </Typography>
-
-                                                                </Grid>
-                                                            </Grid>
-
-
-                                                        </CardContent>
-
-                                                    </Grid>
 
                                                 </Grid>
 
-                                                <Divider></Divider>
+                                            </Grid>
 
-                                                <Typography style={{
-                                                    padding: 10
-                                                }}>
-                                                    The Random Word Generator is a tool to help you create a list of random words. There are many reasons one might be interested in doing this, and you're likely here because you're interested in creating a random word list. This tool can help you do exactly that.
-                                                    The tool is easy to use. All you need to do is choose the number of words you want to create (the default is five, but you can input any number you'd like) and the type of words you want. You can choose from all words, verbs only, nouns only or adjective only depending on which best meets your needs.
-                                                    Below you'll find some of the common ways this tool can be used.
+                                            <Divider></Divider>
+
+                                            <Typography style={{
+                                                padding: 10
+                                            }}>
+                                                The Random Word Generator is a tool to help you create a list of random words. There are many reasons one might be interested in doing this, and you're likely here because you're interested in creating a random word list. This tool can help you do exactly that.
+                                                The tool is easy to use. All you need to do is choose the number of words you want to create (the default is five, but you can input any number you'd like) and the type of words you want. You can choose from all words, verbs only, nouns only or adjective only depending on which best meets your needs.
+                                                Below you'll find some of the common ways this tool can be used.
                                             </Typography>
 
 
 
-                                            </CardActionArea>
-                                            <CardActions>
-                                                <Box style={{
-                                                    height: 10
-                                                }}>
+                                        </CardActionArea>
+                                        <CardActions>
+                                            <Box style={{
+                                                height: 10
+                                            }}>
 
-                                                </Box>
-                                            </CardActions>
-                                        </Card>
-                                    </Grid>
-                                </main>
-                            </Grid>
-                            <Typography>
-                                <h3>Recent Activities Of Yelekal</h3>
-                            </Typography>
+                                            </Box>
+                                        </CardActions>
+                                    </Card>
+                                </Grid>
+                            </main>
+                        </Grid>
+                        <Typography>
+                            <h3>Recent Activities Of Yelekal</h3>
+                        </Typography>
 
-                            <Button> <Link to="/UserTable"
-                            >Go Back</Link></Button>
+                        <Button> <Link to="/UserTable"
+                        >Go Back</Link></Button>
 
 
 
-                        </React.Fragment>
-                    </div>
-                }
+                    </React.Fragment>
+                </div>
             </div>
         )
     }
+
 }
 export default withStyles(styles)(Profile);
 

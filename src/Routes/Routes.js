@@ -21,65 +21,37 @@ import Invoice from '../Components/Finance/components/INVOICE';
 import PDFGEN from '../Components/Finance/components/PDFGenerate';
 
 import Div from '../Components/Saless/components/Div'
+import Logistics from "../Components/Logistics/Logistics";
+import IT from "../Components/IT/IT";
+
+
 
 export default class Routes extends Component {
     render() {
         return (
             <Router history={history}>
                 <Switch>
-<<<<<<< HEAD
-                <Route path="/" component={SignIn} exact />
-                {/* <Route path="/" component={CreateOrder} exact /> */}
-
-
-=======
                 {/* <Route path="/" component={SignIn} exact /> */}
->>>>>>> After Kidest
                     {/* <Route path="/" exact component={Home} /> */}
-                    {/* <Route path="/" component={HR} />  */}
+                    <Route path="/" component={IT} /> 
                     <Route path="/Dashboard" component={HomeNavBar} exact />
                     {/* <Route path="/UserList" component={UserList} /> */}
                     {/* <Route path="/Inventory" component={Inventory} /> */}
                     {/* <Route path="/" component={Inventory} /> */}
                     {/* <Route path="/" component={Div} /> */}
                     {/* <Route path="/" component={CreateOrder} /> */}
-<<<<<<< HEAD
                     <Route path="/Invoice" component={Invoice} exact />  
-                    <Route path="/" component={UserProfile} exact />
-
-
-                    <Route path="/" component={PDFGEN} />
-
-
-
-
-
-
-=======
-                    {/* <Route path="/" component={Sales} /> */}
-                    <Route path="/Invoice" component={Invoice} exact />  
-                    {/* <Route path="/" component={HR} /> */}
->>>>>>> After Kidest
+                    {/* <Route path="/" component={UserProfile} exact /> */}
+                    {/* <Route path="/" component={PDFGEN} /> */}
                     <Route path="/Finance" component={Finance} exact />
                     <Route path="/UsersTable" component={UsersTable} exact/>
                     {/* <Route path="/" component={AddNewProduct} /> */}
-<<<<<<< HEAD
                     <Route path="/profile:id" component={Profile} exact />
-
-
                     {/* <Route path="/" component={UserProfile} /> */}
                     {/* <Route path="/" component={ItemList} /> */}
+                    {/* <Route path="/" component={Sales} exact /> */}
 
 
-                    <Route path="/sales" component={Sales} exact />
-
-
-=======
-                    <Route path="/profile:id" component={Profile} exact/>
-                    {/* <Route path="/" component={UserProfile} /> */}
-                    {/* <Route path="/" component={ItemList} /> */}
-                    <Route path="/" component={Sales} />
->>>>>>> After Kidest
                 </Switch>
             </Router>
         )
