@@ -235,12 +235,12 @@ class viewAllEmployees extends React.Component {
                                 fullWidth
                             />
 
-<Box style={{
+                            <Box style={{
                                 height: 10
                             }}>
 
                             </Box>
-                            
+
                             <TextField
                                 autoFocus
                                 margin="dense"
@@ -251,7 +251,7 @@ class viewAllEmployees extends React.Component {
                             />
                         </DialogContent>
                         <DialogActions>
-                            <Grid display='flex' justify="center" spacing={14   }>
+                            <Grid display='flex' justify="center" spacing={14}>
 
                                 <Button variant='contained' onClick={this.handleClose} color="secondary">
                                     Create Account
