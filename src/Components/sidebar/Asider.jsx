@@ -35,6 +35,7 @@ class Asider extends React.Component {
                 <li><Link to="/view">Task 1</Link></li>
                 <li><Link to="/view">Task 2</Link></li>
                 <li><Link to="/view">Task 3 </Link></li>
+                <li><Link to="/view">Task 3 </Link></li>
               </ul>
             </li>
            
@@ -70,9 +71,9 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Task 1</Link></li>
+                <li><Link to="/add_item">Add Product</Link></li>
                 <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
+                <li><Link to="/add_item">Task 3 </Link></li>
               </ul>
             </li>
             <li className="sub-menu">

@@ -88,7 +88,7 @@ class Profile extends React.Component {
       
         axios.request({
             method: 'GET',
-            url: API + 'employe/1',
+            url: API + "employe/"+this.props.location.state,
             responseType: 'json',
             headers: {
               "Content-Type": "application/json"

@@ -43,6 +43,7 @@ import EmployeProfile from './Components/HR/components/UserProfile/employe_profi
 import Asider from './Components/sidebar/Asider'
 import Nav from './Components/nav/nav'
 import Dashboard from './Components/Dashboard/HomeNavBar'
+import AddNewProduct from './Components/Inventory/components/AddNewProduct'
 
 class App extends React.Component {
     constructor() {
@@ -74,6 +75,11 @@ class App extends React.Component {
 									<PrivateRoute
 										path="/"
 										component={Dashboard}
+										exact
+									/>
+										<PrivateRoute
+										path="/add_item"
+										component={AddNewProduct}
 										exact
 									/>
                	<PrivateRoute

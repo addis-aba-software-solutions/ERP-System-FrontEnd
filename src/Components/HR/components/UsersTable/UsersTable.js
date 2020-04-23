@@ -138,9 +138,12 @@ class UsersTable extends React.Component {
                             pathname: '/employe_profile',
                             state: employeeInfos.employeId,                                                   
                           }}>View</Link>
+                          
                         </button></TableCell>
                      
-                       
+                        <TableCell><button>
+                        delete
+                        </button></TableCell>
                         
                       </TableRow>
                     )
