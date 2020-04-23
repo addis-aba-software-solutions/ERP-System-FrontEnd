@@ -34,8 +34,8 @@ import "./App.css";
 import AddEmployee from "./Components/HR/components/UserProfile/UserProfile";
 import AllEmploye from "./Components/HR/components/UsersTable/UsersTable";
 import EmployeProfile from "./Components/HR/components/UserProfile/employe_profile";
-import AddAccount from "./Components/HR/components/UsersTable/add_account";
-import ViewAccount from "./Components/HR/components/UsersTable/view_account";
+// import AddAccount from "./Components/HR/components/UsersTable/add_account";
+// import ViewAccount from "./Components/HR/components/UsersTable/view_account";
 import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
 import Dashboard from "./Components/Dashboard/HomeNavBar";
@@ -79,16 +79,16 @@ class App extends React.Component {
                     component={EmployeProfile}
                     exact
                   />
-                  <PrivateRoute
+                  {/* <PrivateRoute
                     path="/view_account"
                     component={ViewAccount}
                     exact
-                  />
-                  <PrivateRoute
+                  /> */}
+                  {/* <PrivateRoute
                     path="/add_account"
                     component={AddAccount}
                     exact
-                  />
+                  /> */}
                 </section>
               </section>
             </div>

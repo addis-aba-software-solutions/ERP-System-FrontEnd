@@ -4,8 +4,11 @@ import "./../../App.css";
 import { blue } from "@material-ui/core/colors";
 import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import ArrowDropDownCircleIcon from "@material-ui/icons/ArrowDropDownCircle";
 import Logo from "../../Assets/NAZO.png";
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+
+
+
 
 class Nav extends React.Component {
   logoutHandler = (e) => {
@@ -19,7 +22,7 @@ class Nav extends React.Component {
         <div
           className="top-nav"
           style={{
-            paddingBottom: 15,
+            paddingBottom: 20,
           }}
         >
           <ul className="nav pull-left top-menu">
@@ -43,13 +46,14 @@ class Nav extends React.Component {
               container
               style={{
                 paddingBottom: 8,
+                marginRight: 20,
               }}
               spacing={3}
             >
               <Grid
                 item
                 style={{
-                  marginTop: 12,
+                  marginTop: 7,
                 }}
               >
                 <li className="dropdown">
@@ -123,7 +127,7 @@ class Nav extends React.Component {
                       <Typography
                         variant="h5"
                         style={{
-                          marginTop: 10,
+                          marginTop: 5,
                           color: "#FFFFFF",
                         }}
                       >
@@ -131,17 +135,21 @@ class Nav extends React.Component {
                       </Typography>
                       {/* <span className="profile-ava"> */}
                       <Avatar
+                        fontSize="small"
                         alt=""
                         src="img/sample-img-1.jpg"
                         style={{
                           marginLeft: 10,
                           marginRight: 10,
+                          width: 30,
+                          height: 30,
                         }}
                       />
-                      <ArrowDropDownCircleIcon
+                      <ArrowDropDownIcon
                         style={{
                           color: "#FFFFFF",
-                          marginTop: 10,
+                          marginTop: 5,
+                          height: 20
                         }}
                         fontSize="large"
                       />

@@ -59,7 +59,7 @@ class UsersTable extends React.Component {
       search: ''
     };
   }
-  deleteFun(employeId){
+  deleteFun(employeId) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -72,39 +72,39 @@ class UsersTable extends React.Component {
       if (result.value) {
         axios.request({
           method: 'DELETE',
-          url: API+"employe/"+employeId,
+          url: API + "employe/" + employeId,
           responseType: 'json',
           headers: {
-            "Content-Type":"application/json",
+            "Content-Type": "application/json",
             "Authorization": 'Bearer ' + localStorage.getItem('token')
-            
-          }, 
+
+          },
         })
-          .then((user) => {  
-            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);   
+          .then((user) => {
+            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);
             this.setState({
-              employeeInfo:items
+              employeeInfo: items
             })
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success'
-            )  
-          
+            )
+
           })
-          .catch(error => {  
+          .catch(error => {
             Swal.fire(
               'Error!',
               'Something went wrogn.',
               'error'
-            )  
+            )
           })
-    
-      
+
+
       }
     })
-  
-    
+
+
   }
   updateSearch(e) {
     this.setState({
@@ -114,11 +114,11 @@ class UsersTable extends React.Component {
 
 
   componentDidMount() {
-    axios.get(API+"employe/")
+    axios.get(API + "employe/")
       .then(res => {
         this.setState({
           employeeInfo: res.data,
-          
+
         })
       })
       .catch(error => {
@@ -127,10 +127,10 @@ class UsersTable extends React.Component {
   }
   render() {
 
-   const {employeeInfo, error}= this.state;
-   const { classes } = this.props
-  
-    let filteredEmployee = employeeInfo.filter((employeeInfos)=>{
+    const { employeeInfo, error } = this.state;
+    const { classes } = this.props
+
+    let filteredEmployee = employeeInfo.filter((employeeInfos) => {
       return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
       // console.log(item);
     })
@@ -150,9 +150,9 @@ class UsersTable extends React.Component {
             <PerfectScrollbar>
               <div className={classes.inner}>
                 <Button> <Link to="/add_employe"
-                >Add New Employee</Link></Button>
+                ><Typography variant='h4'>Add New Employee</Typography></Link></Button>
                 <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
-                <SearchBar search={this.search} updateSearch={this.updateSearch}/>
+                <SearchBar search={this.search} updateSearch={this.updateSearch} />
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -181,22 +181,22 @@ class UsersTable extends React.Component {
                         <TableCell><button>
                           <Link to={{
                             pathname: '/employe_profile',
-                            state: employeeInfos.employeId,                                                   
+                            state: employeeInfos.employeId,
                           }}>View</Link>
-                          
+
                         </button></TableCell>
-                     
-                        <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
-                        <Link>delete</Link>
+
+                        <TableCell><button onClick={() => this.deleteFun(employeeInfos.employeId)}>
+                          <Link>delete</Link>
                         </button></TableCell>
-                        
+
                       </TableRow>
                     )
 
                     )}
                   </TableBody>
                 </Table>
-                
+
               </div>
             </PerfectScrollbar>
           </CardContent>
