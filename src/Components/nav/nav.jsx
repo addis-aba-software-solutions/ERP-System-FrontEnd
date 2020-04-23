@@ -5,7 +5,7 @@ import { blue } from "@material-ui/core/colors";
 import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import Logo from "../../Assets/NAZO.png";
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 
 class Nav extends React.Component {
   logoutHandler = (e) => {
@@ -49,9 +49,11 @@ class Nav extends React.Component {
             >
               <Grid
                 item
-                style={{
-                  marginTop: 7,
-                }}
+                style={
+                  {
+                    // marginTop: 7,
+                  }
+                }
               >
                 <li className="dropdown">
                   <a data-toggle="dropdown">
@@ -60,7 +62,7 @@ class Nav extends React.Component {
                         style={{
                           color: "#FFFFFF",
                         }}
-                        fontSize="large"
+                        // fontSize="large"
                       />
                     </Badge>
                   </a>
@@ -122,7 +124,7 @@ class Nav extends React.Component {
                   >
                     <Grid container>
                       <Typography
-                        variant="h5"
+                        // variant="h5"
                         style={{
                           marginTop: 5,
                           color: "#FFFFFF",
@@ -146,7 +148,7 @@ class Nav extends React.Component {
                         style={{
                           color: "#FFFFFF",
                           marginTop: 5,
-                          height: 20
+                          height: 20,
                         }}
                         fontSize="large"
                       />
