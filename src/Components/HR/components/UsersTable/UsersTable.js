@@ -58,6 +58,7 @@ class EmployeTable extends React.Component {
       search: ''
     };
   }
+  
   deleteFun(employeId) {
     Swal.fire({
       title: 'Are you sure?',
@@ -69,41 +70,9 @@ class EmployeTable extends React.Component {
       confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
       if (result.value) {
-        axios.request({
-          method: 'DELETE',
-          url: API + "employe/" + employeId,
-          responseType: 'json',
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('token')
-
-          },
-        })
-          .then((user) => {
-            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);
-            this.setState({
-              employeeInfo: items
-            })
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )
-
-          })
-          .catch(error => {
-            Swal.fire(
-              'Error!',
-              'Something went wrogn.',
-              'error'
-            )
-          })
-
-
+        this.props.deleteEmploye(employeId)
       }
     })
-
-
   }
   updateSearch(e) {
     this.setState({
