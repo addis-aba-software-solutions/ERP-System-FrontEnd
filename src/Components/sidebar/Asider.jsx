@@ -83,9 +83,8 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Task 1</Link></li>
-                <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
+                <li><Link to="/view">Add User</Link></li>
+                <li><Link to="/view_account">View Users</Link></li>
               </ul>
             </li>
 

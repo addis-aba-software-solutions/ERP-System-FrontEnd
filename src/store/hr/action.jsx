@@ -57,7 +57,53 @@ function addNewEmployee(data) {
     }
   }
   
-
+  function addAccount(data) {
+    return (dispatch)  => {
+      var param={
+        username:data.username,
+        lastName:data.password,
+        department:data.depValue,
+        roles:data.rolValue,
+        level:data.levValue,
+      
+      }
+  
+      dispatch({
+        type: appConstants.REGISTER_REQUEST,
+        payload:true
+      }
+      );
+      axios.request({
+        method: 'POST',
+        url: API+"account/",
+        responseType: 'json',
+        headers: {
+          "Content-Type":"application/json"
+        }, 
+        data:param
+      })
+        .then((user) => {     
+          Swal.fire({
+            title: 'Success',
+            icon: 'success',
+          })    
+          dispatch({
+            type: appConstants.REGISTER_SUCCESS,
+            payload:user.data.user
+          }
+          );
+        })
+        .catch(error => {  
+          dispatch({
+            type: appConstants.REGISTER_FAILURE,
+            payload:error.response.data.errors
+          }
+          );
+        })
+      }
+    }
+    
+  
 const actions = {
   addNewEmployee,
 };

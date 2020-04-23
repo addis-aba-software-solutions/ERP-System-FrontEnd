@@ -7,6 +7,7 @@ import PerfectScrollbar from 'react-perfect-scrollbar';
 import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import Swal from 'sweetalert2'
 import {
   Card,
   CardActions,
@@ -57,6 +58,53 @@ class UsersTable extends React.Component {
       employeeInfo: [],
       search: ''
     };
+  }
+  deleteFun(employeId){
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.value) {
+        axios.request({
+          method: 'DELETE',
+          url: API+"employe/"+employeId,
+          responseType: 'json',
+          headers: {
+            "Content-Type":"application/json",
+            "Authorization": 'Bearer ' + localStorage.getItem('token')
+            
+          }, 
+        })
+          .then((user) => {  
+            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);   
+            this.setState({
+              employeeInfo:items
+            })
+            Swal.fire(
+              'Deleted!',
+              'Your file has been deleted.',
+              'success'
+            )  
+          
+          })
+          .catch(error => {  
+            Swal.fire(
+              'Error!',
+              'Something went wrogn.',
+              'error'
+            )  
+          })
+    
+      
+      }
+    })
+  
+    
   }
   updateSearch(e) {
     this.setState({
@@ -121,9 +169,6 @@ class UsersTable extends React.Component {
                   </TableHead>
                   <TableBody>
 
-
-                  {/* console.log({this.employeeInfo.map(employeeInfos=>({employeeInfos.employeId}))}) */}
-
                     {filteredEmployee.map(employeeInfos => (
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
@@ -141,8 +186,8 @@ class UsersTable extends React.Component {
                           
                         </button></TableCell>
                      
-                        <TableCell><button>
-                        delete
+                        <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
+                        <Link>delete</Link>
                         </button></TableCell>
                         
                       </TableRow>
