@@ -65,7 +65,7 @@ function addNewEmployee(data) {
         department:data.depValue,
         roles:data.rolValue,
         level:data.levValue,
-      
+    
       }
   
       dispatch({
