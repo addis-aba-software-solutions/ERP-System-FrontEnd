@@ -134,7 +134,7 @@ class EmployeTable extends React.Component {
                     </TableHead>
                     <TableBody>
 
-                      {filteredEmployee.map(employeeInfos => (
+                      {this.props.employees.map(employeeInfos => (
                         <TableRow key={employeeInfos.employeId}>
                           <TableCell>{employeeInfos.employeId}</TableCell>
                           <TableCell>{employeeInfos.firstName}</TableCell>
@@ -145,27 +145,19 @@ class EmployeTable extends React.Component {
 
                           <TableCell align='center'>
                             <Grid spacing={4}>
-
                               <IconButton style={{
                                 marginTop: 10
                               }}>
-
                                 <Link to={{
                                   pathname: '/employe_profile',
                                   state: employeeInfos.employeId,
                                 }}>
                                   <VisibilityIcon />
-
                                 </Link>
-
                               </IconButton>
-
                               <IconButton onClick={() => this.deleteFun(employeeInfos.employeId)}>
-
-
                                 <DeleteIcon color='secondary' />
                               </IconButton>
-
                             </Grid>
 
                           </TableCell>
