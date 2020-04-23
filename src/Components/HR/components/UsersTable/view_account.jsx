@@ -81,7 +81,7 @@ this.props.addAccount(data)
     
   }
   deleteFun(employeId){
-
+    this.props.deleteAccount(employeId)
   }
   updateSearch(e) {
     this.setState({
@@ -146,10 +146,6 @@ this.props.addAccount(data)
                             ):( <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
                             <Link>delete</Link>
                             </button></TableCell>)}
-                        
-                     
-                       
-                        
                       </TableRow>
                     )
 
@@ -180,6 +176,7 @@ function mapStateToProps(state) {
 const mapDispatchToProps = {
     addAccount:actions.addAccount,
     getEmploye:actions.getEmploye,
+    deleteAccount:actions.deleteAccount,
 
     
 };

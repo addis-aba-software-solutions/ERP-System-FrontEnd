@@ -27,7 +27,8 @@ import VisibilityIcon from '@material-ui/icons/Visibility';
 import history from '../../../../Routes/history'
 import SearchBar from '../../../SearchBar/SearchBar'
 import API from './../../../../api/API'
-
+import actions from './../../../../store/hr/action'
+import { connect } from 'react-redux'
 const styles = theme => ({
 
   root: {},
@@ -49,9 +50,7 @@ const styles = theme => ({
   }
 });
 
-class UsersTable extends React.Component {
-
-
+class EmployeTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -59,7 +58,7 @@ class UsersTable extends React.Component {
       search: ''
     };
   }
-  deleteFun(employeId){
+  deleteFun(employeId) {
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -72,39 +71,39 @@ class UsersTable extends React.Component {
       if (result.value) {
         axios.request({
           method: 'DELETE',
-          url: API+"employe/"+employeId,
+          url: API + "employe/" + employeId,
           responseType: 'json',
           headers: {
-            "Content-Type":"application/json",
+            "Content-Type": "application/json",
             "Authorization": 'Bearer ' + localStorage.getItem('token')
-            
-          }, 
+
+          },
         })
-          .then((user) => {  
-            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);   
+          .then((user) => {
+            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);
             this.setState({
-              employeeInfo:items
+              employeeInfo: items
             })
             Swal.fire(
               'Deleted!',
               'Your file has been deleted.',
               'success'
-            )  
-          
+            )
+
           })
-          .catch(error => {  
+          .catch(error => {
             Swal.fire(
               'Error!',
               'Something went wrogn.',
               'error'
-            )  
+            )
           })
-    
-      
+
+
       }
     })
-  
-    
+
+
   }
   updateSearch(e) {
     this.setState({
@@ -114,25 +113,15 @@ class UsersTable extends React.Component {
 
 
   componentDidMount() {
-    axios.get(API+"employe/")
-      .then(res => {
-        this.setState({
-          employeeInfo: res.data,
-          
-        })
-      })
-      .catch(error => {
-        console.log(error);
-      })
+   this.props.getEmploye()
   }
   render() {
 
-   const {employeeInfo, error}= this.state;
-   const { classes } = this.props
-  
-    let filteredEmployee = employeeInfo.filter((employeeInfos)=>{
+    const { employeeInfo, error } = this.state;
+    const { classes } = this.props
+
+    let filteredEmployee = employeeInfo.filter((employeeInfos) => {
       return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-      // console.log(item);
     })
     if (error) {
       return (
@@ -150,9 +139,9 @@ class UsersTable extends React.Component {
             <PerfectScrollbar>
               <div className={classes.inner}>
                 <Button> <Link to="/add_employe"
-                >Add New Employee</Link></Button>
+                ><Typography variant='h4'>Add New Employee</Typography></Link></Button>
                 <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
-                <SearchBar search={this.search} updateSearch={this.updateSearch}/>
+                <SearchBar search={this.search} updateSearch={this.updateSearch} />
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -168,8 +157,7 @@ class UsersTable extends React.Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-
-                    {filteredEmployee.map(employeeInfos => (
+                    {this.props.employees.map(employeeInfos => (
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
                         <TableCell>{employeeInfos.firstName}</TableCell>
@@ -181,22 +169,22 @@ class UsersTable extends React.Component {
                         <TableCell><button>
                           <Link to={{
                             pathname: '/employe_profile',
-                            state: employeeInfos.employeId,                                                   
+                            state: employeeInfos.employeId,
                           }}>View</Link>
-                          
+
                         </button></TableCell>
-                     
-                        <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
-                        <Link>delete</Link>
+
+                        <TableCell><button onClick={() => this.deleteFun(employeeInfos.employeId)}>
+                          <Link>delete</Link>
                         </button></TableCell>
-                        
+
                       </TableRow>
                     )
 
                     )}
                   </TableBody>
                 </Table>
-                
+
               </div>
             </PerfectScrollbar>
           </CardContent>
@@ -209,5 +197,21 @@ class UsersTable extends React.Component {
   }
 }
 
-export default withStyles(styles)(UsersTable);
 
+function mapStateToProps(state) {
+	return {
+        loading: state.hrReducer.loading,
+        users:state.hrReducer.users,
+        employees:state.hrReducer.employees,
+        users:state.hrReducer.users,
+        errors:state.hrReducer.errors,
+	}
+}
+const mapDispatchToProps = {
+    getEmploye:actions.getEmploye,
+    deleteEmploye:actions.deleteEmploye,
+
+    
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(EmployeTable));
