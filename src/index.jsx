@@ -7,7 +7,7 @@ import Store from './store/store'
 import SignIn from './Components/SignIn/SignIn'
 import PrivateRoute from './auth/private_route'
 import PublicRoute from './auth/public_route'
-import App from './app'
+import App from './App'
 
 let storeInstance = Store();
 ReactDOM.render(

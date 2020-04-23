@@ -24,7 +24,10 @@ import { withStyles } from '@material-ui/core/styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Form } from 'react-bootstrap'
-import Api from '../../../../api/API'
+import API from '../../../../api/API'
+import { connect } from 'react-redux'
+import actions from '../../../../store/hr/action'
+import Error from '../../../../error/error'
 
 
 const styles = theme => ({
@@ -65,165 +68,102 @@ const styles = theme => ({
 });
 
 
-
 class UserProfile extends Component {
 
   constructor() {
     super();
-   
     this.state = {
       depValue: '',
       rolValue: '',
       levValue: '',
-
       deps: [],
       rol: [],
       lev: [],
-    
+      firstName: '',
+      lastName: '',
+      email: '',
+      telephone: '',
+      termOfEmployment: '',
+      country: '',
+      city: '',
+      region: '',
+      birthDate: '',
+      hiredDate: '',
+
     }
     this.submit = this.submit.bind(this);
     this.departmentDropDown = this.departmentDropDown.bind(this);
     this.levelDropDown = this.levelDropDown.bind(this);
     this.roleDropDown = this.roleDropDown.bind(this);
-    this.firstNameChange=this.firstNameChange.bind(this);
-    this.lastNameChange=this.lastNameChange.bind(this);
-    this.emailChange=this.emailChange.bind(this);
-    this.countryChange=this.countryChange.bind(this);
-    this.regionChange=this.regionChange.bind(this);
-    this.termofEmploymentChange=this.termofEmploymentChange.bind(this);
-    this.cityChange=this.cityChange.bind(this);
-    this.telephoneChange=this.telephoneChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     axios.request({
       method: 'GET',
-      url: API+"department/",
+      url: API + "department/",
       responseType: 'json',
       headers: {
-        "Content-Type":"application/json"
-      }, 
-    })
-      .then((user) => {         
-      console.log(user);
-      
-      })
-      .catch(error => {  
-        console.log(user);
-      })
-    }
-  
-
-
-  submit = () => {
- 
-    axios.post('http://0.0.0.0:8000/api/v1/employe/', {
-      firstName:  this.state.firstValue,
-      lastName: this.state.lastValue,
-      email: this.state.emailValue,
-      birthDate: "2020-10-10",
-      hiredDate: "2020-10-10",
-      termOfEmployment: 'Hourly',
-      // this.state.termofEmploymentValue,
-      country:  this.state.countryValue,
-      region: this.state.regionValue,
-      city:  this.state.cityValue,
-      telephone:  this.state.telephoneValue,
-
-      department: this.state.depValue,
-      // roles:1,
-      roles: this.state.rolValue,
-
-      // level:1
-      level: this.state.levValue,
-
+        "Content-Type": "application/json"
+      },
     })
       .then((response) => {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          title: 'Registered',
-          showConfirmButton: false,
-          timer: 700
-        }).then(history.push('/UsersTable'))
+        this.setState({
+          deps: response.data
+        })
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 
-      },
-        (error) => {
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            title: 'Eror',
-            showConfirmButton: false,
-            timer: 700
-          }).then(history.push('/UsersTable'))
-
-        });
-
-
-
-
+  submit = () => {
+   this.props.addNewEmployee(this.state)
   }
 
   departmentDropDown(e) {
     this.setState({
       depValue: e.target.value
     })
-  }
-  levelDropDown(e) {
-    this.setState({
-      levValue: e.target.value
-    })
+    this.state.deps.map((value, index) => {
+      if (value.departmentId == e.target.value && value.department_roles != null) {
+        this.setState({
+          rol: value.department_roles
+        })
+      }
+
+    });
+
   }
   roleDropDown(e) {
     this.setState({
       rolValue: e.target.value
     })
+    this.state.rol.map((value) => {
+      if (value.roleId == e.target.value && value.role_levels != null) {
+        console.log(value.role_levels);
+        this.setState({
+          lev: value.role_levels
+        })
+      }
+
+    });
   }
-  firstNameChange(e) {
+
+  levelDropDown(e) {
     this.setState({
-      firstValue: e.target.value
-    })
-  }
-  lastNameChange(e) {
-    this.setState({
-      lastValue: e.target.value
-    })
-  }
-  emailChange(e) {
-    this.setState({
-      emailValue: e.target.value
-    })
-  }
-  telephoneChange(e) {
-    this.setState({
-      telephoneValue: e.target.value
-    })
-  }
-  termofEmploymentChange(e) {
-    this.setState({
-      termofEmploymentValue: e.target.value
+      levValue: e.target.value
     })
   }
 
-  countryChange(e) {
+  handleChange(e) {
     this.setState({
-      countryValue: e.target.value
-    })
-  }
- regionChange(e) {
-    this.setState({
-     regionValue: e.target.value
-    })
-  }
-  cityChange(e) {
-    this.setState({
-      cityValue: e.target.value
+      [e.target.name]: e.target.value
     })
   }
 
 
   render() {
     const { error, newEmployeeInfo, deps, rol, lev, empId } = this.state;
-
     const { classes } = this.props
     var depValue = this.state.depValue;
     var rolValue = this.state.rolValue;
@@ -236,11 +176,6 @@ class UserProfile extends Component {
     var emailValue = this.state.emailValue;
     var lastValue = this.state.lastValue;
     var firstValue = this.state.firstValue;
-
-
-
-
- 
 
     return (
       <React.Fragment>
@@ -268,36 +203,25 @@ class UserProfile extends Component {
                       label="First name"
                       fullWidth
                       autoComplete="fname"
-
-                      // value={this.state.newEmployeeInfo.firstName}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.firstName = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.firstNameChange} 
-                      value={firstValue} 
+                      onChange={this.handleChange}
+                      value={firstValue}
                     />
+                    
+                    <Error  error={this.props.errors.firstName?this.props.errors.firstName:null}/> 
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
                       required
                       id="lastName"
-                      n
-                      ame="lastName"
+                      name="lastName"
                       label="Last name"
                       fullWidth
                       autoComplete="lname"
-                      // value={this.state.newEmployeeInfo.lastName}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.lastName = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.lastNameChange} 
-                      value={lastValue} 
+                      onChange={this.handleChange}
+                      value={lastValue}
 
                     />
+     <Error  error={this.props.errors.lastName?this.props.errors.lastName:null}/> 
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -307,17 +231,11 @@ class UserProfile extends Component {
                       label="Email"
                       fullWidth
                       autoComplete="Email"
-                      // value={this.state.newEmployeeInfo.email}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.email = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-
-                      onChange={this.emailChange}
-                      value={emailValue} 
+                      onChange={this.handleChange}
+                      value={emailValue}
 
                     />
+ <Error  error={this.props.errors.email?this.props.errors.email:null}/> 
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
@@ -326,35 +244,25 @@ class UserProfile extends Component {
                       label="Phone Number"
                       fullWidth
                       autoComplete="PhoneNumber"
-                      // value={this.state.newEmployeeInfo.telephone}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.telephone = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.telephoneChange} 
-                      value={telephoneValue} 
+                      onChange={this.handleChange}
+                      value={telephoneValue}
                     />
+
+ <Error  error={this.props.errors.telephone?this.props.errors.telephone:null}/> 
                   </Grid>
                   <Grid item xs={12} sm={6}>
 
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Term Of Employment</InputLabel>
-                      <Select  native defaultValue="" id="grouped-native-select">
+                      <Select native defaultValue="" id="grouped-native-select" name='termOfEmployment'   onChange={this.handleChange} value={termofEmploymentValue}>
                         <option aria-label="None" value="" />
                         <option >Permanent</option>
                         <option >Contract</option>
                         <option >Hourly</option>
-                        {/* value={this.state.newEmployeeInfo.termOfEmployment}                   
-                        onChange={(e) => {
-                          let { newEmployeeInfo } = this.state;
-                          newEmployeeInfo.termOfEmployment = e.target.value;
-                          this.setState({ newEmployeeInfo });
-
-                        }} */}
-                         onChange={this.termofEmploymentChange}
-                          value={termofEmploymentValue} 
+                       
                       </Select>
+                    
+ <Error  error={this.props.errors.termOfEmployment?this.props.errors.termOfEmployment:null}/>   
                     </FormControl>
 
 
@@ -368,37 +276,45 @@ class UserProfile extends Component {
                       label="Country"
                       fullWidth
                       autoComplete="country"
-                      // value={this.state.newEmployeeInfo.country}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.country = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.countryChange}
-                      value={countryValue} 
+                      onChange={this.handleChange}
+                      value={countryValue}
 
 
                     />
+
+ <Error  error={this.props.errors.country?this.props.errors.country:null}/> 
                   </Grid>
 
                   <Grid item xs={12} sm={4}>
-
                     <FormControl className={classes.formControl} fullWidth>
                       <InputLabel htmlFor="grouped-native-select">Department</InputLabel>
-
                       <Select onChange={this.departmentDropDown} value={depValue} native id="grouped-native-select">
                         <option aria-label="None" value="" />
-
                         {deps.map(dep => (
                           <option value={dep.departmentId}>{dep.departmentName}</option>
                         ))}
-
                       </Select>
-
-
+                     
+ <Error  error={this.props.errors.department?this.props.errors.department:null}/>  
                     </FormControl>
 
 
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+
+                    <FormControl className={classes.formControl} fullWidth>
+                      <InputLabel htmlFor="grouped-native-select">Role</InputLabel>
+                      <Select onChange={this.roleDropDown} value={rolValue} native id="grouped-native-select">
+                        <option aria-label="None" value="" />
+                        {this.state.rol.map(rols =>
+                          <option value={rols.roleId} key={rols.roleId}>{rols.role}</option>
+                        )}
+
+                      </Select>
+
+                    </FormControl>
+
+<Error  error={this.props.errors.roles?this.props.errors.roles:null}/> 
                   </Grid>
                   <Grid item xs={12} sm={4}>
 
@@ -409,39 +325,12 @@ class UserProfile extends Component {
                         {this.state.lev.map(levs =>
                           <option value={levs.levelId} key={levs.levelId}>{levs.level}</option>
                         )}
-                        {/* value={this.state.newEmployeeInfo.level} */}
 
                       </Select>
+                      
                     </FormControl>
 
-
-
-
-
-
-                  </Grid>
-
-                  <Grid item xs={12} sm={4}>
-
-                    <FormControl className={classes.formControl} fullWidth>
-                      <InputLabel htmlFor="grouped-native-select">Role</InputLabel>
-                      <Select onChange={this.roleDropDown} value={rolValue} native id="grouped-native-select">
-                        <option aria-label="None" value="" />
-                        {this.state.rol.map(rols =>
-                          <option value={rols.roleId}  key={rols.roleId}>{rols.role}</option>
-                        )}
-                        {/* value={this.state.newEmployeeInfo.role}
-                        onChange={(e) => {
-                          let { newEmployeeInfo } = this.state;
-                          newEmployeeInfo.role = e.target.value;
-                          // newEmployeeInfo.roleId = e.target.value;
-
-                          this.setState({ newEmployeeInfo });
-                        }} */}
-                      </Select>
-                    </FormControl>
-
-
+<Error  error={this.props.errors.level?this.props.errors.level:null}/> 
                   </Grid>
 
 
@@ -453,17 +342,11 @@ class UserProfile extends Component {
                       label="City"
                       fullWidth
                       autoComplete="city"
-                      // value={this.state.newEmployeeInfo.city}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.city = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.cityChange}
-                      value={cityValue} 
-
-
+                      onChange={this.handleChange}
+                      value={cityValue}
                     />
+
+<Error  error={this.props.errors.city?this.props.errors.city:null}/> 
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
@@ -474,15 +357,11 @@ class UserProfile extends Component {
                       label="Region"
                       fullWidth
                       autoComplete="region"
-                      // value={this.state.newEmployeeInfo.region}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.region = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.regionChange}
-                      value={regionValue} 
+                      onChange={this.handleChange}
+                      value={regionValue}
                     />
+
+<Error  error={this.props.errors.region?this.props.errors.region:null}/> 
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
@@ -490,16 +369,19 @@ class UserProfile extends Component {
                       <TextField
                         fullWidth
                         id="date"
+                        name='birthDate'
                         label="BirthDate"
                         type="date"
-                        defaultValue="2017-05-24"
                         className={classes.textField}
                         InputLabelProps={{
                           shrink: true,
                         }}
+                        onChange={this.handleChange}
                       />
+                      
                     </form>
 
+                    <Error  error={this.props.errors.birthDate?this.props.errors.birthDate:null}/> 
                   </Grid>
 
                   <Grid item xs={12} sm={6}>
@@ -509,15 +391,18 @@ class UserProfile extends Component {
                         fullWidth
                         id="date"
                         label="Hired Date"
+                        name="hiredDate"
                         type="date"
-                        defaultValue="2017-05-24"
                         className={classes.textField}
                         InputLabelProps={{
                           shrink: true,
                         }}
+                        onChange={this.handleChange}
                       />
+
                     </form>
 
+<Error  error={this.props.errors.hiredDate?this.props.errors.hiredDate:null}/> 
                   </Grid>
 
 
@@ -542,7 +427,17 @@ class UserProfile extends Component {
   }
 }
 
+function mapStateToProps(state) {
+	return {
+        loading: state.hrReducer.loading,
+        users:state.hrReducer.users,
+        errors:state.hrReducer.errors,  
+	}
+}
+const mapDispatchToProps = {
+  addNewEmployee:actions.addNewEmployee,
+};
 
-export default withStyles(styles)(UserProfile);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(UserProfile));
 
 

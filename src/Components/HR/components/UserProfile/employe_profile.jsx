@@ -20,10 +20,7 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserProfile from './UserProfile'
 import UserTable from '../UsersTable/UsersTable';
-
-
-
-
+import API from '../../../../api/API'
 
 const styles = theme => ({
     appBar: {
@@ -80,33 +77,39 @@ const styles = theme => ({
 });
 
 class Profile extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
             singleEmployee: []
         }
-
-        
     }
-    // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
+
     componentDidMount = () => {
-        //const employeId = this.props.location.state.employeeInfos;
-       // employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId))
-        const employeId = this.props.location.state.employeeInfos;
-        //console.log(employeeInfos);
-        console.log(employeId);
-        const req = fetch(`http:/.0.0.0.0:8000/api/v1/employe/${employeId}`);
-        const res = req.json();
-        this.setState({ singleEmployee: res.employeeInfo });
-        console.log(this.state.singleEmployee);
+      
+        axios.request({
+            method: 'GET',
+            url: API + 'employe/1',
+            responseType: 'json',
+            headers: {
+              "Content-Type": "application/json"
+            },
+          })
+            .then((response) => {
+                this.setState({
+                    singleEmployee:response.data
+                })
+             console.log(response.data)
+            })
+            .catch(error => {
+              console.log(error);
+            })
     }
 
     render() {
 
         const { classes } = this.props;
         const employeeInfos = this.state.singleEmployee;
-        console.log(this.props);
+        
 
         return (
             <div>
@@ -157,7 +160,7 @@ class Profile extends React.Component {
                                                 }
                                             >
                                                 EDIT
-      </Button>
+                                          </Button>
 
                                         </Grid>
                                     </Grid>
@@ -378,7 +381,7 @@ class Profile extends React.Component {
                                                     marginTop: 10,
                                                     padding: 10
                                                 }}>
-                                                    More About <b>Yelekal</b>
+                                                    More About <b>{employeeInfos.firstName}</b>
                                                 </Typography>
                                                 <Divider></Divider>
 
@@ -681,7 +684,7 @@ class Profile extends React.Component {
                                 </main>
                             </Grid>
                             <Typography>
-                                <h3>Recent Activities Of Yelekal</h3>
+                                <h3>Recent Activities Of <b>{employeeInfos.firstName}</b></h3>
                             </Typography>
 
                             <Button> <Link to="/UserTable"
