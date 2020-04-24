@@ -6,8 +6,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 // import { makeStyles } from '@material-ui/styles';
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import { Link, Redirect } from "react-router-dom";
 import {
   Card,
   CardActions,
@@ -26,7 +25,9 @@ import {
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import history from "../../../../Routes/history";
 import SearchBar from "../../../SearchBar/SearchBar";
-import API from "./../../../../api/API";
+import API from "../../../../api/API";
+import Swal from "sweetalert2";
+//import {Redirect} from 'react-router-dom';
 
 const styles = (theme) => ({
   root: {},
@@ -54,7 +55,9 @@ class UsersTable extends React.Component {
     this.state = {
       employeeInfo: [],
       search: "",
+      redirect: false,
     };
+    this.logout = this.logout.bind(this);
   }
   deleteFun(employeId) {
     Swal.fire({
@@ -98,6 +101,20 @@ class UsersTable extends React.Component {
     });
   }
 
+  // componentWillMount(){
+  //   if(sessionStorage.getItem("userData")){
+  //     console.log("From Login Page");
+
+  //   }
+  //   else{
+  //     this.setState({redirect:true});
+  //   }
+  // }
+  logout() {
+    sessionStorage.getItem("userData");
+    sessionStorage.clear();
+  }
+
   componentDidMount() {
     axios
       .get(API + "employe/")
@@ -113,6 +130,21 @@ class UsersTable extends React.Component {
   render() {
     const { employeeInfo, error } = this.state;
     const { classes } = this.props;
+
+    if (this.state.redirect) {
+      return <Redirect to={"./login"} />;
+    }
+    //  console.log(employeeInfo)
+    //  employeeInfo.map((employ)=>{
+
+    //  });
+    //console.log(employeeInfo.map(employeeInfos=>(employeeInfos.employeId)));
+
+    //console.log(employeeInfo);
+
+    // if(!employeeInfo) return [];
+    //  else {
+    // console.log(employeeInfo.employeId);
 
     let filteredEmployee = employeeInfo.filter((employeeInfos) => {
       return (
@@ -132,8 +164,9 @@ class UsersTable extends React.Component {
               <div className={classes.inner}>
                 <Button>
                   {" "}
-                  <Link to="/add_employe">Add New Employee</Link>
+                  <Link to="/UserProfile">Add New Employee</Link>
                 </Button>
+                <Button onClick={this.logout}>LogOut</Button>
                 <input
                   value={this.state.search}
                   onChange={this.updateSearch.bind(this)}
@@ -167,28 +200,13 @@ class UsersTable extends React.Component {
                         </TableCell>
                         <TableCell>{employeeInfos.roles.role}</TableCell>
 
-                        <TableCell>
-                          <button>
-                            <Link
-                              to={{
-                                pathname: "/employe_profile",
-                                state: employeeInfos.employeId,
-                              }}
-                            >
-                              View
-                            </Link>
-                          </button>
-                        </TableCell>
-
-                        <TableCell>
-                          <button
-                            onClick={() =>
-                              this.deleteFun(employeeInfos.employeId)
-                            }
-                          >
-                            <Link>delete</Link>
-                          </button>
-                        </TableCell>
+                        {/* <TableCell><button>
+                          <Link to={{
+                            pathname: `/profile/${employeeInfos.employeId}`,
+                           
+                            state: { employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId)) },                                                   
+                          }}>View</Link>
+                        </button></TableCell> */}
                       </TableRow>
                     ))}
                   </TableBody>
@@ -203,3 +221,102 @@ class UsersTable extends React.Component {
 }
 
 export default withStyles(styles)(UsersTable);
+
+// employeeInfos.employeId
+//Search
+
+// class App extends Component{
+//   constructor(){
+//     super();
+//     this.state={
+//       movies:[],
+//       search:''    }
+//   }
+
+//   handleSubmit=(e)=>{
+//     e.preventDefault();
+//     fetch(`http://192.168.1.3:8001/api/v1/employe/${this.state.search}`)
+//     .then(data=> data.json()
+//     .then(data=>{
+//       console.log(data);
+//       this.setState({movies:[...data.results]})
+//     }))
+//   }
+//   handleChange=(e)=>{
+//     this.setState({search:e.target.value})
+//   }
+//   render(){
+//     return(
+//       <form onSubmit={this.handleSubmit}>
+//         <input onChange={this.handleChange}/>>
+//       </form>
+//     );
+//   }
+// }
+
+//Filter
+
+// class Filter extends Component{
+
+//   constructor(){
+//     super();
+//     this.state={
+//       search:''
+//     };
+//   }
+//   updateSearch(e){
+//     this.setState({
+//       search:e.target.value.substr(0,20)
+//     })
+//   }
+// render(){
+//    let filteredEmployee= this.employeeInfo.filter(
+//      (employeeInfos)=>{
+//        return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase())!==-1;
+//      }
+//    );
+//   return(
+//     <div>
+//     <ul>
+// <TableBody>
+
+//     {filteredEmployee.map(employeeInfos => (
+
+//       // <li>{employeeInfos.firstName}</li>
+//       <TableRow key={employeeInfos.employeId}>
+//       <TableCell>{employeeInfos.employeId}</TableCell>
+//       <TableCell>{employeeInfos.firstName}</TableCell>
+//       <TableCell>{employeeInfos.lastName}</TableCell>
+//       {/* <TableCell>{employeeInfos.email}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.hiredDate}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.telephone}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.birthDate}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.country}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.region}</TableCell> */}
+//       {/* <TableCell>{employeeInfos.city}</TableCell> */}
+//       <TableCell>{employeeInfos.department}</TableCell>
+//       <TableCell>{employeeInfos.role}</TableCell>
+//       <TableCell>{employeeInfos.level}</TableCell>
+//       <TableCell>{employeeInfos.termOfEmployment}</TableCell>
+//       <TableCell><button>
+//            <Link to={{
+//              pathname:`/employe/${employeeInfos.employeId}`,
+//              state:{employeeInfos: employeeInfos.employeId}
+//           }}>View</Link>
+//           </button></TableCell>
+
+//       {/* <TableCell>{employeeInfos.Location}</TableCell> */}
+
+//     </TableRow>
+//     )
+
+// )  }
+// </TableBody>
+//   </ul>
+//   <input  value={this.state.search} onChange={this.updateSearch.bind(this)}/>
+//   </div>
+//   );
+
+//         }
+
+//

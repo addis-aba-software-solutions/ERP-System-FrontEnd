@@ -1,4 +1,3 @@
-
 import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
@@ -30,7 +29,6 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import ProfilePicture from '../../Assets/ww.jpg';
 import ScheduleDelievery from './components/SchedualDelievery'
 import ViewAllOrders from './components/ViewAllOrders'
-
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -99,6 +97,7 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
         height: '100vh',
         overflow: 'auto',
+        backgroundColor: '#EBEBEB'
     },
     container: {
         paddingTop: theme.spacing(4),
@@ -147,6 +146,7 @@ export const routes = [
     }
 ]
 
+
 export default function Logistics() {
     const classes = useStyles();
     const [open, setOpen] = React.useState(false);
@@ -188,8 +188,6 @@ export default function Logistics() {
                     }} />
 
 
-
-
                     <IconButton color="inherit">
                         <Typography variant="body2" gutterBottom>
                             Samuel Kassa
@@ -201,81 +199,69 @@ export default function Logistics() {
                     </IconButton>
                 </Toolbar>
             </AppBar>
-
             <Route>
 
+            <Drawer
+                variant="permanent"
+                classes={{
+                    paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
+                }}
+                open={open}
+            >
+                <div className={classes.toolbarIcon}>
+                    <IconButton onClick={handleDrawerClose}>
+                        <ChevronLeftIcon />
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <Link to="/">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <DashboardIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Dashboard" />
 
-                <Drawer
-                    variant="permanent"
-                    classes={{
-                        paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-                    }}
-                    open={open}
-                >
-                    <div className={classes.toolbarIcon}>
-                        <IconButton onClick={handleDrawerClose}>
-                            <ChevronLeftIcon />
-                        </IconButton>
-                    </div>
-                    <Divider />
-                    <List>
-                        <Link to="/">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <DashboardIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Dashboard" />
+                        </ListItem>
+                    </Link>
+                    <Link to="/InventoryStatus">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Category" />
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/InventoryStatus">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Category" />
+                        </ListItem>
+                    </Link>
 
-                            </ListItem>
-                        </Link>
+                    <Link to="/CategoryListView">
+                        <ListItem button>
+                            <ListItemIcon>
+                                <PeopleIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Employee List View" />
+                        </ListItem>
+                    </Link>
 
-                        <Link to="/CategoryListView">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="ItemView" />
+                </List>
+                <Divider />
+            </Drawer>
 
-                            </ListItem>
-                        </Link>
-                        <Link to="/Four">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                            </ListItem>
-                        </Link>
-                    </List>
-                    <Divider />
-                </Drawer>
+            <main className={classes.content}>
+                <div className={classes.toolbar} />
+                <div className={classes.appBarSpacer} />
+                <Switch>
+                    {routes.map((route, index) => (
+                        <Route
+                            key={index}
+                            path={route.path}
+                            exact={route.exact}
+                            children={<route.main />}
+                        />
+                    ))}
+                </Switch>
 
-                <main className={classes.content} style={{
-                    backgroundColor: '#EBEBEB',
-                    height: '100vh  '
-                }}>
-                    <div className={classes.toolbar} />
-                    <div className={classes.appBarSpacer} />
-                    <Switch>
-                        {routes.map((route, index) => (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                children={<route.main />}
-                            />
-                        ))}
-                    </Switch>
-
-                </main>
+            </main>
             </Route>
 
         </div>
