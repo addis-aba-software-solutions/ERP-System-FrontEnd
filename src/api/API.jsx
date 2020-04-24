@@ -1,2 +1,2 @@
-const API = "http://0.0.0.0:8000/api/v1/";
+const API = "http://192.168.1.3:8000/api/v1/";
 export default  API;

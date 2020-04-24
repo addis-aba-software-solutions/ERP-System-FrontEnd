@@ -40,6 +40,7 @@ import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
 import Dashboard from "./Components/Dashboard/HomeNavBar";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
+import ViewOrdersFinance from "./Components/Finance/components/ViewAllOrders";
 
 class App extends React.Component {
   constructor() {
@@ -64,7 +65,12 @@ class App extends React.Component {
                     loggedIn={this.props.isLogin}
                   />
 
-                  <PrivateRoute path="/" component={Dashboard} exact loggedIn={this.props.isLogin}/>
+                  <PrivateRoute
+                    path="/"
+                    component={Dashboard}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
@@ -91,6 +97,12 @@ class App extends React.Component {
                   <PrivateRoute
                     path="/add_account"
                     component={AddAccount}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute
+                    path="/viewOrdersFinance"
+                    component={ViewOrdersFinance}
                     exact
                     loggedIn={this.props.isLogin}
                   />
