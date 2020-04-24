@@ -61,9 +61,10 @@ class App extends React.Component {
                     path="/add_employe"
                     component={AddEmployee}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
 
-                  <PrivateRoute path="/" component={Dashboard} exact />
+                  <PrivateRoute path="/" component={Dashboard} exact loggedIn={this.props.isLogin}/>
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
@@ -73,21 +74,25 @@ class App extends React.Component {
                     path="/all_employe"
                     component={AllEmploye}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
                     path="/employe_profile"
                     component={EmployeProfile}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
                     path="/view_account"
                     component={ViewAccount}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
                     path="/add_account"
                     component={AddAccount}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
                 </section>
               </section>

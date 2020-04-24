@@ -75,13 +75,27 @@ class UsersTable extends React.Component {
           role:employe.roles.roleId,
           claim:employe.level.levelId,
       }
+      this.props.addAccount(data)
 
-this.props.addAccount(data)
+
  
     
   }
-  deleteFun(employeId){
-    this.props.deleteAccount(employeId)
+  deleteFun(email){
+    Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.value) {
+        this.props.deleteAccount(email)
+    }
+  })
+   
   }
   updateSearch(e) {
     this.setState({
@@ -120,6 +134,7 @@ this.props.addAccount(data)
                       <TableCell>First Name</TableCell>
                       <TableCell>Last Name</TableCell>
                       <TableCell>Phone Number</TableCell>
+                      <TableCell>Email Address</TableCell>
                       <TableCell>Department</TableCell>
                       <TableCell>Role</TableCell>
                       <TableCell>Claim</TableCell>
@@ -135,6 +150,7 @@ this.props.addAccount(data)
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
                         <TableCell>{employeeInfos.telephone}</TableCell>
+                        <TableCell>{employeeInfos.email}</TableCell>
                         <TableCell>{employeeInfos.department.departmentName}</TableCell>
                         <TableCell>{employeeInfos.roles.role}</TableCell>
                         <TableCell>{employeeInfos.level.level}</TableCell>
@@ -143,7 +159,7 @@ this.props.addAccount(data)
                             <Link>Create Account</Link>
                             
                           </button></TableCell>
-                            ):( <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
+                            ):( <TableCell><button onClick={()=>this.deleteFun(employeeInfos.email)}>
                             <Link>delete</Link>
                             </button></TableCell>)}
                       </TableRow>

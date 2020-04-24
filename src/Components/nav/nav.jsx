@@ -6,14 +6,15 @@ import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import Logo from "../../Assets/NAZO.png";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-
+import { connect } from 'react-redux'
+import actions from '../../store/login/action'
 class Nav extends React.Component {
   logoutHandler = (e) => {
-    localStorage.clear();
-    this.props.history.replace("/login");
+   this.props.logout()
   };
 
   render() {
+  
     return (
       <header className="header" style={{ backgroundColor: "#11669F" }}>
         <div
@@ -175,4 +176,13 @@ class Nav extends React.Component {
   }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+	return {
+        isLogin: state.loginReducer.isLogin,
+	}
+}
+const mapDispatchToProps = {
+    logout:actions.logout,
+    
+};
+export default  connect(mapStateToProps, mapDispatchToProps)(Nav)

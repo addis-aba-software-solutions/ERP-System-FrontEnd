@@ -20,7 +20,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserProfile from './UserProfile'
 import UserTable from '../UsersTable/UsersTable';
-import API from '../../../../api/API'
 
 const styles = theme => ({
     appBar: {
@@ -85,31 +84,19 @@ class Profile extends React.Component {
     }
 
     componentDidMount = () => {
-      
-        axios.request({
-            method: 'GET',
-            url: API + "employe/"+this.props.location.state,
-            responseType: 'json',
-            headers: {
-              "Content-Type": "application/json"
-            },
-          })
-            .then((response) => {
-                this.setState({
-                    singleEmployee:response.data
-                })
-             console.log(response.data)
-            })
-            .catch(error => {
-              console.log(error);
-            })
+        const employeId = this.props.location.state.employeeInfos;
+        console.log(employeId);
+        const req = fetch('http:/.0.0.0.0:8000/api/v1/employe/'+{});
+        const res = req.json();
+        this.setState({ singleEmployee: res.employeeInfo });
+        console.log(this.state.singleEmployee);
     }
 
     render() {
 
         const { classes } = this.props;
         const employeeInfos = this.state.singleEmployee;
-        
+        console.log(this.props);
 
         return (
             <div>
@@ -381,7 +368,7 @@ class Profile extends React.Component {
                                                     marginTop: 10,
                                                     padding: 10
                                                 }}>
-                                                    More About <b>{employeeInfos.firstName}</b>
+                                                    More About <b>Yelekal</b>
                                                 </Typography>
                                                 <Divider></Divider>
 
@@ -684,7 +671,7 @@ class Profile extends React.Component {
                                 </main>
                             </Grid>
                             <Typography>
-                                <h3>Recent Activities Of <b>{employeeInfos.firstName}</b></h3>
+                                <h3>Recent Activities Of Yelekal</h3>
                             </Typography>
 
                             <Button> <Link to="/UserTable"

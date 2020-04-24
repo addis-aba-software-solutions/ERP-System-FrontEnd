@@ -58,7 +58,7 @@ class EmployeTable extends React.Component {
       search: ''
     };
   }
-  
+
   deleteFun(employeId) {
     Swal.fire({
       title: 'Are you sure?',
@@ -79,8 +79,6 @@ class EmployeTable extends React.Component {
       search: e.target.value.substr(0, 20)
     })
   }
-
-
   componentDidMount() {
    this.props.getEmploye()
   }

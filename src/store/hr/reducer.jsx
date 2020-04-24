@@ -19,9 +19,12 @@ const initialState = {
         };
       }
       case appConstants.REGISTER_SUCCESS: {
+        const index = state.employees.findIndex(emp => emp.email === action.payload);
+        const employees=state.employees[index];
+        employees.has_account=true;
         return {
           ...state,
-          users: action.payload,
+          users: employees,
           errors:[],
           loading:false,
           isLogin:true
@@ -76,7 +79,7 @@ const initialState = {
       case appConstants.DELETE_SUCCESS: {
         return {
           ...state,
-          employees: action.payload,
+          employees:state.employees.filter((emp) => emp.employeId !== action.payload),
           errors:[],
           loading:false,
           isLogin:true,
@@ -94,6 +97,37 @@ const initialState = {
         };
       }
 
+
+      case appConstants.DELETE_REQUEST: {
+        return {
+          ...state,
+          loading:true,
+        };
+      }
+
+      case itConstants.DELETE_SUCCESS: {
+        const index = state.employees.findIndex(emp => emp.email === action.payload);
+        const employees=state.employees[index].has_account=false;
+        console.log(employees)
+        return {
+          ...state,
+          employees:state.employees,
+          errors:[],
+          loading:false,
+          isLogin:true,
+          success:true,
+          
+        };
+      }
+      case itConstants.DELETE_FAILURE: {
+        return {
+          ...state,
+          errors: action.payload,
+          loading:false,
+          isLogin:false,
+          success:false,
+        };
+      }
 
 
       case itConstants.REGISTER_REQUEST: {

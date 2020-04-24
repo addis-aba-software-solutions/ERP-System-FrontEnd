@@ -79,6 +79,10 @@ function getEmploye() {
 }
 function deleteEmploye(employeId) {
   return (dispatch) => {
+    dispatch({
+      type: appConstants.DELETE_REQUEST,
+      payload: true,
+    });
     axios
       .request({
         method: "DELETE",
@@ -89,48 +93,57 @@ function deleteEmploye(employeId) {
         },
       })
       .then((response) => {
-        console.log(response);
-        getEmploye();
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         dispatch({
-          type: appConstants.REGISTER_SUCCESS,
-          payload: response.data.user,
+          type: appConstants.DELETE_SUCCESS,
+          payload: employeId,
         });
       })
       .catch((error) => {
+        console.log(error);
+        
         Swal.fire("Error!", "Something went wrogn.", "error");
         dispatch({
-          type: appConstants.REGISTER_FAILURE,
+          type: appConstants.DELETE_FAILURE,
           payload: error.response.data.errors,
         });
       });
   };
 }
-function deleteAccount(employeId) {
+
+function deleteAccount(email) {
   return (dispatch) => {
+    dispatch({
+      type: itConstants.DELETE_REQUEST,
+      payload: true,
+    });
     axios
       .request({
         method: "DELETE",
-        url: API + "account/",
+        url: API + "account",
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
         },
+        data:{
+          email:email
+        }
       })
-      .then((user) => {
-        getEmploye();
+      .then((response) => {
+        dispatch({
+          type: itConstants.DELETE_SUCCESS,
+          payload: email,
+        });
+     
         Swal.fire({
           title: "Success",
           icon: "success",
         });
-        dispatch({
-          type: appConstants.REGISTER_SUCCESS,
-          payload: user.data.user,
-        });
       })
+     
       .catch((error) => {
         dispatch({
-          type: appConstants.REGISTER_FAILURE,
+          type: itConstants.DELETE_FAILURE,
           payload: error.response.data.errors,
         });
       });
@@ -163,12 +176,11 @@ function addAccount(employe) {
         },
         data: param,
       })
-      .then((user) => {
-        getEmploye();
+      .then((response) => {
         Swal.fire("created!", "Your file has been added.", "success");
         dispatch({
           type: appConstants.REGISTER_SUCCESS,
-          payload: user.data.user,
+          payload: response.data.email,
         });
       })
       .catch((error) => {
