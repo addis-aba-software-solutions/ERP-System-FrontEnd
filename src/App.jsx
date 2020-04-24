@@ -37,15 +37,13 @@ import AddAccount from "./Components/HR/components/UsersTable/add_account";
 import ViewAccount from "./Components/HR/components/UsersTable/view_account";
 import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
-import Dashboard from "./Components/Dashboard/HomeNavBar";
+// import Dashboard from "./Components/Dashboard/HomeNavBar";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
 import CreateOrder from "./Components/Saless/components/CreateOrder";
+import ViewOrdersFinance from "./Components/Finance/components/ViewAllOrders";
+import Dashboard from "./Components/Saless/Sales";
 
 class App extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -102,6 +100,12 @@ class App extends React.Component {
                   <PrivateRoute
                     path="/create_order"
                     component={CreateOrder}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute
+                    path="/viewOrdersFinance"
+                    component={ViewOrdersFinance}
                     exact
                     loggedIn={this.props.isLogin}
                   />

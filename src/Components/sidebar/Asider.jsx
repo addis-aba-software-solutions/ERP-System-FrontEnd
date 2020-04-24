@@ -58,12 +58,7 @@ class Asider extends React.Component {
               </a>
 
               <ul className="sub">
-                <li
-                  style={{
-                    marginRight: 30,
-                    width: "100vh",
-                  }}
-                >
+                <li>
                   <Link to="/add_employe">Add Employe</Link>
                 </li>
                 <li>
@@ -84,23 +79,19 @@ class Asider extends React.Component {
                     }}
                   />
                   <span style={{ marginLeft: 33, color: "#11669F" }}>
-                    {" "}
-                    Finance{" "}
+                    Finance
                   </span>
                 </Grid>
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/view">Task 1</Link>
+                  <Link to="/viewOrdersFinance">View Orders</Link>
                 </li>
                 <li>
-                  <Link to="/view">Task 2</Link>
+                  <Link to="/view">Invoiced</Link>
                 </li>
                 <li>
-                  <Link to="/view">Task 3 </Link>
-                </li>
-                <li>
-                  <Link to="/view">Task 3 </Link>
+                  <Link to="/view">Delayed Invoices </Link>
                 </li>
               </ul>
             </li>

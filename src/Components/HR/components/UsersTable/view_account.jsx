@@ -22,15 +22,24 @@ import {
   Typography,
   Button,
   TablePagination,
+  IconButton,
 } from "@material-ui/core";
 import VisibilityIcon from "@material-ui/icons/Visibility";
+import history from "../../../../Routes/history";
+import SearchBar from "../../../SearchBar/SearchBar";
+import API from "./../../../../api/API";
 import actions from "./../../../../store/hr/action";
 import { connect } from "react-redux";
+import PersonAddIcon from "@material-ui/icons/PersonAdd";
+import RemoveCircleOutlineIcon from "@material-ui/icons/RemoveCircleOutline";
 
 const styles = (theme) => ({
-  root: {},
+  root: {
+    padding: 10,
+    borderRadius: 10,
+  },
   content: {
-    padding: 0,
+    padding: 20,
   },
   inner: {
     minWidth: 1050,
@@ -109,68 +118,91 @@ class UsersTable extends React.Component {
       return <div>Error:{error.message}</div>;
     } else {
       return (
-        <Card>
-          <CardContent className={classes.content}>
-            <PerfectScrollbar>
-              <div className={classes.inner}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Id</TableCell>
-
-                      <TableCell>First Name</TableCell>
-                      <TableCell>Last Name</TableCell>
-                      <TableCell>Phone Number</TableCell>
-                      <TableCell>Email Address</TableCell>
-                      <TableCell>Department</TableCell>
-                      <TableCell>Role</TableCell>
-                      <TableCell>Claim</TableCell>
-                      <TableCell>Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.employees.map((employeeInfos) => (
-                      <TableRow key={employeeInfos.employeId}>
-                        <TableCell>{employeeInfos.employeId}</TableCell>
-                        <TableCell>{employeeInfos.firstName}</TableCell>
-                        <TableCell>{employeeInfos.lastName}</TableCell>
-                        <TableCell>{employeeInfos.telephone}</TableCell>
-                        <TableCell>{employeeInfos.email}</TableCell>
+        <>
+          <SearchBar />
+          <Card className={classes.root}>
+            <CardContent className={classes.content}>
+              <PerfectScrollbar>
+                <div className={classes.inner}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
                         <TableCell>
-                          {employeeInfos.department.departmentName}
+                          <b>Id</b>
                         </TableCell>
-                        <TableCell>{employeeInfos.roles.role}</TableCell>
-                        <TableCell>{employeeInfos.level.level}</TableCell>
-                        <TableCell></TableCell>
-                        {!employeeInfos.has_account ? (
-                          <TableCell>
-                            <button
-                              onClick={() =>
-                                this.createAccountFun(employeeInfos)
-                              }
-                            >
-                              <Link>Create Account</Link>
-                            </button>
-                          </TableCell>
-                        ) : (
-                          <TableCell>
-                            <button
-                              onClick={() =>
-                                this.deleteFun(employeeInfos.email)
-                              }
-                            >
-                              <Link>delete</Link>
-                            </button>
-                          </TableCell>
-                        )}
+
+                        <TableCell>
+                          <b>First Name</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Last Name</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Phone Number</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Email Address</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Department</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Role</b>
+                        </TableCell>
+                        <TableCell>
+                          <b>Claim</b>
+                        </TableCell>
+                        <TableCell align="center">
+                          <b>Actions</b>
+                        </TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </div>
-            </PerfectScrollbar>
-          </CardContent>
-        </Card>
+                    </TableHead>
+                    <TableBody>
+                      {this.props.employees.map((employeeInfos) => (
+                        <TableRow key={employeeInfos.employeId}>
+                          <TableCell>{employeeInfos.employeId}</TableCell>
+                          <TableCell>{employeeInfos.firstName}</TableCell>
+                          <TableCell>{employeeInfos.lastName}</TableCell>
+                          <TableCell>{employeeInfos.telephone}</TableCell>
+                          <TableCell>{employeeInfos.email}</TableCell>
+                          <TableCell>
+                            {employeeInfos.department.departmentName}
+                          </TableCell>
+                          <TableCell>{employeeInfos.roles.role}</TableCell>
+                          <TableCell>{employeeInfos.level.level}</TableCell>
+                          {!employeeInfos.has_account ? (
+                            <TableCell align="center">
+                              <IconButton
+                                onClick={() =>
+                                  this.createAccountFun(employeeInfos)
+                                }
+                              >
+                                <PersonAddIcon fontSize="large" />
+                              </IconButton>
+                            </TableCell>
+                          ) : (
+                            <TableCell align="center">
+                              <IconButton
+                                onClick={() =>
+                                  this.deleteFun(employeeInfos.email)
+                                }
+                              >
+                                <RemoveCircleOutlineIcon
+                                  color="secondary"
+                                  fontSize="large"
+                                />
+                              </IconButton>
+                            </TableCell>
+                          )}
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </div>
+              </PerfectScrollbar>
+            </CardContent>
+          </Card>
+        </>
       );
     }
   }

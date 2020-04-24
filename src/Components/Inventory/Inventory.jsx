@@ -9,7 +9,6 @@ import List from '@material-ui/core/List';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
 import {
-    BrowserRouter as Router,
     Switch,
     Route,
     Link
@@ -29,10 +28,8 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 import AddNewProduct from './components/AddNewProduct'
 import ProfilePicture from '../../Assets/ww.jpg';
 import InventoryStatus from './components/InventoryStatus';
-import Card from '@material-ui/core/Card';
 import ItemList from './components/ItemList'
-import { connect } from 'react-redux'
-import actions from '../../store/login/action'
+
 
 const drawerWidth = 240;
 

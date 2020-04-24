@@ -544,63 +544,11 @@ class ViewAllOrders extends React.Component {
     render() {
 
         const { classes } = this.props
-        // const handleDrawerOpen = () => {
-        //     setOpen(true);
-        // };
-        // const handleDrawerClose = () => {
-        //     setOpen(false);
-        // };
-        // const [open, setOpen] = React.useState(false);
+
         return (
 
             <div className={classes.root}>
                 <CssBaseline />
-                <AppBar
-                // position="absolute" className={clsx(classes.appBar, open && classes.appBarShift)}
-                >
-                    <Toolbar className={classes.toolbar}>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                        // onClick={handleDrawerOpen}
-                        // className={clsx(classes.menuButton, open && classes.menuButtonHidden)}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
-                            EATH
-                    </Typography>
-                        <IconButton color="inherit">
-                            <Badge badgeContent={4} color="secondary">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
-
-
-                        <img src={ProfilePicture} alt='' style={{
-                            height: 35,
-                            width: 35,
-                            borderRadius: 100
-                        }} />
-
-
-                        <IconButton color="inherit">
-                            <Typography variant="body2" gutterBottom>
-                                Samuel Kassa
-                        </Typography>
-
-                        </IconButton>
-                        <IconButton color="inherit">
-                            <ArrowDropDownIcon fontSize='large' />
-                        </IconButton>
-                    </Toolbar>
-
-
-
-
-
-                </AppBar>
 
 
                 <Drawer
