@@ -19,7 +19,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Error from "../../../error/error";
-import { getItems, deleteItem } from "../../../store/inventory/action";
+import { getCompanys } from "../../../store/company/action";
 import { connect } from "react-redux";
 
 const styles = (theme) => ({
@@ -55,7 +55,7 @@ const styles = (theme) => ({
   },
 });
 
-class ItemList extends Component {
+class ViewCompany extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,7 +65,7 @@ class ItemList extends Component {
   }
 
   componentDidMount() {
-    this.props.getItems();
+    this.props.getCompanys();
   }
 
   render() {
@@ -186,10 +186,10 @@ class ItemList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: state.inventoryReducer.items,
-  errors: state.inventoryReducer.errors,
+  items: state.companyReducer.companys,
+  errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { getItems, deleteItem })(
-  withStyles(styles)(ItemList)
+export default connect(mapStateToProps, { getCompanys })(
+  withStyles(styles)(ViewCompany)
 );

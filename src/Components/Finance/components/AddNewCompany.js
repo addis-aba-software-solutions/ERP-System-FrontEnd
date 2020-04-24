@@ -8,7 +8,6 @@ import {
   Paper,
   TextField,
 } from "@material-ui/core";
-import RecentOrders from "./RecentOrders";
 import axios from "axios";
 import InputLabel from "@material-ui/core/InputLabel";
 
@@ -24,7 +23,7 @@ import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
 import API from "../../../api/API";
-import { addItem, getItems } from "../../../store/inventory/action";
+import { addCompany, getCompanys } from "../../../store/company/action";
 
 const styles = (theme) => ({
   container: {
@@ -56,57 +55,46 @@ const styles = (theme) => ({
   },
 });
 
-class AddNewProduct extends Component {
+class AddNewCompany extends Component {
   constructor() {
     super();
     this.state = {
-      itemName: "",
-      quantity: "",
-      warehouseName: "",
-      discount: "",
-      retailPrice: "",
-      packaging: "",
-      catagoryValue: "",
-      catagoryList: [],
-      items: [],
+      companyName: "",
+      generalManger: "",
+      contactPerson: "",
+      workingField: "",
+      paymentOption: "",
+      email: "",
+      tinNumber: "",
+      companys: [],
     };
 
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.catagoryDropDown = this.catagoryDropDown.bind(this);
+    this.paymentOptionDropDown = this.paymentOptionDropDown.bind(this);
   }
 
   componentDidMount() {
-    axios
-      .get(API + "catagory/")
-      .then((response) => {
-        this.setState({
-          catagoryList: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    console.log(this.props.getItems());
-    this.props.getItems();
+    console.log(this.props.getCompanys());
+    this.props.getCompanys();
   }
-  catagoryDropDown(e) {
+  paymentOptionDropDown(e) {
     this.setState({
-      catagoryValue: e.target.value,
+      paymentOption: e.target.value,
     });
   }
   submit = (e) => {
     e.preventDefault();
-    const newItem = {
-      itemName: this.state.itemName,
-      quantity: this.state.quantity,
-      warehouseName: this.state.warehouseName,
-      discount: this.state.discount,
-      retailPrice: this.state.retailPrice,
-      packaging: this.state.packaging,
-      catagory: this.state.catagoryValue,
+    const newCompany = {
+      companyName: this.state.companyName,
+      generalManger: this.state.generalManger,
+      contactPerson: this.state.contactPerson,
+      workingField: this.state.workingField,
+      paymentOption: this.state.paymentOption,
+      email: this.state.email,
+      tinNumber: this.state.tinNumber,
     };
-    this.props.addItem(newItem);
+    this.props.addCompany(newCompany);
   };
 
   handleChange(e) {
@@ -117,13 +105,13 @@ class AddNewProduct extends Component {
 
   render() {
     const {
-      packaging,
-      retailPrice,
-      discount,
-      warehouseName,
-      quantity,
-      catagoryValue,
-      itemName,
+      companyName,
+      generalManger,
+      contactPerson,
+      workingField,
+      paymentOption,
+      email,
+      tinNumber,
     } = this.state;
     const { classes } = this.props;
 
@@ -140,7 +128,7 @@ class AddNewProduct extends Component {
                   justify: "flex-start",
                 }}
               >
-                <b>Goods Recieving Voucher</b>
+                <b>Add New Company To Work With</b>
               </Typography>
               <Divider className={classes.spacer} />
 
@@ -148,18 +136,18 @@ class AddNewProduct extends Component {
                 <Grid item xs={12} sm={3}>
                   <TextField
                     required
-                    id="itemName"
-                    name="itemName"
-                    label="item Name"
+                    id="companyName"
+                    name="companyName"
+                    label="Company Name"
                     fullWidth
-                    autoComplete="itemName"
-                    value={itemName}
+                    autoComplete="companyName"
+                    value={companyName}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.itemName
-                        ? this.props.errors.itemName
+                      this.props.errors.companyName
+                        ? this.props.errors.companyName
                         : null
                     }
                   />
@@ -170,18 +158,18 @@ class AddNewProduct extends Component {
                 <Grid item xs={12} sm={3}>
                   <TextField
                     required
-                    id="quantity"
-                    name="quantity"
-                    label="Quantity"
+                    id="generalManger"
+                    name="generalManger"
+                    label="General Manger"
                     fullWidth
-                    autoComplete="quantity"
-                    value={quantity}
+                    autoComplete="generalManger"
+                    value={generalManger}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.quantity
-                        ? this.props.errors.quantity
+                      this.props.errors.generalManger
+                        ? this.props.errors.generalManger
                         : null
                     }
                   />
@@ -189,18 +177,18 @@ class AddNewProduct extends Component {
                 <Grid item xs={12} sm={3}>
                   <TextField
                     required
-                    id="warehouseName"
-                    name="warehouseName"
-                    label="warehouseName"
+                    id="contactPerson"
+                    name="contactPerson"
+                    label="contactPerson"
                     fullWidth
-                    autoComplete="warehouseName"
-                    value={warehouseName}
+                    autoComplete="contactPerson"
+                    value={contactPerson}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.warehouseName
-                        ? this.props.errors.warehouseName
+                      this.props.errors.contactPerson
+                        ? this.props.errors.contactPerson
                         : null
                     }
                   />
@@ -209,18 +197,18 @@ class AddNewProduct extends Component {
                 <Grid item xs={6}>
                   <TextField
                     required
-                    id="retailPrice"
-                    name="retailPrice"
-                    label="Retail Price"
+                    id="workingField"
+                    name="workingField"
+                    label="Working Field"
                     fullWidth
-                    autoComplete="retailPrice"
-                    value={retailPrice}
+                    autoComplete="workingField"
+                    value={workingField}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.retailPrice
-                        ? this.props.errors.retailPrice
+                      this.props.errors.workingField
+                        ? this.props.errors.workingField
                         : null
                     }
                   />
@@ -228,17 +216,17 @@ class AddNewProduct extends Component {
                 <Grid item xs={12} sm={3}>
                   <TextField
                     required
-                    id="packaging"
-                    name="packaging"
-                    label="Packaging"
+                    id="paymentOption"
+                    name="paymentOption"
+                    label="Payment Option"
                     fullWidth
-                    value={packaging}
+                    value={paymentOption}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.packaging
-                        ? this.props.errors.packaging
+                      this.props.errors.paymentOption
+                        ? this.props.errors.paymentOption
                         : null
                     }
                   />
@@ -247,24 +235,40 @@ class AddNewProduct extends Component {
                 <Grid item xs={12} sm={6}>
                   <TextField
                     required
-                    id="discount"
-                    name="discount"
-                    label="Discount"
+                    id="email"
+                    name="email"
+                    label="email"
                     fullWidth
-                    autoComplete="Contract_Info"
-                    value={discount}
+                    value={email}
                     onChange={this.handleChange}
                   />
                   <Error
                     error={
-                      this.props.errors.discount
-                        ? this.props.errors.discount
-                        : null
+                      this.props.errors.email ? this.props.errors.email : null
                     }
                   />
                 </Grid>
 
                 <Grid item xs={12} sm={6}>
+                  <TextField
+                    required
+                    id="tinNumber"
+                    name="tinNumber"
+                    label="tinNumber"
+                    fullWidth
+                    value={tinNumber}
+                    onChange={this.handleChange}
+                  />
+                  <Error
+                    error={
+                      this.props.errors.tinNumber
+                        ? this.props.errors.tinNumber
+                        : null
+                    }
+                  />
+                </Grid>
+
+                {/* <Grid item xs={12} sm={6}>
                   <FormControl className={classes.formControl} fullWidth>
                     <InputLabel htmlFor="grouped-native-select">
                       Category
@@ -293,7 +297,7 @@ class AddNewProduct extends Component {
                         : null
                     }
                   />
-                </Grid>
+                </Grid> */}
                 <Grid item xs={12} sm={12}>
                   <Button
                     variant="contained"
@@ -318,7 +322,7 @@ class AddNewProduct extends Component {
               Recent Imports
             </Typography>
             {/* <RecentOrders /> */}
-            <Paper className={classes.paper}>
+            {/* <Paper className={classes.paper}>
               <TableContainer>
                 <Table
                   className={classes.table}
@@ -331,54 +335,55 @@ class AddNewProduct extends Component {
                         <b>ID</b>
                       </TableCell>
                       <TableCell className={classes.table}>
-                        <b>Item Name</b>
+                        <b>Company Name</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>Quantity</b>
+                        <b>General Manger</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>Retail Price</b>
+                        <b>Contact Person</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>Packaging</b>
+                        <b>Working Field</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>Warehouse Name</b>
+                        <b>Payment Option</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>Discount</b>
+                        <b>Email</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>catagory</b>
+                        <b>Tin Number</b>
                       </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.items
-                      .slice(0)
-                      .reverse()
-                      .map((item) => (
-                        <TableRow key={item.InventoryItemId}>
-                          <TableCell align="right">
-                            {item.InventoryItemId}
-                          </TableCell>
-                          <TableCell align="right">{item.itemName}</TableCell>
-                          <TableCell align="right">{item.quantity}</TableCell>
-                          <TableCell align="right">
-                            {item.retailPrice}
-                          </TableCell>
-                          <TableCell align="right">{item.packaging}</TableCell>
-                          <TableCell align="right">
-                            {item.warehouseName}
-                          </TableCell>
-                          <TableCell align="right">{item.discount}</TableCell>
-                          <TableCell align="right">{item.catagory}</TableCell>
-                        </TableRow>
-                      ))}
+                    {this.props.companys.map((company) => (
+                      <TableRow key={company.companyId}>
+                        <TableCell align="right">{company.companyId}</TableCell>
+                        <TableCell align="right">
+                          {company.companyName}
+                        </TableCell>
+                        <TableCell align="right">
+                          {company.generalManger}
+                        </TableCell>
+                        <TableCell align="right">
+                          {company.contactPerson}
+                        </TableCell>
+                        <TableCell align="right">
+                          {company.workingField}
+                        </TableCell>
+                        <TableCell align="right">
+                          {company.paymentOption}
+                        </TableCell>
+                        <TableCell align="right">{company.email}</TableCell>
+                        <TableCell align="right">{company.tinNumber}</TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper>
+            </Paper> */}
           </div>
         </React.Fragment>
       </div>
@@ -387,10 +392,10 @@ class AddNewProduct extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: state.inventoryReducer.items,
+  companys: state.companyReducer.companys,
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { addItem, getItems })(
-  withStyles(styles)(AddNewProduct)
+export default connect(mapStateToProps, { addCompany, getCompanys })(
+  withStyles(styles)(AddNewCompany)
 );

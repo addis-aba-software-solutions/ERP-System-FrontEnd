@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 class Asider extends React.Component {
   render() {
     return (
-
       <aside>
         <div id="sidebar" className="nav-collapse ">
           <ul className="sidebar-menu">
-            <li className="active" >
-              <Link className="" to='/'>
+            <li className="active">
+              <Link className="" to="/">
                 <i className="icon_house_alt"></i>
                 <span>Dashboard</span>
               </Link>
@@ -20,11 +19,15 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/add_employe">Add Employe</Link></li>
-                <li><Link to="/all_employe">View Employe</Link></li>
+                <li>
+                  <Link to="/add_employe">Add Employe</Link>
+                </li>
+                <li>
+                  <Link to="/all_employe">View Employe</Link>
+                </li>
               </ul>
             </li>
-        
+
             <li className="sub-menu">
               <a href="javascript:;" className="">
                 <i className="icon_desktop"></i>
@@ -32,13 +35,21 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Task 1</Link></li>
-                <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
+                <li>
+                  <Link to="/Company">Add Company</Link>
+                </li>
+                <li>
+                  <Link to="/Companys">View Company</Link>
+                </li>
+                <li>
+                  <Link to="/view">Task 3 </Link>
+                </li>
+                <li>
+                  <Link to="/view">Task 3 </Link>
+                </li>
               </ul>
             </li>
-           
+
             <li className="sub-menu">
               <a href="javascript:;" className="">
                 <i className="icon_desktop"></i>
@@ -46,9 +57,15 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Task 1</Link></li>
-                <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
+                <li>
+                  <Link to="/newOrder">New Order</Link>
+                </li>
+                <li>
+                  <Link to="/Orders">Orders</Link>
+                </li>
+                <li>
+                  <Link to="/OrderStatus">Order Status</Link>
+                </li>
               </ul>
             </li>
 
@@ -59,9 +76,15 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Task 1</Link></li>
-                <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/view">Task 3 </Link></li>
+                <li>
+                  <Link to="/view">Task 1</Link>
+                </li>
+                <li>
+                  <Link to="/view">Task 2</Link>
+                </li>
+                <li>
+                  <Link to="/view">Task 3 </Link>
+                </li>
               </ul>
             </li>
             <li className="sub-menu">
@@ -71,9 +94,12 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/add_item">Add Product</Link></li>
-                <li><Link to="/view">Task 2</Link></li>
-                <li><Link to="/add_item">Task 3 </Link></li>
+                <li>
+                  <Link to="/add_item">Add Item</Link>
+                </li>
+                <li>
+                  <Link to="/list_item">view All Item</Link>
+                </li>
               </ul>
             </li>
             <li className="sub-menu">
@@ -83,19 +109,19 @@ class Asider extends React.Component {
                 <span className="menu-arrow arrow_carrot-right"></span>
               </a>
               <ul className="sub">
-                <li><Link to="/view">Add User</Link></li>
-                <li><Link to="/view_account">View Users</Link></li>
+                <li>
+                  <Link to="/view">Add User</Link>
+                </li>
+                <li>
+                  <Link to="/view_account">View Users</Link>
+                </li>
               </ul>
             </li>
-
           </ul>
         </div>
-
       </aside>
-
-
-    )
+    );
   }
 }
 
-export default Asider
+export default Asider;

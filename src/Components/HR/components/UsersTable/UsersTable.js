@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import clsx from 'clsx';
-import PropTypes from 'prop-types';
-import moment from 'moment';
-import PerfectScrollbar from 'react-perfect-scrollbar';
+import React, { useState } from "react";
+import clsx from "clsx";
+import PropTypes from "prop-types";
+import moment from "moment";
+import PerfectScrollbar from "react-perfect-scrollbar";
 // import { makeStyles } from '@material-ui/styles';
-import { withStyles } from '@material-ui/core/styles';
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import Swal from 'sweetalert2'
+import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 import {
   Card,
   CardActions,
@@ -21,138 +21,127 @@ import {
   TableRow,
   Typography,
   Button,
-  TablePagination
-} from '@material-ui/core';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import history from '../../../../Routes/history'
-import SearchBar from '../../../SearchBar/SearchBar'
-import API from './../../../../api/API'
+  TablePagination,
+} from "@material-ui/core";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import history from "../../../../Routes/history";
+import SearchBar from "../../../SearchBar/SearchBar";
+import API from "./../../../../api/API";
 
-const styles = theme => ({
-
+const styles = (theme) => ({
   root: {},
   content: {
-    padding: 0
+    padding: 0,
   },
   inner: {
-    minWidth: 1050
+    minWidth: 1050,
   },
   nameContainer: {
-    display: 'flex',
-    alignItems: 'center'
+    display: "flex",
+    alignItems: "center",
   },
   avatar: {
     marginRight: 15,
   },
   actions: {
-    justifyContent: 'flex-end'
-  }
+    justifyContent: "flex-end",
+  },
 });
 
 class UsersTable extends React.Component {
-
-
   constructor(props) {
     super(props);
     this.state = {
       employeeInfo: [],
-      search: ''
+      search: "",
     };
   }
-  deleteFun(employeId){
+  deleteFun(employeId) {
     Swal.fire({
-      title: 'Are you sure?',
+      title: "Are you sure?",
       text: "You won't be able to revert this!",
-      icon: 'warning',
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
-        axios.request({
-          method: 'DELETE',
-          url: API+"employe/"+employeId,
-          responseType: 'json',
-          headers: {
-            "Content-Type":"application/json",
-            "Authorization": 'Bearer ' + localStorage.getItem('token')
-            
-          }, 
-        })
-          .then((user) => {  
-            const items = this.state.employeeInfo.filter(employe => employe.employeId !== employeId);   
+        axios
+          .request({
+            method: "DELETE",
+            url: API + "employe/" + employeId,
+            responseType: "json",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: "Bearer " + localStorage.getItem("token"),
+            },
+          })
+          .then((user) => {
+            const items = this.state.employeeInfo.filter(
+              (employe) => employe.employeId !== employeId
+            );
             this.setState({
-              employeeInfo:items
-            })
-            Swal.fire(
-              'Deleted!',
-              'Your file has been deleted.',
-              'success'
-            )  
-          
+              employeeInfo: items,
+            });
+            Swal.fire("Deleted!", "Your file has been deleted.", "success");
           })
-          .catch(error => {  
-            Swal.fire(
-              'Error!',
-              'Something went wrogn.',
-              'error'
-            )  
-          })
-    
-      
+          .catch((error) => {
+            Swal.fire("Error!", "Something went wrogn.", "error");
+          });
       }
-    })
-  
-    
+    });
   }
   updateSearch(e) {
     this.setState({
-      search: e.target.value.substr(0, 20)
-    })
+      search: e.target.value.substr(0, 20),
+    });
   }
-
 
   componentDidMount() {
-    axios.get(API+"employe/")
-      .then(res => {
+    axios
+      .get(API + "employe/")
+      .then((res) => {
         this.setState({
           employeeInfo: res.data,
-          
-        })
+        });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
-      })
+      });
   }
   render() {
+    const { employeeInfo, error } = this.state;
+    const { classes } = this.props;
 
-   const {employeeInfo, error}= this.state;
-   const { classes } = this.props
-  
-    let filteredEmployee = employeeInfo.filter((employeeInfos)=>{
-      return employeeInfos.firstName.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    let filteredEmployee = employeeInfo.filter((employeeInfos) => {
+      return (
+        employeeInfos.firstName
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
       // console.log(item);
-    })
+    });
     if (error) {
+      return <div>Error:{error.message}</div>;
+    } else {
       return (
-        <div>
-          Error:{error.message}
-        </div>
-      )
-    }
-    else {
-      return (
-
-        <Card
-        >
+        <Card>
           <CardContent className={classes.content}>
             <PerfectScrollbar>
               <div className={classes.inner}>
-                <Button> <Link to="/add_employe"
-                >Add New Employee</Link></Button>
-                <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
-                <SearchBar search={this.search} updateSearch={this.updateSearch}/>
+                <Button>
+                  {" "}
+                  <Link to="/add_employe">Add New Employee</Link>
+                </Button>
+                <input
+                  value={this.state.search}
+                  onChange={this.updateSearch.bind(this)}
+                />
+                <SearchBar
+                  search={this.search}
+                  updateSearch={this.updateSearch}
+                />
                 <Table>
                   <TableHead>
                     <TableRow>
@@ -164,50 +153,53 @@ class UsersTable extends React.Component {
                       <TableCell>Department</TableCell>
                       <TableCell>Role</TableCell>
                       <TableCell>Actions</TableCell>
-
                     </TableRow>
                   </TableHead>
                   <TableBody>
-
-                    {filteredEmployee.map(employeeInfos => (
+                    {filteredEmployee.map((employeeInfos) => (
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
                         <TableCell>{employeeInfos.telephone}</TableCell>
-                        <TableCell>{employeeInfos.department.departmentName}</TableCell>
+                        <TableCell>
+                          {employeeInfos.department.departmentName}
+                        </TableCell>
                         <TableCell>{employeeInfos.roles.role}</TableCell>
 
-                        <TableCell><button>
-                          <Link to={{
-                            pathname: '/employe_profile',
-                            state: employeeInfos.employeId,                                                   
-                          }}>View</Link>
-                          
-                        </button></TableCell>
-                     
-                        <TableCell><button onClick={()=>this.deleteFun(employeeInfos.employeId)}>
-                        <Link>delete</Link>
-                        </button></TableCell>
-                        
-                      </TableRow>
-                    )
+                        <TableCell>
+                          <button>
+                            <Link
+                              to={{
+                                pathname: "/employe_profile",
+                                state: employeeInfos.employeId,
+                              }}
+                            >
+                              View
+                            </Link>
+                          </button>
+                        </TableCell>
 
-                    )}
+                        <TableCell>
+                          <button
+                            onClick={() =>
+                              this.deleteFun(employeeInfos.employeId)
+                            }
+                          >
+                            <Link>delete</Link>
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
                   </TableBody>
                 </Table>
-                
               </div>
             </PerfectScrollbar>
           </CardContent>
         </Card>
-
-
-
       );
     }
   }
 }
 
 export default withStyles(styles)(UsersTable);
-

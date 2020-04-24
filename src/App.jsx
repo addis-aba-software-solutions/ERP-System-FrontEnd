@@ -34,12 +34,15 @@ import "./App.css";
 import AddEmployee from "./Components/HR/components/UserProfile/UserProfile";
 import AllEmploye from "./Components/HR/components/UsersTable/UsersTable";
 import EmployeProfile from "./Components/HR/components/UserProfile/employe_profile";
-import AddAccount from "./Components/HR/components/UsersTable/add_account";
-import ViewAccount from "./Components/HR/components/UsersTable/view_account";
 import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
 import Dashboard from "./Components/Dashboard/HomeNavBar";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
+import ViewItem from "./Components/Inventory/components/ItemList";
+import CreateOrder from "./Components/Saless/components/CreateOrder";
+import Orders from "./Components/Saless/components/orders";
+import AddNewCompany from "./Components/Finance/components/AddNewCompany";
+import ViewCompany from "./Components/Finance/components/ViewCompany";
 
 class App extends React.Component {
   constructor() {
@@ -62,13 +65,26 @@ class App extends React.Component {
                     component={AddEmployee}
                     exact
                   />
-
                   <PrivateRoute path="/" component={Dashboard} exact />
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
                     exact
                   />
+                  <PrivateRoute path="/list_item" component={ViewItem} exact />
+                  {/* salses order routes */}
+                  <PrivateRoute
+                    path="/newOrder"
+                    component={CreateOrder}
+                    exact
+                  />
+                  <PrivateRoute path="/Orders" component={Orders} exact />
+                  <PrivateRoute
+                    path="/OrderStatus"
+                    component={ViewItem}
+                    exact
+                  />
+                  {/* employee routes */}
                   <PrivateRoute
                     path="/all_employe"
                     component={AllEmploye}
@@ -79,14 +95,15 @@ class App extends React.Component {
                     component={EmployeProfile}
                     exact
                   />
+                  {/* finance Routes */}
                   <PrivateRoute
-                    path="/view_account"
-                    component={ViewAccount}
+                    path="/company"
+                    component={AddNewCompany}
                     exact
                   />
                   <PrivateRoute
-                    path="/add_account"
-                    component={AddAccount}
+                    path="/companys"
+                    component={ViewCompany}
                     exact
                   />
                 </section>
@@ -96,12 +113,11 @@ class App extends React.Component {
         </Switch>
       </BrowserRouter>
     );
+    // function mapStateToProps(state) {
+    //   return {
+    //     isLogin: state.loginReducer.isLogin,
+    //   };
   }
 }
-function mapStateToProps(state) {
-  return {
-    isLogin: state.loginReducer.isLogin,
-  };
-}
 
-export default connect(mapStateToProps, null)(App);
+export default connect(null)(App);
