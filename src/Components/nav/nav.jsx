@@ -8,6 +8,7 @@ import Logo from "../../Assets/NAZO.png";
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import { connect } from 'react-redux'
 import actions from '../../store/login/action'
+
 class Nav extends React.Component {
   logoutHandler = (e) => {
    this.props.logout()
@@ -50,9 +51,11 @@ class Nav extends React.Component {
             >
               <Grid
                 item
-                style={{
-                  marginTop: 7,
-                }}
+                style={
+                  {
+                    // marginTop: 7,
+                  }
+                }
               >
                 <li className="dropdown">
                   <a data-toggle="dropdown">
@@ -61,7 +64,7 @@ class Nav extends React.Component {
                         style={{
                           color: "#FFFFFF",
                         }}
-                        fontSize="large"
+                        // fontSize="large"
                       />
                     </Badge>
                   </a>
@@ -123,7 +126,7 @@ class Nav extends React.Component {
                   >
                     <Grid container>
                       <Typography
-                        variant="h5"
+                        // variant="h5"
                         style={{
                           marginTop: 5,
                           color: "#FFFFFF",
@@ -147,7 +150,7 @@ class Nav extends React.Component {
                         style={{
                           color: "#FFFFFF",
                           marginTop: 5,
-                          height: 20
+                          height: 20,
                         }}
                         fontSize="large"
                       />

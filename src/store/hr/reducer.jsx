@@ -6,6 +6,7 @@ const initialState = {
     success:true,
     errors: [],
     employees:[],
+    employee:[],
 
 
   
@@ -27,7 +28,8 @@ const initialState = {
           users: employees,
           errors:[],
           loading:false,
-          isLogin:true
+          isLogin:true,
+          success:false,
         };
       }
       case appConstants.REGISTER_FAILURE: {
@@ -36,6 +38,7 @@ const initialState = {
           errors: action.payload,
           loading:false,
           isLogin:false,
+          success:false,
         };
       }
 
@@ -66,6 +69,37 @@ const initialState = {
           success:false,
         };
       }
+
+
+
+      case appConstants.FETCH_SINGLE_REQUEST: {
+        return {
+          ...state,
+          loading:true,
+        };
+      }
+
+      case appConstants.FETCH_SINGLE_SUCCESS: {
+        return {
+          ...state,
+          employee: action.payload,
+          errors:[],
+          loading:false,
+          isLogin:true,
+          success:true,
+          
+        };
+      }
+      case appConstants.FETCH_SINGLE_FAILURE: {
+        return {
+          ...state,
+          errors: action.payload,
+          loading:false,
+          isLogin:false,
+          success:false,
+        };
+      }
+
 
 
 
@@ -143,7 +177,8 @@ const initialState = {
           users: action.payload,
           errors:[],
           loading:false,
-          isLogin:true
+          isLogin:true,
+          success:true,
         };
       }
       case itConstants.REGISTER_FAILURE: {
@@ -152,6 +187,7 @@ const initialState = {
           errors: action.payload,
           loading:false,
           isLogin:false,
+          success:false,
         };
       }
 

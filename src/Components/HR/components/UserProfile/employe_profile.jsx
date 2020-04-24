@@ -20,6 +20,8 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import UserProfile from './UserProfile'
 import UserTable from '../UsersTable/UsersTable';
+import actions from './../../../../store/hr/action'
+import { connect } from 'react-redux'
 
 const styles = theme => ({
     appBar: {
@@ -76,32 +78,24 @@ const styles = theme => ({
 });
 
 class Profile extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            singleEmployee: []
-        }
-    }
+
 
     componentDidMount = () => {
-        const employeId = this.props.location.state.employeeInfos;
-        console.log(employeId);
-        const req = fetch('http:/.0.0.0.0:8000/api/v1/employe/'+{});
-        const res = req.json();
-        this.setState({ singleEmployee: res.employeeInfo });
-        console.log(this.state.singleEmployee);
+        const employeId = this.props.location.state;
+        this.props.getEmployeDetail(employeId);
+
     }
 
     render() {
 
         const { classes } = this.props;
-        const employeeInfos = this.state.singleEmployee;
-        console.log(this.props);
+        const employeeInfos = this.props.employee;
+      
 
         return (
             <div>
                 {
-                    this.state.singleEmployee.length !== 0 &&
+                    this.props.employee.length !== 0 &&
                     <div style={{
                         backgroundColor: '#EBEBEB',
                         height: '100vh',
@@ -686,4 +680,18 @@ class Profile extends React.Component {
         )
     }
 }
-export default withStyles(styles)(Profile);
+function mapStateToProps(state) {
+    return {
+        loading: state.hrReducer.loading,
+        users: state.hrReducer.users,
+        employee: state.hrReducer.employee,
+        errors: state.hrReducer.errors,
+    }
+}
+const mapDispatchToProps = {
+    getEmployeDetail: actions.getEmployeDetail,
+
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Profile));

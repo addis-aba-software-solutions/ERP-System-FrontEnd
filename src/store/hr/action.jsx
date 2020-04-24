@@ -193,12 +193,44 @@ function addAccount(employe) {
   };
 }
 
+function getEmployeDetail(employeId) {
+  return (dispatch) => {
+
+    dispatch({
+      type: appConstants.FETCH_SINGLE_REQUEST,
+      payload: true,
+    });
+    axios
+      .request({
+        method: "GET",
+        url: API + "employe/"+employeId,
+        responseType: "json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        dispatch({
+          type: appConstants.FETCH_SINGLE_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: appConstants.FETCH_SINGLE_FAILURE,
+          payload: error.response.data.errors,
+        });
+      });
+  };
+}
+
 const actions = {
   addNewEmployee,
   addAccount,
   deleteAccount,
   deleteEmploye,
   getEmploye,
+  getEmployeDetail,
 };
 
 export default actions;

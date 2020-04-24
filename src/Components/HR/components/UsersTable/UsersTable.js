@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 // import { makeStyles } from '@material-ui/styles';
-import { withStyles } from '@material-ui/core/styles';
+import { withStyles, Grid, IconButton } from '@material-ui/core';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2'
@@ -23,15 +23,22 @@ import {
   Button,
   TablePagination
 } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import history from '../../../../Routes/history'
 import SearchBar from '../../../SearchBar/SearchBar'
 import API from './../../../../api/API'
 import actions from './../../../../store/hr/action'
 import { connect } from 'react-redux'
+
+
+
 const styles = theme => ({
 
-  root: {},
+  root: {
+    padding: 10,
+    borderRadius: 10
+  },
   content: {
     padding: 0
   },
@@ -99,66 +106,76 @@ class EmployeTable extends React.Component {
     }
     else {
       return (
+        <>
+          <SearchBar search={this.search} updateSearch={this.updateSearch} />
 
-        <Card
-        >
-          <CardContent className={classes.content}>
-            <PerfectScrollbar>
-              <div className={classes.inner}>
-                <Button> <Link to="/add_employe"
-                ><Typography variant='h4'>Add New Employee</Typography></Link></Button>
-                <input value={this.state.search} onChange={this.updateSearch.bind(this)} />
-                <SearchBar search={this.search} updateSearch={this.updateSearch} />
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Id</TableCell>
+          <Card className={classes.root}
+          >
+            <CardContent className={classes.content}>
+              <PerfectScrollbar>
+                {/* <div className={classes.inner}> */}
+                  {/* <Button> <Link to="/add_employe"
+                ><Typography variant='h4'>Add New Employee</Typography></Link></Button> */}
+                  {/* <input value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell><b>Id</b></TableCell>
 
-                      <TableCell>First Name</TableCell>
-                      <TableCell>Last Name</TableCell>
-                      <TableCell>Phone Number</TableCell>
-                      <TableCell>Department</TableCell>
-                      <TableCell>Role</TableCell>
-                      <TableCell>Actions</TableCell>
-
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.employees.map(employeeInfos => (
-                      <TableRow key={employeeInfos.employeId}>
-                        <TableCell>{employeeInfos.employeId}</TableCell>
-                        <TableCell>{employeeInfos.firstName}</TableCell>
-                        <TableCell>{employeeInfos.lastName}</TableCell>
-                        <TableCell>{employeeInfos.telephone}</TableCell>
-                        <TableCell>{employeeInfos.department.departmentName}</TableCell>
-                        <TableCell>{employeeInfos.roles.role}</TableCell>
-
-                        <TableCell><button>
-                          <Link to={{
-                            pathname: '/employe_profile',
-                            state: employeeInfos.employeId,
-                          }}>View</Link>
-
-                        </button></TableCell>
-
-                        <TableCell><button onClick={() => this.deleteFun(employeeInfos.employeId)}>
-                          <Link>delete</Link>
-                        </button></TableCell>
+                        <TableCell><b>First Name</b></TableCell>
+                        <TableCell><b>Last Name</b></TableCell>
+                        <TableCell><b>Phone Number</b></TableCell>
+                        <TableCell><b>Department</b></TableCell>
+                        <TableCell><b>Role</b></TableCell>
+                        <TableCell align='center'><b>Actions</b></TableCell>
 
                       </TableRow>
-                    )
+                    </TableHead>
+                    <TableBody>
 
-                    )}
-                  </TableBody>
-                </Table>
+                      {this.props.employees.map(employeeInfos => (
+                        <TableRow key={employeeInfos.employeId}>
+                          <TableCell>{employeeInfos.employeId}</TableCell>
+                          <TableCell>{employeeInfos.firstName}</TableCell>
+                          <TableCell>{employeeInfos.lastName}</TableCell>
+                          <TableCell>{employeeInfos.telephone}</TableCell>
+                          <TableCell>{employeeInfos.department.departmentName}</TableCell>
+                          <TableCell>{employeeInfos.roles.role}</TableCell>
 
-              </div>
-            </PerfectScrollbar>
-          </CardContent>
-        </Card>
+                          <TableCell align='center'>
+                            <Grid spacing={4}>
+                              <IconButton style={{
+                                marginTop: 10
+                              }}>
+                                <Link to={{
+                                  pathname: '/employe_profile',
+                                  state: employeeInfos.employeId,
+                                }}>
+                                  <VisibilityIcon />
+                                </Link>
+                              </IconButton>
+                              <IconButton onClick={() => this.deleteFun(employeeInfos.employeId)}>
+                                <DeleteIcon color='secondary' />
+                              </IconButton>
+                            </Grid>
+
+                          </TableCell>
 
 
+                        </TableRow>
+                      )
 
+                      )}
+                    </TableBody>
+                  </Table>
+
+                {/* </div> */}
+              </PerfectScrollbar>
+            </CardContent>
+          </Card>
+
+
+        </>
       );
     }
   }
