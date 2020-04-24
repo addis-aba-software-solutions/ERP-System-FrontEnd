@@ -79,17 +79,21 @@ class CreateOrder extends React.Component {
       items: [{ form: "" }],
     };
     this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
     this.props.getAllCompany();
     this.props.getAllItem();
   }
-  handleChange = () => {
-    this.setState({});
+  handleChange = (e) => {
+    console.log(e.target.value);
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
   };
   submit = () => {
-    this.props.createOrder();
+    this.props.createOrder(this.state);
   };
 
   handleAddItem = () => {
@@ -193,14 +197,17 @@ class CreateOrder extends React.Component {
                           Company
                         </InputLabel>
                         <Select
+                          onChange={this.handleChange}
+                          value={this.state.itemName}
                           native
-                          defaultValue=""
                           id="grouped-native-select"
                         >
                           <option aria-label="None" value="" />
-                          <option>Permanent</option>
-                          <option>Contract</option>
-                          <option>Hourly</option>
+                          {this.props.companys.map((comp) => (
+                            <option value={comp.companyId}>
+                              {comp.companyName}
+                            </option>
+                          ))}
                         </Select>
                       </FormControl>
                     </Grid>
@@ -243,18 +250,6 @@ class CreateOrder extends React.Component {
                       />
                     </Grid>
 
-                    <Grid item xs={12} sm={7}>
-                      <TextField
-                        required
-                        id="orderDate"
-                        name="orderDate"
-                        label="Order Date"
-                        fullWidth
-                        autoComplete="orderDate"
-                        value={this.state.orderDate}
-                        onChange={this.handleChange}
-                      />
-                    </Grid>
                     <Grid item xs={12} sm={12}>
                       <TextField
                         required
@@ -294,14 +289,17 @@ class CreateOrder extends React.Component {
                               Item Name
                             </InputLabel>
                             <Select
+                              onChange={this.handleChange}
+                              value={this.state.itemName}
                               native
-                              defaultValue=""
                               id="grouped-native-select"
                             >
                               <option aria-label="None" value="" />
-                              <option>Permanent</option>
-                              <option>Contract</option>
-                              <option>Hourly</option>
+                              {this.props.items.map((item) => (
+                                <option value={item.itemId}>
+                                  {item.itemName}
+                                </option>
+                              ))}
                             </Select>
                           </FormControl>
                         </Grid>
@@ -336,7 +334,6 @@ class CreateOrder extends React.Component {
                       <Button
                         variant="contained"
                         color="primary"
-                        // onClick={this.submit}
                         onClick={this.handleAddItem}
                         className={classes.button}
                       >

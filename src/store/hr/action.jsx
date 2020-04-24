@@ -36,11 +36,11 @@ function addNewEmployee(data) {
         },
         data: param,
       })
-      .then((user) => {
+      .then((response) => {
         Swal.fire("Created!", "New employee added.", "success");
         dispatch({
           type: appConstants.REGISTER_SUCCESS,
-          payload: user.data.user,
+          payload: response.data,
         });
       })
       .catch((error) => {
@@ -74,6 +74,7 @@ function getEmploye() {
         });
       })
       .catch((error) => {
+        console.log(error);
         dispatch({
           type: itConstants.GETALL_FAILURE,
           payload: error.response.data.errors,
@@ -153,7 +154,7 @@ function deleteAccount(email) {
 function addAccount(employe) {
   return (dispatch) => {
     dispatch({
-      type: appConstants.REGISTER_REQUEST,
+      type: itConstants.REGISTER_REQUEST,
       payload: true,
     });
     Swal.fire({
@@ -181,7 +182,7 @@ function addAccount(employe) {
             email: employe.email,
             employe: employe.employe,
             department: employe.department,
-            role: employe.role,
+            roles: employe.role,
             claim: employe.claim,
             is_admin: result.value ? true : false,
           },
@@ -189,14 +190,15 @@ function addAccount(employe) {
         .then((response) => {
           Swal.fire("created!", "Account has been added.", "success");
           dispatch({
-            type: appConstants.REGISTER_SUCCESS,
+            type: itConstants.REGISTER_SUCCESS,
             payload: response.data.email,
           });
         })
         .catch((error) => {
+          console.log(error);
           Swal.fire("Error!", "Something went wrong.", "error");
           dispatch({
-            type: appConstants.REGISTER_FAILURE,
+            type: itConstants.REGISTER_FAILURE,
             payload: error.response.data.errors,
           });
         });

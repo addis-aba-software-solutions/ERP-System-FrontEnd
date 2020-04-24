@@ -62,7 +62,9 @@ class EmployeTable extends React.Component {
       search: "",
     };
   }
-
+  componentDidMount() {
+    this.props.getEmploye();
+  }
   deleteFun(employeId) {
     Swal.fire({
       title: "Are you sure?",
@@ -83,9 +85,7 @@ class EmployeTable extends React.Component {
       search: e.target.value.substr(0, 20),
     });
   }
-  componentDidMount() {
-    this.props.getEmploye();
-  }
+
   render() {
     const { employeeInfo, error } = this.state;
     const { classes } = this.props;
@@ -124,6 +124,9 @@ class EmployeTable extends React.Component {
                         <b>Phone Number</b>
                       </TableCell>
                       <TableCell>
+                        <b>E-mail Address</b>
+                      </TableCell>
+                      <TableCell>
                         <b>Department</b>
                       </TableCell>
                       <TableCell>
@@ -141,6 +144,7 @@ class EmployeTable extends React.Component {
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
                         <TableCell>{employeeInfos.telephone}</TableCell>
+                        <TableCell>{employeeInfos.email}</TableCell>
                         <TableCell>
                           {employeeInfos.department.departmentName}
                         </TableCell>

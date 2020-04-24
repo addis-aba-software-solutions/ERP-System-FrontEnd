@@ -36,14 +36,16 @@ function createOrder(data) {
         },
         data: param,
       })
-      .then((user) => {
+      .then((response) => {
+        console.log(response);
         Swal.fire("Created!", "New employee added.", "success");
         dispatch({
           type: salesConstants.ORDER_SUCCESS,
-          payload: user.data.user,
+          payload: response.data,
         });
       })
       .catch((error) => {
+        console.log(error);
         dispatch({
           type: salesConstants.ORDER_FAILURE,
           payload: error.response.data.errors,
@@ -90,7 +92,7 @@ function getAllItem() {
     axios
       .request({
         method: "GET",
-        url: API + "employe/",
+        url: API + "item/",
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
@@ -98,6 +100,8 @@ function getAllItem() {
         },
       })
       .then((response) => {
+        console.log(response.data);
+
         dispatch({
           type: salesConstants.ITEM_GETALL_SUCCESS,
           payload: response.data,
