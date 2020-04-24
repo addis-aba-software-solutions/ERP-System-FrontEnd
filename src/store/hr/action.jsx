@@ -32,14 +32,12 @@ function addNewEmployee(data) {
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: param,
       })
       .then((user) => {
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-        });
+        Swal.fire("Created!", "New employee added.", "success");
         dispatch({
           type: appConstants.REGISTER_SUCCESS,
           payload: user.data.user,
@@ -60,10 +58,16 @@ function getEmploye() {
       payload: true,
     });
     axios
-      .get(API + "employe/")
+      .request({
+        method: "GET",
+        url: API + "employe/",
+        responseType: "json",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
       .then((response) => {
-        console.log(response);
-
         dispatch({
           type: itConstants.GETALL_SUCCESS,
           payload: response.data,
@@ -90,6 +94,7 @@ function deleteEmploye(employeId) {
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -100,8 +105,6 @@ function deleteEmploye(employeId) {
         });
       })
       .catch((error) => {
-        console.log(error);
-        
         Swal.fire("Error!", "Something went wrogn.", "error");
         dispatch({
           type: appConstants.DELETE_FAILURE,
@@ -124,23 +127,20 @@ function deleteAccount(email) {
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        data:{
-          email:email
-        }
+        data: {
+          email: email,
+        },
       })
       .then((response) => {
         dispatch({
           type: itConstants.DELETE_SUCCESS,
           payload: email,
         });
-     
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-        });
+        Swal.fire("Deleted!", "Account deleted!", "success");
       })
-     
+
       .catch((error) => {
         dispatch({
           type: itConstants.DELETE_FAILURE,
@@ -152,50 +152,60 @@ function deleteAccount(email) {
 
 function addAccount(employe) {
   return (dispatch) => {
-    var param = {
-      username: employe.email,
-      password: employe.email,
-      email: employe.email,
-      employe: employe.employe,
-      department: employe.department,
-      role: employe.role,
-      claim: employe.claim,
-    };
-
     dispatch({
       type: appConstants.REGISTER_REQUEST,
       payload: true,
     });
-    axios
-      .request({
-        method: "POST",
-        url: API + "account/",
-        responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: param,
-      })
-      .then((response) => {
-        Swal.fire("created!", "Your file has been added.", "success");
-        dispatch({
-          type: appConstants.REGISTER_SUCCESS,
-          payload: response.data.email,
+    Swal.fire({
+      title: "Admin?",
+      text: "Do you need this user act as admin?",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes,",
+      cancelButtonText: "no",
+    }).then((result) => {
+      axios
+        .request({
+          method: "POST",
+          url: API + "account/",
+          responseType: "json",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+          data: {
+            username: employe.email,
+            password: employe.email,
+            email: employe.email,
+            employe: employe.employe,
+            department: employe.department,
+            role: employe.role,
+            claim: employe.claim,
+            is_admin: result.value ? true : false,
+          },
+        })
+        .then((response) => {
+          Swal.fire("created!", "Account has been added.", "success");
+          dispatch({
+            type: appConstants.REGISTER_SUCCESS,
+            payload: response.data.email,
+          });
+        })
+        .catch((error) => {
+          Swal.fire("Error!", "Something went wrong.", "error");
+          dispatch({
+            type: appConstants.REGISTER_FAILURE,
+            payload: error.response.data.errors,
+          });
         });
-      })
-      .catch((error) => {
-        Swal.fire("Error!", "Something went wrong.", "error");
-        dispatch({
-          type: appConstants.REGISTER_FAILURE,
-          payload: error.response.data.errors,
-        });
-      });
+    });
   };
 }
 
 function getEmployeDetail(employeId) {
   return (dispatch) => {
-
     dispatch({
       type: appConstants.FETCH_SINGLE_REQUEST,
       payload: true,
@@ -203,10 +213,11 @@ function getEmployeDetail(employeId) {
     axios
       .request({
         method: "GET",
-        url: API + "employe/"+employeId,
+        url: API + "employe/" + employeId,
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
       .then((response) => {
@@ -224,6 +235,35 @@ function getEmployeDetail(employeId) {
   };
 }
 
+function getDepartment() {
+  return (dispatch) => {
+    dispatch({
+      type: appConstants.FETCH_DEPARTMENT_REQUEST,
+      payload: true,
+    });
+    axios
+      .request({
+        method: "GET",
+        url: API + "department/",
+        responseType: "json",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        dispatch({
+          type: appConstants.FETCH_DEPARTMENT_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        dispatch({
+          type: appConstants.FETCH_DEPARTMENT_FAILURE,
+          payload: error.response.data.errors,
+        });
+      });
+  };
+}
 const actions = {
   addNewEmployee,
   addAccount,
@@ -231,6 +271,7 @@ const actions = {
   deleteEmploye,
   getEmploye,
   getEmployeDetail,
+  getDepartment,
 };
 
 export default actions;

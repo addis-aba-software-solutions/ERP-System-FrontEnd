@@ -28,7 +28,6 @@ import Store from "./store/store";
 import SignIn from "./Components/SignIn/SignIn";
 import PrivateRoute from "./auth/private_route";
 import PublicRoute from "./auth/public_route";
-import Inventory from "./Components/Inventory/Inventory";
 import { connect } from "react-redux";
 import "./App.css";
 import AddEmployee from "./Components/HR/components/UserProfile/UserProfile";
@@ -40,6 +39,7 @@ import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
 import Dashboard from "./Components/Dashboard/HomeNavBar";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
+import CreateOrder from "./Components/Saless/components/CreateOrder";
 
 class App extends React.Component {
   constructor() {
@@ -64,7 +64,12 @@ class App extends React.Component {
                     loggedIn={this.props.isLogin}
                   />
 
-                  <PrivateRoute path="/" component={Dashboard} exact loggedIn={this.props.isLogin}/>
+                  <PrivateRoute
+                    path="/"
+                    component={Dashboard}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
@@ -91,6 +96,12 @@ class App extends React.Component {
                   <PrivateRoute
                     path="/add_account"
                     component={AddAccount}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute
+                    path="/create_order"
+                    component={CreateOrder}
                     exact
                     loggedIn={this.props.isLogin}
                   />

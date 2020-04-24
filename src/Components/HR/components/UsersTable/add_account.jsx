@@ -86,23 +86,7 @@ class UserProfile extends Component {
     this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
-    axios
-      .request({
-        method: "GET",
-        url: API + "department/",
-        responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        this.setState({
-          deps: response.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.props.getDepartment();
   }
 
   submit = () => {
@@ -113,7 +97,7 @@ class UserProfile extends Component {
     this.setState({
       depValue: e.target.value,
     });
-    this.state.deps.map((value, index) => {
+    this.props.department.map((value, index) => {
       if (
         value.departmentId == e.target.value &&
         value.department_roles != null
@@ -499,10 +483,12 @@ function mapStateToProps(state) {
     loading: state.hrReducer.loading,
     users: state.hrReducer.users,
     errors: state.hrReducer.errors,
+    department: state.hrReducer.department,
   };
 }
 const mapDispatchToProps = {
   addNewEmployee: actions.addNewEmployee,
+  department: actions.getDepartment,
 };
 
 export default connect(

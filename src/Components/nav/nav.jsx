@@ -1,21 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import "./../../App.css";
 import { blue } from "@material-ui/core/colors";
 import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
 import Logo from "../../Assets/NAZO.png";
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import { connect } from 'react-redux'
-import actions from '../../store/login/action'
+import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { connect } from "react-redux";
+import actions from "../../store/login/action";
 
 class Nav extends React.Component {
   logoutHandler = (e) => {
-   this.props.logout()
+    this.props.logout();
+    this.props.history.push("/signin");
   };
 
   render() {
-  
     return (
       <header className="header" style={{ backgroundColor: "#11669F" }}>
         <div
@@ -180,12 +180,11 @@ class Nav extends React.Component {
 }
 
 function mapStateToProps(state) {
-	return {
-        isLogin: state.loginReducer.isLogin,
-	}
+  return {
+    isLogin: state.loginReducer.isLogin,
+  };
 }
 const mapDispatchToProps = {
-    logout:actions.logout,
-    
+  logout: actions.logout,
 };
-export default  connect(mapStateToProps, mapDispatchToProps)(Nav)
+export default connect(mapStateToProps, mapDispatchToProps)(Nav);

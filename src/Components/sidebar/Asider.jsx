@@ -19,7 +19,6 @@ class Asider extends React.Component {
             backgroundColor: "#FFFFFF",
             width: 150,
           }}
-          // className="nav-collapse "
         >
           <ul className="sidebar-menu">
             <li className="sub-menu">
@@ -125,10 +124,10 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/view">Task 1</Link>
+                  <Link to="/create_order">Create order</Link>
                 </li>
                 <li>
-                  <Link to="/view">Task 2</Link>
+                  <Link to="/view">View order</Link>
                 </li>
                 <li>
                   <Link to="/view">Task 3 </Link>
