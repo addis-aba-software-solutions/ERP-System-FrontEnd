@@ -386,7 +386,7 @@ class CreateOrder extends React.Component {
                             <Grid container xs={12}>
 
                               <Grid item xs={12} sm={11} style={{
-                                marginTop:3
+                                marginTop: 3
                               }}>
                                 <TextField
                                   required
@@ -401,9 +401,9 @@ class CreateOrder extends React.Component {
                               </Grid>
                               <Grid item item xs={12} sm={1}>
                                 <IconButton
-                                style={{
-                                  marginTop: 20
-                                }}
+                                  style={{
+                                    marginTop: 20
+                                  }}
                                   type="button"
                                   onClick={this.handleRemoveItem(idx)}
                                   className="small"
