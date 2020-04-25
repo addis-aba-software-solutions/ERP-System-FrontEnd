@@ -62,10 +62,12 @@ const styles = (theme) => ({
     marginLeft: theme.spacing(1),
   },
 });
+
 class CreateOrder extends React.Component {
   constructor() {
     super();
     this.state = {
+      fieldName: "",
       orderNumber: "",
       orderName: "",
       company: "",
@@ -76,15 +78,56 @@ class CreateOrder extends React.Component {
       itemQuantity: 0,
       itemName: "",
       item: "",
-      order_items: [],
+      // order_items: [],
       shipmentAddress: "",
+      order_items: [{ itemName: "", quantity: "" }],
 
       form: "",
       items: [{ form: "" }],
     };
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleAddItem = this.handleAddItem.bind(this);
+    this.handleRemoveItem = this.handleRemoveItem.bind(this);
+    this.ItemNameChange = this.ItemNameChange.bind(this);
+    this.ItemQuantityChange = this.ItemQuantityChange.bind(this);
   }
+
+  handleNameChange = (evt) => {
+    this.setState({ itemName: evt.target.value });
+  };
+  handleAddItem = () => {
+    this.setState({
+      order_items: this.state.order_items.concat([
+        { itemName: "", quantity: "" },
+      ]),
+    });
+  };
+
+  handleRemoveItem = (idx) => () => {
+    this.setState({
+      order_items: this.state.order_items.filter((s, sidx) => idx !== sidx),
+    });
+  };
+  ItemNameChange = (idx) => (evt) => {
+    console.log(this.state.order_items);
+    const neworder_items = this.state.order_items.map((item, sidx) => {
+      if (idx !== sidx) return item;
+      return { ...item, itemName: evt.target.value };
+    });
+
+    this.setState({ order_items: neworder_items });
+  };
+
+  ItemQuantityChange = (idx) => (evt) => {
+    const neworder_items = this.state.order_items.map((item, sidx) => {
+      if (idx !== sidx) return item;
+      return { ...item, quantity: evt.target.value };
+    });
+
+    this.setState({ order_items: neworder_items });
+  };
 
   componentDidMount() {
     this.props.getAllCompany();
@@ -99,35 +142,29 @@ class CreateOrder extends React.Component {
     this.props.createOrder(this.state);
   };
 
-  handleAddItem = () => {
-    if (
-      this.state.itemName != "" &&
-      this.state.itemQuantity != "" &&
-      this.state.itemQuantity > 0
-    ) {
-      this.setState({
-        order_items: this.state.order_items.concat([
-          {
-            itemName: this.state.itemName,
-            itemQuantity: this.state.itemQuantity,
-          },
-        ]),
-      });
-      this.setState({
-        itemName: "",
-        itemQuantity: 0,
-      });
-      this.setState({
-        items: this.state.items.concat([{ item: "" }]),
-      });
-    }
-  };
-
-  handleRemoveItem = (idx) => () => {
-    this.setState({
-      items: this.state.items.filter((s, sidx) => idx !== sidx),
-    });
-  };
+  // handleAddItem = () => {
+  //   if (
+  //     this.state.itemName != "" &&
+  //     this.state.itemQuantity != "" &&
+  //     this.state.itemQuantity > 0
+  //   ) {
+  //     this.setState({
+  //       order_items: this.state.order_items.concat([
+  //         {
+  //           itemName: this.state.itemName,
+  //           itemQuantity: this.state.itemQuantity,
+  //         },
+  //       ]),
+  //     });
+  //     this.setState({
+  //       itemName: "",
+  //       itemQuantity: 0,
+  //     });
+  //     this.setState({
+  //       items: this.state.items.concat([{ item: "" }]),
+  //     });
+  //   }
+  // };
 
   render() {
     const { classes } = this.props;
@@ -314,14 +351,74 @@ class CreateOrder extends React.Component {
                     </Grid>
                   </Grid>
 
-                  <Grid container xs={6} spacing={3}>
+                  <Grid container xs={6}>
                     <Grid item xs={12} sm={12}>
                       <Typography variant="h6" gutterBottom>
                         <b>Item Information </b>
                       </Typography>
-                    </Grid>
 
-                    {this.state.items.map((item, idx) => (
+                      {this.state.order_items.map((item, idx) => (
+                        <Grid item xs={12} sm={6}>
+                          <Grid item xs={12} sm={6}>
+                            <InputLabel htmlFor="grouped-native-select">
+                              Item Name
+                            </InputLabel>
+                            <Select
+                              value={item.itemName}
+                              // name="itemName"
+                              native
+                              id="grouped-native-select"
+                              onChange={this.ItemNameChange(idx)}
+                            >
+                              <option aria-label="None" value="" />
+                              {this.props.items.map((_item) => (
+                                <option value={_item.itemId}>
+                                  {_item.itemName}
+                                </option>
+                              ))}
+                            </Select>
+                          </Grid>
+
+                          <Grid item xs={12} sm={6}>
+                            <TextField
+                              required
+                              id="ItemQuantity"
+                              label="Item Quantity"
+                              fullWidth
+                              autoComplete="itemQuantity"
+                              value={item.quantity}
+                              onChange={this.ItemQuantityChange(idx)}
+                              placeholder={`Item #${idx + 1} name`}
+                            />
+
+                            <button
+                              type="button"
+                              onClick={this.handleRemoveItem(idx)}
+                              className="small"
+                            >
+                              -
+                            </button>
+                          </Grid>
+                        </Grid>
+                      ))}
+
+                      <Grid
+                        xs={12}
+                        sm={12}
+                        display="flex"
+                        justify="space-between"
+                      >
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleAddItem}
+                          className={classes.button}
+                        >
+                          Add Another Item
+                        </Button>
+                      </Grid>
+                    </Grid>
+                    {/* {this.state.items.map((item, idx) => (
                       <>
                         <Grid item xs={12} sm={12}>
                           <Typography variant="h8" gutterBottom>
@@ -337,9 +434,9 @@ class CreateOrder extends React.Component {
                               Item Name
                             </InputLabel>
                             <Select
-                              onChange={this.handleChange}
+                              onChange={this.handleNameChange}
                               value={this.state.itemName}
-                              name="itemName"
+                              // name="itemName"
                               native
                               id="grouped-native-select"
                             >
@@ -364,31 +461,7 @@ class CreateOrder extends React.Component {
                           />
                         </Grid>
                       </>
-                    ))}
-
-                    <Grid
-                      xs={12}
-                      sm={12}
-                      display="flex"
-                      justify="space-between"
-                    >
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.submit}
-                        className={classes.button}
-                      >
-                        Clear
-                      </Button>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={this.handleAddItem}
-                        className={classes.button}
-                      >
-                        Add Another Item
-                      </Button>
-                    </Grid>
+                    ))} */}
                   </Grid>
                 </Grid>
 
