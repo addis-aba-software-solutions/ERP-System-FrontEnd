@@ -4,23 +4,18 @@ import API from "../../api/API";
 import { salesConstants } from "../../constant/constants";
 
 function createOrder(data) {
+  var params = {
+    orderNumber: data.orderNumber,
+    orderName: data.orderName,
+    company: data.company,
+    quantity: data.itemQuantity,
+    description: data.description,
+    discount: data.discount,
+    salesPerson: data.salesPerson,
+    item_order: data.order_items,
+    shipmentAddress: data.shipmentAddress,
+  };
   return (dispatch) => {
-    var param = {
-      firstName: data.firstName,
-      lastName: data.lastName,
-      email: data.email,
-      hiredDate: data.hiredDate,
-      telephone: data.telephone,
-      department: data.depValue,
-      roles: data.rolValue,
-      level: data.levValue,
-      termOfEmployment: data.termOfEmployment,
-      country: data.country,
-      city: data.city,
-      region: data.region,
-      birthDate: data.birthDate,
-    };
-
     dispatch({
       type: salesConstants.ORDER_REQUEST,
       payload: true,
@@ -34,21 +29,20 @@ function createOrder(data) {
           "Content-Type": "application/json",
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
-        data: param,
+        data: params,
       })
       .then((response) => {
-        console.log(response);
-        Swal.fire("Created!", "New employee added.", "success");
+        Swal.fire("Created!", "New order created.", "success");
         dispatch({
           type: salesConstants.ORDER_SUCCESS,
           payload: response.data,
         });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response.data);
         dispatch({
           type: salesConstants.ORDER_FAILURE,
-          payload: error.response.data.errors,
+          payload: error.response.data,
         });
       });
   };

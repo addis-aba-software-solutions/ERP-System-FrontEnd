@@ -20,6 +20,7 @@ import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import { withStyles, Box, Divider } from "@material-ui/core";
 import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
+import Error from "../../../error/error";
 
 const styles = (theme) => ({
   appBar: {
@@ -67,12 +68,15 @@ class CreateOrder extends React.Component {
     this.state = {
       orderNumber: "",
       orderName: "",
-      quantity: "",
+      company: "",
       description: "",
       orderDate: "",
       discount: "",
       salesPerson: "",
+      itemQuantity: 0,
+      itemName: "",
       item: "",
+      order_items: [],
       shipmentAddress: "",
 
       form: "",
@@ -87,7 +91,6 @@ class CreateOrder extends React.Component {
     this.props.getAllItem();
   }
   handleChange = (e) => {
-    console.log(e.target.value);
     this.setState({
       [e.target.name]: e.target.value,
     });
@@ -97,9 +100,27 @@ class CreateOrder extends React.Component {
   };
 
   handleAddItem = () => {
-    this.setState({
-      items: this.state.items.concat([{ item: "" }]),
-    });
+    if (
+      this.state.itemName != "" &&
+      this.state.itemQuantity != "" &&
+      this.state.itemQuantity > 0
+    ) {
+      this.setState({
+        order_items: this.state.order_items.concat([
+          {
+            itemName: this.state.itemName,
+            itemQuantity: this.state.itemQuantity,
+          },
+        ]),
+      });
+      this.setState({
+        itemName: "",
+        itemQuantity: 0,
+      });
+      this.setState({
+        items: this.state.items.concat([{ item: "" }]),
+      });
+    }
   };
 
   handleRemoveItem = (idx) => () => {
@@ -160,6 +181,14 @@ class CreateOrder extends React.Component {
                         value={this.state.orderName}
                         onChange={this.handleChange}
                       />
+
+                      <Error
+                        error={
+                          this.props.errors.orderName
+                            ? this.props.errors.orderName
+                            : null
+                        }
+                      />
                     </Grid>
                     <Grid item xs={12} sm={4}>
                       <TextField
@@ -172,25 +201,15 @@ class CreateOrder extends React.Component {
                         value={this.state.orderNumber}
                         onChange={this.handleChange}
                       />
+                      <Error
+                        error={
+                          this.props.errors.orderNumber
+                            ? this.props.errors.orderNumber
+                            : null
+                        }
+                      />
                     </Grid>
 
-                    <Grid item xs={12} sm={6}>
-                      <FormControl className={classes.formControl} fullWidth>
-                        <InputLabel htmlFor="grouped-native-select">
-                          Item
-                        </InputLabel>
-                        <Select
-                          native
-                          defaultValue=""
-                          id="grouped-native-select"
-                        >
-                          <option aria-label="None" value="" />
-                          <option>Permanent</option>
-                          <option>Contract</option>
-                          <option>Hourly</option>
-                        </Select>
-                      </FormControl>
-                    </Grid>
                     <Grid item xs={12} sm={6}>
                       <FormControl className={classes.formControl} fullWidth>
                         <InputLabel htmlFor="grouped-native-select">
@@ -198,8 +217,9 @@ class CreateOrder extends React.Component {
                         </InputLabel>
                         <Select
                           onChange={this.handleChange}
-                          value={this.state.itemName}
+                          value={this.state.company}
                           native
+                          name="company"
                           id="grouped-native-select"
                         >
                           <option aria-label="None" value="" />
@@ -210,6 +230,13 @@ class CreateOrder extends React.Component {
                           ))}
                         </Select>
                       </FormControl>
+                      <Error
+                        error={
+                          this.props.errors.company
+                            ? this.props.errors.company
+                            : null
+                        }
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -222,6 +249,13 @@ class CreateOrder extends React.Component {
                         value={this.state.salesPerson}
                         onChange={this.handleChange}
                       />
+                      <Error
+                        error={
+                          this.props.errors.salesPerson
+                            ? this.props.errors.salesPerson
+                            : null
+                        }
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -233,6 +267,13 @@ class CreateOrder extends React.Component {
                         autoComplete="shipmentAddress"
                         value={this.state.shipmentAddress}
                         onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.shipmentAddress
+                            ? this.props.errors.shipmentAddress
+                            : null
+                        }
                       />
                     </Grid>
 
@@ -254,7 +295,7 @@ class CreateOrder extends React.Component {
                       <TextField
                         required
                         id="Description"
-                        name="Description"
+                        name="description"
                         label="Description"
                         // rowsMax= '12'
                         multiline
@@ -262,6 +303,13 @@ class CreateOrder extends React.Component {
                         autoComplete="quantity"
                         value={this.state.description}
                         onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.description
+                            ? this.props.errors.description
+                            : null
+                        }
                       />
                     </Grid>
                   </Grid>
@@ -291,6 +339,7 @@ class CreateOrder extends React.Component {
                             <Select
                               onChange={this.handleChange}
                               value={this.state.itemName}
+                              name="itemName"
                               native
                               id="grouped-native-select"
                             >
@@ -307,7 +356,7 @@ class CreateOrder extends React.Component {
                           <TextField
                             required
                             id="ItemQuantity"
-                            name="ItemQuantity"
+                            name="itemQuantity"
                             label="Item Quantity"
                             fullWidth
                             autoComplete="itemQuantity"
@@ -362,8 +411,8 @@ class CreateOrder extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    loading: state.hrReducer.loading,
-    errors: state.hrReducer.errors,
+    loading: state.salesReducer.loading,
+    errors: state.salesReducer.errors,
     items: state.salesReducer.items,
     companys: state.salesReducer.companys,
   };

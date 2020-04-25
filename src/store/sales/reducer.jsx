@@ -1,4 +1,5 @@
 import { salesConstants } from "../../constant/constants";
+import actions from "./action";
 const initialState = {
   loading: false,
   isLogin: false,
@@ -17,14 +18,8 @@ export default function salesReducer(state = initialState, action) {
       };
     }
     case salesConstants.ORDER_SUCCESS: {
-      const index = state.employees.findIndex(
-        (emp) => emp.email === action.payload
-      );
-      const employees = state.employees[index];
-      employees.has_account = true;
       return {
         ...state,
-        users: employees,
         errors: [],
         loading: false,
         isLogin: true,
@@ -48,6 +43,7 @@ export default function salesReducer(state = initialState, action) {
       };
     }
     case salesConstants.ITEM_GETALL_SUCCESS: {
+      console.log(action.payload);
       return {
         ...state,
         items: action.payload,
