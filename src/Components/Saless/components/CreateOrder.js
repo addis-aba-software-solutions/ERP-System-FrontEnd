@@ -17,10 +17,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import { withStyles, Box, Divider } from "@material-ui/core";
+import { withStyles, IconButton, Box, Divider } from "@material-ui/core";
 import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
 
 const styles = (theme) => ({
   appBar: {
@@ -358,15 +360,17 @@ class CreateOrder extends React.Component {
                       </Typography>
 
                       {this.state.order_items.map((item, idx) => (
-                        <Grid item xs={12} sm={6}>
+                        <Grid container xs={12} sm={12} spacing={3}>
                           <Grid item xs={12} sm={6}>
                             <InputLabel htmlFor="grouped-native-select">
                               Item Name
                             </InputLabel>
+
                             <Select
                               value={item.itemName}
                               // name="itemName"
                               native
+                              fullWidth
                               id="grouped-native-select"
                               onChange={this.ItemNameChange(idx)}
                             >
@@ -378,27 +382,40 @@ class CreateOrder extends React.Component {
                               ))}
                             </Select>
                           </Grid>
+                          <Grid item>
+                            <Grid container xs={12}>
 
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              required
-                              id="ItemQuantity"
-                              label="Item Quantity"
-                              fullWidth
-                              autoComplete="itemQuantity"
-                              value={item.quantity}
-                              onChange={this.ItemQuantityChange(idx)}
-                              placeholder={`Item #${idx + 1} name`}
-                            />
+                              <Grid item xs={12} sm={11} style={{
+                                marginTop:3
+                              }}>
+                                <TextField
+                                  required
+                                  id="ItemQuantity"
+                                  label="Item Quantity"
+                                  fullWidth
+                                  autoComplete="itemQuantity"
+                                  value={item.quantity}
+                                  onChange={this.ItemQuantityChange(idx)}
+                                  placeholder={`Item #${idx + 1} name`}
+                                />
+                              </Grid>
+                              <Grid item item xs={12} sm={1}>
+                                <IconButton
+                                style={{
+                                  marginTop: 20
+                                }}
+                                  type="button"
+                                  onClick={this.handleRemoveItem(idx)}
+                                  className="small"
+                                >
+                                  <HighlightOffIcon color='secondary' />
+                                </IconButton>
+                              </Grid>
+                            </Grid>
 
-                            <button
-                              type="button"
-                              onClick={this.handleRemoveItem(idx)}
-                              className="small"
-                            >
-                              -
-                            </button>
+
                           </Grid>
+
                         </Grid>
                       ))}
 
