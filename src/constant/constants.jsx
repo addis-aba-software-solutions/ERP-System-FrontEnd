@@ -60,3 +60,5 @@ export const errorsConstant = {
 };
 
 export const GET_INVOICE = "GET_INVOICE";
+export const GET_SIV = "GET_SIV";
+export const GET_ORDER = "GET_ORDER";

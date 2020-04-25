@@ -110,11 +110,11 @@ class Orders extends React.Component {
                       <button>
                         <Link
                           to={{
-                            pathname: `/employe/${orderInfos.employeId}`,
-                            state: { orderInfos: orderInfos.employeId },
+                            pathname: `/invoice/`,
+                            state: { order: orderInfos.orderNumber },
                           }}
                         >
-                          View
+                          Invoice Available
                         </Link>
                       </button>
                     </TableCell>

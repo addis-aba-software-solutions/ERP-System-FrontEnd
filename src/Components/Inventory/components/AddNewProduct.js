@@ -26,6 +26,7 @@ import Error from "../../../error/error";
 import API from "../../../api/API";
 import { addItem, getItems } from "../../../store/inventory/action";
 import { getInvoice } from "../../../store/Invoice/action";
+import { getSiv } from "../../../store/Siv/action";
 
 const styles = (theme) => ({
   container: {
@@ -92,6 +93,7 @@ class AddNewProduct extends Component {
     this.props.getItems();
     // For checking the invoice is in the state
     this.props.getInvoice(2);
+    this.props.getSiv(2);
   }
   catagoryDropDown(e) {
     this.setState({
@@ -320,8 +322,8 @@ class AddNewProduct extends Component {
             >
               Recent Imports
             </Typography>
-            <RecentOrders />
-            {/* <Paper className={classes.paper}>
+            {/* <RecentOrders /> */}
+            <Paper className={classes.paper}>
               <TableContainer>
                 <Table
                   className={classes.table}
@@ -381,7 +383,7 @@ class AddNewProduct extends Component {
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper> */}
+            </Paper>
           </div>
         </React.Fragment>
       </div>
@@ -398,4 +400,5 @@ export default connect(mapStateToProps, {
   addItem,
   getItems,
   getInvoice,
+  getSiv,
 })(withStyles(styles)(AddNewProduct));

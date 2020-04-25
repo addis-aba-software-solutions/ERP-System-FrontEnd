@@ -2,9 +2,10 @@ import { GET_INVOICE, errorsConstant } from "../../constant/constants";
 import axios from "axios";
 import API from "../../api/API";
 
-export const getInvoice = (invoiceId) => (dispatch) => {
+// GET INVOICE TAKES ORDER NUMBNER
+export const getInvoice = (order) => (dispatch) => {
   axios
-    .get(API + `generateinvoice/${invoiceId}`)
+    .get(API + `generateinvoice/${order}`)
     .then((res) => {
       dispatch({
         type: GET_INVOICE,

@@ -18,7 +18,7 @@ import CreateOrder from "./Components/Saless/components/CreateOrder";
 import Orders from "./Components/Saless/components/orders";
 import AddNewCompany from "./Components/Finance/components/AddNewCompany";
 import ViewCompany from "./Components/Finance/components/ViewCompany";
-import Invoice from "./Components/Finance/components/Invoice";
+import Invoice from "./Components/Finance/components/INVOICE";
 
 class App extends React.Component {
   render() {
