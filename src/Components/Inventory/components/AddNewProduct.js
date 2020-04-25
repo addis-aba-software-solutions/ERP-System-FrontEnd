@@ -25,6 +25,7 @@ import { connect } from "react-redux";
 import Error from "../../../error/error";
 import API from "../../../api/API";
 import { addItem, getItems } from "../../../store/inventory/action";
+import { getInvoice } from "../../../store/Invoice/action";
 
 const styles = (theme) => ({
   container: {
@@ -89,6 +90,8 @@ class AddNewProduct extends Component {
       });
     console.log(this.props.getItems());
     this.props.getItems();
+    // For checking the invoice is in the state
+    this.props.getInvoice(2);
   }
   catagoryDropDown(e) {
     this.setState({
@@ -317,8 +320,8 @@ class AddNewProduct extends Component {
             >
               Recent Imports
             </Typography>
-            {/* <RecentOrders /> */}
-            <Paper className={classes.paper}>
+            <RecentOrders />
+            {/* <Paper className={classes.paper}>
               <TableContainer>
                 <Table
                   className={classes.table}
@@ -378,7 +381,7 @@ class AddNewProduct extends Component {
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper>
+            </Paper> */}
           </div>
         </React.Fragment>
       </div>
@@ -391,6 +394,8 @@ const mapStateToProps = (state) => ({
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { addItem, getItems })(
-  withStyles(styles)(AddNewProduct)
-);
+export default connect(mapStateToProps, {
+  addItem,
+  getItems,
+  getInvoice,
+})(withStyles(styles)(AddNewProduct));

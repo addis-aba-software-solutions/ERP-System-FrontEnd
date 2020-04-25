@@ -149,156 +149,144 @@
 
 // export default withStyles(styles)(ViewAllOrders);
 
+import React, { Component } from "react";
+import { Button, withStyles, Paper } from "@material-ui/core";
 
-import React, { Component } from 'react';
-import { Button, Divider, Typography, Grid, Badge, withStyles, Paper, Card, IconButton, TextField } from '@material-ui/core';
-import SearchBar from '../../SearchBar/SearchBar'
-
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import VisibilityIcon from '@material-ui/icons/Visibility'
-import axios from 'axios';
-import { Link } from 'react-router-dom'
-const styles = theme => ({
-    table: {
-        maxHeight: 100,
-        // padding: 20
-    },
-    tableRow: {
-        // padding: 15
-    },
-    container: {
-        padding: 20,
-    },
-    paper: {
-        padding: 10,
-        height: 'auto',
-        borderRadius: 20
-    },
-    spacer: {
-        margin: 20,
-    },
-    recentitems: {
-        padding: 20,
-        paddingBottom: 20
-    },
-    spacer: {
-        margin: 10,
-        marginBottom: 30
-    },
-    header: {
-        marginLeft: 100
-    }
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import axios from "axios";
+import { Link } from "react-router-dom";
+const styles = (theme) => ({
+  table: {
+    maxHeight: 100,
+    // padding: 20
+  },
+  tableRow: {
+    // padding: 15
+  },
+  container: {
+    padding: 20,
+  },
+  paper: {
+    padding: 10,
+    height: "auto",
+    borderRadius: 20,
+  },
+  spacer: {
+    margin: 20,
+  },
+  recentitems: {
+    padding: 20,
+    paddingBottom: 20,
+  },
+  spacer: {
+    margin: 10,
+    marginBottom: 30,
+  },
+  header: {
+    marginLeft: 100,
+  },
 });
 
+class OrderList extends Component {
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+      orderInfo: [],
+    };
+  }
+  updateSearch(e) {
+    this.setState({
+      search: e.target.value.substr(0, 20),
+    });
+  }
 
-
-class OrderList extends React.Component {
-
-
-    constructor() {
-        super();
-        this.state = {
-            search: '',
-            orderInfo: []
-        };
-    }
-    updateSearch(e) {
+  componentDidMount() {
+    axios
+      .get("http://0.0.0.0:8000/api/v1/order/")
+      .then((res) => {
         this.setState({
-            search: e.target.value.substr(0, 20)
-        })
-    }
+          orderInfo: res.data,
+        });
+        //   console.log(res.data.data.children);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
 
+  render() {
+    const { classes } = this.props;
+    //    if(!orderInfo) return [];
+    //    else {
+    //         let filteredOrder = this.orderInfo.filter(
+    //             (orderInfos) => {
+    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //             }
+    //         );
+    //     }
+    const { orderInfo } = this.state;
 
-    componentDidMount() {
-        axios.get("http://0.0.0.0:8000/api/v1/order/")
-            .then(res => {
-                this.setState({
-                    orderInfo: res.data
-                })
-                //   console.log(res.data.data.children);
-            })
-            .catch(error => {
-                console.log(error);
-            })
-    }
+    return (
+      <>
+        <div className={classes.container}>
+          <div>
+            <Button variant="contained">
+              {" "}
+              <Link to="/CreateOrder">Add New Order</Link>
+            </Button>
+            <br />
+            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
-    render() {
-        const { classes } = this.props;
-        //    if(!orderInfo) return [];
-        //    else {
-        //         let filteredOrder = this.orderInfo.filter(
-        //             (orderInfos) => {
-        //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-        //             }
-        //         );
-        //     }
-        const { orderInfo } = this.state;
+            <Paper className={classes.paper}>
+              <TableContainer style={{ maxHeight: 440 }}>
+                <Table stickyHeader aria-label="sticky table">
+                  <TableHead>
+                    <TableRow className={classes.table}>
+                      <TableCell>Order Number</TableCell>
+                      <TableCell>Order Name</TableCell>
 
-        return (
-            <>
-                <div className={classes.container}>
+                      <TableCell>Item</TableCell>
+                      <TableCell>Company</TableCell>
+                      <TableCell>Sales Person</TableCell>
+                      <TableCell>Shipment Address</TableCell>
+                      <TableCell>Order Date</TableCell>
+                      <TableCell>Actions</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {orderInfo.map((orderInfos) => (
+                      <TableRow key={orderInfos.orderNumber}>
+                        <TableCell>{orderInfos.orderNumber}</TableCell>
+                        <TableCell>{orderInfos.orderName}</TableCell>
+                        <TableCell>{orderInfos.item}</TableCell>
+                        <TableCell>{orderInfos.company}</TableCell>
+                        <TableCell>{orderInfos.salesPerson}</TableCell>
+                        <TableCell>{orderInfos.shipmentAddress}</TableCell>
+                        <TableCell>{orderInfos.orderDate}</TableCell>
 
-                    <div >
-                        <Button variant='contained'> <Link to="/CreateOrder"
-                        >Add New Order</Link></Button>
-                        <br />
-                        {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
-
-                        <Paper className={classes.paper}>
-
-                            <TableContainer style={{ maxHeight: 440 }} >
-                                <Table stickyHeader aria-label="sticky table">
-                                    <TableHead>
-
-                                        <TableRow className={classes.table}>
-
-                                            <TableCell >Order Number</TableCell>
-                                            <TableCell>Order Name</TableCell>
-
-                                            <TableCell>Item</TableCell>
-                                            <TableCell>Company</TableCell>
-                                            <TableCell>Sales Person</TableCell>
-                                            <TableCell>Shipment Address</TableCell>
-                                            <TableCell>Order Date</TableCell>
-                                            <TableCell >Actions</TableCell>
-                                        </TableRow>
-                                    </TableHead>
-                                    <TableBody>
-                                        {orderInfo.map(orderInfos => (
-                                            <TableRow key={orderInfos.orderNumber}>
-                                                <TableCell>{orderInfos.orderNumber}</TableCell>
-                                                <TableCell>{orderInfos.orderName}</TableCell>
-                                                <TableCell>{orderInfos.item}</TableCell>
-                                                <TableCell>{orderInfos.company}</TableCell>
-                                                <TableCell>{orderInfos.salesPerson}</TableCell>
-                                                <TableCell>{orderInfos.shipmentAddress}</TableCell>
-                                                <TableCell>{orderInfos.orderDate}</TableCell>
-
-
-                                                {/* <TableCell><button>
+                        {/* <TableCell><button>
                           <Link to={{
                             pathname: `/employe/${orderInfos.employeId}`,
                             state: { orderInfos: orderInfos.employeId }
                           }}>View</Link>
                         </button></TableCell> */}
-
-                                            </TableRow>
-                                        ))}
-                                    </TableBody>
-                                </Table>
-                            </TableContainer>
-                        </Paper>
-                    </div>
-                </div>
-            </>
-        );
-    }
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default withStyles(styles)(OrderList);
-

@@ -6,9 +6,8 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import { withStyles, Button } from "@material-ui/core";
+import { withStyles } from "@material-ui/core";
 import { getItems } from "../../../store/inventory/action";
 import { connect } from "react-redux";
 
@@ -32,9 +31,9 @@ class RecentOrders extends React.Component {
       search: "",
     };
   }
-    componentDidMount() {
-      this.props.getItems();
-    }
+  //   componentDidMount() {
+  //     this.props.getItems();
+  //   }
   render() {
     const { classes } = this.props;
     return (
@@ -102,4 +101,6 @@ const mapStateToProps = (state) => ({
   errors: state.inventoryReducer.errors,
 });
 
-export default connect(mapStateToProps, {getItems})(withStyles(useStyles)(RecentOrders));
+export default connect(mapStateToProps, { getItems })(
+  withStyles(useStyles)(RecentOrders)
+);

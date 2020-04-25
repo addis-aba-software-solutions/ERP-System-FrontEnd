@@ -23,7 +23,7 @@ import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
 import API from "../../../api/API";
-import { addCompany, getCompanys } from "../../../store/company/action";
+import { addCompany, getCompany } from "../../../store/company/action";
 
 const styles = (theme) => ({
   container: {
@@ -75,8 +75,8 @@ class AddNewCompany extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.getCompanys());
-    this.props.getCompanys();
+    console.log(this.props.getCompany());
+    this.props.getCompany();
   }
   paymentOptionDropDown(e) {
     this.setState({
@@ -267,37 +267,6 @@ class AddNewCompany extends Component {
                     }
                   />
                 </Grid>
-
-                {/* <Grid item xs={12} sm={6}>
-                  <FormControl className={classes.formControl} fullWidth>
-                    <InputLabel htmlFor="grouped-native-select">
-                      Category
-                    </InputLabel>
-                    <Select
-                      onChange={this.catagoryDropDown}
-                      value={catagoryValue}
-                      native
-                      id="grouped-native-select"
-                    >
-                      <option aria-label="None" value="" />
-                      {this.state.catagoryList.map((catagoryLists) => (
-                        <option
-                          value={catagoryLists.catagoryId}
-                          key={catagoryLists.catagoryId}
-                        >
-                          {catagoryLists.catagory}
-                        </option>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <Error
-                    error={
-                      this.props.errors.catagory
-                        ? this.props.errors.catagory
-                        : null
-                    }
-                  />
-                </Grid> */}
                 <Grid item xs={12} sm={12}>
                   <Button
                     variant="contained"
@@ -322,7 +291,7 @@ class AddNewCompany extends Component {
               Recent Imports
             </Typography>
             {/* <RecentOrders /> */}
-            {/* <Paper className={classes.paper}>
+            <Paper className={classes.paper}>
               <TableContainer>
                 <Table
                   className={classes.table}
@@ -358,32 +327,39 @@ class AddNewCompany extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.companys.map((company) => (
-                      <TableRow key={company.companyId}>
-                        <TableCell align="right">{company.companyId}</TableCell>
-                        <TableCell align="right">
-                          {company.companyName}
-                        </TableCell>
-                        <TableCell align="right">
-                          {company.generalManger}
-                        </TableCell>
-                        <TableCell align="right">
-                          {company.contactPerson}
-                        </TableCell>
-                        <TableCell align="right">
-                          {company.workingField}
-                        </TableCell>
-                        <TableCell align="right">
-                          {company.paymentOption}
-                        </TableCell>
-                        <TableCell align="right">{company.email}</TableCell>
-                        <TableCell align="right">{company.tinNumber}</TableCell>
-                      </TableRow>
-                    ))}
+                    {this.props.companys
+                      .slice(0)
+                      .reverse()
+                      .map((company) => (
+                        <TableRow key={company.companyId}>
+                          <TableCell align="right">
+                            {company.companyId}
+                          </TableCell>
+                          <TableCell align="right">
+                            {company.companyName}
+                          </TableCell>
+                          <TableCell align="right">
+                            {company.generalManger}
+                          </TableCell>
+                          <TableCell align="right">
+                            {company.contactPerson}
+                          </TableCell>
+                          <TableCell align="right">
+                            {company.workingField}
+                          </TableCell>
+                          <TableCell align="right">
+                            {company.paymentOption}
+                          </TableCell>
+                          <TableCell align="right">{company.email}</TableCell>
+                          <TableCell align="right">
+                            {company.tinNumber}
+                          </TableCell>
+                        </TableRow>
+                      ))}
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper> */}
+            </Paper>
           </div>
         </React.Fragment>
       </div>
@@ -396,6 +372,6 @@ const mapStateToProps = (state) => ({
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { addCompany, getCompanys })(
+export default connect(mapStateToProps, { addCompany, getCompany })(
   withStyles(styles)(AddNewCompany)
 );

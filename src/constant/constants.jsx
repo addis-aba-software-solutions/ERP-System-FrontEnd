@@ -52,8 +52,11 @@ export const salesConstant = {
 export const companyConstant = {
   ADD_COMPANY: "ADD_COMPANY",
   GET_COMPANYS: "GET_COMPANYS",
+  DELETE_COMPANY: "DELETE_COMPANY",
 };
 
 export const errorsConstant = {
   GET_ERRORS: "GET_ERRORS",
 };
+
+export const GET_INVOICE = "GET_INVOICE";

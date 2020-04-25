@@ -50,6 +50,10 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
   axios
     .delete(API + `item/${InventoryItemId}/`)
     .then((res) => {
+      Swal.fire({
+        title: "Success",
+        icon: "success",
+      });
       dispatch({
         type: inventoryConstant.DELETE_ITEM,
         payload: InventoryItemId,

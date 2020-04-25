@@ -200,16 +200,13 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Card from "@material-ui/core/Card";
-import history from "../../Routes/history";
 import { PostData } from "./PostData";
 // import {PostData} from "public/PostData";
 import { Redirect } from "react-router-dom";
-import Inventory from "../Inventory/Inventory";
 import { connect } from "react-redux";
 import actions from "../../store/login/action";
 
@@ -355,7 +352,6 @@ class SignIn extends React.Component {
                   type="password"
                   name="password"
                   label="Password"
-                  type="password"
                   id="password"
                   autoComplete="current-password"
                   onChange={this.handleChange}

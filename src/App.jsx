@@ -1,34 +1,9 @@
 import React from "react";
-import clsx from "clsx";
-import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import DashboardIcon from "@material-ui/icons/Dashboard";
-import PeopleIcon from "@material-ui/icons/People";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Badge from "@material-ui/core/Badge";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import NotificationsIcon from "@material-ui/icons/Notifications";
-import ReactDOM from "react-dom";
-import HR from "./Components/HR/hr_home";
-import { Provider } from "react-redux";
-import Store from "./store/store";
 import SignIn from "./Components/SignIn/SignIn";
 import PrivateRoute from "./auth/private_route";
 import PublicRoute from "./auth/public_route";
-import Inventory from "./Components/Inventory/Inventory";
 import { connect } from "react-redux";
 import "./App.css";
 import AddEmployee from "./Components/HR/components/UserProfile/UserProfile";
@@ -43,12 +18,9 @@ import CreateOrder from "./Components/Saless/components/CreateOrder";
 import Orders from "./Components/Saless/components/orders";
 import AddNewCompany from "./Components/Finance/components/AddNewCompany";
 import ViewCompany from "./Components/Finance/components/ViewCompany";
+import Invoice from "./Components/Finance/components/Invoice";
 
 class App extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -106,6 +78,7 @@ class App extends React.Component {
                     component={ViewCompany}
                     exact
                   />
+                  <PrivateRoute path="/invoice" component={Invoice} exact />
                 </section>
               </section>
             </div>

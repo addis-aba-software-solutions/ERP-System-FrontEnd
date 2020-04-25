@@ -1,5 +1,5 @@
 // export function PostData(userData){
-    
+
 //     let BaseUrl='http://192.168.1.2:8000/api/v1/login/';
 //     // 0.0.0.0:8000/api/v1/login/''
 //     return new Promise((resolve,reject)=>{
@@ -23,34 +23,30 @@
 //     });
 // }
 
-
 //JSON.parse(response);
 //
 //JSON.parse(response)
 
-
-
-export function PostData(userData){
-    
-    let BaseUrl='http://192.168.1.5:8000/api/v1/login/';
-    // 0.0.0.0:8000/api/v1/login/''
-    return new Promise((resolve,reject)=>{
-        fetch(BaseUrl,{
-            method:'POST',
-            body:JSON.stringify(userData),
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-                },
-        })
-        .then((response)=>response.json())
-        .then((responseJson)=>{
-           // alert("success")
-            resolve(responseJson);
-        })
-        .catch((error)=> {
-            reject(error);
-            alert("error")
-        });
-    });
+export function PostData(userData) {
+  let BaseUrl = "http://192.168.1.5:8000/api/v1/login/";
+  // 0.0.0.0:8000/api/v1/login/''
+  return new Promise((resolve, reject) => {
+    fetch(BaseUrl, {
+      method: "POST",
+      body: JSON.stringify(userData),
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        // alert("success")
+        resolve(responseJson);
+      })
+      .catch((error) => {
+        reject(error);
+        alert("error");
+      });
+  });
 }

@@ -17,6 +17,15 @@ export default function companyReducer(state = initialState, action) {
         companys: [...state.companys, action.payload],
       };
 
+    case companyConstant.DELETE_COMPANY:
+      return {
+        ...state,
+        companys: state.companys.filter(
+          (company) => company.companyId !== action.payload
+        ),
+        loading: false,
+      };
+
     default:
       return state;
   }

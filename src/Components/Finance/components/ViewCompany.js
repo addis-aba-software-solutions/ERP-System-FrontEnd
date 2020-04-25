@@ -4,11 +4,8 @@ import {
   Divider,
   Typography,
   Grid,
-  Badge,
   withStyles,
   Paper,
-  Card,
-  TextField,
 } from "@material-ui/core";
 import SearchBar from "../../SearchBar/SearchBar";
 
@@ -18,8 +15,7 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import Error from "../../../error/error";
-import { getCompanys } from "../../../store/company/action";
+import { getCompany, deleteCompany } from "../../../store/company/action";
 import { connect } from "react-redux";
 
 const styles = (theme) => ({
@@ -46,10 +42,6 @@ const styles = (theme) => ({
     padding: 20,
     paddingBottom: 20,
   },
-  spacer: {
-    margin: 10,
-    marginBottom: 30,
-  },
   header: {
     marginLeft: 100,
   },
@@ -59,13 +51,13 @@ class ViewCompany extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
+      campanys: [],
       search: "",
     };
   }
 
   componentDidMount() {
-    this.props.getCompanys();
+    this.props.getCompany();
   }
 
   render() {
@@ -126,48 +118,54 @@ class ViewCompany extends Component {
                       <b>ID</b>
                     </TableCell>
                     <TableCell className={classes.table}>
-                      <b>Item Name</b>
+                      <b>Company Name</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>Quantity</b>
+                      <b>General Manger</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>Retail Price</b>
+                      <b>Contact Person</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>Packaging</b>
+                      <b>Working Field</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>Warehouse Name</b>
+                      <b>Payment Option</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>Discount</b>
+                      <b>Email</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>catagory</b>
+                      <b>Tin Number</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.props.items.map((item) => (
-                    <TableRow key={item.InventoryItemId}>
+                  {this.props.companys.map((company) => (
+                    <TableRow key={company.companyId}>
+                      <TableCell align="right">{company.companyId}</TableCell>
+                      <TableCell align="right">{company.companyName}</TableCell>
                       <TableCell align="right">
-                        {item.InventoryItemId}
+                        {company.generalManger}
                       </TableCell>
-                      <TableCell align="right">{item.itemName}</TableCell>
-                      <TableCell align="right">{item.quantity}</TableCell>
-                      <TableCell align="right">{item.retailPrice}</TableCell>
-                      <TableCell align="right">{item.packaging}</TableCell>
-                      <TableCell align="right">{item.warehouseName}</TableCell>
-                      <TableCell align="right">{item.discount}</TableCell>
-                      <TableCell align="right">{item.catagory}</TableCell>
+                      <TableCell align="right">
+                        {company.contactPerson}
+                      </TableCell>
+                      <TableCell align="right">
+                        {company.workingField}
+                      </TableCell>
+                      <TableCell align="right">
+                        {company.paymentOption}
+                      </TableCell>
+                      <TableCell align="right">{company.email}</TableCell>
+                      <TableCell align="right">{company.tinNumber}</TableCell>
                       <Button
                         align="right"
                         variant="contained"
                         color="primary"
-                        onClick={this.props.deleteItem.bind(
+                        onClick={this.props.deleteCompany.bind(
                           this,
-                          item.InventoryItemId
+                          company.companyId
                         )}
                         className={classes.button}
                       >
@@ -186,10 +184,10 @@ class ViewCompany extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  items: state.companyReducer.companys,
+  companys: state.companyReducer.companys,
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { getCompanys })(
+export default connect(mapStateToProps, { getCompany, deleteCompany })(
   withStyles(styles)(ViewCompany)
 );
