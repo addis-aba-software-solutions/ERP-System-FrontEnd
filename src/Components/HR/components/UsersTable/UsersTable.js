@@ -4,9 +4,16 @@ import PropTypes from "prop-types";
 import moment from "moment";
 import PerfectScrollbar from "react-perfect-scrollbar";
 // import { makeStyles } from '@material-ui/styles';
+<<<<<<< HEAD
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import { Link, Redirect } from "react-router-dom";
+=======
+import { withStyles, Grid, IconButton } from "@material-ui/core";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
 import {
   Card,
   CardActions,
@@ -22,6 +29,7 @@ import {
   Button,
   TablePagination,
 } from "@material-ui/core";
+<<<<<<< HEAD
 import VisibilityIcon from "@material-ui/icons/Visibility";
 import history from "../../../../Routes/history";
 import SearchBar from "../../../SearchBar/SearchBar";
@@ -31,6 +39,21 @@ import Swal from "sweetalert2";
 
 const styles = (theme) => ({
   root: {},
+=======
+import DeleteIcon from "@material-ui/icons/Delete";
+import VisibilityIcon from "@material-ui/icons/Visibility";
+import history from "../../../../Routes/history";
+import SearchBar from "../../../SearchBar/SearchBar";
+import API from "./../../../../api/API";
+import actions from "./../../../../store/hr/action";
+import { connect } from "react-redux";
+
+const styles = (theme) => ({
+  root: {
+    padding: 10,
+    borderRadius: 10,
+  },
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
   content: {
     padding: 0,
   },
@@ -49,16 +72,29 @@ const styles = (theme) => ({
   },
 });
 
+<<<<<<< HEAD
 class UsersTable extends React.Component {
+=======
+class EmployeTable extends React.Component {
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
   constructor(props) {
     super(props);
     this.state = {
       employeeInfo: [],
       search: "",
+<<<<<<< HEAD
       redirect: false,
+=======
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
     };
     this.logout = this.logout.bind(this);
   }
+<<<<<<< HEAD
+=======
+  componentDidMount() {
+    this.props.getEmploye();
+  }
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
   deleteFun(employeId) {
     Swal.fire({
       title: "Are you sure?",
@@ -70,6 +106,7 @@ class UsersTable extends React.Component {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.value) {
+<<<<<<< HEAD
         axios
           .request({
             method: "DELETE",
@@ -92,6 +129,9 @@ class UsersTable extends React.Component {
           .catch((error) => {
             Swal.fire("Error!", "Something went wrogn.", "error");
           });
+=======
+        this.props.deleteEmploye(employeId);
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
       }
     });
   }
@@ -101,6 +141,7 @@ class UsersTable extends React.Component {
     });
   }
 
+<<<<<<< HEAD
   // componentWillMount(){
   //   if(sessionStorage.getItem("userData")){
   //     console.log("From Login Page");
@@ -127,10 +168,13 @@ class UsersTable extends React.Component {
         console.log(error);
       });
   }
+=======
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
   render() {
     const { employeeInfo, error } = this.state;
     const { classes } = this.props;
 
+<<<<<<< HEAD
     if (this.state.redirect) {
       return <Redirect to={"./login"} />;
     }
@@ -190,16 +234,72 @@ class UsersTable extends React.Component {
                   </TableHead>
                   <TableBody>
                     {filteredEmployee.map((employeeInfos) => (
+=======
+    let filteredEmployee = employeeInfo.filter((employeeInfos) => {
+      return (
+        employeeInfos.firstName
+          .toLowerCase()
+          .indexOf(this.state.search.toLowerCase()) !== -1
+      );
+    });
+    if (error) {
+      return <div>Error:{error.message}</div>;
+    } else {
+      return (
+        <>
+          <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          <Card className={classes.root}>
+            <CardContent className={classes.content}>
+              <PerfectScrollbar>
+                <Table>
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>
+                        <b>Id</b>
+                      </TableCell>
+
+                      <TableCell>
+                        <b>First Name</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Last Name</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Phone Number</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>E-mail Address</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Department</b>
+                      </TableCell>
+                      <TableCell>
+                        <b>Role</b>
+                      </TableCell>
+                      <TableCell align="center">
+                        <b>Actions</b>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {this.props.employees.map((employeeInfos) => (
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
                         <TableCell>{employeeInfos.firstName}</TableCell>
                         <TableCell>{employeeInfos.lastName}</TableCell>
                         <TableCell>{employeeInfos.telephone}</TableCell>
+<<<<<<< HEAD
+=======
+                        <TableCell>{employeeInfos.email}</TableCell>
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                         <TableCell>
                           {employeeInfos.department.departmentName}
                         </TableCell>
                         <TableCell>{employeeInfos.roles.role}</TableCell>
 
+<<<<<<< HEAD
                         {/* <TableCell><button>
                           <Link to={{
                             pathname: `/profile/${employeeInfos.employeId}`,
@@ -207,19 +307,56 @@ class UsersTable extends React.Component {
                             state: { employeeInfos:  employeeInfo.map(employeeInfos=>(employeeInfos.employeId)) },                                                   
                           }}>View</Link>
                         </button></TableCell> */}
+=======
+                        <TableCell align="center">
+                          <Grid spacing={4}>
+                            <IconButton
+                              style={{
+                                marginTop: 10,
+                              }}
+                            >
+                              <Link
+                                to={{
+                                  pathname: "/employe_profile",
+                                  state: employeeInfos.employeId,
+                                }}
+                              >
+                                <VisibilityIcon />
+                              </Link>
+                            </IconButton>
+                            <IconButton
+                              onClick={() =>
+                                this.deleteFun(employeeInfos.employeId)
+                              }
+                            >
+                              <DeleteIcon color="secondary" />
+                            </IconButton>
+                          </Grid>
+                        </TableCell>
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
+<<<<<<< HEAD
               </div>
             </PerfectScrollbar>
           </CardContent>
         </Card>
+=======
+
+                {/* </div> */}
+              </PerfectScrollbar>
+            </CardContent>
+          </Card>
+        </>
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
       );
     }
   }
 }
 
+<<<<<<< HEAD
 export default withStyles(styles)(UsersTable);
 
 // employeeInfos.employeId
@@ -320,3 +457,23 @@ export default withStyles(styles)(UsersTable);
 //         }
 
 //
+=======
+function mapStateToProps(state) {
+  return {
+    loading: state.hrReducer.loading,
+    users: state.hrReducer.users,
+    employees: state.hrReducer.employees,
+    users: state.hrReducer.users,
+    errors: state.hrReducer.errors,
+  };
+}
+const mapDispatchToProps = {
+  getEmploye: actions.getEmploye,
+  deleteEmploye: actions.deleteEmploye,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(EmployeTable));
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e

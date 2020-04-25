@@ -115,7 +115,7 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/newOrder">Create order</Link>
+                  <Link to="/create_order">Create order</Link>
                 </li>
                 <li>
                   <Link to="/orders">View order</Link>
@@ -145,7 +145,11 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
+<<<<<<< HEAD
                   <Link to="/viewOrder">View Orders</Link>
+=======
+                  <Link to="/view">Task 1</Link>
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                 </li>
                 <li>
                   <Link to="/view">Task 2</Link>
@@ -174,10 +178,20 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
+<<<<<<< HEAD
                   <Link to="/add_item">Add Item</Link>
                 </li>
                 <li>
                   <Link to="/list_item">View Items</Link>
+=======
+                  <Link to="/add_item">Add Product</Link>
+                </li>
+                <li>
+                  <Link to="/view">Task 2</Link>
+                </li>
+                <li>
+                  <Link to="/add_item">Task 3 </Link>
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                 </li>
               </ul>
             </li>

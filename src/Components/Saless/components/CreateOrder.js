@@ -18,8 +18,9 @@ import InputLabel from "@material-ui/core/InputLabel";
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
 import { withStyles, Box, Divider } from "@material-ui/core";
-
-import { Form } from "react-bootstrap";
+import actions from "./../../../store/sales/action";
+import { connect } from "react-redux";
+import Error from "../../../error/error";
 
 const styles = (theme) => ({
   appBar: {
@@ -61,140 +62,65 @@ const styles = (theme) => ({
     marginLeft: theme.spacing(1),
   },
 });
-
 class CreateOrder extends React.Component {
   constructor() {
     super();
     this.state = {
-      orderInfo: [],
-      item: [],
-      comp: [],
-      newOrderInfo: {
-        orderNumber: "",
-        orderName: "",
-        quantity: "",
-        description: "",
-        orderDate: "",
-        discount: "",
-        salesPerson: "",
-        item: "",
-        shipmentAddress: "",
-      },
+      orderNumber: "",
+      orderName: "",
+      company: "",
+      description: "",
+      orderDate: "",
+      discount: "",
+      salesPerson: "",
+      itemQuantity: 0,
+      itemName: "",
+      item: "",
+      order_items: [],
+      shipmentAddress: "",
+
       form: "",
       items: [{ form: "" }],
     };
     this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://192.168.1.10:8000/api/v1/item/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-        this.setState({ item: data });
-      });
-    fetch("http://192.168.1.10:8000/api/v1/company/")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-
-        this.setState({ comp: data });
-      });
+    this.props.getAllCompany();
+    this.props.getAllItem();
   }
-
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
   submit = () => {
-    // submit() {
-    // let url = "http://192.168.1.3:8001/api/v1/employe/";
-    // let data = this.state;
-    //let date = this.state;
-    //
-    // fetch(url, {
-    // method: 'POST',
-    // headers: {
-    // "Content-Type": "application/json",
-    // "Accept": "application/json"
-    // },
-    // body: JSON.stringify
-    //(data)
-    // ({
-    //   employeId: null,
-    //   firstName: e.target.firstName.value,
-    //   lastName:e.target.lastName.value,
-    //   email:e.target.email.value,
-    //   hiredDate:e.target.hiredDate.value,
-    //   telephone:e.target.telephone.value,
-    //   birthDate:e.target.birthDate.value,
-    //   country:e.target.country.value,
-    //   region:e.target.region.value,
-    //   city:e.target.city.value,
-    //   department:e.target.department.value,
-    //   termOfEmployment:e.target.termOfEmployment.value,
-    //   //salery:e.target.salery.value
-
-    // })
-    // }).then(res => res.json())
-    //.then((result) => {
-    //  alert(result);
-    //         },
-    //     (error)=>{
-    //    alert("failed")
-    //  }
-    //)
-
-    // console.log("resp", resp)
-    // alert("data is submitted")
-    // Swal.fire({
-    // position: 'top-end',
-    // icon: 'success',
-    // title: 'Registered',
-    // showConfirmButton: false,
-    // timer: 700
-    // }).then(history.push('/Production'))
-    // })
-    // })
-    axios
-      .post("http://192.168.1.5:8000/api/v1/order/", this.state.newOrderInfo)
-      .then((response) => {
-        let { employeeInfo } = this.state;
-        employeeInfo.push(response.data);
-        this.setState({
-          employeeInfo,
-          newOrderInfo: {
-            orderNumber: "",
-            orderName: "",
-            quantity: "",
-            description: "",
-            orderDate: "",
-            discount: "",
-            salesPerson: "",
-            //item: '',
-            items: {
-              itemName: "",
-              quantity: "",
-            },
-            shipmentAddress: "",
-            //salery:''
-          },
-          // items:{
-          //   itemName:'',
-          //   quantity:""
-          // }
-        });
-        Swal.fire({
-          position: "top-end",
-          icon: "success",
-          title: "Registered",
-          showConfirmButton: false,
-          timer: 700,
-        }).then(history.push("/ViewAllOrder"));
-      });
+    this.props.createOrder(this.state);
   };
 
   handleAddItem = () => {
-    this.setState({
-      items: this.state.items.concat([{ item: "" }]),
-    });
+    if (
+      this.state.itemName != "" &&
+      this.state.itemQuantity != "" &&
+      this.state.itemQuantity > 0
+    ) {
+      this.setState({
+        order_items: this.state.order_items.concat([
+          {
+            itemName: this.state.itemName,
+            itemQuantity: this.state.itemQuantity,
+          },
+        ]),
+      });
+      this.setState({
+        itemName: "",
+        itemQuantity: 0,
+      });
+      this.setState({
+        items: this.state.items.concat([{ item: "" }]),
+      });
+    }
   };
 
   handleRemoveItem = (idx) => () => {
@@ -252,12 +178,16 @@ class CreateOrder extends React.Component {
                         label="Order Name"
                         fullWidth
                         autoComplete="orderName"
-                        value={this.state.newOrderInfo.orderName}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.orderName = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.orderName}
+                        onChange={this.handleChange}
+                      />
+
+                      <Error
+                        error={
+                          this.props.errors.orderName
+                            ? this.props.errors.orderName
+                            : null
+                        }
                       />
                     </Grid>
                     <Grid item xs={12} sm={4}>
@@ -268,48 +198,45 @@ class CreateOrder extends React.Component {
                         label="Order Number"
                         fullWidth
                         autoComplete="orderNumber"
-                        value={this.state.newOrderInfo.orderNumber}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.orderNumber = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.orderNumber}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.orderNumber
+                            ? this.props.errors.orderNumber
+                            : null
+                        }
                       />
                     </Grid>
 
                     <Grid item xs={12} sm={6}>
                       <FormControl className={classes.formControl} fullWidth>
                         <InputLabel htmlFor="grouped-native-select">
-                          Item
-                        </InputLabel>
-                        <Select
-                          native
-                          defaultValue=""
-                          id="grouped-native-select"
-                        >
-                          <option aria-label="None" value="" />
-                          <option>Permanent</option>
-                          <option>Contract</option>
-                          <option>Hourly</option>
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <FormControl className={classes.formControl} fullWidth>
-                        <InputLabel htmlFor="grouped-native-select">
                           Company
                         </InputLabel>
                         <Select
+                          onChange={this.handleChange}
+                          value={this.state.company}
                           native
-                          defaultValue=""
+                          name="company"
                           id="grouped-native-select"
                         >
                           <option aria-label="None" value="" />
-                          <option>Permanent</option>
-                          <option>Contract</option>
-                          <option>Hourly</option>
+                          {this.props.companys.map((comp) => (
+                            <option value={comp.companyId}>
+                              {comp.companyName}
+                            </option>
+                          ))}
                         </Select>
                       </FormControl>
+                      <Error
+                        error={
+                          this.props.errors.company
+                            ? this.props.errors.company
+                            : null
+                        }
+                      />
                     </Grid>
                     <Grid item xs={12} sm={6}>
                       <TextField
@@ -319,12 +246,15 @@ class CreateOrder extends React.Component {
                         label="Sales Person"
                         fullWidth
                         autoComplete="salesPerson"
-                        value={this.state.newOrderInfo.salesPerson}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.salesPerson = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.salesPerson}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.salesPerson
+                            ? this.props.errors.salesPerson
+                            : null
+                        }
                       />
                     </Grid>
                     <Grid item xs={12} sm={6}>
@@ -335,12 +265,15 @@ class CreateOrder extends React.Component {
                         label="Shipment Address"
                         fullWidth
                         autoComplete="shipmentAddress"
-                        value={this.state.newOrderInfo.shipmentAddress}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.shipmentAddress = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.shipmentAddress}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.shipmentAddress
+                            ? this.props.errors.shipmentAddress
+                            : null
+                        }
                       />
                     </Grid>
 
@@ -353,47 +286,30 @@ class CreateOrder extends React.Component {
                         fullWidth
                         disabled
                         autoComplete="quantity"
-                        value={this.state.newOrderInfo.quantity}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.quantity = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.quantity}
+                        onChange={this.handleChange}
                       />
                     </Grid>
 
-                    <Grid item xs={12} sm={7}>
-                      <TextField
-                        required
-                        id="orderDate"
-                        name="orderDate"
-                        label="Order Date"
-                        fullWidth
-                        autoComplete="orderDate"
-                        value={this.state.newOrderInfo.orderDate}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.orderDate = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
-                      />
-                    </Grid>
                     <Grid item xs={12} sm={12}>
                       <TextField
                         required
                         id="Description"
-                        name="Description"
+                        name="description"
                         label="Description"
                         // rowsMax= '12'
                         multiline
                         fullWidth
                         autoComplete="quantity"
-                        value={this.state.newOrderInfo.description}
-                        onChange={(e) => {
-                          let { newOrderInfo } = this.state;
-                          newOrderInfo.description = e.target.value;
-                          this.setState({ newOrderInfo });
-                        }}
+                        value={this.state.description}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.description
+                            ? this.props.errors.description
+                            : null
+                        }
                       />
                     </Grid>
                   </Grid>
@@ -421,14 +337,18 @@ class CreateOrder extends React.Component {
                               Item Name
                             </InputLabel>
                             <Select
+                              onChange={this.handleChange}
+                              value={this.state.itemName}
+                              name="itemName"
                               native
-                              defaultValue=""
                               id="grouped-native-select"
                             >
                               <option aria-label="None" value="" />
-                              <option>Permanent</option>
-                              <option>Contract</option>
-                              <option>Hourly</option>
+                              {this.props.items.map((item) => (
+                                <option value={item.itemId}>
+                                  {item.itemName}
+                                </option>
+                              ))}
                             </Select>
                           </FormControl>
                         </Grid>
@@ -436,10 +356,11 @@ class CreateOrder extends React.Component {
                           <TextField
                             required
                             id="ItemQuantity"
-                            name="ItemQuantity"
+                            name="itemQuantity"
                             label="Item Quantity"
                             fullWidth
                             autoComplete="itemQuantity"
+                            onChange={this.handleChange}
                           />
                         </Grid>
                       </>
@@ -462,7 +383,6 @@ class CreateOrder extends React.Component {
                       <Button
                         variant="contained"
                         color="primary"
-                        // onClick={this.submit}
                         onClick={this.handleAddItem}
                         className={classes.button}
                       >
@@ -489,4 +409,21 @@ class CreateOrder extends React.Component {
   }
 }
 
-export default withStyles(styles)(CreateOrder);
+function mapStateToProps(state) {
+  return {
+    loading: state.salesReducer.loading,
+    errors: state.salesReducer.errors,
+    items: state.salesReducer.items,
+    companys: state.salesReducer.companys,
+  };
+}
+const mapDispatchToProps = {
+  createOrder: actions.createOrder,
+  getAllItem: actions.getAllItem,
+  getAllCompany: actions.getAllCompany,
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(CreateOrder));

@@ -3,7 +3,7 @@ import { Link, Redirect } from "react-router-dom";
 import "./../../App.css";
 import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import Logo from "../../Assets/ww.jpg";
+import Logo from "../../Assets/NAZO.png";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import { connect } from "react-redux";
 import actions from "../../store/login/action";
@@ -113,7 +113,6 @@ class Nav extends React.Component {
                       <a href="#">See all notifications</a>
                     </li>
                   </ul>
-                  {/* ============================================================? */}
                 </li>
               </Grid>
               <Grid item>

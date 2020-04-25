@@ -27,6 +27,10 @@ function login(username, password) {
       .then((user) => {
         localStorage.setItem("token", user.data.user.token);
         localStorage.setItem("id", user.data.user.id);
+<<<<<<< HEAD
+=======
+        localStorage.setItem("email", user.data.user.email);
+>>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
         localStorage.setItem("username", user.data.user.username);
         localStorage.setItem("department", user.data.user.department);
         localStorage.setItem("role", user.data.user.role);
