@@ -28,6 +28,30 @@ export const appConstants = {
   FETCH_DEPARTMENT_FAILURE: "FETCH_DEPARTMENT_FAILURE",
 };
 
+export const inventoryConstant = {
+  ADD_ITEM: "ADD_ITEM",
+  GET_ITEMS: "GET_ITEMS",
+  ERROR: "ERROR",
+  ITEM_REQUEST: "ITEM_REQUEST",
+  DELETE_ITEM: "DELETE_ITEM",
+};
+
+export const companyConstant = {
+  ADD_COMPANY: "ADD_COMPANY",
+  GET_COMPANYS: "GET_COMPANYS",
+  DELETE_COMPANY: "DELETE_COMPANY",
+};
+
+export const errorsConstant = {
+  GET_ERRORS: "GET_ERRORS",
+};
+
+export const GET_INVOICE = "GET_INVOICE";
+export const GET_SIV = "GET_SIV";
+export const GET_ORDER = "GET_ORDER";
+export const GET_STATUS = "GET_STATUS";
+export const UPDATE_STATUS = "UPDATE_STATUS";
+
 export const itConstants = {
   REGISTER_REQUEST: "USERS_REGISTER_REQUEST",
   REGISTER_SUCCESS: "USERS_REGISTER_SUCCESS",

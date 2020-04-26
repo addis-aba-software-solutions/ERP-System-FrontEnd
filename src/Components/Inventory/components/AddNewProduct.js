@@ -1,35 +1,43 @@
+import React, { Component } from "react";
+import {
+  Button,
+  Divider,
+  Typography,
+  Grid,
+  withStyles,
+  Paper,
+  TextField,
+} from "@material-ui/core";
+import axios from "axios";
+import InputLabel from "@material-ui/core/InputLabel";
 
-import React, { Component } from 'react';
-import { Button, Divider, Typography, Grid, IconButton, Card, withStyles, Paper, TextField } from '@material-ui/core';
-import RecentOrders from './RecentOrders';
-import axios from 'axios';
-import InputLabel from '@material-ui/core/InputLabel';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import { Form } from 'react-bootstrap'
-import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import { connect } from "react-redux";
+import Error from "../../../error/error";
+import API from "../../../api/API";
+import { addItem, getItems } from "../../../store/inventory/action";
+import { getInvoice } from "../../../store/Invoice/action";
+import { getSiv } from "../../../store/Siv/action";
 
-
-
-
-const styles = theme => ({
+const styles = (theme) => ({
   container: {
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 40,
     // paddingBottom: 40,
-    height: 'auto'
+    height: "auto",
   },
   paper: {
     padding: 60,
-    height: 'auto',
+    height: "auto",
     borderRadius: 20,
     // minWidth: 400
   },
@@ -44,148 +52,104 @@ const styles = theme => ({
     paddingRight: 20,
     paddingTop: 22,
 
-
     borderRadius: 20,
-    width: 'auto'
-  }
+    width: "auto",
+  },
 });
 
-class AddNewProduct extends React.Component {
-
+class AddNewProduct extends Component {
   constructor() {
     super();
     this.state = {
-      itemInfo: [],
-      cat: [],
-      item: [],
-      newItemInfo: {
-        itemId: '',
-        itemName: '',
-        email: '',
-        warehouseName: '',
-        quantity: '',
-        retailPrice: '',
-        packaging: '',
-        discount: '',
-        catagory: ''
+      itemName: "",
+      quantity: "",
+      warehouseName: "",
+      discount: "",
+      retailPrice: "",
+      packaging: "",
+      catagoryValue: "",
+      catagoryList: [],
+      items: [],
+    };
 
-
-      }
-    }
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.catagoryDropDown = this.catagoryDropDown.bind(this);
   }
 
   componentDidMount() {
-    fetch("http://192.168.1.10:8000/api/v1/item/")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-
-        this.setState({ item: data });
-
+    axios
+      .get(API + "catagory/")
+      .then((response) => {
+        this.setState({
+          catagoryList: response.data,
+        });
       })
-    fetch("http://192.168.1.10:8000/api/v1/catagory/")
-      .then(res => res.json())
-      .then(data => {
-        console.log(data);
-
-
-        this.setState({ cat: data });
-
-      })
-
-
-  }
-
-
-  submit = () => {
-    // submit() {
-    // let url = "http://192.168.1.3:8001/api/v1/employe/";
-    // let data = this.state;
-    //let date = this.state;
-    // 
-    // fetch(url, {
-    // method: 'POST',
-    // headers: {
-    // "Content-Type": "application/json",
-    // "Accept": "application/json"
-    // },
-    // body: JSON.stringify(data)
-    // }).then((result) => {
-    // result.json().then((resp) => {
-    // 
-    // console.log("resp", resp)
-    // alert("data is submitted")
-    // Swal.fire({
-    // position: 'top-end',
-    // icon: 'success',
-    // title: 'Registered',
-    // showConfirmButton: false,
-    // timer: 700
-    // }).then(history.push('/Production'))
-    // })
-    // })
-    axios.post('http://192.168.1.9:8000/api/v1/item/', this.state.newItemInfo).then((response) => {
-
-      let { itemInfo } = this.state;
-      itemInfo.push(response.data);
-      this.setState({
-        itemInfo: [],
-        cat: [],
-        item: [],
-        newItemInfo: {
-          itemId: '',
-          itemName: '',
-          email: '',
-          warehouseName: '',
-          quantity: '',
-          retailPrice: '',
-          packaging: '',
-          discount: '',
-          catagory: ''
-
-
-        }
+      .catch((error) => {
+        console.log(error);
       });
-      //  Swal.fire({
-      //   position: 'top-end',
-      //    icon: 'success',
-      //    title: 'Registered',
-      //    showConfirmButton: false,
-      //    timer: 700
-      //  })
-      //  .then(history.push('/Production'))
-
-    })
-
+    console.log(this.props.getItems());
+    this.props.getItems();
+    // For checking the invoice is in the state
+    this.props.getInvoice(2);
+    this.props.getSiv(2);
   }
+  catagoryDropDown(e) {
+    this.setState({
+      catagoryValue: e.target.value,
+    });
+  }
+  submit = (e) => {
+    e.preventDefault();
+    const newItem = {
+      itemName: this.state.itemName,
+      quantity: this.state.quantity,
+      warehouseName: this.state.warehouseName,
+      discount: this.state.discount,
+      retailPrice: this.state.retailPrice,
+      packaging: this.state.packaging,
+      catagory: this.state.catagoryValue,
+    };
+    this.props.addItem(newItem);
+  };
 
-
+  handleChange(e) {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  }
 
   render() {
+    const {
+      packaging,
+      retailPrice,
+      discount,
+      warehouseName,
+      quantity,
+      catagoryValue,
+      itemName,
+    } = this.state;
     const { classes } = this.props;
-    const { error, itemInfo } = this.state;
 
     return (
       <div className={classes.recentOrders}>
         <React.Fragment>
-
           <div className={classes.container}>
-
             <Paper className={classes.paper}>
-
-              <Typography variant="h6" gutterBottom style={{
-                display: 'flex',
-                justify: 'flex-start'
-              }}>
+              <Typography
+                variant="h6"
+                gutterBottom
+                style={{
+                  display: "flex",
+                  justify: "flex-start",
+                }}
+              >
                 <b>Goods Recieving Voucher</b>
               </Typography>
               <Divider className={classes.spacer} />
 
-
-
               <Grid container spacing={3}>
-
-                {/* <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={3}>
                   <TextField
                     required
                     id="itemName"
@@ -193,55 +157,19 @@ class AddNewProduct extends React.Component {
                     label="item Name"
                     fullWidth
                     autoComplete="itemName"
-                    value={this.state.newItemInfo.itemName}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.itemName = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={itemName}
+                    onChange={this.handleChange}
                   />
-                </Grid> */}
-
-                <Grid item xs={12} sm={6}>
-
-                  <FormControl className={classes.formControl} fullWidth>
-                    <InputLabel htmlFor="grouped-native-select">Department</InputLabel>
-                    <Select native id="grouped-native-select">
-                      <option aria-label="None" value="" />
-                      {this.state.item.map(items =>
-                        <option key={items.itemId}>{items.itemName}</option>
-                      )}
-                        value={this.state.newItemInfo.itemName}
-                        onChange={(e) => {
-                        let { newItemInfo } = this.state;
-                        newItemInfo.itemName = e.target.value;
-                        this.setState({ newItemInfo });
-                      }}
-                    </Select>
-                  </FormControl>
-
-
-
-                  {/* <Form.Group controlId="catagory">
-                    <Form.Label>Department</Form.Label>
-
-                    <Form.Control as="select">
-                      {this.state.item.map(items =>
-                        <option value= {items.itemId} key={items.itemId}>{items.itemName}</option>
-                      )}
-                        value={this.state.newItemInfo.itemName}
-                        onChange={(e) => {
-                        let { newItemInfo } = this.state;
-                        newItemInfo.itemName = e.target.value;
-                        this.setState({ newItemInfo });
-                      }}
-                    </Form.Control>
-
-                  </Form.Group> */}
-
-
-
+                  <Error
+                    error={
+                      this.props.errors.itemName
+                        ? this.props.errors.itemName
+                        : null
+                    }
+                  />
                 </Grid>
+
+                <Grid item xs={12} sm={6}></Grid>
 
                 <Grid item xs={12} sm={3}>
                   <TextField
@@ -251,12 +179,15 @@ class AddNewProduct extends React.Component {
                     label="Quantity"
                     fullWidth
                     autoComplete="quantity"
-                    value={this.state.newItemInfo.quantity}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.quantity = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={quantity}
+                    onChange={this.handleChange}
+                  />
+                  <Error
+                    error={
+                      this.props.errors.quantity
+                        ? this.props.errors.quantity
+                        : null
+                    }
                   />
                 </Grid>
                 <Grid item xs={12} sm={3}>
@@ -267,12 +198,15 @@ class AddNewProduct extends React.Component {
                     label="warehouseName"
                     fullWidth
                     autoComplete="warehouseName"
-                    value={this.state.newItemInfo.warehouseName}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.warehouseName = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={warehouseName}
+                    onChange={this.handleChange}
+                  />
+                  <Error
+                    error={
+                      this.props.errors.warehouseName
+                        ? this.props.errors.warehouseName
+                        : null
+                    }
                   />
                 </Grid>
 
@@ -284,34 +218,35 @@ class AddNewProduct extends React.Component {
                     label="Retail Price"
                     fullWidth
                     autoComplete="retailPrice"
-                    value={this.state.newItemInfo.retailPrice}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.retailPrice = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={retailPrice}
+                    onChange={this.handleChange}
                   />
-                  {/* <Button>
-                                    Hello
-                                </Button> */}
+                  <Error
+                    error={
+                      this.props.errors.retailPrice
+                        ? this.props.errors.retailPrice
+                        : null
+                    }
+                  />
                 </Grid>
                 <Grid item xs={12} sm={3}>
                   <TextField
                     required
                     id="packaging"
-                    name="pakaging"
+                    name="packaging"
                     label="Packaging"
                     fullWidth
-                    // autoComplete="GRVnumber"
-                    value={this.state.newItemInfo.packaging}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.packaging = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={packaging}
+                    onChange={this.handleChange}
+                  />
+                  <Error
+                    error={
+                      this.props.errors.packaging
+                        ? this.props.errors.packaging
+                        : null
+                    }
                   />
                 </Grid>
-
 
                 <Grid item xs={12} sm={6}>
                   <TextField
@@ -321,32 +256,47 @@ class AddNewProduct extends React.Component {
                     label="Discount"
                     fullWidth
                     autoComplete="Contract_Info"
-                    value={this.state.newItemInfo.discount}
-                    onChange={(e) => {
-                      let { newItemInfo } = this.state;
-                      newItemInfo.discount = e.target.value;
-                      this.setState({ newItemInfo });
-                    }}
+                    value={discount}
+                    onChange={this.handleChange}
+                  />
+                  <Error
+                    error={
+                      this.props.errors.discount
+                        ? this.props.errors.discount
+                        : null
+                    }
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
 
+                <Grid item xs={12} sm={6}>
                   <FormControl className={classes.formControl} fullWidth>
-                    <InputLabel htmlFor="grouped-native-select">Category</InputLabel>
-                    <Select native id="grouped-native-select">
+                    <InputLabel htmlFor="grouped-native-select">
+                      Category
+                    </InputLabel>
+                    <Select
+                      onChange={this.catagoryDropDown}
+                      value={catagoryValue}
+                      native
+                      id="grouped-native-select"
+                    >
                       <option aria-label="None" value="" />
-                      {this.state.cat.map(cats =>
-                        <option key={cats.catagoryId}>{cats.catagoryName}</option>
-                      )}
-                        value={this.state.newItemInfo.catagory}
-                        onChange={(e) => {
-                        let { newItemInfo } = this.state;
-                        newItemInfo.catagory = e.target.value;
-                        this.setState({ newItemInfo });
-                      }}
+                      {this.state.catagoryList.map((catagoryLists) => (
+                        <option
+                          value={catagoryLists.catagoryId}
+                          key={catagoryLists.catagoryId}
+                        >
+                          {catagoryLists.catagory}
+                        </option>
+                      ))}
                     </Select>
                   </FormControl>
-
+                  <Error
+                    error={
+                      this.props.errors.catagory
+                        ? this.props.errors.catagory
+                        : null
+                    }
+                  />
                 </Grid>
                 <Grid item xs={12} sm={12}>
                   <Button
@@ -356,29 +306,98 @@ class AddNewProduct extends React.Component {
                     className={classes.button}
                   >
                     Save
-                   </Button>
+                  </Button>
                 </Grid>
               </Grid>
-
             </Paper>
-
           </div>
           <div className={classes.recentOrders}>
-
-            <Typography variant="h5" gutterBottom style={{
-              display: 'flex',
-            }}>
+            <Typography
+              variant="h5"
+              gutterBottom
+              style={{
+                display: "flex",
+              }}
+            >
               Recent Imports
-              </Typography>
-            <RecentOrders />
+            </Typography>
+            {/* <RecentOrders /> */}
+            <Paper className={classes.paper}>
+              <TableContainer>
+                <Table
+                  className={classes.table}
+                  size="small"
+                  aria-label="a dense table"
+                >
+                  <TableHead>
+                    <TableRow className={classes.table}>
+                      <TableCell className={classes.table}>
+                        <b>ID</b>
+                      </TableCell>
+                      <TableCell className={classes.table}>
+                        <b>Item Name</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Quantity</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Retail Price</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Packaging</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Warehouse Name</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Discount</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>catagory</b>
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {this.props.items
+                      .slice(0)
+                      .reverse()
+                      .map((item) => (
+                        <TableRow key={item.InventoryItemId}>
+                          <TableCell align="right">
+                            {item.InventoryItemId}
+                          </TableCell>
+                          <TableCell align="right">{item.itemName}</TableCell>
+                          <TableCell align="right">{item.quantity}</TableCell>
+                          <TableCell align="right">
+                            {item.retailPrice}
+                          </TableCell>
+                          <TableCell align="right">{item.packaging}</TableCell>
+                          <TableCell align="right">
+                            {item.warehouseName}
+                          </TableCell>
+                          <TableCell align="right">{item.discount}</TableCell>
+                          <TableCell align="right">{item.catagory}</TableCell>
+                        </TableRow>
+                      ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
           </div>
-
         </React.Fragment>
       </div>
     );
   }
-
 }
 
+const mapStateToProps = (state) => ({
+  items: state.inventoryReducer.items,
+  errors: state.errorsReducer.errors,
+});
 
-export default withStyles(styles)(AddNewProduct);
+export default connect(mapStateToProps, {
+  addItem,
+  getItems,
+  getInvoice,
+  getSiv,
+})(withStyles(styles)(AddNewProduct));

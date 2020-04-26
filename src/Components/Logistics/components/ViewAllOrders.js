@@ -1,146 +1,160 @@
-import React, { Component } from 'react';
-import { Button, Divider, Typography, Grid, Badge, withStyles, Paper, Card, IconButton, TextField } from '@material-ui/core';
-import SearchBar from '../../SearchBar/SearchBar'
+import React, { Component } from "react";
+import { Button, withStyles, Paper } from "@material-ui/core";
 
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-const styles = theme => ({
-    table: {
-        maxHeight: 100,
-        padding: 20
-    },
-    tableRow: {
-        padding: 15
-    },
-    container: {
-        padding: 20,
-    },
-    paper: {
-        padding: 40,
-        height: 'auto',
-        borderRadius: 20
-    },
-    spacer: {
-        margin: 20,
-    },
-    recentOrders: {
-        padding: 20,
-        paddingBottom: 20
-    },
-    spacer: {
-        margin: 10,
-        marginBottom: 30
-    },
-    header: {
-        marginLeft: 100
-    }
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import {
+  getOrders,
+  getStatus,
+  updateStatus,
+} from "../../../store/order/action";
+const styles = (theme) => ({
+  table: {
+    maxHeight: 100,
+    // padding: 20
+  },
+  tableRow: {
+    // padding: 15
+  },
+  container: {
+    padding: 20,
+  },
+  paper: {
+    padding: 10,
+    height: "auto",
+    borderRadius: 20,
+  },
+  spacer: {
+    margin: 20,
+  },
+  recentitems: {
+    padding: 20,
+    paddingBottom: 20,
+  },
+  header: {
+    marginLeft: 100,
+  },
 });
 
-function createData(name, calories, fat, carbs, protein, Actions) {
-    return { name, calories, fat, carbs, protein, Actions };
+class ViewAllOrders extends Component {
+  constructor() {
+    super();
+    this.state = {
+      search: "",
+      orders: [],
+    };
+    this.orderStatus = this.orderStatus.bind(this);
+  }
+  updateSearch(e) {
+    this.setState({
+      search: e.target.value.substr(0, 20),
+    });
+  }
+
+  componentDidMount() {
+    this.props.getOrders();
+    this.props.getStatus();
+  }
+
+  orderStatus = (orderNumber, i) => {
+    this.props.status.find((status) => {
+      let orderstatus = "";
+      if (status.order === orderNumber) {
+        orderstatus = status.order;
+        // alert(status.order);
+      }
+      return orderstatus;
+    });
+  };
+
+  render() {
+    const { classes } = this.props;
+    //    if(!orderInfo) return [];
+    //    else {
+    //         let filteredOrder = this.orderInfo.filter(
+    //             (orderInfos) => {
+    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+    //             }
+    //         );
+    //     }
+
+    return (
+      <>
+        <div className={classes.container}>
+          <div>
+            <Button variant="contained">
+              {" "}
+              <Link to="/create_Order">Add New Order</Link>
+            </Button>
+            <br />
+            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+
+            <Paper className={classes.paper}>
+              <TableContainer>
+                <Table stickyHeader aria-label="sticky table">
+                  <TableHead>
+                    <TableRow className={classes.table}>
+                      <TableCell>Order Number</TableCell>
+                      <TableCell>Order Name</TableCell>
+
+                      <TableCell>Description</TableCell>
+                      <TableCell>Company</TableCell>
+                      <TableCell>Sales Person</TableCell>
+                      <TableCell>Shipment Address</TableCell>
+                      <TableCell>Order Date</TableCell>
+                      <TableCell>Status</TableCell>
+                      <TableCell>Action</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {this.props.orders.map((order) => (
+                      <TableRow key={order.orderNumber}>
+                        <TableCell>{order.orderNumber}</TableCell>
+                        <TableCell>{order.orderName}</TableCell>
+                        <TableCell>{order.description}</TableCell>
+                        <TableCell>{order.company}</TableCell>
+                        <TableCell>{order.salesPerson}</TableCell>
+                        <TableCell>{order.shipmentAddress}</TableCell>
+                        <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>Issued</TableCell>
+
+                        <TableCell>
+                          <button
+                            onClick={this.props.updateStatus.bind(
+                              this,
+                              order.orderNumber,
+                              {
+                                status: "Delivered",
+                              },
+                            )}
+                          >
+                            Delivered
+                          </button>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
-class ViewAllOrders extends React.Component {
-    render() {
-        const { classes } = this.props;
-        const rows = [
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9),
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-            createData('Eclair', 262, 16.0, 24, 6.0),
-            createData('Cupcake', 305, 3.7, 67, 4.3),
-            createData('Gingerbread', 356, 16.0, 49, 3.9),
-            createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-            createData('Gingerbread', 356, 16.0, 49, 3.9),
-        ];
-        return (
-            <>
-                <div className={classes.container}>
-                    <Grid container display='flex'
-                        justify="space-between"
-                        xs={12}
-                        style={{
-                            padding: 20,
-                        }}>
-                        <Grid item className={classes.header}>
-                            <Typography variant='h4' color="textSecondary">
-                                <b>Logistics</b>
-                            </Typography>
-                            <Typography variant='h5' color="textSecondary" style={{ marginLeft: 20 }}>
-                                <b>Orders</b>
-                            </Typography>
-                            <Typography variant='h6' color="textSecondary" style={{ marginLeft: 130 }}>
-                                <b>All Orders List</b>
-                            </Typography>
-                        </Grid>
-                        <Grid item style={{
-                            display: 'flex',
-                            justify: 'flex-end'
-                        }}>
-                            <SearchBar />
-                        </Grid>
-                    </Grid>
-                    <div >
-                    </div>
-                    {/* <Divider className={classes.spacer}></Divider>
-                        <Level /> */}
-                    <Divider className={classes.spacer}></Divider>
-                    <Paper className={classes.paper}>
-                        <TableContainer>
-                            <Table className={classes.table} size="small">
-                                <TableHead>
-                                    <TableRow className={classes.table}>
-                                        <TableCell className={classes.table}><b>ID</b></TableCell>
-                                        <TableCell className={classes.table}><b>Order Name</b></TableCell>
-                                        <TableCell align="center"><b>Quantity</b></TableCell>
-                                        <TableCell align="center"><b>From</b></TableCell>
-                                        <TableCell align="center"><b>To</b></TableCell>
-                                        <TableCell align="center"><b>Date Requested</b></TableCell>
-                                        <TableCell align="center"><b>Actions</b></TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map((row) => (
-                                        <TableRow key={row.name}>
-                                            <TableCell className={classes.tableRow} component="th" scope="row">
-                                                #
-                                        </TableCell>
-                                            <TableCell className={classes.tableRow} component="th" scope="row">
-                                                {row.name}
-                                            </TableCell>
-                                            <TableCell align="center">{row.calories}</TableCell>
-                                            <TableCell align="center">{row.fat}</TableCell>
-                                            <TableCell align="center">{row.carbs}</TableCell>
-                                            <TableCell align="center">{row.protein}</TableCell>
-                                            <TableCell align="center">
+const mapStateToProps = (state) => ({
+  orders: state.ordersReducer.orders,
+  status: state.ordersReducer.status,
+});
 
-                                                <Grid item style={{
-                                                    marginLeft: 30
-                                                }}>
-                                                    <IconButton>
-                                                        <VisibilityIcon />
-                                                    </IconButton>
-                                                </Grid>
-                                            </TableCell>
-                                        </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
-                    </Paper>
-                </div>
-            </>
-        );
-    }
-}
-
-export default withStyles(styles)(ViewAllOrders);
+export default connect(mapStateToProps, { getOrders, getStatus, updateStatus })(
+  withStyles(styles)(ViewAllOrders)
+);

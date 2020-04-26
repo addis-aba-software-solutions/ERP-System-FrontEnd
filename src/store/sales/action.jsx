@@ -4,8 +4,6 @@ import API from "../../api/API";
 import { salesConstants } from "../../constant/constants";
 
 function createOrder(data) {
-  console.log(data);
-
   var params = {
     orderNumber: data.orderNumber,
     orderName: data.orderName,
@@ -41,6 +39,7 @@ function createOrder(data) {
         });
       })
       .catch((error) => {
+        console.log(error.response)
         if (error.response.status == 404) {
           Swal.fire({
             title: "<strong>Error <u>info</u></strong><p>",

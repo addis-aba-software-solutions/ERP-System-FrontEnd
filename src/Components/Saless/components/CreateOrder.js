@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Paper from "@material-ui/core/Paper";
-import history from "../../../Routes/history";
-import axios from "axios";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Swal from "sweetalert2";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
@@ -17,10 +14,11 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import { withStyles, Box, Divider } from "@material-ui/core";
+import { withStyles, IconButton, Box, Divider } from "@material-ui/core";
 import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
 const styles = (theme) => ({
   appBar: {
@@ -63,7 +61,7 @@ const styles = (theme) => ({
   },
 });
 
-class CreateOrder extends React.Component {
+class CreateOrder extends Component {
   constructor() {
     super();
     this.state = {
@@ -329,7 +327,7 @@ class CreateOrder extends React.Component {
                       </Typography>
 
                       {this.state.order_items.map((item, idx) => (
-                        <Grid item xs={12} sm={6}>
+                        <Grid container xs={12} sm={12} spacing={3}>
                           <Grid item xs={12} sm={6}>
                             <InputLabel htmlFor="grouped-native-select">
                               Item Name
@@ -338,6 +336,7 @@ class CreateOrder extends React.Component {
                             <Select
                               value={item.InventoryItemId}
                               native
+                              fullWidth
                               id="grouped-native-select"
                               onChange={this.ItemNameChange(idx)}
                             >
@@ -350,24 +349,40 @@ class CreateOrder extends React.Component {
                             </Select>
                             <Grid></Grid>
                           </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              required
-                              id="ItemQuantity"
-                              label="Item Quantity"
-                              fullWidth
-                              autoComplete="itemQuantity"
-                              value={item.quantity}
-                              onChange={this.ItemQuantityChange(idx)}
-                              placeholder={`Item #${idx + 1} name`}
-                            />
-                            <button
-                              type="button"
-                              onClick={this.handleRemoveItem(idx)}
-                              className="small"
-                            >
-                              -
-                            </button>
+                          <Grid item>
+                            <Grid container xs={12}>
+                              <Grid
+                                item
+                                xs={12}
+                                sm={11}
+                                style={{
+                                  marginTop: 3,
+                                }}
+                              >
+                                <TextField
+                                  required
+                                  id="ItemQuantity"
+                                  label="Item Quantity"
+                                  fullWidth
+                                  autoComplete="itemQuantity"
+                                  value={item.quantity}
+                                  onChange={this.ItemQuantityChange(idx)}
+                                  placeholder={`Item #${idx + 1} name`}
+                                />
+                              </Grid>
+                              <Grid item xs={12} sm={1}>
+                                <IconButton
+                                  style={{
+                                    marginTop: 20,
+                                  }}
+                                  type="button"
+                                  onClick={this.handleRemoveItem(idx)}
+                                  className="small"
+                                >
+                                  <HighlightOffIcon color="secondary" />
+                                </IconButton>
+                              </Grid>
+                            </Grid>
                           </Grid>
                         </Grid>
                       ))}

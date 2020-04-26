@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
@@ -85,13 +85,13 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/viewOrdersFinance">View Orders</Link>
+                  <Link to="/company">Add Company</Link>
                 </li>
                 <li>
-                  <Link to="/view">Invoiced</Link>
+                  <Link to="/companys">View All Companys</Link>
                 </li>
                 <li>
-                  <Link to="/view">Delayed Invoices </Link>
+                  <Link to="/financeOrders">View All Orders </Link>
                 </li>
               </ul>
             </li>
@@ -118,11 +118,11 @@ class Asider extends React.Component {
                   <Link to="/create_order">Create order</Link>
                 </li>
                 <li>
-                  <Link to="/view">View order</Link>
+                  <Link to="/salesOrders">View order</Link>
                 </li>
-                <li>
-                  <Link to="/view">Task 3 </Link>
-                </li>
+                {/* <li>
+                  <Link to="/OrderStatus">Order Status </Link>
+                </li> */}
               </ul>
             </li>
 
@@ -145,13 +145,7 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/view">Task 1</Link>
-                </li>
-                <li>
-                  <Link to="/view">Task 2</Link>
-                </li>
-                <li>
-                  <Link to="/view">Task 3 </Link>
+                  <Link to="/logisticsOrders">View All Orders</Link>
                 </li>
               </ul>
             </li>
@@ -174,13 +168,13 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/add_item">Add Product</Link>
+                  <Link to="/add_item">Add Item</Link>
                 </li>
                 <li>
-                  <Link to="/view">Task 2</Link>
+                  <Link to="/list_item">View Items</Link>
                 </li>
                 <li>
-                  <Link to="/add_item">Task 3 </Link>
+                  <Link to="/inventoryOrders">View All Orders</Link>
                 </li>
               </ul>
             </li>

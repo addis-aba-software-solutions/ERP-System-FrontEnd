@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function Error({error}){
+export default function Error({ error }) {
   return (
-    <div className='text-danger' style={{color:"red"}}> {error} </div>
-  )
+    <div className="text-danger" style={{ color: "red" }}>
+      {" "}
+      {error}{" "}
+    </div>
+  );
 }

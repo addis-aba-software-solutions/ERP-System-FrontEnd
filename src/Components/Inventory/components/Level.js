@@ -1,5 +1,4 @@
 import React from 'react';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Typography, Avatar } from '@material-ui/core';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
@@ -41,10 +40,6 @@ const useStyles = makeStyles(theme => ({
         justify: 'center',
         marginLeft: 30,
         marginBottom: 10
-    },
-    title: {
-        marginLeft: 20,
-        paddingBottom: 10
     },
     subtitle: {
         marginLeft: 80
