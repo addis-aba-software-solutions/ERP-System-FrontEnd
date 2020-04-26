@@ -15,12 +15,12 @@ import Nav from "./Components/nav/nav";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
 import ViewItem from "./Components/Inventory/components/ItemList";
 import CreateOrder from "./Components/Saless/components/CreateOrder";
-import Orders from "./Components/Saless/components/orders";
+import ViewAllOrders from "./Components/Saless/components/ViewAllOrders";
 import AddNewCompany from "./Components/Finance/components/AddNewCompany";
 import ViewCompany from "./Components/Finance/components/ViewCompany";
 import Invoice from "./Components/Finance/components/INVOICE";
-import ViewOrdersFinance from "./Components/Finance/components/ViewAllOrders";
 import Dashboard from "./Components/Saless/Sales";
+import Siv from "./Components/Inventory/components/SIV";
 
 class App extends React.Component {
   render() {
@@ -47,19 +47,20 @@ class App extends React.Component {
                     exact
                     loggedIn={this.props.isLogin}
                   />
+                  {/* inventory routes */}
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
                     exact
                   />
                   <PrivateRoute path="/list_item" component={ViewItem} exact />
+                  <PrivateRoute path="/siv" component={Siv} exact />
                   {/* salses order routes */}
                   <PrivateRoute
                     path="/newOrder"
                     component={CreateOrder}
                     exact
                   />
-                  <PrivateRoute path="/Orders" component={Orders} exact />
                   <PrivateRoute
                     path="/OrderStatus"
                     component={ViewItem}
@@ -98,8 +99,8 @@ class App extends React.Component {
                     loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
-                    path="/viewOrdersFinance"
-                    component={ViewOrdersFinance}
+                    path="/orders"
+                    component={ViewAllOrders}
                     exact
                     loggedIn={this.props.isLogin}
                   />
