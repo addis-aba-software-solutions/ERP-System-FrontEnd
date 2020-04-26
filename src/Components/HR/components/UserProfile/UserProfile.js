@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Paper from "@material-ui/core/Paper";
-import AppBar from "@material-ui/core/AppBar";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Swal from "sweetalert2";
@@ -12,8 +9,6 @@ import history from "../../../../Routes/history";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
-import PropTypes from "prop-types";
-
 import {
   MuiPickersUtilsProvider,
   KeyboardTimePicker,
@@ -74,7 +69,6 @@ const styles = (theme) => ({
 class UserProfile extends Component {
   constructor() {
     super();
-
     this.state = {
       depValue: "",
       rolValue: "",
@@ -97,14 +91,7 @@ class UserProfile extends Component {
     this.departmentDropDown = this.departmentDropDown.bind(this);
     this.levelDropDown = this.levelDropDown.bind(this);
     this.roleDropDown = this.roleDropDown.bind(this);
-    this.firstNameChange = this.firstNameChange.bind(this);
-    this.lastNameChange = this.lastNameChange.bind(this);
-    this.emailChange = this.emailChange.bind(this);
-    this.countryChange = this.countryChange.bind(this);
-    this.regionChange = this.regionChange.bind(this);
-    this.termofEmploymentChange = this.termofEmploymentChange.bind(this);
-    this.cityChange = this.cityChange.bind(this);
-    this.telephoneChange = this.telephoneChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this.props.getDepartment();
@@ -134,7 +121,7 @@ class UserProfile extends Component {
       rolValue: e.target.value,
     });
     this.state.rol.map((value) => {
-      if (value.roleId === e.target.value && value.role_levels != null) {
+      if (value.roleId == e.target.value && value.role_levels != null) {
         console.log(value.role_levels);
         this.setState({
           lev: value.role_levels,
@@ -143,7 +130,7 @@ class UserProfile extends Component {
     });
   }
 
-  countryChange(e) {
+  levelDropDown(e) {
     this.setState({
       levValue: e.target.value,
     });
@@ -156,7 +143,6 @@ class UserProfile extends Component {
   }
 
   render() {
-   
     const { error, newEmployeeInfo, deps, rol, lev, empId } = this.state;
     const { classes } = this.props;
     var depValue = this.state.depValue;
@@ -171,16 +157,9 @@ class UserProfile extends Component {
     var lastValue = this.state.lastValue;
     var firstValue = this.state.firstValue;
 
-    function TabPanel(props) {
-      const { children, value, index, ...other } = props;
-
-      
- 
-
     return (
       <React.Fragment>
         <CssBaseline />
-
         <main className={classes.layout}>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <Paper className={classes.paper}>
@@ -203,14 +182,6 @@ class UserProfile extends Component {
                       autoComplete="fname"
                       onChange={this.handleChange}
                       value={firstValue}
-                      // value={this.state.newEmployeeInfo.firstName}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.firstName = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.firstNameChange}
-                      value={firstValue}
                     />
 
                     <Error
@@ -229,13 +200,7 @@ class UserProfile extends Component {
                       label="Last name"
                       fullWidth
                       autoComplete="lname"
-                      // value={this.state.newEmployeeInfo.lastName}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.lastName = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.lastNameChange}
+                      onChange={this.handleChange}
                       value={lastValue}
                     />
                     <Error
@@ -254,14 +219,7 @@ class UserProfile extends Component {
                       label="Email"
                       fullWidth
                       autoComplete="Email"
-                      // value={this.state.newEmployeeInfo.email}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.email = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-
-                      onChange={this.emailChange}
+                      onChange={this.handleChange}
                       value={emailValue}
                     />
                     <Error
@@ -277,13 +235,7 @@ class UserProfile extends Component {
                       label="Phone Number"
                       fullWidth
                       autoComplete="PhoneNumber"
-                      // value={this.state.newEmployeeInfo.telephone}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.telephone = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.telephoneChange}
+                      onChange={this.handleChange}
                       value={telephoneValue}
                     />
 
@@ -332,13 +284,7 @@ class UserProfile extends Component {
                       label="Country"
                       fullWidth
                       autoComplete="country"
-                      // value={this.state.newEmployeeInfo.country}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.country = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.countryChange}
+                      onChange={this.handleChange}
                       value={countryValue}
                     />
 
@@ -440,13 +386,7 @@ class UserProfile extends Component {
                       label="City"
                       fullWidth
                       autoComplete="city"
-                      // value={this.state.newEmployeeInfo.city}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.city = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.cityChange}
+                      onChange={this.handleChange}
                       value={cityValue}
                     />
 
@@ -465,13 +405,7 @@ class UserProfile extends Component {
                       label="Region"
                       fullWidth
                       autoComplete="region"
-                      // value={this.state.newEmployeeInfo.region}
-                      // onChange={(e) => {
-                      //   let { newEmployeeInfo } = this.state;
-                      //   newEmployeeInfo.region = e.target.value;
-                      //   this.setState({ newEmployeeInfo });
-                      // }}
-                      onChange={this.regionChange}
+                      onChange={this.handleChange}
                       value={regionValue}
                     />
 
@@ -547,31 +481,10 @@ class UserProfile extends Component {
             </Paper>
           </MuiPickersUtilsProvider>
         </main>
-
-        <AppBar position="static">
-          <Tabs
-            value={value}
-            onChange={handleChange}
-            aria-label="simple tabs example"
-          >
-            <Tab label="Item One" {...a11yProps(0)} />
-            <Tab label="Item Two" {...a11yProps(1)} />
-            <Tab label="Item Three" {...a11yProps(2)} />
-          </Tabs>
-        </AppBar>
-        <TabPanel value={value} index={0}>
-          Item One
-        </TabPanel>
-        <TabPanel value={value} index={1}>
-          Item Two
-        </TabPanel>
-        <TabPanel value={value} index={2}>
-          Item Three
-        </TabPanel>
       </React.Fragment>
     );
   }
-
+}
 
 function mapStateToProps(state) {
   return {
