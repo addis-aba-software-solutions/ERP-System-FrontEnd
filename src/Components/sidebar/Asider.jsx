@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Badge, Typography, Paper, Avatar, Grid } from "@material-ui/core";
+import { Paper, Grid } from "@material-ui/core";
 import DashboardIcon from "@material-ui/icons/Dashboard";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
 import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
@@ -91,7 +91,7 @@ class Asider extends React.Component {
                   <Link to="/companys">View All Companys</Link>
                 </li>
                 <li>
-                  <Link to="/invoice">Invoices </Link>
+                  <Link to="/orders">View All Orders </Link>
                 </li>
               </ul>
             </li>
@@ -120,9 +120,9 @@ class Asider extends React.Component {
                 <li>
                   <Link to="/orders">View order</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/OrderStatus">Order Status </Link>
-                </li>
+                </li> */}
               </ul>
             </li>
 
@@ -145,17 +145,7 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-<<<<<<< HEAD
-                  <Link to="/viewOrder">View Orders</Link>
-=======
-                  <Link to="/view">Task 1</Link>
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
-                </li>
-                <li>
-                  <Link to="/view">Task 2</Link>
-                </li>
-                <li>
-                  <Link to="/view">Task 3 </Link>
+                  <Link to="/orders">View All Orders</Link>
                 </li>
               </ul>
             </li>
@@ -178,20 +168,10 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-<<<<<<< HEAD
                   <Link to="/add_item">Add Item</Link>
                 </li>
                 <li>
                   <Link to="/list_item">View Items</Link>
-=======
-                  <Link to="/add_item">Add Product</Link>
-                </li>
-                <li>
-                  <Link to="/view">Task 2</Link>
-                </li>
-                <li>
-                  <Link to="/add_item">Task 3 </Link>
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
                 </li>
               </ul>
             </li>

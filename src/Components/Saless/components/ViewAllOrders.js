@@ -1,154 +1,3 @@
-// import React, { Component } from 'react';
-// import { Button, Divider, Typography, Grid, Badge, withStyles, Paper, Card, IconButton, TextField } from '@material-ui/core';
-// import SearchBar from '../../SearchBar/SearchBar'
-
-// import Table from '@material-ui/core/Table';
-// import TableBody from '@material-ui/core/TableBody';
-// import TableCell from '@material-ui/core/TableCell';
-// import TableContainer from '@material-ui/core/TableContainer';
-// import TableHead from '@material-ui/core/TableHead';
-// import TableRow from '@material-ui/core/TableRow';
-// import VisibilityIcon from '@material-ui/icons/Visibility';
-// const styles = theme => ({
-//     table: {
-//         maxHeight: 100,
-//         padding: 20
-//     },
-//     tableRow: {
-//         padding: 15
-//     },
-//     container: {
-//         padding: 20,
-//     },
-//     paper: {
-//         padding: 40,
-//         height: 'auto',
-//         borderRadius: 20
-//     },
-//     spacer: {
-//         margin: 20,
-//     },
-//     recentOrders: {
-//         padding: 20,
-//         paddingBottom: 20
-//     },
-//     spacer: {
-//         margin: 10,
-//         marginBottom: 30
-//     },
-//     header: {
-//         marginLeft: 100
-//     }
-// });
-
-// function createData(name, calories, fat, carbs, protein, Actions) {
-//     return { name, calories, fat, carbs, protein, Actions };
-// }
-
-// class ViewAllOrders extends React.Component {
-//     render() {
-//         const { classes } = this.props;
-//         const rows = [
-//             createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9),
-//             createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-//             createData('Gingerbread', 356, 16.0, 49, 3.9), createData('Frozen yoghurt', 159, 6.0, 24, 4.0, 'Hello'),
-//             createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-//             createData('Eclair', 262, 16.0, 24, 6.0),
-//             createData('Cupcake', 305, 3.7, 67, 4.3),
-
-//         ];
-//         return (
-//             <>
-//                 <div className={classes.container}>
-//                     <Grid container display='flex'
-//                         justify="space-between"
-//                         xs={12}
-//                         style={{
-//                             padding: 20,
-//                             // paddingBottom: 20,
-
-//                         }}>
-//                         <Grid item className={classes.header}>
-//                             <Typography variant='h5' color="textSecondary">
-//                                 <b>Orders</b>
-//                             </Typography>
-//                         </Grid>
-//                         <Grid item style={{
-//                             display: 'flex',
-//                             justify: 'flex-end'
-//                         }}>
-//                             <SearchBar />
-//                         </Grid>
-//                     </Grid>
-//                     <div >
-//                     </div>
-//                     {/* <Divider className={classes.spacer}></Divider>
-//                         <Level /> */}
-//                     <Divider className={classes.spacer}></Divider>
-//                     <Paper className={classes.paper}>
-
-//                         <TableContainer>
-//                             <Table className={classes.table} size="small" aria-label="a dense table">
-//                                 <TableHead>
-//                                     <TableRow className={classes.table}>
-//                                         <TableCell className={classes.table}><b>ID</b></TableCell>
-
-//                                         <TableCell className={classes.table}><b>Item Name</b></TableCell>
-//                                         <TableCell align="right"><b>Quantity</b></TableCell>
-//                                         <TableCell align="right"><b>Price/Unit</b></TableCell>
-//                                         <TableCell align="right"><b>Carbs&nbsp;(g)</b></TableCell>
-//                                         <TableCell align="right"><b>Protein&nbsp;(g)</b></TableCell>
-//                                         <TableCell align="center"><b>Actions</b></TableCell>
-
-//                                     </TableRow>
-//                                 </TableHead>
-//                                 <TableBody>
-//                                     {rows.map((row) => (
-//                                         <TableRow key={row.name}>
-//                                             <TableCell className={classes.tableRow} component="th" scope="row">
-//                                                 #
-//                                         </TableCell>
-//                                             <TableCell className={classes.tableRow} component="th" scope="row">
-//                                                 {row.name}
-//                                             </TableCell>
-//                                             <TableCell align="right">{row.calories}</TableCell>
-//                                             <TableCell align="right">{row.fat}</TableCell>
-//                                             <TableCell align="right">{row.carbs}</TableCell>
-//                                             <TableCell align="right">{row.protein}</TableCell>
-//                                             <TableCell align="center">
-
-//                                                 <Grid item style={{
-//                                                     marginLeft: 30
-//                                                 }}>
-//                                                     <IconButton>
-//                                                         <VisibilityIcon />
-
-//                                                     </IconButton>
-
-//                                                 </Grid>
-//                                             </TableCell>
-
-//                                         </TableRow>
-//                                     ))}
-//                                 </TableBody>
-//                             </Table>
-//                         </TableContainer>
-//                     </Paper>
-//                 </div>
-//             </>
-//         );
-//     }
-// }
-
-// export default withStyles(styles)(ViewAllOrders);
-
 import React, { Component } from "react";
 import { Button, withStyles, Paper } from "@material-ui/core";
 
@@ -160,6 +9,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { getOrders, getStatus } from "../../../store/order/action";
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -183,22 +34,19 @@ const styles = (theme) => ({
     padding: 20,
     paddingBottom: 20,
   },
-  spacer: {
-    margin: 10,
-    marginBottom: 30,
-  },
   header: {
     marginLeft: 100,
   },
 });
 
-class OrderList extends Component {
+class ViewAllOrders extends Component {
   constructor() {
     super();
     this.state = {
       search: "",
-      orderInfo: [],
+      orders: [],
     };
+    this.orderStatus = this.orderStatus.bind(this);
   }
   updateSearch(e) {
     this.setState({
@@ -207,18 +55,20 @@ class OrderList extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("http://0.0.0.0:8000/api/v1/order/")
-      .then((res) => {
-        this.setState({
-          orderInfo: res.data,
-        });
-        //   console.log(res.data.data.children);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    this.props.getOrders();
+    this.props.getStatus();
   }
+
+  orderStatus = (orderNumber, i) => {
+    this.props.status.find((status) => {
+      let orderstatus = "";
+      if (status.order === orderNumber) {
+        orderstatus = status.order;
+        // alert(status.order);
+      }
+      return orderstatus;
+    });
+  };
 
   render() {
     const { classes } = this.props;
@@ -230,7 +80,6 @@ class OrderList extends Component {
     //             }
     //         );
     //     }
-    const { orderInfo } = this.state;
 
     return (
       <>
@@ -238,44 +87,67 @@ class OrderList extends Component {
           <div>
             <Button variant="contained">
               {" "}
-              <Link to="/CreateOrder">Add New Order</Link>
+              <Link to="/create_Order">Add New Order</Link>
             </Button>
             <br />
             {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
             <Paper className={classes.paper}>
-              <TableContainer style={{ maxHeight: 440 }}>
+              <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow className={classes.table}>
                       <TableCell>Order Number</TableCell>
                       <TableCell>Order Name</TableCell>
 
-                      <TableCell>Item</TableCell>
+                      <TableCell>Description</TableCell>
                       <TableCell>Company</TableCell>
                       <TableCell>Sales Person</TableCell>
                       <TableCell>Shipment Address</TableCell>
                       <TableCell>Order Date</TableCell>
-                      <TableCell>Actions</TableCell>
+                      <TableCell>Status</TableCell>
+                      <TableCell>Invoice</TableCell>
+                      <TableCell>SIV</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {orderInfo.map((orderInfos) => (
-                      <TableRow key={orderInfos.orderNumber}>
-                        <TableCell>{orderInfos.orderNumber}</TableCell>
-                        <TableCell>{orderInfos.orderName}</TableCell>
-                        <TableCell>{orderInfos.item}</TableCell>
-                        <TableCell>{orderInfos.company}</TableCell>
-                        <TableCell>{orderInfos.salesPerson}</TableCell>
-                        <TableCell>{orderInfos.shipmentAddress}</TableCell>
-                        <TableCell>{orderInfos.orderDate}</TableCell>
+                    {this.props.orders.map((order) => (
+                      <TableRow key={order.orderNumber}>
+                        <TableCell>{order.orderNumber}</TableCell>
+                        <TableCell>{order.orderName}</TableCell>
+                        <TableCell>{order.description}</TableCell>
+                        <TableCell>{order.company}</TableCell>
+                        <TableCell>{order.salesPerson}</TableCell>
+                        <TableCell>{order.shipmentAddress}</TableCell>
+                        <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>
+                          {this.orderStatus(order.orderNumber)}
+                        </TableCell>
 
-                        {/* <TableCell><button>
-                          <Link to={{
-                            pathname: `/employe/${orderInfos.employeId}`,
-                            state: { orderInfos: orderInfos.employeId }
-                          }}>View</Link>
-                        </button></TableCell> */}
+                        <TableCell>
+                          <button>
+                            <Link
+                              to={{
+                                pathname: "/invoice",
+                                state: { order: order.orderNumber },
+                              }}
+                            >
+                              Generate
+                            </Link>
+                          </button>
+                        </TableCell>
+                        <TableCell>
+                          <button>
+                            <Link
+                              to={{
+                                pathname: "/siv",
+                                state: { order: order.orderNumber },
+                              }}
+                            >
+                              Generate
+                            </Link>
+                          </button>
+                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
@@ -289,4 +161,11 @@ class OrderList extends Component {
   }
 }
 
-export default withStyles(styles)(OrderList);
+const mapStateToProps = (state) => ({
+  orders: state.ordersReducer.orders,
+  status: state.ordersReducer.status,
+});
+
+export default connect(mapStateToProps, { getOrders, getStatus })(
+  withStyles(styles)(ViewAllOrders)
+);
