@@ -1,6 +1,7 @@
 import { GET_SIV } from "../../constant/constants";
 const initialState = {
-  siv: {},
+  sivs: [],
+  siv_item: [],
 };
 
 export default function invoiceReducer(state = initialState, action) {
@@ -8,7 +9,8 @@ export default function invoiceReducer(state = initialState, action) {
     case GET_SIV:
       return {
         ...state,
-        siv: action.payload,
+        sivs: action.payload,
+        siv_item: action.payload.siv_item,
       };
 
     default:

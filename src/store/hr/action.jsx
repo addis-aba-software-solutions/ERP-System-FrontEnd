@@ -1,11 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
-<<<<<<< HEAD
-import { appConstants } from "../../constant/constants";
-=======
 import { appConstants, itConstants } from "../../constant/constants";
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
 
 function addNewEmployee(data) {
   return (dispatch) => {
@@ -36,19 +32,6 @@ function addNewEmployee(data) {
         responseType: "json",
         headers: {
           "Content-Type": "application/json",
-<<<<<<< HEAD
-        },
-        data: param,
-      })
-      .then((user) => {
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-        });
-        dispatch({
-          type: appConstants.REGISTER_SUCCESS,
-          payload: user.data.user,
-=======
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
         data: param,
@@ -58,7 +41,6 @@ function addNewEmployee(data) {
         dispatch({
           type: appConstants.REGISTER_SUCCESS,
           payload: response.data,
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
         });
       })
       .catch((error) => {
@@ -69,53 +51,14 @@ function addNewEmployee(data) {
       });
   };
 }
-<<<<<<< HEAD
-
-function addAccount(data) {
-  return (dispatch) => {
-    var param = {
-      username: data.username,
-      lastName: data.password,
-      department: data.depValue,
-      roles: data.rolValue,
-      level: data.levValue,
-    };
-
-    dispatch({
-      type: appConstants.REGISTER_REQUEST,
-=======
 function getEmploye() {
   return (dispatch) => {
     dispatch({
       type: itConstants.GETALL_REQUEST,
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
       payload: true,
     });
     axios
       .request({
-<<<<<<< HEAD
-        method: "POST",
-        url: API + "account/",
-        responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        data: param,
-      })
-      .then((user) => {
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-        });
-        dispatch({
-          type: appConstants.REGISTER_SUCCESS,
-          payload: user.data.user,
-        });
-      })
-      .catch((error) => {
-        dispatch({
-          type: appConstants.REGISTER_FAILURE,
-=======
         method: "GET",
         url: API + "employe/",
         responseType: "json",
@@ -202,15 +145,12 @@ function deleteAccount(email) {
       .catch((error) => {
         dispatch({
           type: itConstants.DELETE_FAILURE,
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
           payload: error.response.data.errors,
         });
       });
   };
 }
 
-<<<<<<< HEAD
-=======
 function addAccount(employe) {
   return (dispatch) => {
     dispatch({
@@ -326,7 +266,6 @@ function getDepartment() {
       });
   };
 }
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
 const actions = {
   addNewEmployee,
   addAccount,

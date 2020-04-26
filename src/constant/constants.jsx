@@ -49,6 +49,7 @@ export const errorsConstant = {
 export const GET_INVOICE = "GET_INVOICE";
 export const GET_SIV = "GET_SIV";
 export const GET_ORDER = "GET_ORDER";
+export const GET_STATUS = "GET_STATUS";
 
 export const itConstants = {
   REGISTER_REQUEST: "USERS_REGISTER_REQUEST",

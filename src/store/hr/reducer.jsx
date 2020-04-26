@@ -1,18 +1,8 @@
-<<<<<<< HEAD
-import { appConstants } from "../../constant/constants";
-=======
 import { appConstants, itConstants } from "../../constant/constants";
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
 const initialState = {
   users: [],
   loading: false,
   isLogin: false,
-<<<<<<< HEAD
-  errors: [],
-};
-export default function hrReducer(state = initialState, action) {
-  switch (action.type) {
-=======
   success: true,
   errors: [],
   employees: [],
@@ -53,7 +43,6 @@ export default function hrReducer(state = initialState, action) {
       };
     }
 
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
     case appConstants.REGISTER_REQUEST: {
       return {
         ...state,
@@ -67,10 +56,7 @@ export default function hrReducer(state = initialState, action) {
         errors: [],
         loading: false,
         isLogin: true,
-<<<<<<< HEAD
-=======
         success: false,
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
       };
     }
     case appConstants.REGISTER_FAILURE: {
@@ -79,12 +65,6 @@ export default function hrReducer(state = initialState, action) {
         errors: action.payload,
         loading: false,
         isLogin: false,
-<<<<<<< HEAD
-      };
-    }
-
-    default:
-=======
         success: false,
       };
     }
@@ -292,7 +272,6 @@ export default function hrReducer(state = initialState, action) {
     }
     default:
       // ALWAYS have a default case in a reducer
->>>>>>> 9eab4a52884f356fd58458801886d5294fcb922e
       return state;
   }
 }
