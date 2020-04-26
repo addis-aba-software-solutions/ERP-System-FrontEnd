@@ -1,16 +1,15 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
-import TablePagination from "@material-ui/core/TablePagination";
 import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import actions from "../../../store/sales/action";
+import { connect } from "react-redux";
 
 const styles = (theme) => ({
   root: {
@@ -39,18 +38,20 @@ class Orders extends React.Component {
     });
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    alert("component did mount");
+    this.props.getOrders();
+  }
 
   render() {
     // const { classes, orders } = this.props;
-    const { orders } = this.state;
-    let filteredOrder = this.orders.filter((order) => {
-      return (
-        order.orderName
-          .toLowerCase()
-          .indexOf(this.state.search.toLowerCase()) !== -1
-      );
-    });
+    // let filteredOrder = this.orders.filter((order) => {
+    //   return (
+    //     order.orderName
+    //       .toLowerCase()
+    //       .indexOf(this.state.search.toLowerCase()) !== -1
+    //   );
+    // });
 
     return (
       <div style={{ padding: 30 }}>
@@ -88,30 +89,30 @@ class Orders extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {filteredOrder.map((orderInfos) => (
-                  <TableRow key={orderInfos.orderId}>
-                    <TableCell>{orderInfos.orderId}</TableCell>
-                    <TableCell>{orderInfos.orderNumber}</TableCell>
-                    <TableCell>{orderInfos.OrderName}</TableCell>
-                    <TableCell>{orderInfos.item}</TableCell>
-                    <TableCell>{orderInfos.orderQuantity}</TableCell>
-                    <TableCell>{orderInfos.email}</TableCell> */}
-                    <TableCell>{orderInfos.hiredDate}</TableCell>
-                    <TableCell>{orderInfos.telephone}</TableCell>
-                    <TableCell>{orderInfos.birthDate}</TableCell>
-                    <TableCell>{orderInfos.country}</TableCell>
-                    <TableCell>{orderInfos.region}</TableCell>
-                    <TableCell>{orderInfos.city}</TableCell>
-                    <TableCell>{orderInfos.orderNumber}</TableCell>
-                    <TableCell>{orderInfos.orderDate}</TableCell>
-                    <TableCell>{orderInfos.company}</TableCell>
-                    <TableCell>{orderInfos.orderDate}</TableCell>
+                {this.props.orders.map((order) => (
+                  <TableRow key={order.orderId}>
+                    <TableCell>{order.orderId}</TableCell>
+                    <TableCell>{order.orderNumber}</TableCell>
+                    <TableCell>{order.OrderName}</TableCell>
+                    <TableCell>{order.item}</TableCell>
+                    <TableCell>{order.orderQuantity}</TableCell>
+                    <TableCell>{order.email}</TableCell>
+                    <TableCell>{order.hiredDate}</TableCell>
+                    <TableCell>{order.telephone}</TableCell>
+                    <TableCell>{order.birthDate}</TableCell>
+                    <TableCell>{order.country}</TableCell>
+                    <TableCell>{order.region}</TableCell>
+                    <TableCell>{order.city}</TableCell>
+                    <TableCell>{order.orderNumber}</TableCell>
+                    <TableCell>{order.orderDate}</TableCell>
+                    <TableCell>{order.company}</TableCell>
+                    <TableCell>{order.orderDate}</TableCell>
                     <TableCell>
                       <button>
                         <Link
                           to={{
                             pathname: `/invoice/`,
-                            state: { order: orderInfos.orderNumber },
+                            state: { order: order.orderNumber },
                           }}
                         >
                           Invoice Available
@@ -128,4 +129,14 @@ class Orders extends React.Component {
     );
   }
 }
-export default withStyles(styles)(Orders);
+
+const mapStateToProps = (state) => ({
+  orders: state.salesReducer.orders,
+});
+const mapDispatchToProps = {
+  getOrders: actions.getOrders,
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(Orders));
