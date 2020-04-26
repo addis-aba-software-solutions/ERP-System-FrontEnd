@@ -64,6 +64,9 @@ class SIV extends Component {
       siv_item: [],
     };
   }
+  componentDidUpdate() {
+    alert("updated");
+  }
   componentDidMount() {
     alert("the alert is");
     this.props.getSiv(1);
