@@ -72,35 +72,30 @@ class CreateOrder extends React.Component {
       orderName: "",
       company: "",
       description: "",
-      orderDate: "",
       discount: "",
       salesPerson: "",
       itemQuantity: 0,
-      itemName: "",
+      InventoryItem: "",
       item: "",
       // order_items: [],
       shipmentAddress: "",
-      order_items: [{ itemName: "", quantity: "" }],
+      order_items: [{ InventoryItem: "", quantity: 1, name: "" }],
 
       form: "",
       items: [{ form: "" }],
     };
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
     this.ItemNameChange = this.ItemNameChange.bind(this);
     this.ItemQuantityChange = this.ItemQuantityChange.bind(this);
   }
 
-  handleNameChange = (evt) => {
-    this.setState({ itemName: evt.target.value });
-  };
   handleAddItem = () => {
     this.setState({
       order_items: this.state.order_items.concat([
-        { itemName: "", quantity: "" },
+        { InventoryItem: "", quantity: 1, name: "" },
       ]),
     });
   };
@@ -111,10 +106,14 @@ class CreateOrder extends React.Component {
     });
   };
   ItemNameChange = (idx) => (evt) => {
-    console.log(this.state.order_items);
     const neworder_items = this.state.order_items.map((item, sidx) => {
+      console.log(item);
       if (idx !== sidx) return item;
-      return { ...item, itemName: evt.target.value };
+      return {
+        ...item,
+        InventoryItem: evt.target.value,
+        name: evt.target.name,
+      };
     });
 
     this.setState({ order_items: neworder_items });
@@ -141,30 +140,6 @@ class CreateOrder extends React.Component {
   submit = () => {
     this.props.createOrder(this.state);
   };
-
-  // handleAddItem = () => {
-  //   if (
-  //     this.state.itemName != "" &&
-  //     this.state.itemQuantity != "" &&
-  //     this.state.itemQuantity > 0
-  //   ) {
-  //     this.setState({
-  //       order_items: this.state.order_items.concat([
-  //         {
-  //           itemName: this.state.itemName,
-  //           itemQuantity: this.state.itemQuantity,
-  //         },
-  //       ]),
-  //     });
-  //     this.setState({
-  //       itemName: "",
-  //       itemQuantity: 0,
-  //     });
-  //     this.setState({
-  //       items: this.state.items.concat([{ item: "" }]),
-  //     });
-  //   }
-  // };
 
   render() {
     const { classes } = this.props;
@@ -364,19 +339,19 @@ class CreateOrder extends React.Component {
                               Item Name
                             </InputLabel>
                             <Select
-                              value={item.itemName}
-                              // name="itemName"
+                              value={item.InventoryItemId}
                               native
                               id="grouped-native-select"
                               onChange={this.ItemNameChange(idx)}
                             >
                               <option aria-label="None" value="" />
                               {this.props.items.map((_item) => (
-                                <option value={_item.itemId}>
+                                <option value={_item.InventoryItemId}>
                                   {_item.itemName}
                                 </option>
                               ))}
                             </Select>
+                            <Grid></Grid>
                           </Grid>
 
                           <Grid item xs={12} sm={6}>
@@ -398,6 +373,20 @@ class CreateOrder extends React.Component {
                             >
                               -
                             </button>
+                            <Error
+                              error={
+                                this.props.errors.itemName
+                                  ? this.props.errors.itemName
+                                  : null
+                              }
+                            />
+                            <Error
+                              error={
+                                this.props.errors.available
+                                  ? this.props.errors.available
+                                  : null
+                              }
+                            />
                           </Grid>
                         </Grid>
                       ))}
@@ -418,50 +407,6 @@ class CreateOrder extends React.Component {
                         </Button>
                       </Grid>
                     </Grid>
-                    {/* {this.state.items.map((item, idx) => (
-                      <>
-                        <Grid item xs={12} sm={12}>
-                          <Typography variant="h8" gutterBottom>
-                            Item {idx + 1}
-                          </Typography>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                          <FormControl
-                            className={classes.formControl}
-                            fullWidth
-                          >
-                            <InputLabel htmlFor="grouped-native-select">
-                              Item Name
-                            </InputLabel>
-                            <Select
-                              onChange={this.handleNameChange}
-                              value={this.state.itemName}
-                              // name="itemName"
-                              native
-                              id="grouped-native-select"
-                            >
-                              <option aria-label="None" value="" />
-                              {this.props.items.map((item) => (
-                                <option value={item.itemId}>
-                                  {item.itemName}
-                                </option>
-                              ))}
-                            </Select>
-                          </FormControl>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                          <TextField
-                            required
-                            id="ItemQuantity"
-                            name="itemQuantity"
-                            label="Item Quantity"
-                            fullWidth
-                            autoComplete="itemQuantity"
-                            onChange={this.handleChange}
-                          />
-                        </Grid>
-                      </>
-                    ))} */}
                   </Grid>
                 </Grid>
 

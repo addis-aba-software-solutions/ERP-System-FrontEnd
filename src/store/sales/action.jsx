@@ -4,6 +4,8 @@ import API from "../../api/API";
 import { salesConstants } from "../../constant/constants";
 
 function createOrder(data) {
+  console.log(data);
+
   var params = {
     orderNumber: data.orderNumber,
     orderName: data.orderName,
@@ -39,11 +41,17 @@ function createOrder(data) {
         });
       })
       .catch((error) => {
-        console.log(error.response.data);
-        dispatch({
-          type: salesConstants.ORDER_FAILURE,
-          payload: error.response.data,
-        });
+        if (error.response.status == 404) {
+          dispatch({
+            type: salesConstants.ORDER_FAILURE,
+            payload: error.response.data.item,
+          });
+        } else {
+          dispatch({
+            type: salesConstants.ORDER_FAILURE,
+            payload: error.response.data,
+          });
+        }
       });
   };
 }
