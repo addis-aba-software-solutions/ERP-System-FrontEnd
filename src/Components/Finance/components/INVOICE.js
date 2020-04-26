@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import {
   withStyles,
   Box,
-  Paper,
   Divider,
   Typography,
   Badge,
@@ -15,8 +14,8 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { makeStyles } from "@material-ui/core/styles";
-const TAX_RATE = 0.07;
+import { connect } from "react-redux";
+import { getInvoice } from "../../../store/Invoice/action";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
@@ -83,19 +82,19 @@ const StyledTableRow = withStyles((theme) => ({
   },
 }))(TableRow);
 
-function createData(Sr, name, calories, fat, carbs, protein) {
-  return { Sr, name, calories, fat, carbs, protein };
-}
-
-const rows = [
-  createData("#", "[Clothing] Sweat Pants, Hoodies", 159, 6.0, 24, 4.0),
-  createData("#", "[Edibles] Cheralia Biscuit", 237, 9.0, 37, 4.3),
-  createData("#", "[Edibles] Moya Biscuit", 262, 16.0, 24, 6.0),
-  createData("#", "[Clothing] Sweat Pants, Hoodies", 159, 6.0, 24, 4.0),
-  createData("#", "[Clothing] Sweat Pants, Hoodies", 159, 6.0, 24, 4.0),
-];
-
 class Invoice extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      invoices: [],
+      invoice_item: [],
+    };
+  }
+
+  componentDidMount() {
+    this.props.getInvoice(this.props.location.state.order);
+  }
+
   render() {
     const { classes } = this.props;
 
@@ -169,7 +168,7 @@ class Invoice extends Component {
           <Divider className={classes.divider}></Divider>
           <Box className={classes.box}>
             <Grid container xs={12} display="flex" justify="space-between">
-              <Grid item>
+              {/* <Grid item>
                 <Typography
                   align="left"
                   className={classes.textBody}
@@ -241,7 +240,7 @@ class Invoice extends Component {
                     ></Typography>
                   </div>
                 </div>
-              </Grid>
+              </Grid> */}
 
               <Grid item>
                 <Box className={classes.invoiceInfo}>
@@ -251,7 +250,7 @@ class Invoice extends Component {
                         <b>Invoice Number :</b>
                       </Grid>
 
-                      <Grid item>INV/2020/0013</Grid>
+                      <Grid item>{this.props.invoices.invoiceId}</Grid>
                     </Grid>
                   </Typography>
                 </Box>
@@ -267,7 +266,7 @@ class Invoice extends Component {
                         <b>Invoice Date :</b>
                       </Grid>
 
-                      <Grid item>20-04-20</Grid>
+                      <Grid item>{this.props.invoices.date}</Grid>
                     </Grid>
                   </Typography>
                   <Box
@@ -289,15 +288,15 @@ class Invoice extends Component {
                       height: 7,
                     }}
                   ></Box>
-                  <Typography variant="body2" className={classes.textBody}>
+                  {/* <Typography variant="body2" className={classes.textBody}>
                     <Grid container display="flex" justify="space-between">
                       <Grid item>
                         <b>Order Date : </b>
                       </Grid>
 
-                      <Grid item>20-04-20</Grid>
+                      <Grid item>{this.props.invoices.date}</Grid>
                     </Grid>
-                  </Typography>
+                  </Typography> */}
                 </Box>
               </Grid>
             </Grid>
@@ -326,19 +325,25 @@ class Invoice extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {rows.map((row) => (
-                  <StyledTableRow key={row.name}>
-                    <StyledTableCell align="right">{row.Sr}</StyledTableCell>
+                {this.props.invoice_item.map((item) => (
+                  <StyledTableRow key={item.itemName}>
+                    <StyledTableCell align="right">{}</StyledTableCell>
 
-                    <StyledTableCell component="th" scope="row">
-                      {row.name}
+                    <StyledTableCell
+                      component="th"
+                      scope="item
+                    "
+                    >
+                      {item.itemName}
                     </StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.calories}
+                      {item.unitPrice}
                     </StyledTableCell>
-                    <StyledTableCell align="right">{row.fat}</StyledTableCell>
                     <StyledTableCell align="right">
-                      {row.protein}
+                      {item.quantity}
+                    </StyledTableCell>
+                    <StyledTableCell align="right">
+                      {item.quantity * item.unitPrice}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -375,7 +380,7 @@ class Invoice extends Component {
                 </Grid>
                 <Grid item>
                   <Typography variant="caption" className={classes.textBody}>
-                    8240 ETB
+                    {this.props.invoices.subTotal} ETB
                   </Typography>
                 </Grid>
               </Grid>
@@ -393,7 +398,7 @@ class Invoice extends Component {
                 </Grid>
                 <Grid item>
                   <Typography variant="caption" className={classes.textBody}>
-                    Something
+                    {this.props.invoices.Tax} ETB
                   </Typography>
                 </Grid>
               </Grid>
@@ -411,7 +416,7 @@ class Invoice extends Component {
                 </Grid>
                 <Grid item>
                   <Typography variant="caption" className={classes.textBody}>
-                    8240 ETB
+                    {this.props.invoices.Total} ETB
                   </Typography>
                 </Grid>
               </Grid>
@@ -471,4 +476,12 @@ class Invoice extends Component {
   }
 }
 
-export default withStyles(styles)(Invoice);
+const mapStateToProps = (state) => ({
+  invoices: state.invoiceReducer.invoices,
+  invoice_item: state.invoiceReducer.invoice_item,
+  errors: state.errorsReducer.errors,
+});
+
+export default connect(mapStateToProps, { getInvoice })(
+  withStyles(styles)(Invoice)
+);
