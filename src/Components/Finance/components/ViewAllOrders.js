@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, withStyles, Paper } from "@material-ui/core";
 
-import {Table, IconButton} from "@material-ui/core";
+import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
 import PrintIcon from "@material-ui/icons/Print";
+import SearchBar from '../../SearchBar/SearchBar'
 
 const styles = (theme) => ({
   table: {
@@ -84,6 +85,7 @@ class ViewAllOrders extends Component {
 
     return (
       <>
+        <SearchBar />
         <div className={classes.container}>
           <div>
             <Button variant="contained">
@@ -131,7 +133,9 @@ class ViewAllOrders extends Component {
                                 state: { order: order.orderNumber },
                               }}
                             >
-                              <PrintIcon />
+                              <PrintIcon style={{
+                                color: '#E8E8E8'
+                              }} />
                             </Link>
                           </IconButton>
                         </TableCell>
