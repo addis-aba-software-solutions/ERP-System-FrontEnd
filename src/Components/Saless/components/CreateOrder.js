@@ -17,10 +17,12 @@ import InputLabel from "@material-ui/core/InputLabel";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import { withStyles, Box, Divider } from "@material-ui/core";
+import { withStyles, IconButton, Box, Divider } from "@material-ui/core";
 import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+
 
 const styles = (theme) => ({
   appBar: {
@@ -72,30 +74,35 @@ class CreateOrder extends React.Component {
       orderName: "",
       company: "",
       description: "",
+      orderDate: "",
       discount: "",
       salesPerson: "",
       itemQuantity: 0,
-      InventoryItem: "",
+      itemName: "",
       item: "",
       // order_items: [],
       shipmentAddress: "",
-      order_items: [{ InventoryItem: "", quantity: 1, name: "" }],
+      order_items: [{ itemName: "", quantity: "" }],
 
       form: "",
       items: [{ form: "" }],
     };
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this);
     this.handleAddItem = this.handleAddItem.bind(this);
     this.handleRemoveItem = this.handleRemoveItem.bind(this);
     this.ItemNameChange = this.ItemNameChange.bind(this);
     this.ItemQuantityChange = this.ItemQuantityChange.bind(this);
   }
 
+  handleNameChange = (evt) => {
+    this.setState({ itemName: evt.target.value });
+  };
   handleAddItem = () => {
     this.setState({
       order_items: this.state.order_items.concat([
-        { InventoryItem: "", quantity: 1, name: "" },
+        { itemName: "", quantity: "" },
       ]),
     });
   };
@@ -106,14 +113,10 @@ class CreateOrder extends React.Component {
     });
   };
   ItemNameChange = (idx) => (evt) => {
+    console.log(this.state.order_items);
     const neworder_items = this.state.order_items.map((item, sidx) => {
-      console.log(item);
       if (idx !== sidx) return item;
-      return {
-        ...item,
-        InventoryItem: evt.target.value,
-        name: evt.target.name,
-      };
+      return { ...item, itemName: evt.target.value };
     });
 
     this.setState({ order_items: neworder_items });
@@ -140,6 +143,30 @@ class CreateOrder extends React.Component {
   submit = () => {
     this.props.createOrder(this.state);
   };
+
+  // handleAddItem = () => {
+  //   if (
+  //     this.state.itemName != "" &&
+  //     this.state.itemQuantity != "" &&
+  //     this.state.itemQuantity > 0
+  //   ) {
+  //     this.setState({
+  //       order_items: this.state.order_items.concat([
+  //         {
+  //           itemName: this.state.itemName,
+  //           itemQuantity: this.state.itemQuantity,
+  //         },
+  //       ]),
+  //     });
+  //     this.setState({
+  //       itemName: "",
+  //       itemQuantity: 0,
+  //     });
+  //     this.setState({
+  //       items: this.state.items.concat([{ item: "" }]),
+  //     });
+  //   }
+  // };
 
   render() {
     const { classes } = this.props;
@@ -331,63 +358,67 @@ class CreateOrder extends React.Component {
                       <Typography variant="h6" gutterBottom>
                         <b>Item Information </b>
                       </Typography>
+                      <Box style={{
+                        height: 21
+                      }} />
 
                       {this.state.order_items.map((item, idx) => (
-                        <Grid item xs={12} sm={6}>
+                        <Grid container xs={12} sm={12} spacing={3}>
                           <Grid item xs={12} sm={6}>
                             <InputLabel htmlFor="grouped-native-select">
                               Item Name
                             </InputLabel>
+
                             <Select
-                              value={item.InventoryItemId}
+                              value={item.itemName}
+                              // name="itemName"
                               native
+                              fullWidth
                               id="grouped-native-select"
                               onChange={this.ItemNameChange(idx)}
                             >
                               <option aria-label="None" value="" />
                               {this.props.items.map((_item) => (
-                                <option value={_item.InventoryItemId}>
+                                <option value={_item.itemId}>
                                   {_item.itemName}
                                 </option>
                               ))}
                             </Select>
-                            <Grid></Grid>
+                          </Grid>
+                          <Grid item>
+                            <Grid container xs={12}>
+
+                              <Grid item xs={12} sm={11} style={{
+                                marginTop: 3
+                              }}>
+                                <TextField
+                                  required
+                                  id="ItemQuantity"
+                                  label="Item Quantity"
+                                  fullWidth
+                                  autoComplete="itemQuantity"
+                                  value={item.quantity}
+                                  onChange={this.ItemQuantityChange(idx)}
+                                  placeholder={`Item #${idx + 1} name`}
+                                />
+                              </Grid>
+                              <Grid item item xs={12} sm={1}>
+                                <IconButton
+                                  style={{
+                                    marginTop: 20
+                                  }}
+                                  type="button"
+                                  onClick={this.handleRemoveItem(idx)}
+                                  className="small"
+                                >
+                                  <HighlightOffIcon color='secondary' />
+                                </IconButton>
+                              </Grid>
+                            </Grid>
+
+
                           </Grid>
 
-                          <Grid item xs={12} sm={6}>
-                            <TextField
-                              required
-                              id="ItemQuantity"
-                              label="Item Quantity"
-                              fullWidth
-                              autoComplete="itemQuantity"
-                              value={item.quantity}
-                              onChange={this.ItemQuantityChange(idx)}
-                              placeholder={`Item #${idx + 1} name`}
-                            />
-
-                            <button
-                              type="button"
-                              onClick={this.handleRemoveItem(idx)}
-                              className="small"
-                            >
-                              -
-                            </button>
-                            <Error
-                              error={
-                                this.props.errors.itemName
-                                  ? this.props.errors.itemName
-                                  : null
-                              }
-                            />
-                            <Error
-                              error={
-                                this.props.errors.available
-                                  ? this.props.errors.available
-                                  : null
-                              }
-                            />
-                          </Grid>
                         </Grid>
                       ))}
 
