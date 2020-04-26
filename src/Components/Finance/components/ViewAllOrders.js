@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, withStyles, Paper } from "@material-ui/core";
 
-import Table from "@material-ui/core/Table";
+import {Table, IconButton} from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -11,6 +11,8 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
+import PrintIcon from "@material-ui/icons/Print";
+
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -64,7 +66,6 @@ class ViewAllOrders extends Component {
       let orderstatus = "";
       if (status.order === orderNumber) {
         orderstatus = status.order;
-        // alert(status.order);
       }
       return orderstatus;
     });
@@ -90,7 +91,6 @@ class ViewAllOrders extends Component {
               <Link to="/create_Order">Add New Order</Link>
             </Button>
             <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
             <Paper className={classes.paper}>
               <TableContainer>
@@ -124,16 +124,16 @@ class ViewAllOrders extends Component {
                         </TableCell>
 
                         <TableCell>
-                          <button>
+                          <IconButton>
                             <Link
                               to={{
                                 pathname: "/invoice",
                                 state: { order: order.orderNumber },
                               }}
                             >
-                              Generate Invoice
+                              <PrintIcon />
                             </Link>
-                          </button>
+                          </IconButton>
                         </TableCell>
                       </TableRow>
                     ))}
