@@ -41,7 +41,15 @@ import Nav from "./Components/nav/nav";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
 import CreateOrder from "./Components/Saless/components/CreateOrder";
 import ViewOrdersFinance from "./Components/Finance/components/ViewAllOrders";
+import ViewOrdersInventory from "./Components/Inventory/components/ViewAllOrders";
+import ViewOrdersLogistics from "./Components/Logistics/components/ViewAllOrders";
+import ViewOrdersSales from "./Components/Saless/components/ViewAllOrders";
+
+
+
 import Dashboard from "./Components/Saless/Sales";
+import ViewSingleOrderFinance from "./Components/Finance/components/ViewSingleOrder";
+
 
 class App extends React.Component {
   render() {
@@ -109,6 +117,33 @@ class App extends React.Component {
                     exact
                     loggedIn={this.props.isLogin}
                   />
+                  <PrivateRoute
+                    path="/viewSingleOrderFinance"
+                    component={ViewSingleOrderFinance}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+
+                  <PrivateRoute
+                    path="/viewOrdersInventory"
+                    component={ViewOrdersInventory}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                                    <PrivateRoute
+                    path="/ViewOrdersLogistics"
+                    component={ViewOrdersLogistics}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                                                      <PrivateRoute
+                    path="/ViewOrdersSales"
+                    component={ViewOrdersSales}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+
+
                 </section>
               </section>
             </div>
