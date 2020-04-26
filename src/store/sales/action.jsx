@@ -42,9 +42,21 @@ function createOrder(data) {
       })
       .catch((error) => {
         if (error.response.status == 404) {
-          dispatch({
-            type: salesConstants.ORDER_FAILURE,
-            payload: error.response.data.item,
+          Swal.fire({
+            title: "<strong>Error <u>info</u></strong><p>",
+            icon: "error",
+            html:
+              "<p>" +
+              error.response.data.Error +
+              "</p><b>Item Name :</b>" +
+              error.response.data.item.itemName +
+              " <br/>" +
+              "<b>available quantity :</b> " +
+              error.response.data.item.available,
+            // showCloseButton: true,
+            showCancelButton: false,
+            focusConfirm: false,
+            confirmButtonText: "OK!",
           });
         } else {
           dispatch({

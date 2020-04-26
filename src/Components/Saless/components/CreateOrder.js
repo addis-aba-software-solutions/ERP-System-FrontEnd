@@ -76,13 +76,10 @@ class CreateOrder extends React.Component {
       salesPerson: "",
       itemQuantity: 0,
       InventoryItem: "",
-      item: "",
+
       // order_items: [],
       shipmentAddress: "",
-      order_items: [{ InventoryItem: "", quantity: 1, name: "" }],
-
-      form: "",
-      items: [{ form: "" }],
+      order_items: [{ InventoryItem: "", quantity: 1 }],
     };
     this.submit = this.submit.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -95,7 +92,7 @@ class CreateOrder extends React.Component {
   handleAddItem = () => {
     this.setState({
       order_items: this.state.order_items.concat([
-        { InventoryItem: "", quantity: 1, name: "" },
+        { InventoryItem: "", quantity: 1 },
       ]),
     });
   };
@@ -112,7 +109,6 @@ class CreateOrder extends React.Component {
       return {
         ...item,
         InventoryItem: evt.target.value,
-        name: evt.target.name,
       };
     });
 
@@ -122,7 +118,7 @@ class CreateOrder extends React.Component {
   ItemQuantityChange = (idx) => (evt) => {
     const neworder_items = this.state.order_items.map((item, sidx) => {
       if (idx !== sidx) return item;
-      return { ...item, quantity: evt.target.value };
+      return { ...item, quantity: evt.target.value, name: evt.target.name };
     });
 
     this.setState({ order_items: neworder_items });
@@ -338,6 +334,7 @@ class CreateOrder extends React.Component {
                             <InputLabel htmlFor="grouped-native-select">
                               Item Name
                             </InputLabel>
+
                             <Select
                               value={item.InventoryItemId}
                               native
@@ -353,7 +350,6 @@ class CreateOrder extends React.Component {
                             </Select>
                             <Grid></Grid>
                           </Grid>
-
                           <Grid item xs={12} sm={6}>
                             <TextField
                               required
@@ -365,7 +361,6 @@ class CreateOrder extends React.Component {
                               onChange={this.ItemQuantityChange(idx)}
                               placeholder={`Item #${idx + 1} name`}
                             />
-
                             <button
                               type="button"
                               onClick={this.handleRemoveItem(idx)}
@@ -373,20 +368,6 @@ class CreateOrder extends React.Component {
                             >
                               -
                             </button>
-                            <Error
-                              error={
-                                this.props.errors.itemName
-                                  ? this.props.errors.itemName
-                                  : null
-                              }
-                            />
-                            <Error
-                              error={
-                                this.props.errors.available
-                                  ? this.props.errors.available
-                                  : null
-                              }
-                            />
                           </Grid>
                         </Grid>
                       ))}
