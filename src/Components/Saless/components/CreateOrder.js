@@ -2,12 +2,9 @@ import React, { Component } from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import Paper from "@material-ui/core/Paper";
-import history from "../../../Routes/history";
-import axios from "axios";
 
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import Swal from "sweetalert2";
 import Grid from "@material-ui/core/Grid";
 import TextField from "@material-ui/core/TextField";
 import DateFnsUtils from "@date-io/date-fns";
@@ -65,7 +62,7 @@ const styles = (theme) => ({
   },
 });
 
-class CreateOrder extends React.Component {
+class CreateOrder extends Component {
   constructor() {
     super();
     this.state = {
@@ -399,7 +396,7 @@ class CreateOrder extends React.Component {
                                   placeholder={`Item #${idx + 1} name`}
                                 />
                               </Grid>
-                              <Grid item item xs={12} sm={1}>
+                              <Grid item  xs={12} sm={1}>
                                 <IconButton
                                   style={{
                                     marginTop: 20

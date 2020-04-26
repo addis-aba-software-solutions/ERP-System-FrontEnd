@@ -25,6 +25,7 @@ import ViewFinanceOrders from "./Components/Finance/components/ViewAllOrders";
 import ViewInventoryOrders from "./Components/Inventory/components/ViewAllOrders";
 import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders";
 import ViewSingleOrderFinance from './Components/Finance/components/ViewSingleOrder'
+import ViewAccount from "./Components/HR/components/UsersTable/view_account"
 
 class App extends React.Component {
   render() {
@@ -126,6 +127,15 @@ class App extends React.Component {
                     component={ViewSingleOrderFinance}
                     exact
                     loggedIn={this.props.isLogin}
+                    
+                  />
+                  {/* it department route */}
+                  <PrivateRoute
+                    path="/view_account"
+                    component={ViewAccount}
+                    exact
+                    loggedIn={this.props.isLogin}
+                    
                   />
                 </section>
               </section>

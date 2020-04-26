@@ -89,7 +89,6 @@ class Asider extends React.Component {
                 </li>
                 <li>
                   <Link to="/companys">View All Companys</Link>
-                  <Link to="/ViewSingleOrderFinance">View Single Order</Link>
                 </li>
                 <li>
                   <Link to="/financeOrders">View All Orders </Link>

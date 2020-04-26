@@ -1,33 +1,22 @@
-import React, { useState } from "react";
-import clsx from "clsx";
-import PropTypes from "prop-types";
-import moment from "moment";
+import React from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
 // import { makeStyles } from '@material-ui/styles';
 import { withStyles, Grid, IconButton } from "@material-ui/core";
-import axios from "axios";
+
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import {
   Card,
-  CardActions,
   CardContent,
-  Avatar,
-  Checkbox,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
-  Typography,
-  Button,
-  TablePagination,
 } from "@material-ui/core";
 import DeleteIcon from "@material-ui/icons/Delete";
 import VisibilityIcon from "@material-ui/icons/Visibility";
-import history from "../../../../Routes/history";
 import SearchBar from "../../../SearchBar/SearchBar";
-import API from "./../../../../api/API";
 import actions from "./../../../../store/hr/action";
 import { connect } from "react-redux";
 
@@ -87,16 +76,16 @@ class EmployeTable extends React.Component {
   }
 
   render() {
-    const { employeeInfo, error } = this.state;
+    const {  error } = this.state;
     const { classes } = this.props;
 
-    let filteredEmployee = employeeInfo.filter((employeeInfos) => {
-      return (
-        employeeInfos.firstName
-          .toLowerCase()
-          .indexOf(this.state.search.toLowerCase()) !== -1
-      );
-    });
+    // let filteredEmployee = employeeInfo.filter((employeeInfos) => {
+    //   return (
+    //     employeeInfos.firstName
+    //       .toLowerCase()
+    //       .indexOf(this.state.search.toLowerCase()) !== -1
+    //   );
+    // });
     if (error) {
       return <div>Error:{error.message}</div>;
     } else {
@@ -195,7 +184,6 @@ function mapStateToProps(state) {
     loading: state.hrReducer.loading,
     users: state.hrReducer.users,
     employees: state.hrReducer.employees,
-    users: state.hrReducer.users,
     errors: state.hrReducer.errors,
   };
 }

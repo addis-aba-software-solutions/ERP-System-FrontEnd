@@ -7,10 +7,10 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
+import ViewAllStatus from "./ViewAllStatus"
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -45,6 +45,7 @@ class ViewAllOrders extends Component {
     this.state = {
       search: "",
       orders: [],
+      status:[],
     };
     this.orderStatus = this.orderStatus.bind(this);
   }
@@ -56,10 +57,11 @@ class ViewAllOrders extends Component {
 
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
+    // this.props.getStatus();
   }
 
-  orderStatus = (orderNumber, i) => {
+  orderStatus = (orderNumber) => {
+    alert(orderNumber)
     this.props.status.find((status) => {
       let orderstatus = "";
       if (status.order === orderNumber) {
@@ -105,7 +107,6 @@ class ViewAllOrders extends Component {
                       <TableCell>Sales Person</TableCell>
                       <TableCell>Shipment Address</TableCell>
                       <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -118,12 +119,14 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>{}</TableCell>
                       </TableRow>
                     ))}
                   </TableBody>
                 </Table>
               </TableContainer>
             </Paper>
+              {/* {ViewAllStatus} */}
           </div>
         </div>
       </>

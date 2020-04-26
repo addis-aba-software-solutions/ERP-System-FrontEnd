@@ -77,7 +77,7 @@ function getEmploye() {
         console.log(error);
         dispatch({
           type: itConstants.GETALL_FAILURE,
-          payload: error.response.data.errors,
+          payload: error.response.data,
         });
       });
   };
