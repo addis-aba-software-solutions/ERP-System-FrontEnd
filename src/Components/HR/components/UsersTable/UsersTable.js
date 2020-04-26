@@ -61,7 +61,6 @@ class EmployeTable extends React.Component {
       employeeInfo: [],
       search: "",
     };
-    this.logout = this.logout.bind(this);
   }
   componentDidMount() {
     this.props.getEmploye();

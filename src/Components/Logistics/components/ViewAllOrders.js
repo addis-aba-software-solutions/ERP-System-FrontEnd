@@ -7,10 +7,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getOrders, getStatus } from "../../../store/order/action";
+import {
+  getOrders,
+  getStatus,
+  updateStatus,
+} from "../../../store/order/action";
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -122,15 +125,16 @@ class ViewAllOrders extends Component {
                         <TableCell>Issued</TableCell>
 
                         <TableCell>
-                          <button>
-                            <Link
-                              to={{
-                                pathname: "/invoice",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              Delivered
-                            </Link>
+                          <button
+                            onClick={this.props.updateStatus.bind(
+                              this,
+                              order.orderNumber,
+                              {
+                                status: "Delivered",
+                              },
+                            )}
+                          >
+                            Delivered
                           </button>
                         </TableCell>
                       </TableRow>
@@ -151,6 +155,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus })(
+export default connect(mapStateToProps, { getOrders, getStatus, updateStatus })(
   withStyles(styles)(ViewAllOrders)
 );

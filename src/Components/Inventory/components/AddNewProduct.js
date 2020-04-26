@@ -8,7 +8,6 @@ import {
   Paper,
   TextField,
 } from "@material-ui/core";
-import RecentOrders from "./RecentOrders";
 import axios from "axios";
 import InputLabel from "@material-ui/core/InputLabel";
 
