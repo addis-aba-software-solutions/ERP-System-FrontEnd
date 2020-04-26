@@ -21,6 +21,9 @@ import ViewCompany from "./Components/Finance/components/ViewCompany";
 import Invoice from "./Components/Finance/components/INVOICE";
 import Dashboard from "./Components/Saless/Sales";
 import Siv from "./Components/Inventory/components/SIV";
+import ViewFinanceOrders from "./Components/Finance/components/ViewAllOrders";
+import ViewInventoryOrders from "./Components/Inventory/components/ViewAllOrders";
+import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders";
 
 class App extends React.Component {
   render() {
@@ -35,13 +38,6 @@ class App extends React.Component {
               <section id="main-content">
                 <section className="wrapper">
                   <PrivateRoute
-                    path="/add_employe"
-                    component={AddEmployee}
-                    exact
-                    loggedIn={this.props.isLogin}
-                  />
-
-                  <PrivateRoute
                     path="/"
                     component={Dashboard}
                     exact
@@ -55,18 +51,30 @@ class App extends React.Component {
                   />
                   <PrivateRoute path="/list_item" component={ViewItem} exact />
                   <PrivateRoute path="/siv" component={Siv} exact />
-                  {/* salses order routes */}
                   <PrivateRoute
-                    path="/newOrder"
-                    component={CreateOrder}
+                    path="/inventoryOrders"
+                    component={ViewInventoryOrders}
+                    exact
+                  />
+                  {/* logistics order routes */}
+                  <PrivateRoute
+                    path="/logisticsOrders"
+                    component={ViewLogisticsOrders}
                     exact
                   />
                   <PrivateRoute
-                    path="/OrderStatus"
-                    component={ViewItem}
+                    path="/add_employe"
+                    component={AddEmployee}
                     exact
+                    loggedIn={this.props.isLogin}
                   />
                   {/* employee routes */}
+                  <PrivateRoute
+                    path="/add_employe"
+                    component={AddEmployee}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
                   <PrivateRoute
                     path="/all_employe"
                     component={AllEmploye}
@@ -93,18 +101,25 @@ class App extends React.Component {
                     loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
+                    path="/financeOrders"
+                    component={ViewFinanceOrders}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute path="/invoice" component={Invoice} exact />
+                  {/* sales order */}
+                  <PrivateRoute
                     path="/create_order"
                     component={CreateOrder}
                     exact
                     loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
-                    path="/orders"
+                    path="/salesOrders"
                     component={ViewAllOrders}
                     exact
                     loggedIn={this.props.isLogin}
                   />
-                  <PrivateRoute path="/invoice" component={Invoice} exact />
                 </section>
               </section>
             </div>

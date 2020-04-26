@@ -106,8 +106,6 @@ class ViewAllOrders extends Component {
                       <TableCell>Shipment Address</TableCell>
                       <TableCell>Order Date</TableCell>
                       <TableCell>Status</TableCell>
-                      <TableCell>Invoice</TableCell>
-                      <TableCell>SIV</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -120,34 +118,6 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {this.orderStatus(order.orderNumber)}
-                        </TableCell>
-
-                        <TableCell>
-                          <button>
-                            <Link
-                              to={{
-                                pathname: "/invoice",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              Generate
-                            </Link>
-                          </button>
-                        </TableCell>
-                        <TableCell>
-                          <button>
-                            <Link
-                              to={{
-                                pathname: "/siv",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              Generate
-                            </Link>
-                          </button>
-                        </TableCell>
                       </TableRow>
                     ))}
                   </TableBody>

@@ -119,7 +119,9 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>Issued</TableCell>
+                        <TableCell>
+                          {this.orderStatus(order.orderNumber)}
+                        </TableCell>
 
                         <TableCell>
                           <button>
@@ -129,7 +131,7 @@ class ViewAllOrders extends Component {
                                 state: { order: order.orderNumber },
                               }}
                             >
-                              Delivered
+                              SIV
                             </Link>
                           </button>
                         </TableCell>

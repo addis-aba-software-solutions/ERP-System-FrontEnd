@@ -91,7 +91,7 @@ class Asider extends React.Component {
                   <Link to="/companys">View All Companys</Link>
                 </li>
                 <li>
-                  <Link to="/orders">View All Orders </Link>
+                  <Link to="/financeOrders">View All Orders </Link>
                 </li>
               </ul>
             </li>
@@ -118,7 +118,7 @@ class Asider extends React.Component {
                   <Link to="/create_order">Create order</Link>
                 </li>
                 <li>
-                  <Link to="/orders">View order</Link>
+                  <Link to="/salesOrders">View order</Link>
                 </li>
                 {/* <li>
                   <Link to="/OrderStatus">Order Status </Link>
@@ -145,7 +145,7 @@ class Asider extends React.Component {
               </a>
               <ul className="sub">
                 <li>
-                  <Link to="/orders">View All Orders</Link>
+                  <Link to="/logisticsOrders">View All Orders</Link>
                 </li>
               </ul>
             </li>
@@ -172,6 +172,9 @@ class Asider extends React.Component {
                 </li>
                 <li>
                   <Link to="/list_item">View Items</Link>
+                </li>
+                <li>
+                  <Link to="/inventoryOrders">View All Orders</Link>
                 </li>
               </ul>
             </li>
