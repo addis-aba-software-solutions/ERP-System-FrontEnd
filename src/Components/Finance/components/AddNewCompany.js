@@ -75,7 +75,6 @@ class AddNewCompany extends Component {
   }
 
   componentDidMount() {
-    console.log(this.props.getCompany());
     this.props.getCompany();
   }
   paymentOptionDropDown(e) {
