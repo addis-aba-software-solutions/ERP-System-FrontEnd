@@ -24,6 +24,7 @@ import Siv from "./Components/Inventory/components/SIV";
 import ViewFinanceOrders from "./Components/Finance/components/ViewAllOrders";
 import ViewInventoryOrders from "./Components/Inventory/components/ViewAllOrders";
 import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders";
+import ViewSingleOrderFinance from './Components/Finance/components/ViewSingleOrder'
 
 class App extends React.Component {
   render() {
@@ -117,6 +118,12 @@ class App extends React.Component {
                   <PrivateRoute
                     path="/salesOrders"
                     component={ViewAllOrders}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute
+                    path="/ViewSingleOrderFinance"
+                    component={ViewSingleOrderFinance}
                     exact
                     loggedIn={this.props.isLogin}
                   />
