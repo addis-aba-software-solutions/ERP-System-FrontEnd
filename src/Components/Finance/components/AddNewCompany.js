@@ -28,7 +28,7 @@ import { addCompany, getCompany } from "../../../store/company/action";
 const styles = (theme) => ({
   container: {
     paddingLeft: 20,
-    paddingRight: 20,
+    // marginRight: 200,
     paddingTop: 40,
     // paddingBottom: 40,
     height: "auto",
@@ -117,7 +117,9 @@ class AddNewCompany extends Component {
     return (
       <div className={classes.recentOrders}>
         <React.Fragment>
-          <div className={classes.container}>
+          <Grid container xs={12}>
+            <Grid item xs={6}>
+            <div className={classes.container}>
             <Paper className={classes.paper}>
               <Typography
                 variant="h6"
@@ -131,8 +133,8 @@ class AddNewCompany extends Component {
               </Typography>
               <Divider className={classes.spacer} />
 
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={3}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="companyName"
@@ -152,9 +154,8 @@ class AddNewCompany extends Component {
                   />
                 </Grid>
 
-                <Grid item xs={12} sm={6}></Grid>
 
-                <Grid item xs={12} sm={3}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     required
                     id="generalManger"
@@ -178,7 +179,7 @@ class AddNewCompany extends Component {
                     required
                     id="contactPerson"
                     name="contactPerson"
-                    label="contactPerson"
+                    label="Contact Person"
                     fullWidth
                     autoComplete="contactPerson"
                     value={contactPerson}
@@ -236,7 +237,7 @@ class AddNewCompany extends Component {
                     required
                     id="email"
                     name="email"
-                    label="email"
+                    label="Company Email"
                     fullWidth
                     value={email}
                     onChange={this.handleChange}
@@ -253,7 +254,7 @@ class AddNewCompany extends Component {
                     required
                     id="tinNumber"
                     name="tinNumber"
-                    label="tinNumber"
+                    label="Tin Number"
                     fullWidth
                     value={tinNumber}
                     onChange={this.handleChange}
@@ -279,6 +280,17 @@ class AddNewCompany extends Component {
               </Grid>
             </Paper>
           </div>
+
+
+
+            </Grid>
+
+
+          </Grid>
+
+
+
+
           <div className={classes.recentOrders}>
             <Typography
               variant="h5"
@@ -294,8 +306,8 @@ class AddNewCompany extends Component {
               <TableContainer>
                 <Table
                   className={classes.table}
-                  size="small"
-                  aria-label="a dense table"
+                // size="small"
+                // aria-label="a dense table"
                 >
                   <TableHead>
                     <TableRow className={classes.table}>
@@ -331,16 +343,16 @@ class AddNewCompany extends Component {
                       .reverse()
                       .map((company) => (
                         <TableRow key={company.companyId}>
-                          <TableCell align="right">
+                          <TableCell>
                             {company.companyId}
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell >
                             {company.companyName}
                           </TableCell>
                           <TableCell align="right">
                             {company.generalManger}
                           </TableCell>
-                          <TableCell align="right">
+                          <TableCell align='center'>
                             {company.contactPerson}
                           </TableCell>
                           <TableCell align="right">

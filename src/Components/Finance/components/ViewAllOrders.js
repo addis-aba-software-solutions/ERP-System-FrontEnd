@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper } from "@material-ui/core";
+import { Button, withStyles, Paper, Typography, Grid } from "@material-ui/core";
 
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
@@ -17,11 +17,8 @@ import SearchBar from '../../SearchBar/SearchBar'
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
-    // padding: 20
   },
-  tableRow: {
-    // padding: 15
-  },
+
   container: {
     padding: 20,
   },
@@ -74,78 +71,72 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
-
     return (
       <>
         <SearchBar />
         <div className={classes.container}>
-          <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
-                  <TableHead>
-                    <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
-
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
+          <Paper className={classes.paper}>
+            <TableContainer>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow className={classes.table}>
+                    <TableCell>Order Number</TableCell>
+                    <TableCell>Order Name</TableCell>
+                    <TableCell align='center'>Company</TableCell>
+                    <TableCell align='center'>Sales Person</TableCell>
+                    <TableCell align='center'>Shipment Address</TableCell>
+                    <TableCell align='center'>Order Date</TableCell>
+                    <TableCell align='center'>Status</TableCell>
+                    <TableCell align='center'>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.orders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
+                      <TableCell >{order.orderName}</TableCell>
+                      <TableCell align='center'>{order.company}</TableCell>
+                      <TableCell align='center'>{order.salesPerson}</TableCell>
+                      <TableCell align='center' >{order.shipmentAddress}</TableCell>
+                      <TableCell align='center'>{order.orderDate}</TableCell>
+                      <TableCell align='center'>
+                        {/* {this.orderStatus(order.orderNumber)} */}
+                        {order.orderDate}
+                      </TableCell>
+                      <TableCell align='right'>
+                        <IconButton>
+                          <Link
+                            to={{
+                              pathname: "/invoice",
+                              state: { order: order.orderNumber },
+                            }}>
+                            <Grid container>
+                              <Grid item>
+                                <IconButton>
+                                  <PrintIcon style={{
+                                    // color: '#E8E8E8'
+                                  }} />
+                                </IconButton>
+                              </Grid>
+                              <Grid item style={{
+                                marginTop: 5
+                              }}>
+                                <Typography variant='caption' style={{
+                                  color: '#686868'
+                                }}>
+                                  Generate Invoice
+                              </Typography>
+                              </Grid>
+                            </Grid>
+                          </Link>
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.orders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {this.orderStatus(order.orderNumber)}
-                        </TableCell>
-
-                        <TableCell>
-                          <IconButton>
-                            <Link
-                              to={{
-                                pathname: "/invoice",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              <PrintIcon style={{
-                                color: '#E8E8E8'
-                              }} />
-                            </Link>
-                          </IconButton>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </div>
       </>
     );
