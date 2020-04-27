@@ -1,399 +1,153 @@
-// import React from 'react';
-// import Avatar from '@material-ui/core/Avatar';
-// import Button from '@material-ui/core/Button';
-// import CssBaseline from '@material-ui/core/CssBaseline';
-// import TextField from '@material-ui/core/TextField';
-// import Link from '@material-ui/core/Link';
-// import Grid from '@material-ui/core/Grid';
-// import Box from '@material-ui/core/Box';
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-// import Typography from '@material-ui/core/Typography';
-// import Container from '@material-ui/core/Container';
-// import Cover from '../../Assets/Trial.jpg';
-// import Card from '@material-ui/core/Card';
-// import history from '../../Routes/history';
-// import {PostData} from './PostData';
-// // import {PostData} from "public/PostData";
-// import {Redirect} from 'react-router-dom';
-
-// const classes = ({
-//     root: {
-//         display: 1
-//     },
-//     signinForm: {
-//     },
-//     paper: {
-//         marginTop: 8,
-//         display: 'flex',
-//         flexDirection: 'column',
-//         alignItems: 'center',
-//         padding: 20,
-//         backgroundColor: '#FFFFFF',
-//         borderRadius: 10,
-//         // width: 200
-
-//     },
-//     main: {
-//         backgroundColor: '#11669F',
-//         height: '100vh',
-//         backgroundImage: `url(${Cover})`,
-//         // marginTop: 100
-//     },
-//     avatar: {
-//         width: 60,
-//         height: 60,
-//         margin: 1,
-//         backgroundColor: '#11669F',
-//     },
-//     form: {
-//         padding: 10,
-//         paddingTop: 10,
-//         width: '100%', // Fix IE 11 issue.
-//         marginTop: 1
-
-//     },
-//     submit: {
-//         margin: 10,
-//         backgroundColor: '#11669F',
-//         alignItems: 'center',
-//         marginLeft: 115,
-//         width: 100,
-//         flex: 1,
-//         // marginBottom: 10
-//     },
-// });
-
-// class SignIn extends React.Component {
-
-//     constructor(){
-//         super();
-//         this.state={
-//             username:'',
-//             password:'',
-//             errorMessage:'',
-//             redirect: false
-//         }
-//         this.signin= this.signin.bind(this);
-//         this.onChange= this.onChange.bind(this);
-
-//     }
-//     signin(e){
-//         e.preventDefault();
-//        // console.log("Home Page")
-//        if(this.state.username && this.state.password){
-//         PostData(this.state)
-//         .then((result)=>{
-//             //let responseJson=result;
-//             console.log(result);
-//             // if(result.userData){
-//              sessionStorage.setItem('userData',result);
-//              console.log("Home Page")
-//              this.setState({redirect:true});
-//              console.log(result)
-//             // }
-//             // else{
-//           //  console.log("signin error");
-//             // console.log(error)
-//         // }
-//         }
-
-//         )
-//        }
-//        else {
-//            return
-//            console.log("Login Error Yoo")
-//         //    this.setState({
-//         //        errorMessage: error
-//         //   //  "Your Password or Username is incorrect"
-
-//         // })
-//        }
-
-//     }
-//     onChange(e){
-//         this.setState({[e.target.name]:e.target.value});
-//         console.log("typing");
-//     }
-//     render() {
-
-//         if(this.state.redirect){
-//  return(<Redirect to = '/UserProfile'/>)
-//         }
-//         return (
-//             <>
-
-//                 <div style={classes.main} >
-//                     <Container component="main" maxWidth="xs">
-//                         <CssBaseline />
-//                         <Card style={classes.paper}>
-//                             <Avatar style={classes.avatar}>
-//                                 <LockOutlinedIcon />
-//                             </Avatar>
-//                             <Typography component="h3" variant="h5">
-//                                 Sign in
-//                             </Typography>
-//                             <form style={classes.form} noValidate>
-//                                 <TextField
-//                                     variant="outlined"
-//                                     margin="normal"
-//                                     required
-//                                     fullWidth
-//                                     type="text"
-//                                     id="username"
-//                                     label="User Name"
-//                                     name="username"
-//                                     autoComplete="username"
-//                                     autoFocus
-//                                     onChange={this.onChange}
-//                                 />
-
-//                                 <TextField
-//                                     variant="outlined"
-//                                     margin="normal"
-//                                     required
-//                                     fullWidth
-//                                     type="password"
-//                                     name="password"
-//                                     label="Password"
-//                                     type="password"
-//                                     id="password"
-//                                     autoComplete="current-password"
-//                                     onChange={this.onChange}
-//                                 />
-//                                 {/* {this.errorMessage } */}
-
-//                                 <Button
-//                                     type="submit"
-//                                     fullWidth
-//                                     variant="contained"
-//                                     color="primary"
-//                                     style={classes.submit}
-//                                     onClick={this.signin}
-//                                     // {() => history.push('/UserList')}
-//                                 >
-//                                     Sign In
-//                 </Button>
-//                                 <Grid container>
-//                                     <Grid item xs>
-//                                         <Link href="#" variant="body2">
-//                                             Forgot password?
-//             </Link>
-//                                     </Grid>
-//                                 </Grid>
-//                             </form>
-//                         </Card>
-
-//                     </Container>        </div>
-//             </>
-
-//         );
-//     }
-
-// }
-
-// export default SignIn;
-
-import React from "react";
-import Avatar from "@material-ui/core/Avatar";
-import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import TextField from "@material-ui/core/TextField";
-import Link from "@material-ui/core/Link";
-import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import Typography from "@material-ui/core/Typography";
-import Container from "@material-ui/core/Container";
-import Card from "@material-ui/core/Card";
-import { PostData } from "./PostData";
-// import {PostData} from "public/PostData";
-import { Redirect } from "react-router-dom";
-import { connect } from "react-redux";
-import actions from "../../store/login/action";
-
-const classes = {
-  root: {
-    display: 1,
-  },
-  signinForm: {},
-  paper: {
-    marginTop: 8,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    padding: 20,
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    // width: 200
-  },
-  main: {
-    backgroundColor: "#11669F",
-    height: "100vh",
-    // marginTop: 100
-  },
-  avatar: {
-    width: 60,
-    height: 60,
-    margin: 1,
-    backgroundColor: "#11669F",
-  },
-  form: {
-    padding: 10,
-    paddingTop: 10,
-    width: "100%", // Fix IE 11 issue.
-    marginTop: 1,
-  },
-  submit: {
-    margin: 10,
-    backgroundColor: "#11669F",
-    alignItems: "center",
-    marginLeft: 115,
-    width: 100,
-    flex: 1,
-    // marginBottom: 10
-  },
-};
+import React from 'react';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import Card from '@material-ui/core/Card';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux'
+import actions from '../../store/login/action'
+import classes from '../../layout_resource/layout_resource'
+import SpinerLoader from '../../loader/loader'
+import { red } from '@material-ui/core/colors';
+import Error from '../../error/error'
 
 class SignIn extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      username: "",
-      password: "",
-      redirect: false,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  signin(e) {
-    e.preventDefault();
-    // console.log("Home Page")
-    if (this.state.username && this.state.password) {
-      PostData(this.state).then((result) => {
-        //let responseJson=result;
-        // console.log(result);
-        // if(result.userData){
-        if (result.userData) {
-          sessionStorage.setItem("userData", result);
-          console.log("Home Page");
-          this.setState({ redirect: true });
-          console.log(result);
-          // console.log((result).department.departmentName);
-          // console.log((object).department.departmentname);
+    constructor() {
+        super();
+        this.state = {
+            username: '',
+            password: '',
+            redirect: false
         }
-        // else{
-        //  console.log("signin error");
-        // console.log(error)
-        // }
-      });
-    } else {
-      return console.log("Login Error Yoo");
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
-  }
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
-  }
-  render() {
-    if (this.state.redirect) {
-      // return (
-      //     if(sessionStorage.getItem(userData.departmentName)===Finance){
-      return (
-        <Redirect to="/UserProfile" />
-        //    history.push('/UserTable')
-        // history.push('/UserTable'))
-      );
-      //   }
-      // elseif(sessionStorage.getItem(userData.departmentName)===Inventory){
-      //     return(
-      //         <Redirect to='/UserTable' />
-      //     //    history.push('/UserTable')
-      //     // history.push('/UserTable'))
-      //     );
-      // }
-      // }
+    handleSubmit(e) {
+        this.setState({ submitted: true });
+        const { username, password } = this.state;
+            this.props.login(username, password);
+        
     }
-    // if (sessionStorage.getItem("userData")) {
-    //     return (
-    //         <Redirect to='/UserTable' />
-    //     )
-    // }
 
-    return (
-      <>
-        <div style={classes.main}>
-          <Container component="main" maxWidth="xs">
-            <CssBaseline />
-            <Card style={classes.paper}>
-              <Avatar style={classes.avatar}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h3" variant="h5">
-                Sign in
-              </Typography>
-              <div style={classes.form}>
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  type="text"
-                  id="username"
-                  label="User Name"
-                  name="username"
-                  autoComplete="username"
-                  autoFocus
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  variant="outlined"
-                  margin="normal"
-                  required
-                  fullWidth
-                  type="password"
-                  name="password"
-                  label="Password"
-                  id="password"
-                  autoComplete="current-password"
-                  onChange={this.handleChange}
-                />
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
 
-                <Button
-                  type="submit"
-                  fullWidth
-                  variant="contained"
-                  color="primary"
-                  style={classes.submit}
-                  onClick={this.signin}
-                  //&& history.push('/UserTable')
-                  // {this.signin}
-                >
-                  Sign In
-                </Button>
-                <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
-                </Grid>
-              </div>
-            </Card>
-          </Container>
-        </div>
-      </>
-    );
-  }
+    }
+    render() {
+        if(this.props.isLogin)
+          return <Redirect to='/' />
+          
+        return (
+            <div>
+                
+                <div style={classes.main} >
+                    <Container component="main" maxWidth="xs">
+                        <CssBaseline />
+                        <Box style={{
+                            height: 300
+                        }}>
+
+                        </Box>
+                        <Card style={classes.paper}>
+                            <Avatar style={classes.avatar}>
+                                <LockOutlinedIcon />
+                            </Avatar>
+                            <Typography component="h3" variant="h5">
+                                Sign in
+                            </Typography>
+                            <div style={classes.form}>
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    type="text"
+                                    id="username"
+                                    label="User Name"
+                                    name="username"
+                                    autoComplete="username"
+                                    autoFocus
+                                    onChange={this.handleChange}
+                                />
+                                <Error  error={this.props.errors.username?this.props.errors.username:null}/> 
+                                <TextField
+                                    variant="outlined"
+                                    margin="normal"
+                                    required
+                                    fullWidth
+                                    type="password"
+                                    name="password"
+                                    label="Password"
+                                    type="password"
+                                    id="password"
+                                    autoComplete="current-password"
+                                    onChange={this.handleChange}
+                                />
+                                <Error  error={this.props.errors.password?this.props.errors.password:null}/> 
+                                <Error  error={this.props.errors.Unauthorized?this.props.errors.Unauthorized:null}/> 
+                                {/* {this.errorMessage } */}
+                         {this.props.loading?(
+                       <Button
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={classes.submit}
+                            
+                       
+                        >
+                           <SpinerLoader />
+                        </Button>
+                         ):(
+                          
+                            <Button
+                            type="submit"
+                            fullWidth
+                            variant="contained"
+                            color="primary"
+                            style={classes.submit}
+                            onClick={()=>this.handleSubmit()}
+                        >
+                            Sign In
+                        </Button>
+                         )}
+                        
+                               
+                                <Grid container>
+                                    <Grid item xs>
+                                        <Link href="#" variant="body2">
+                                            Forgot password?
+                                </Link>
+                                    </Grid>
+                                </Grid>
+                            </div>
+                        </Card>
+
+                    </Container>        </div>
+            </div>
+
+        );
+    }
+
 }
 function mapStateToProps(state) {
-  return {
-    loading: state.loginReducer.loading,
-    users: state.loginReducer.users,
-    errors: state.loginReducer.errors,
-    isLogin: state.loginReducer.isLogin,
-  };
+	return {
+        loading: state.loginReducer.loading,
+        users:state.loginReducer.users,
+        errors:state.loginReducer.errors,
+        isLogin:state.loginReducer.isLogin
+        
+	}
 }
 const mapDispatchToProps = {
-  login: actions.login,
+    login:actions.login,
+    
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignIn);

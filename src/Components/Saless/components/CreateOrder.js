@@ -19,6 +19,7 @@ import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
+import ViewAllOrders from './ViewAllOrders';
 
 const styles = (theme) => ({
   appBar: {
@@ -133,156 +134,159 @@ class CreateOrder extends Component {
   };
   submit = () => {
     this.props.createOrder(this.state);
+    this.componentDidMount();
+
   };
 
   render() {
     const { classes } = this.props;
 
     return (
-      <React.Fragment>
-        <CssBaseline />
-        <main className={classes.layout}>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Paper className={classes.paper}>
-              <Typography component="h1" variant="h4" align="center">
-                Sales
+      <>
+        <React.Fragment>
+          <CssBaseline />
+          <main className={classes.layout}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <Paper className={classes.paper}>
+                <Typography component="h1" variant="h4" align="center">
+                  Sales
               </Typography>
-              <Divider></Divider>
-              <React.Fragment>
-                <Box
-                  style={{
-                    height: 10,
-                  }}
-                ></Box>
-                <Typography variant="h6" gutterBottom>
-                  Order Creation
-                </Typography>
                 <Divider></Divider>
-                <Grid
-                  container
-                  xs={12}
-                  display="flex"
-                  justify="space-between"
-                  style={{
-                    paddingLeft: 40,
-                    marginTop: 10,
-                  }}
-                  spacing={4}
-                >
-                  <Grid container xs={6} spacing={3}>
-                    <Grid item xs={12} sm={12}>
-                      <Typography variant="h6" gutterBottom>
-                        <b>Order Information</b>
-                      </Typography>
-                    </Grid>
+                <React.Fragment>
+                  <Box
+                    style={{
+                      height: 10,
+                    }}
+                  ></Box>
+                  <Typography variant="h6" gutterBottom>
+                    Order Creation
+                </Typography>
+                  <Divider></Divider>
+                  <Grid
+                    container
+                    xs={12}
+                    display="flex"
+                    justify="space-between"
+                    style={{
+                      paddingLeft: 40,
+                      marginTop: 10,
+                    }}
+                    spacing={4}
+                  >
+                    <Grid container xs={6} spacing={3}>
+                      <Grid item xs={12} sm={12}>
+                        <Typography variant="h6" gutterBottom>
+                          <b>Order Information</b>
+                        </Typography>
+                      </Grid>
 
-                    <Grid item xs={12} sm={8}>
-                      <TextField
-                        required
-                        id="orderName"
-                        name="orderName"
-                        label="Order Name"
-                        fullWidth
-                        autoComplete="orderName"
-                        value={this.state.orderName}
-                        onChange={this.handleChange}
-                      />
-
-                      <Error
-                        error={
-                          this.props.errors.orderName
-                            ? this.props.errors.orderName
-                            : null
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <TextField
-                        required
-                        id="orderNumber"
-                        name="orderNumber"
-                        label="Order Number"
-                        fullWidth
-                        autoComplete="orderNumber"
-                        value={this.state.orderNumber}
-                        onChange={this.handleChange}
-                      />
-                      <Error
-                        error={
-                          this.props.errors.orderNumber
-                            ? this.props.errors.orderNumber
-                            : null
-                        }
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} sm={6}>
-                      <FormControl className={classes.formControl} fullWidth>
-                        <InputLabel htmlFor="grouped-native-select">
-                          Company
-                        </InputLabel>
-                        <Select
+                      <Grid item xs={12} sm={8}>
+                        <TextField
+                          required
+                          id="orderName"
+                          name="orderName"
+                          label="Order Name"
+                          fullWidth
+                          autoComplete="orderName"
+                          value={this.state.orderName}
                           onChange={this.handleChange}
-                          value={this.state.company}
-                          native
-                          name="company"
-                          id="grouped-native-select"
-                        >
-                          <option aria-label="None" value="" />
-                          {this.props.companys.map((comp) => (
-                            <option value={comp.companyId}>
-                              {comp.companyName}
-                            </option>
-                          ))}
-                        </Select>
-                      </FormControl>
-                      <Error
-                        error={
-                          this.props.errors.company
-                            ? this.props.errors.company
-                            : null
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="salesPerson"
-                        name="salesPerson"
-                        label="Sales Person"
-                        fullWidth
-                        autoComplete="salesPerson"
-                        value={this.state.salesPerson}
-                        onChange={this.handleChange}
-                      />
-                      <Error
-                        error={
-                          this.props.errors.salesPerson
-                            ? this.props.errors.salesPerson
-                            : null
-                        }
-                      />
-                    </Grid>
-                    <Grid item xs={12} sm={6}>
-                      <TextField
-                        required
-                        id="shipmentAddress"
-                        name="shipmentAddress"
-                        label="Shipment Address"
-                        fullWidth
-                        autoComplete="shipmentAddress"
-                        value={this.state.shipmentAddress}
-                        onChange={this.handleChange}
-                      />
-                      <Error
-                        error={
-                          this.props.errors.shipmentAddress
-                            ? this.props.errors.shipmentAddress
-                            : null
-                        }
-                      />
-                    </Grid>
+                        />
 
+                        <Error
+                          error={
+                            this.props.errors.orderName
+                              ? this.props.errors.orderName
+                              : null
+                          }
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={4}>
+                        <TextField
+                          required
+                          id="orderNumber"
+                          name="orderNumber"
+                          label="Order Number"
+                          fullWidth
+                          autoComplete="orderNumber"
+                          value={this.state.orderNumber}
+                          onChange={this.handleChange}
+                        />
+                        <Error
+                          error={
+                            this.props.errors.orderNumber
+                              ? this.props.errors.orderNumber
+                              : null
+                          }
+                        />
+                      </Grid>
+
+                      <Grid item xs={12} sm={6}>
+                        <FormControl className={classes.formControl} fullWidth>
+                          <InputLabel htmlFor="grouped-native-select">
+                            Company
+                        </InputLabel>
+                          <Select
+                            onChange={this.handleChange}
+                            value={this.state.company}
+                            native
+                            name="company"
+                            id="grouped-native-select"
+                          >
+                            <option aria-label="None" value="" />
+                            {this.props.companys.map((comp) => (
+                              <option value={comp.companyId}>
+                                {comp.companyName}
+                              </option>
+                            ))}
+                          </Select>
+                        </FormControl>
+                        <Error
+                          error={
+                            this.props.errors.company
+                              ? this.props.errors.company
+                              : null
+                          }
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={6}>
+                        <TextField
+                          required
+                          id="salesPerson"
+                          name="salesPerson"
+                          label="Sales Person"
+                          fullWidth
+                          autoComplete="salesPerson"
+                          value={this.state.salesPerson}
+                          onChange={this.handleChange}
+                        />
+                        <Error
+                          error={
+                            this.props.errors.salesPerson
+                              ? this.props.errors.salesPerson
+                              : null
+                          }
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          required
+                          id="shipmentAddress"
+                          name="shipmentAddress"
+                          label="Shipment Address"
+                          fullWidth
+                          autoComplete="shipmentAddress"
+                          value={this.state.shipmentAddress}
+                          onChange={this.handleChange}
+                        />
+                        <Error
+                          error={
+                            this.props.errors.shipmentAddress
+                              ? this.props.errors.shipmentAddress
+                              : null
+                          }
+                        />
+                      </Grid>
+                      {/* 
                     <Grid item xs={12} sm={5}>
                       <TextField
                         required
@@ -295,130 +299,135 @@ class CreateOrder extends Component {
                         value={this.state.quantity}
                         onChange={this.handleChange}
                       />
+                    </Grid> */}
+
+                      <Grid item xs={12} sm={12}>
+                        <TextField
+                          required
+                          id="Description"
+                          name="description"
+                          label="Description"
+                          // rowsMax= '12'
+                          multiline
+                          fullWidth
+                          autoComplete="quantity"
+                          value={this.state.description}
+                          onChange={this.handleChange}
+                        />
+                        <Error
+                          error={
+                            this.props.errors.description
+                              ? this.props.errors.description
+                              : null
+                          }
+                        />
+                      </Grid>
                     </Grid>
 
-                    <Grid item xs={12} sm={12}>
-                      <TextField
-                        required
-                        id="Description"
-                        name="description"
-                        label="Description"
-                        // rowsMax= '12'
-                        multiline
-                        fullWidth
-                        autoComplete="quantity"
-                        value={this.state.description}
-                        onChange={this.handleChange}
-                      />
-                      <Error
-                        error={
-                          this.props.errors.description
-                            ? this.props.errors.description
-                            : null
-                        }
-                      />
-                    </Grid>
-                  </Grid>
+                    <Grid container xs={6}>
+                      <Grid item xs={12} sm={12}>
+                        <Typography variant="h6" gutterBottom>
+                          <b>Item Information </b>
+                        </Typography>
 
-                  <Grid container xs={6}>
-                    <Grid item xs={12} sm={12}>
-                      <Typography variant="h6" gutterBottom>
-                        <b>Item Information </b>
-                      </Typography>
-
-                      {this.state.order_items.map((item, idx) => (
-                        <Grid container xs={12} sm={12} spacing={3}>
-                          <Grid item xs={12} sm={6}>
-                            <InputLabel htmlFor="grouped-native-select">
-                              Item Name
+                        {this.state.order_items.map((item, idx) => (
+                          <Grid container xs={12} sm={12} spacing={3}>
+                            <Grid item xs={12} sm={6}>
+                              <InputLabel htmlFor="grouped-native-select">
+                                Item Name
                             </InputLabel>
 
-                            <Select
-                              value={item.InventoryItemId}
-                              native
-                              fullWidth
-                              id="grouped-native-select"
-                              onChange={this.ItemNameChange(idx)}
-                            >
-                              <option aria-label="None" value="" />
-                              {this.props.items.map((_item) => (
-                                <option value={_item.InventoryItemId}>
-                                  {_item.itemName}
-                                </option>
-                              ))}
-                            </Select>
-                            <Grid></Grid>
-                          </Grid>
-                          <Grid item>
-                            <Grid container xs={12}>
-                              <Grid
-                                item
-                                xs={12}
-                                sm={11}
-                                style={{
-                                  marginTop: 3,
-                                }}
+                              <Select
+                                value={item.InventoryItemId}
+                                native
+                                fullWidth
+                                id="grouped-native-select"
+                                onChange={this.ItemNameChange(idx)}
                               >
-                                <TextField
-                                  required
-                                  id="ItemQuantity"
-                                  label="Item Quantity"
-                                  fullWidth
-                                  autoComplete="itemQuantity"
-                                  value={item.quantity}
-                                  onChange={this.ItemQuantityChange(idx)}
-                                  placeholder={`Item #${idx + 1} name`}
-                                />
-                              </Grid>
-                              <Grid item xs={12} sm={1}>
-                                <IconButton
+                                <option aria-label="None" value="" />
+                                {this.props.items.map((_item) => (
+                                  <option value={_item.InventoryItemId}>
+                                    {_item.itemName}
+                                  </option>
+                                ))}
+                              </Select>
+                              <Grid></Grid>
+                            </Grid>
+                            <Grid item>
+                              <Grid container xs={12}>
+                                <Grid
+                                  item
+                                  xs={12}
+                                  sm={11}
                                   style={{
-                                    marginTop: 20,
+                                    marginTop: 3,
                                   }}
-                                  type="button"
-                                  onClick={this.handleRemoveItem(idx)}
-                                  className="small"
                                 >
-                                  <HighlightOffIcon color="secondary" />
-                                </IconButton>
+                                  <TextField
+                                    required
+                                    id="ItemQuantity"
+                                    label="Item Quantity"
+                                    fullWidth
+                                    autoComplete="itemQuantity"
+                                    value={item.quantity}
+                                    onChange={this.ItemQuantityChange(idx)}
+                                    placeholder={`Item #${idx + 1} name`}
+                                  />
+                                </Grid>
+                                <Grid item xs={12} sm={1}>
+                                  <IconButton
+                                    style={{
+                                      marginTop: 20,
+                                    }}
+                                    type="button"
+                                    onClick={this.handleRemoveItem(idx)}
+                                    className="small"
+                                  >
+                                    <HighlightOffIcon color="secondary" />
+                                  </IconButton>
+                                </Grid>
                               </Grid>
                             </Grid>
                           </Grid>
-                        </Grid>
-                      ))}
+                        ))}
 
-                      <Grid
-                        xs={12}
-                        sm={12}
-                        display="flex"
-                        justify="space-between"
-                      >
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleAddItem}
-                          className={classes.button}
+                        <Grid
+                          xs={12}
+                          sm={12}
+                          display="flex"
+                          justify="space-between"
                         >
-                          Add Another Item
+                          <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={this.handleAddItem}
+                            className={classes.button}
+                          >
+                            Add Another Item
                         </Button>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
 
-                <Button
-                  variant="contained"
-                  color="primary"
-                  onClick={this.submit}
-                  className={classes.button}
-                >
-                  Place Order
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={this.submit}
+                    className={classes.button}
+                  >
+                    Place Order
                 </Button>
-              </React.Fragment>
-            </Paper>
-          </MuiPickersUtilsProvider>
-        </main>
-      </React.Fragment>
+                </React.Fragment>
+              </Paper>
+            </MuiPickersUtilsProvider>
+
+
+          </main>
+        </React.Fragment>
+        <ViewAllOrders />
+      </>
+
     );
   }
 }
