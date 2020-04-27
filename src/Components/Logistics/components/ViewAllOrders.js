@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper } from "@material-ui/core";
+import { Button, withStyles, Paper, IconButton, Grid, Typography } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -14,6 +14,13 @@ import {
   getStatus,
   updateStatus,
 } from "../../../store/order/action";
+import SearchBar from '../../SearchBar/SearchBar';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
+
+
+
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -75,75 +82,75 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
 
     return (
       <>
+        <SearchBar />
         <div className={classes.container}>
-          <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
-                  <TableHead>
-                    <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
 
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
+          <Paper className={classes.paper}>
+            <TableContainer>
+              <Table stickyHeader aria-label="sticky table">
+                <TableHead>
+                  <TableRow className={classes.table}>
+                    <TableCell><b>Order #</b></TableCell>
+                    <TableCell><b>Order Name</b></TableCell>
+
+                    <TableCell align='center'><b>Company</b></TableCell>
+                    <TableCell align='center'><b>Sales Person</b></TableCell>
+                    <TableCell align='center'><b>Shipment Address</b></TableCell>
+                    <TableCell align='center'><b>Order Date</b></TableCell>
+                    <TableCell align='center'><b>Status</b></TableCell>
+                    <TableCell align='center'><b>Action</b></TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.orders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
+                      <TableCell>{order.orderName}</TableCell>
+                      <TableCell align='center'>{order.company}</TableCell>
+                      <TableCell align='center'>{order.salesPerson}</TableCell>
+                      <TableCell align='center'>{order.shipmentAddress}</TableCell>
+                      <TableCell align='center'>{order.orderDate}</TableCell>
+
+
+                      <TableCell align='center'>
+                        <IconButton
+                          onClick={this.props.updateStatus.bind(
+                            this,
+                            order.orderNumber,
+                            {
+                              status: "Delievered",
+                            },
+                          )}
+                        >
+                          <Grid container spacing={1}>
+                            <Grid item>
+                              <DoneAllIcon />
+                            </Grid>
+                            <Grid item >
+                              <Typography variant='caption'>
+                                Delievered
+                              </Typography>
+
+                            </Grid>
+
+                          </Grid>
+                        </IconButton>
+                      </TableCell>
+                      <TableCell align='center'>
+                        <IconButton>
+                          <VisibilityIcon />
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.orders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>Issued</TableCell>
-
-                        <TableCell>
-                          <button
-                            onClick={this.props.updateStatus.bind(
-                              this,
-                              order.orderNumber,
-                              {
-                                status: "Delivered",
-                              },
-                            )}
-                          >
-                            Delivered
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </div>
       </>
     );
