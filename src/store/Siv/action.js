@@ -3,10 +3,12 @@ import axios from "axios";
 import API from "../../api/API";
 
 // GET SIV TAKES ORDER NUMBER
-export const getSiv = (order) => (dispatch) => {
+  function getSiv(order) {
+    return (dispatch) => {
   axios
     .get(API + `generatesiv/${order}`)
     .then((res) => {
+      console.log(res.data)
       dispatch({
         type: GET_SIV,
         payload: res.data,
@@ -20,3 +22,5 @@ export const getSiv = (order) => (dispatch) => {
       });
     });
 };
+  }
+export default getSiv

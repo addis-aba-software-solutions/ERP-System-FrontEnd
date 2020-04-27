@@ -59,10 +59,12 @@ function logout() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.value) {
+        
         dispatch({
           type: appConstants.LOGOUT,
           payload: false,
         });
+        window.location.href = '/';
       }
     });
   };

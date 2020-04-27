@@ -64,12 +64,7 @@ class App extends React.Component {
                     component={ViewLogisticsOrders}
                     exact
                   />
-                  <PrivateRoute
-                    path="/add_employe"
-                    component={AddEmployee}
-                    exact
-                    loggedIn={this.props.isLogin}
-                  />
+                
                   {/* employee routes */}
                   <PrivateRoute
                     path="/add_employe"
@@ -144,11 +139,14 @@ class App extends React.Component {
         </Switch>
       </BrowserRouter>
     );
-    // function mapStateToProps(state) {
-    //   return {
-    //     isLogin: state.loginReducer.isLogin,
-    //   };
-  }
+
+}
+}
+function mapStateToProps(state) {
+  return {
+    isLogin: state.loginReducer.isLogin,
+  };
 }
 
-export default connect(null)(App);
+
+export default connect(mapStateToProps)(App);

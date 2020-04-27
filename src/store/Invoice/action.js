@@ -7,6 +7,7 @@ export const getInvoice = (order) => (dispatch) => {
   axios
     .get(API + `generateinvoice/${order}`)
     .then((res) => {
+      
       dispatch({
         type: GET_INVOICE,
         payload: res.data,

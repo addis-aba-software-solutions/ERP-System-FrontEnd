@@ -5,9 +5,9 @@ const initialState = {
 };
 
 export default function invoiceReducer(state = initialState, action) {
+console.log(action.payload)
   switch (action.type) {
     case GET_INVOICE:
-      console.log(action.payload);
       return {
         ...state,
         invoices: action.payload,

@@ -25,7 +25,7 @@ import Error from "../../../error/error";
 import API from "../../../api/API";
 import { addItem, getItems } from "../../../store/inventory/action";
 import { getInvoice } from "../../../store/Invoice/action";
-import { getSiv } from "../../../store/Siv/action";
+import getSiv  from "../../../store/Siv/action";
 
 const styles = (theme) => ({
   container: {

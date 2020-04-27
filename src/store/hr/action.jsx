@@ -188,6 +188,7 @@ function addAccount(employe) {
           },
         })
         .then((response) => {
+         
           Swal.fire("created!", "Account has been added.", "success");
           dispatch({
             type: itConstants.REGISTER_SUCCESS,
@@ -195,7 +196,7 @@ function addAccount(employe) {
           });
         })
         .catch((error) => {
-          console.log(error);
+          console.log(error.response)
           Swal.fire("Error!", "Something went wrong.", "error");
           dispatch({
             type: itConstants.REGISTER_FAILURE,

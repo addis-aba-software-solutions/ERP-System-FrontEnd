@@ -8,7 +8,7 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
-import { getSiv } from "../../../store/Siv/action";
+import getSiv  from "../../../store/Siv/action";
 
 const styles = {
   root: {
@@ -58,18 +58,20 @@ const styles = {
 
 class SIV extends React.Component {
   constructor(props) {
+ 
     super(props);
+      
     this.state = {
       sivs: [],
       siv_item: [],
     };
   }
   componentDidUpdate() {
-    alert("updated");
+    this.props.getSiv(this.props.location.state.order);
+  
   }
   componentDidMount() {
-    alert("the alert is");
-    this.props.getSiv(1);
+    this.props.getSiv(this.props.location.state.order);
   }
   render() {
     const { classes } = this.props;
@@ -112,13 +114,7 @@ class SIV extends React.Component {
                 </Grid>
               </Grid>
               <Grid item>
-                {/* <Typography
-                  className={classes.text}
-                  variant="body2"
-                  gutterBottom
-                >
-                  <b>Warehouse ID : </b> RFGDERWS4434
-                </Typography> */}
+             
                 <Typography
                   className={classes.text}
                   variant="body2"
@@ -167,15 +163,17 @@ class SIV extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.siv_item.map((item) => (
+                {this.props.siv_item?this.props.siv_item.map((item) => (
+              
                   <TableRow key={item.sivId}>
+                    
                     <TableCell component="th" scope="row">
                       {item.itemName}
                     </TableCell>
                     <TableCell align="right">5</TableCell>
                     <TableCell align="right">{item.quantity}</TableCell>
                   </TableRow>
-                ))}
+                )):null}
               </TableBody>
             </Table>
           </TableContainer>
@@ -225,11 +223,14 @@ class SIV extends React.Component {
     );
   }
 }
-
+const mapDispatchToProps = {
+  getSiv:getSiv,
+  
+};
 const mapStateToProps = (state) => ({
   sivs: state.invoiceReducer.sivs,
   siv_item: state.invoiceReducer.siv_item,
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { getSiv })(withStyles(styles)(SIV));
+export default connect(mapStateToProps, mapDispatchToProps )(withStyles(styles)(SIV));

@@ -9,12 +9,20 @@ import { connect } from "react-redux";
 import actions from "../../store/login/action";
 
 class Nav extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      logout:false
+    }
+  }
   logoutHandler = (e) => {
     this.props.logout();
-    this.props.history.push("/signin");
+
   };
 
   render() {
+   
+   
     return (
       <header className="header" style={{ backgroundColor: "#11669F" }}>
         <div
