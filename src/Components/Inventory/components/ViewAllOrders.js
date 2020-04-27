@@ -13,6 +13,11 @@ import { getOrders, getStatus } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar'
 import PrintIcon from '@material-ui/icons/Print';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import SIV from './Printable_SIV';
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import AutorenewIcon from "@material-ui/icons/Autorenew";
+
+
 
 
 
@@ -141,7 +146,7 @@ class ViewAllOrders extends Component {
 
                       </TableCell>
 
-                      <TableCell align='center'>
+                      {/* <TableCell align='center'>
                         <Link
                           to={{
                             pathname: "/siv",
@@ -165,7 +170,33 @@ class ViewAllOrders extends Component {
                             </Grid>
                           </IconButton>
                         </Link>
-                      </TableCell>
+                      </TableCell> */}
+                                        <TableCell align="center">
+                    <IconButton>
+                      <Grid container spacing={2}>
+                        <Grid item>
+                          <PDFDownloadLink
+                            document={<SIV />}
+                            fileName="Invoice.pdf"
+                            style={{
+                              textDecoration: "none",
+                              padding: "10px",
+                              color: "#4a4a4a",
+                              // backgroundColor: "#f2f2f2",
+                              // border: "1px solid #4a4a4a",
+                            }}
+                          >
+                            {({ loading }) =>
+                              loading ? <AutorenewIcon /> : <PrintIcon />
+                            }
+                          </PDFDownloadLink>
+                        </Grid>
+                        <Grid item>
+                          <Typography>Generate Invoice</Typography>
+                        </Grid>
+                      </Grid>
+                    </IconButton>
+                  </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
