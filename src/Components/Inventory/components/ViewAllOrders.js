@@ -75,7 +75,6 @@ class ViewAllOrders extends Component {
       let orderstatus = "";
       if (status.order === orderNumber) {
         orderstatus = status.order;
-        // alert(status.order);
       }
       return orderstatus;
     });
@@ -171,32 +170,34 @@ class ViewAllOrders extends Component {
                           </IconButton>
                         </Link>
                       </TableCell> */}
-                                        <TableCell align="center">
-                    <IconButton>
-                      <Grid container spacing={2}>
-                        <Grid item>
-                          <PDFDownloadLink
-                            document={<SIV />}
-                            fileName="Invoice.pdf"
-                            style={{
-                              textDecoration: "none",
-                              padding: "10px",
-                              color: "#4a4a4a",
-                              // backgroundColor: "#f2f2f2",
-                              // border: "1px solid #4a4a4a",
-                            }}
-                          >
-                            {({ loading }) =>
-                              loading ? <AutorenewIcon /> : <PrintIcon />
-                            }
-                          </PDFDownloadLink>
-                        </Grid>
-                        <Grid item>
-                          <Typography>Generate Invoice</Typography>
-                        </Grid>
-                      </Grid>
-                    </IconButton>
-                  </TableCell>
+
+
+                      <TableCell align="center">
+                        <IconButton>
+                          <Grid container spacing={2}>
+                            <Grid item>
+                              <PDFDownloadLink
+                                document={<SIV />}
+                                fileName="SIV.pdf"
+                                style={{
+                                  textDecoration: "none",
+                                  padding: "10px",
+                                  color: "#4a4a4a",
+                                }}
+                              >
+                                {({ loading }) =>
+                                  loading ? <AutorenewIcon /> : <PrintIcon />
+                                }
+                              </PDFDownloadLink>
+
+
+                            </Grid>
+                            <Grid item>
+                              <Typography variant='caption'>Generate SIV</Typography>
+                            </Grid>
+                          </Grid>
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
