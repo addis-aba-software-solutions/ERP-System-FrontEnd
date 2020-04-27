@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper } from "@material-ui/core";
+import { Button, withStyles, Paper, IconButton, Typography, Grid } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,6 +11,17 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
 import getSiv  from "../../../store/Siv/action";
+import SearchBar from '../../SearchBar/SearchBar'
+import PrintIcon from '@material-ui/icons/Print';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import SIV from './Printable_SIV';
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import AutorenewIcon from "@material-ui/icons/Autorenew";
+
+
+
+
+
 
 const styles = (theme) => ({
   table: {
@@ -24,7 +35,7 @@ const styles = (theme) => ({
     padding: 20,
   },
   paper: {
-    padding: 10,
+    padding: 20,
     height: "auto",
     borderRadius: 20,
   },
@@ -63,66 +74,126 @@ class ViewAllOrders extends Component {
 
     return (
       <>
+        <SearchBar />
         <div className={classes.container}>
-          <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+          <Paper className={classes.paper}>
+            <TableContainer>
+              <Table stickyHeader>
+                <TableHead>
+                  <TableRow className={classes.table}>
+                    <TableCell>Order #</TableCell>
+                    <TableCell>Order Name</TableCell>
 
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
-                  <TableHead>
-                    <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
+                    <TableCell>Company</TableCell>
+                    <TableCell>Sales Person</TableCell>
+                    <TableCell>Shipment Address</TableCell>
+                    <TableCell>Order Date</TableCell>
+                    <TableCell align='center'>Status</TableCell>
+                    <TableCell align='center'>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.orders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
+                      <TableCell>{order.orderName}</TableCell>
+                      <TableCell>{order.company}</TableCell>
+                      <TableCell>{order.salesPerson}</TableCell>
+                      <TableCell>{order.shipmentAddress}</TableCell>
+                      <TableCell>{order.orderDate}</TableCell>
+                      {/* <TableCell>
+                        {this.orderStatus(order.orderNumber)}
 
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
+
+
+                      </TableCell> */}
+
+                      <TableCell align='center'>
+                        <Link
+                          to={{
+                            pathname: "/siv",
+                            state: { order: order.orderNumber },
+                          }} >
+                          <IconButton>
+                            <Grid container spacing={2}>
+                              <Grid item>
+                                <ShoppingCartIcon />
+
+                              </Grid>
+                              <Grid item>
+                                <Typography variant='caption'>
+
+                                  Issued
+
+                                </Typography>
+
+                              </Grid>
+
+                            </Grid>
+                          </IconButton>
+                        </Link>
+
+                      </TableCell>
+
+                      {/* <TableCell align='center'>
+                        <Link
+                          to={{
+                            pathname: "/siv",
+                            state: { order: order.orderNumber },
+                          }} >
+                          <IconButton>
+                            <Grid container spacing={2}>
+                              <Grid item>
+                                <PrintIcon />
+
+                              </Grid>
+                              <Grid item>
+                                <Typography variant='caption'>
+
+                                  Generate Invoice
+
+                                </Typography>
+
+                              </Grid>
+
+                            </Grid>
+                          </IconButton>
+                        </Link>
+                      </TableCell> */}
+
+
+                      <TableCell align="center">
+                        <IconButton>
+                          <Grid container spacing={2}>
+                            <Grid item>
+                              <PDFDownloadLink
+                                document={<SIV />}
+                                fileName="SIV.pdf"
+                                style={{
+                                  textDecoration: "none",
+                                  padding: "10px",
+                                  color: "#4a4a4a",
+                                }}
+                              >
+                                {({ loading }) =>
+                                  loading ? <AutorenewIcon /> : <PrintIcon />
+                                }
+                              </PDFDownloadLink>
+
+
+                            </Grid>
+                            <Grid item>
+                              <Typography variant='caption'>Generate SIV</Typography>
+                            </Grid>
+                          </Grid>
+                        </IconButton>
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.orders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {}
-                        </TableCell>
-
-                        <TableCell>
-                          <button>
-                            <Link
-                              
-                              to={{
-                                pathname: "/siv",
-                                state: {order:order.orderNumber},
-                              }}
-                            >
-                              SIV
-                            </Link>
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </div>
       </>
     );

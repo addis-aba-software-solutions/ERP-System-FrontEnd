@@ -6,6 +6,7 @@ import {
   Grid,
   withStyles,
   Paper,
+  IconButton
 } from "@material-ui/core";
 import SearchBar from "../../SearchBar/SearchBar";
 
@@ -17,6 +18,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { getItems, deleteItem } from "../../../store/inventory/action";
 import { connect } from "react-redux";
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 const styles = (theme) => ({
   table: {
@@ -31,9 +34,9 @@ const styles = (theme) => ({
     padding: 20,
   },
   paper: {
-    padding: 40,
+    padding: 20,
     height: "auto",
-    bitemRadius: 20,
+    borderRadius: 20,
   },
   spacer: {
     margin: 20,
@@ -136,35 +139,39 @@ class ItemList extends Component {
                       <b>Discount</b>
                     </TableCell>
                     <TableCell align="right">
-                      <b>catagory</b>
+                      <b>Category</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Action</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {this.props.items.map((item) => (
                     <TableRow key={item.InventoryItemId}>
-                      <TableCell align="right">
+                      <TableCell align="left">
                         {item.InventoryItemId}
                       </TableCell>
-                      <TableCell align="right">{item.itemName}</TableCell>
+                      <TableCell align="left">{item.itemName}</TableCell>
                       <TableCell align="right">{item.quantity}</TableCell>
                       <TableCell align="right">{item.retailPrice}</TableCell>
                       <TableCell align="right">{item.packaging}</TableCell>
                       <TableCell align="right">{item.warehouseName}</TableCell>
                       <TableCell align="right">{item.discount}</TableCell>
                       <TableCell align="right">{item.catagory}</TableCell>
-                      <Button
-                        align="right"
-                        variant="contained"
-                        color="primary"
-                        onClick={this.props.deleteItem.bind(
-                          this,
-                          item.InventoryItemId
-                        )}
-                        className={classes.button}
-                      >
-                        Delete
-                      </Button>
+                      <TableCell align="right">
+                        <IconButton
+                          onClick={this.props.deleteItem.bind(
+                            this,
+                            item.InventoryItemId
+                          )}
+                          className={classes.button}
+                        >
+                          <DeleteIcon color='secondary' />
+                        </IconButton>
+
+                      </TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>

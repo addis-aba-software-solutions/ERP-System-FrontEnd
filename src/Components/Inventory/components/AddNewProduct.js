@@ -6,6 +6,7 @@ import {
   Grid,
   withStyles,
   Paper,
+  IconButton,
   TextField,
 } from "@material-ui/core";
 import axios from "axios";
@@ -25,7 +26,10 @@ import Error from "../../../error/error";
 import API from "../../../api/API";
 import { addItem, getItems } from "../../../store/inventory/action";
 import { getInvoice } from "../../../store/Invoice/action";
-import getSiv  from "../../../store/Siv/action";
+import  getSiv  from "../../../store/Siv/action";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+
+
 
 const styles = (theme) => ({
   container: {
@@ -319,9 +323,11 @@ class AddNewProduct extends Component {
                 display: "flex",
               }}
             >
-              Recent Imports
+              Recently Added Items
             </Typography>
             {/* <RecentOrders /> */}
+
+
             <Paper className={classes.paper}>
               <TableContainer>
                 <Table
@@ -353,7 +359,10 @@ class AddNewProduct extends Component {
                         <b>Discount</b>
                       </TableCell>
                       <TableCell align="right">
-                        <b>catagory</b>
+                        <b>Category</b>
+                      </TableCell>
+                      <TableCell align="right">
+                        <b>Actions</b>
                       </TableCell>
                     </TableRow>
                   </TableHead>
@@ -363,10 +372,10 @@ class AddNewProduct extends Component {
                       .reverse()
                       .map((item) => (
                         <TableRow key={item.InventoryItemId}>
-                          <TableCell align="right">
+                          <TableCell >
                             {item.InventoryItemId}
                           </TableCell>
-                          <TableCell align="right">{item.itemName}</TableCell>
+                          <TableCell >{item.itemName}</TableCell>
                           <TableCell align="right">{item.quantity}</TableCell>
                           <TableCell align="right">
                             {item.retailPrice}
@@ -377,6 +386,11 @@ class AddNewProduct extends Component {
                           </TableCell>
                           <TableCell align="right">{item.discount}</TableCell>
                           <TableCell align="right">{item.catagory}</TableCell>
+                          <TableCell align="right">
+                            <IconButton>
+                              <VisibilityIcon />
+                            </IconButton>
+                          </TableCell>
                         </TableRow>
                       ))}
                   </TableBody>
