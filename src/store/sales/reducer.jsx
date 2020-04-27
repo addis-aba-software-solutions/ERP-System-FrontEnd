@@ -1,5 +1,4 @@
 import { salesConstants } from "../../constant/constants";
-import actions from "./action";
 const initialState = {
   loading: false,
   isLogin: false,

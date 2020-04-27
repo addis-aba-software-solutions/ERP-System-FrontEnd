@@ -19,11 +19,12 @@ export default function ordersReducer(state = initialState, action) {
     case UPDATE_STATUS:
       return {
         ...state,
-        status: state.status.map((status) =>
-          status.orderNumber === action.payload.orderNumber
-            ? [...status, action.payload.data]
-            : status
-        ),
+        // orders: state.orders.map((order) =>
+        //   order.orderNumber === action.payload.orderNumber
+        //     ? [...order, action.payload.data]
+        //     : order
+        // ),
+        status:action.payload,
       };
 
     default:

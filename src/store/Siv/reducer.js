@@ -4,7 +4,7 @@ const initialState = {
   siv_item: [],
 };
 
-export default function invoiceReducer(state = initialState, action) {
+export default function sivReducer(state = initialState, action) {
   switch (action.type) {
     case GET_SIV:
       return {

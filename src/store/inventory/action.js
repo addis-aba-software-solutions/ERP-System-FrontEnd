@@ -2,12 +2,19 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { inventoryConstant, errorsConstant } from "../../constant/constants";
+const config = {
+  headers: {
+    'Content-Type': 'application/json',
+    Authorization: "Bearer" + localStorage.getItem("token")
+  }
+};
 
 // ADD ITEM
 export const addItem = (item) => (dispatch) => {
-  console.log(item);
+  
+  
   axios
-    .post(API + "item/", item)
+    .post(API + "item/", config, item)
     .then((res) => {
       Swal.fire({
         title: "Success",
@@ -29,7 +36,7 @@ export const addItem = (item) => (dispatch) => {
 // GET ITEM
 export const getItems = () => (dispatch) => {
   axios
-    .get(API + "item/")
+    .get(API + "item/", config)
     .then((res) => {
       dispatch({
         type: inventoryConstant.GET_ITEMS,
@@ -48,7 +55,7 @@ export const getItems = () => (dispatch) => {
 // DELETE ITEM
 export const deleteItem = (InventoryItemId) => (dispatch) => {
   axios
-    .delete(API + `item/${InventoryItemId}/`)
+    .delete(API + `item/${InventoryItemId}/`,config)
     .then((res) => {
       Swal.fire({
         title: "Success",
