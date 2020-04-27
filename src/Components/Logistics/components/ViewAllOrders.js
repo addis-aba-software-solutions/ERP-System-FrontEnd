@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   getOrders,
-  getStatus,
   updateStatus,
 } from "../../../store/order/action";
 const styles = (theme) => ({
@@ -43,46 +42,13 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "",
-      orders: [],
-    };
-    this.orderStatus = this.orderStatus.bind(this);
-  }
-  updateSearch(e) {
-    this.setState({
-      search: e.target.value.substr(0, 20),
-    });
-  }
-
+  
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
   }
-
-  orderStatus = (orderNumber, i) => {
-    this.props.status.find((status) => {
-      let orderstatus = "";
-      if (status.order === orderNumber) {
-        orderstatus = status.order;
-        // alert(status.order);
-      }
-      return orderstatus;
-    });
-  };
-
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
+    
 
     return (
       <>
@@ -93,7 +59,6 @@ class ViewAllOrders extends Component {
               <Link to="/create_Order">Add New Order</Link>
             </Button>
             <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
             <Paper className={classes.paper}>
               <TableContainer>
@@ -113,7 +78,7 @@ class ViewAllOrders extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.orders.map((order) => (
+                    {this.props.orders?this.props.orders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
@@ -122,7 +87,7 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>Issued</TableCell>
+                        <TableCell>{order.status}</TableCell>
 
                         <TableCell>
                           <button
@@ -138,7 +103,7 @@ class ViewAllOrders extends Component {
                           </button>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    )):""}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -155,6 +120,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus, updateStatus })(
+export default connect(mapStateToProps, { getOrders,updateStatus })(
   withStyles(styles)(ViewAllOrders)
 );

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, withStyles, Paper } from "@material-ui/core";
 
-import Table from "@material-ui/core/Table";
+import {Table, IconButton} from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -10,6 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
+import PrintIcon from "@material-ui/icons/Print";
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -39,46 +40,13 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "",
-      orders: [],
-    };
-    this.orderStatus = this.orderStatus.bind(this);
-  }
-  updateSearch(e) {
-    this.setState({
-      search: e.target.value.substr(0, 20),
-    });
-  }
-
+  
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
   }
-
-  orderStatus = (orderNumber, i) => {
-    this.props.status.find((status) => {
-      let orderstatus = "";
-      if (status.order === orderNumber) {
-        orderstatus = status.order;
-        // alert(status.order);
-      }
-      return orderstatus;
-    });
-  };
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
 
     return (
       <>
@@ -109,7 +77,7 @@ class ViewAllOrders extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.orders.map((order) => (
+                    {this.props.ordrs?this.props.orders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
@@ -119,23 +87,23 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>
-                          {this.orderStatus(order.orderNumber)}
+                          {order.status}
                         </TableCell>
 
                         <TableCell>
-                          <button>
+                          <IconButton>
                             <Link
                               to={{
                                 pathname: "/siv",
                                 state: { order: order.orderNumber },
                               }}
                             >
-                              SIV
+                              <PrintIcon />
                             </Link>
-                          </button>
+                          </IconButton>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    )):""}
                   </TableBody>
                 </Table>
               </TableContainer>

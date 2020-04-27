@@ -7,11 +7,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getOrders, getStatus } from "../../../store/order/action";
+import { getOrders } from "../../../store/order/action";
 import PrintIcon from "@material-ui/icons/Print";
+import Invoice from "./INVOICE"
+import { PDFDownloadLink} from "@react-pdf/renderer"
+import AutorenewIcon from "@material-ui/icons/Autorenew"
 
 const styles = (theme) => ({
   table: {
@@ -42,14 +44,7 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "",
-      orders: [],
-    };
-    this.orderStatus = this.orderStatus.bind(this);
-  }
+  
   updateSearch(e) {
     this.setState({
       search: e.target.value.substr(0, 20),
@@ -58,29 +53,12 @@ class ViewAllOrders extends Component {
 
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
   }
 
-  orderStatus = (orderNumber, i) => {
-    this.props.status.find((status) => {
-      let orderstatus = "";
-      if (status.order === orderNumber) {
-        orderstatus = status.order;
-      }
-      return orderstatus;
-    });
-  };
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
+    
 
     return (
       <>
@@ -110,7 +88,7 @@ class ViewAllOrders extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.orders.map((order) => (
+                    {this.props.orders?this.props.orders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
@@ -120,23 +98,28 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>
-                          {this.orderStatus(order.orderNumber)}
+                          {order.status}
                         </TableCell>
 
                         <TableCell>
                           <IconButton>
-                            <Link
-                              to={{
-                                pathname: "/invoice",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              <PrintIcon />
-                            </Link>
+                            
+                            <PDFDownloadLink document ={<Invoice ordernumber= {order.orderNumber}/>} fileName ="SIV.pdf" style={
+                              {
+                                textDecoration:"none",
+                                padding:"10px",
+                                color:"#4a4a4a"
+                              }
+                            }>
+                              {
+                                ({loading})=> loading? <AutorenewIcon/>:<PrintIcon />
+                              }
+                              
+                            </PDFDownloadLink>
                           </IconButton>
                         </TableCell>
                       </TableRow>
-                    ))}
+                    )):""}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -153,6 +136,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus })(
+export default connect(mapStateToProps, { getOrders })(
   withStyles(styles)(ViewAllOrders)
 );

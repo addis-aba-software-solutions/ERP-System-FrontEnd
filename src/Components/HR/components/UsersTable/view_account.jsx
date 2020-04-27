@@ -94,13 +94,6 @@ class UsersTable extends React.Component {
     const {  error } = this.state;
     const { classes } = this.props;
 
-    // let filteredEmployee = employeeInfo.filter((employeeInfos) => {
-    //   return (
-    //     employeeInfos.firstName
-    //       .toLowerCase()
-    //       .indexOf(this.state.search.toLowerCase()) !== -1
-    //   );
-    // });
     if (error) {
       return <div>Error:{error.message}</div>;
     } else {
