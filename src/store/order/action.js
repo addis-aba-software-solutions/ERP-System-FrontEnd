@@ -13,13 +13,13 @@ export const getOrders = () => (dispatch) => {
   axios
     .get(API + "order/")
     .then((res) => {
-
       dispatch({
         type: GET_ORDER,
         payload: res.data,
       });
     })
     .catch((err) => {
+   
       
       dispatch({
         type: errorsConstant.GET_ERRORS,

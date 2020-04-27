@@ -8,14 +8,12 @@ import API from "../../api/API";
   axios
     .get(API + `generatesiv/${order}`)
     .then((res) => {
-      console.log(res.data)
       dispatch({
         type: GET_SIV,
         payload: res.data,
       });
     })
     .catch((err) => {
-      console.log(err);
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,

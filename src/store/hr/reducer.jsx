@@ -17,7 +17,7 @@ export default function hrReducer(state = initialState, action) {
         loading: true,
       };
     }
-    case itConstants.REGISTER_SUCCESS: {
+    case itConstants.REGISTER_SUCCESS: { 
       const index = state.employees.findIndex(
         (emp) => emp.email === action.payload
       );

@@ -7,7 +7,6 @@ const initialState = {
 export default function ordersReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ORDER:
- 
       return {
         ...state,
         orders: action.payload,

@@ -3,17 +3,17 @@ const initialState = {
   invoices: [],
   invoice_item: [],
 };
-
-export default function invoiceReducer(state = initialState, action) {
-console.log(action.payload)
+export default function invoiceReducer(state = initialState, action) {    
+  console.log("action.payload");
+  console.log(action.payload);
+    
   switch (action.type) {
-    case GET_INVOICE:
+    case "GET_INVOICE":
       return {
         ...state,
-        invoices: action.payload,
-        invoice_item: action.payload.invoice_item,
+        invoices: action.payload.siv,
+        invoice_item: action.payload.siv_item,
       };
-
     default:
       return state;
   }

@@ -10,6 +10,8 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
+import getSiv  from "../../../store/Siv/action";
+
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -45,40 +47,19 @@ class ViewAllOrders extends Component {
       search: "",
       orders: [],
     };
-    this.orderStatus = this.orderStatus.bind(this);
   }
-  updateSearch(e) {
-    this.setState({
-      search: e.target.value.substr(0, 20),
-    });
-  }
+
 
   componentDidMount() {
     this.props.getOrders();
     this.props.getStatus();
   }
 
-  orderStatus = (orderNumber, i) => {
-    this.props.status.find((status) => {
-      let orderstatus = "";
-      if (status.order === orderNumber) {
-        orderstatus = status.order;
-        // alert(status.order);
-      }
-      return orderstatus;
-    });
-  };
+
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
+  
 
     return (
       <>
@@ -119,16 +100,16 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>
-                          {this.orderStatus(order.orderNumber)}
+                          {}
                         </TableCell>
 
                         <TableCell>
                           <button>
                             <Link
-                       
+                              
                               to={{
                                 pathname: "/siv",
-                                state: { order: order.orderNumber },
+                                state: {order:order.orderNumber},
                               }}
                             >
                               SIV
@@ -151,8 +132,10 @@ class ViewAllOrders extends Component {
 const mapStateToProps = (state) => ({
   orders: state.ordersReducer.orders,
   status: state.ordersReducer.status,
+  sivs: state.invoiceReducer.sivs,
+  siv_item: state.invoiceReducer.siv_item,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus })(
+export default connect(mapStateToProps, { getOrders, getStatus, getSiv})(
   withStyles(styles)(ViewAllOrders)
 );

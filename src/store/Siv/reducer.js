@@ -7,12 +7,13 @@ const initialState = {
 export default function invoiceReducer(state = initialState, action) {
   switch (action.type) {
     case GET_SIV:
+      console.log(action.payload);
       return {
         ...state,
         sivs: action.payload,
         siv_item: action.payload.siv_item,
+       
       };
-
     default:
       return state;
   }

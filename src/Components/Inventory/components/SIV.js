@@ -56,24 +56,22 @@ const styles = {
   },
 };
 
-class SIV extends React.Component {
-  constructor(props) {
+class SIV extends Component {
  
-    super(props);
-      
-    this.state = {
-      sivs: [],
-      siv_item: [],
-    };
-  }
   componentDidUpdate() {
-    this.props.getSiv(this.props.location.state.order);
+
+    // this.props.getSiv(this.props.location.state.order);
   
   }
   componentDidMount() {
-    this.props.getSiv(this.props.location.state.order);
+    this.props.getSiv(1);
+    console.log("this.props.siv_itemxxxxxx")
+    console.log(this.props.siv_item)
+  
+
   }
   render() {
+   
     const { classes } = this.props;
 
     return (
@@ -223,14 +221,23 @@ class SIV extends React.Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log("state.invoiceReducer.siv_item")
+  console.log(state.invoiceReducer)
+  return {
+    sivs: state.sivReducer.sivs,
+    siv_item: state.sivReducer.siv_item,
+   
+  };
+}
 const mapDispatchToProps = {
   getSiv:getSiv,
-  
 };
-const mapStateToProps = (state) => ({
-  sivs: state.invoiceReducer.sivs,
-  siv_item: state.invoiceReducer.siv_item,
-  errors: state.errorsReducer.errors,
-});
 
-export default connect(mapStateToProps, mapDispatchToProps )(withStyles(styles)(SIV));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withStyles(styles)(SIV));
+
+
