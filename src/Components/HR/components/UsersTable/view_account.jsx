@@ -5,7 +5,6 @@ import { withStyles } from "@material-ui/core/styles";
 import Swal from "sweetalert2";
 import {
   Card,
-  
   CardContent,
   Table,
   TableBody,
@@ -91,7 +90,7 @@ class UsersTable extends React.Component {
   }
 
   render() {
-    const {  error } = this.state;
+    const { error } = this.state;
     const { classes } = this.props;
 
     // let filteredEmployee = employeeInfo.filter((employeeInfos) => {
@@ -117,7 +116,6 @@ class UsersTable extends React.Component {
                         <TableCell>
                           <b>Id</b>
                         </TableCell>
-
                         <TableCell>
                           <b>First Name</b>
                         </TableCell>
