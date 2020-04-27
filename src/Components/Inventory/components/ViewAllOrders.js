@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper } from "@material-ui/core";
+import { Button, withStyles, Paper, IconButton, Typography, Grid } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,6 +10,13 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
+import SearchBar from '../../SearchBar/SearchBar'
+import PrintIcon from '@material-ui/icons/Print';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+
+
+
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -22,7 +29,7 @@ const styles = (theme) => ({
     padding: 20,
   },
   paper: {
-    padding: 10,
+    padding: 20,
     height: "auto",
     borderRadius: 20,
   },
@@ -71,76 +78,100 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
-    //    if(!orderInfo) return [];
-    //    else {
-    //         let filteredOrder = this.orderInfo.filter(
-    //             (orderInfos) => {
-    //                 return orderInfos.item.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
-    //             }
-    //         );
-    //     }
-
     return (
       <>
+        <SearchBar />
         <div className={classes.container}>
-          <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+          <Paper className={classes.paper}>
+            <TableContainer>
+              <Table stickyHeader>
+                <TableHead>
+                  <TableRow className={classes.table}>
+                    <TableCell>Order #</TableCell>
+                    <TableCell>Order Name</TableCell>
 
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
-                  <TableHead>
-                    <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
+                    <TableCell>Company</TableCell>
+                    <TableCell>Sales Person</TableCell>
+                    <TableCell>Shipment Address</TableCell>
+                    <TableCell>Order Date</TableCell>
+                    <TableCell align='center'>Status</TableCell>
+                    <TableCell align='center'>Action</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {this.props.orders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
+                      <TableCell>{order.orderName}</TableCell>
+                      <TableCell>{order.company}</TableCell>
+                      <TableCell>{order.salesPerson}</TableCell>
+                      <TableCell>{order.shipmentAddress}</TableCell>
+                      <TableCell>{order.orderDate}</TableCell>
+                      {/* <TableCell>
+                        {this.orderStatus(order.orderNumber)}
 
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
+
+
+                      </TableCell> */}
+
+                      <TableCell align='center'>
+                        <Link
+                          to={{
+                            pathname: "/siv",
+                            state: { order: order.orderNumber },
+                          }} >
+                          <IconButton>
+                            <Grid container spacing={2}>
+                              <Grid item>
+                                <ShoppingCartIcon />
+
+                              </Grid>
+                              <Grid item>
+                                <Typography variant='caption'>
+
+                                  Issued
+
+                                </Typography>
+
+                              </Grid>
+
+                            </Grid>
+                          </IconButton>
+                        </Link>
+
+                      </TableCell>
+
+                      <TableCell align='center'>
+                        <Link
+                          to={{
+                            pathname: "/siv",
+                            state: { order: order.orderNumber },
+                          }} >
+                          <IconButton>
+                            <Grid container spacing={2}>
+                              <Grid item>
+                                <PrintIcon />
+
+                              </Grid>
+                              <Grid item>
+                                <Typography variant='caption'>
+
+                                  Generate Invoice
+
+                                </Typography>
+
+                              </Grid>
+
+                            </Grid>
+                          </IconButton>
+                        </Link>
+                      </TableCell>
                     </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {this.props.orders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {this.orderStatus(order.orderNumber)}
-                        </TableCell>
-
-                        <TableCell>
-                          <button>
-                            <Link
-                              to={{
-                                pathname: "/siv",
-                                state: { order: order.orderNumber },
-                              }}
-                            >
-                              SIV
-                            </Link>
-                          </button>
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
         </div>
       </>
     );
