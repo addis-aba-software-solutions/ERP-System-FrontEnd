@@ -118,7 +118,7 @@ class AddNewCompany extends Component {
       <div className={classes.recentOrders}>
         <React.Fragment>
           <Grid container xs={12}>
-            <Grid item xs={6}>
+            <Grid item xs={12}>
             <div className={classes.container}>
             <Paper className={classes.paper}>
               <Typography
