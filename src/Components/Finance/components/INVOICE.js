@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
-import { withStyles, Paper, Badge, Table } from '@material-ui/core'
+import { withStyles } from '@material-ui/core'
 import Logo from '../../../Assets/NAZO.png';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
-import { makeStyles } from '@material-ui/core/styles';
 import {
     Page,
     Text,
@@ -16,22 +11,15 @@ import {
 
 
 } from "@react-pdf/renderer";
-
-
-
+import {connect} from "react-redux"
+import { getInvoice} from "../../../store/Invoice/action"
 
 const styles = StyleSheet.create({
     root: {
-        // width: '100vh',
-        // height: '100vh',
         backgroundColor: '#d1d1d1',
         padding: 30
     },
     pdf: {
-        // width: '595px',
-        // height: '842px',
-        // backgroundColor: '#FFFFFF',
-        // marginLeft: 100,
         paddingTop: 40,
         paddingRight: 50,
         paddingLeft: 40
@@ -40,7 +28,6 @@ const styles = StyleSheet.create({
         height: 100,
         width: 120,
         marginTop: 10,
-        // borderRadius: 50
     },
     text: {
         color: '#000000',
@@ -91,14 +78,12 @@ const styles = StyleSheet.create({
     },
     tableCellHeader: {
         margin: "auto",
-        margin: 5,
         fontSize: 12,
         // fontWeight: 500,
         color: '#FFFFFF'
     },
     tableCell: {
         margin: "auto",
-        margin: 2,
         color: '#686868',
         fontSize: 10
     },
@@ -118,7 +103,11 @@ const styles = StyleSheet.create({
 });
 
 
+
 class Invoice extends Component {
+    componentDidMount() {
+    this.props.getInvoice(this.props.orderNumber);
+  }
     render() {
 
         return (
@@ -284,7 +273,7 @@ class Invoice extends Component {
                                 <View item>
 
                                     <Text align='right' style={styles.textBody} >
-                                        INV/2020/0013
+                                        {this.props.invoices.invoiceId}
                                 </Text>
                                 </View>
                             </View>
@@ -316,7 +305,7 @@ class Invoice extends Component {
                                 <View item>
 
                                     <Text align='right' style={styles.textBody} >
-                                        20-04-20
+                                        {this.props.invoices.date}
                                 </Text>
                                 </View>
                             </View>
@@ -437,164 +426,43 @@ class Invoice extends Component {
                                 <Text style={styles.tableCellHeader}>#</Text>
                             </View>
                             <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Item ID</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Description</Text>
+                                <Text style={styles.tableCellHeader}>Item Name</Text>
                             </View>
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Quantity</Text>
                             </View>
                             <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Price/Unit</Text>
+                                <Text style={styles.tableCellHeader}>Unit Price</Text>
                             </View>
-
                             <View style={styles.tableColHeader}>
                                 <Text style={styles.tableCellHeader}>Amount</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
+                            {this.props.invoice_item?this.props.invoice_item.map((item)=>{
+                                return(
+                                    <View key={item.itemName} style={styles.movieContainer}>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>1</Text>
+                                <Text style={styles.tableCell}>{item.itemName}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
+                                <Text style={styles.tableCell}>{item.itemName}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>[Clothing] Sweat Pants, Hoodies</Text>
+                                <Text style={styles.tableCell}>{item.quantity}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4.000</Text>
+                                <Text style={styles.tableCell}>{item.unitPrice}</Text>
                             </View>
                             <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>500 ETB</Text>
+                                <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
                             </View>
-
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>1920 ETB</Text>
                             </View>
+                                );
+                            }):""}
+                            
                         </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>2</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>[Edibles] Cheralia Biscuit</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>6.000</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>320 ETB</Text>
-                            </View>
-
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>1920 ETB</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>3</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>[Edibles] Moya Biscuit</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>10.000</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>450 ETB</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4500 ETB</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}></Text>
-                            </View>
-                        </View>
+                            
                     </View>
 
                     {/* ========================= Total ========================== */}
@@ -629,7 +497,7 @@ class Invoice extends Component {
                             <View item>
 
                                 <Text align='right' style={styles.textBody} >
-                                    65654 ETB
+                                    {this.props.invoices.subTotal}
                                 </Text>
                             </View>
 
@@ -661,7 +529,7 @@ class Invoice extends Component {
                             <View item>
 
                                 <Text align='right' style={styles.textBody} >
-                                    12%
+                                    {this.props.invoices.Tax}
                                 </Text>
                             </View>
 
@@ -692,7 +560,7 @@ class Invoice extends Component {
                             <View item>
 
                                 <Text align='right' style={styles.textBody} >
-                                    736572654 ETB
+                                    {this.props.invoices.Total} ETB
                             </Text>
                             </View>
 
@@ -731,4 +599,11 @@ class Invoice extends Component {
         );
     }
 }
-export default withStyles(styles)(Invoice);
+
+const mapStateToProps = (state) => ({
+    invoices: state.invoiceReducer.invoices,
+    invoice_item: state.invoiceReducer.invoice_item,
+    errors: state.errorsReducer.errors,
+  });
+
+export default connect(mapStateToProps, {getInvoice})(withStyles(styles)(Invoice));
