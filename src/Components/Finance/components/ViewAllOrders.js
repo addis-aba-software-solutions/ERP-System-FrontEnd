@@ -9,8 +9,8 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
+import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
-import Invoice from "./INVOICE"
 import { PDFDownloadLink} from "@react-pdf/renderer"
 import AutorenewIcon from "@material-ui/icons/Autorenew"
 import SearchBar from '../../SearchBar/SearchBar'
@@ -110,9 +110,9 @@ class ViewAllOrders extends Component {
                         </TableCell>
 
                         <TableCell>
-                          <IconButton>
+                          
                             
-                            <PDFDownloadLink document ={<Invoice />} fileName ="invoice.pdf" style={
+                            {/* <PDFDownloadLink document ={<Invoice />} fileName ="invoice.pdf" style={
                               {
                                 textDecoration:"none",
                                 padding:"10px",
@@ -123,8 +123,8 @@ class ViewAllOrders extends Component {
                                 ({loading})=> loading? <AutorenewIcon/>:<PrintIcon />
                               }
                               
-                            </PDFDownloadLink>
-                          </IconButton>
+                            </PDFDownloadLink> */}
+                          
                         </TableCell>
                       </TableRow>
                     )):""}
