@@ -138,183 +138,193 @@ class AddNewProduct extends Component {
     return (
       <div className={classes.recentOrders}>
         <React.Fragment>
-          <div className={classes.container}>
-            <Paper className={classes.paper}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                style={{
-                  display: "flex",
-                  justify: "flex-start",
-                }}
-              >
-                <b>Goods Recieving Voucher</b>
-              </Typography>
-              <Divider className={classes.spacer} />
 
-              <Grid container spacing={3}>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="itemName"
-                    name="itemName"
-                    label="item Name"
-                    fullWidth
-                    autoComplete="itemName"
-                    value={itemName}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.itemName
-                        ? this.props.errors.itemName
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}></Grid>
-
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="quantity"
-                    name="quantity"
-                    label="Quantity"
-                    fullWidth
-                    autoComplete="quantity"
-                    value={quantity}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.quantity
-                        ? this.props.errors.quantity
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="warehouseName"
-                    name="warehouseName"
-                    label="warehouseName"
-                    fullWidth
-                    autoComplete="warehouseName"
-                    value={warehouseName}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.warehouseName
-                        ? this.props.errors.warehouseName
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={6}>
-                  <TextField
-                    required
-                    id="retailPrice"
-                    name="retailPrice"
-                    label="Retail Price"
-                    fullWidth
-                    autoComplete="retailPrice"
-                    value={retailPrice}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.retailPrice
-                        ? this.props.errors.retailPrice
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="packaging"
-                    name="packaging"
-                    label="Packaging"
-                    fullWidth
-                    value={packaging}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.packaging
-                        ? this.props.errors.packaging
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="discount"
-                    name="discount"
-                    label="Discount"
-                    fullWidth
-                    autoComplete="Contract_Info"
-                    value={discount}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.discount
-                        ? this.props.errors.discount
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <FormControl className={classes.formControl} fullWidth>
-                    <InputLabel htmlFor="grouped-native-select">
-                      Category
-                    </InputLabel>
-                    <Select
-                      onChange={this.catagoryDropDown}
-                      value={catagoryValue}
-                      native
-                      id="grouped-native-select"
-                    >
-                      <option aria-label="None" value="" />
-                      {this.state.catagoryList.map((catagoryLists) => (
-                        <option
-                          value={catagoryLists.catagoryId}
-                          key={catagoryLists.catagoryId}
-                        >
-                          {catagoryLists.catagory}
-                        </option>
-                      ))}
-                    </Select>
-                  </FormControl>
-                  <Error
-                    error={
-                      this.props.errors.catagory
-                        ? this.props.errors.catagory
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.submit}
-                    className={classes.button}
+          <Grid container>
+            <Grid item>
+              <div className={classes.container}>
+                <Paper className={classes.paper}>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    style={{
+                      display: "flex",
+                      justify: "flex-start",
+                    }}
                   >
-                    Save
+                    <b>Goods Recieving Voucher</b>
+                  </Typography>
+                  <Divider className={classes.spacer} />
+
+                  <Grid container spacing={3}>
+                    <Grid item xs={12} sm={3}>
+                      <TextField
+                        required
+                        id="itemName"
+                        name="itemName"
+                        label="item Name"
+                        fullWidth
+                        autoComplete="itemName"
+                        value={itemName}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.itemName
+                            ? this.props.errors.itemName
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}></Grid>
+
+                    <Grid item xs={12} sm={3}>
+                      <TextField
+                        required
+                        id="quantity"
+                        name="quantity"
+                        label="Quantity"
+                        fullWidth
+                        autoComplete="quantity"
+                        value={quantity}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.quantity
+                            ? this.props.errors.quantity
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <TextField
+                        required
+                        id="warehouseName"
+                        name="warehouseName"
+                        label="warehouseName"
+                        fullWidth
+                        autoComplete="warehouseName"
+                        value={warehouseName}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.warehouseName
+                            ? this.props.errors.warehouseName
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={6}>
+                      <TextField
+                        required
+                        id="retailPrice"
+                        name="retailPrice"
+                        label="Retail Price"
+                        fullWidth
+                        autoComplete="retailPrice"
+                        value={retailPrice}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.retailPrice
+                            ? this.props.errors.retailPrice
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={3}>
+                      <TextField
+                        required
+                        id="packaging"
+                        name="packaging"
+                        label="Packaging"
+                        fullWidth
+                        value={packaging}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.packaging
+                            ? this.props.errors.packaging
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="discount"
+                        name="discount"
+                        label="Discount"
+                        fullWidth
+                        autoComplete="Contract_Info"
+                        value={discount}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.discount
+                            ? this.props.errors.discount
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">
+                          Category
+                    </InputLabel>
+                        <Select
+                          onChange={this.catagoryDropDown}
+                          value={catagoryValue}
+                          native
+                          id="grouped-native-select"
+                        >
+                          <option aria-label="None" value="" />
+                          {this.state.catagoryList.map((catagoryLists) => (
+                            <option
+                              value={catagoryLists.catagoryId}
+                              key={catagoryLists.catagoryId}
+                            >
+                              {catagoryLists.catagory}
+                            </option>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      <Error
+                        error={
+                          this.props.errors.catagory
+                            ? this.props.errors.catagory
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.submit}
+                        className={classes.button}
+                      >
+                        Save
                   </Button>
-                </Grid>
-              </Grid>
-            </Paper>
-          </div>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </div>
+
+
+
+            </Grid>
+
+          </Grid>
+
           <div className={classes.recentOrders}>
             <Typography
               variant="h5"
