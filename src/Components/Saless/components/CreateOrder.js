@@ -180,45 +180,8 @@ class CreateOrder extends Component {
                         </Typography>
                       </Grid>
 
-                      <Grid item xs={12} sm={8}>
-                        <TextField
-                          required
-                          id="orderName"
-                          name="orderName"
-                          label="Order Name"
-                          fullWidth
-                          autoComplete="orderName"
-                          value={this.state.orderName}
-                          onChange={this.handleChange}
-                        />
-
-                        <Error
-                          error={
-                            this.props.errors.orderName
-                              ? this.props.errors.orderName
-                              : null
-                          }
-                        />
-                      </Grid>
-                      <Grid item xs={12} sm={4}>
-                        <TextField
-                          required
-                          id="orderNumber"
-                          name="orderNumber"
-                          label="Order Number"
-                          fullWidth
-                          autoComplete="orderNumber"
-                          value={this.state.orderNumber}
-                          onChange={this.handleChange}
-                        />
-                        <Error
-                          error={
-                            this.props.errors.orderNumber
-                              ? this.props.errors.orderNumber
-                              : null
-                          }
-                        />
-                      </Grid>
+              
+                
 
                       <Grid item xs={12} sm={6}>
                         <FormControl className={classes.formControl} fullWidth>
@@ -286,20 +249,7 @@ class CreateOrder extends Component {
                           }
                         />
                       </Grid>
-                      {/* 
-                    <Grid item xs={12} sm={5}>
-                      <TextField
-                        required
-                        id="quantity"
-                        name="quantity"
-                        label="Quantity"
-                        fullWidth
-                        disabled
-                        autoComplete="quantity"
-                        value={this.state.quantity}
-                        onChange={this.handleChange}
-                      />
-                    </Grid> */}
+                   
 
                       <Grid item xs={12} sm={12}>
                         <TextField

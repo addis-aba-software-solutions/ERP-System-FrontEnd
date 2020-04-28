@@ -42,11 +42,10 @@ export default function salesReducer(state = initialState, action) {
       };
     }
     case salesConstants.ITEM_GETALL_SUCCESS: {
-      console.log(action.payload);
       return {
         ...state,
         items: action.payload,
-        errors: [],
+        // errors: [],
         loading: false,
         isLogin: true,
         success: false,
@@ -72,7 +71,6 @@ export default function salesReducer(state = initialState, action) {
       return {
         ...state,
         companys: action.payload,
-        errors: [],
         loading: false,
         isLogin: true,
         success: false,

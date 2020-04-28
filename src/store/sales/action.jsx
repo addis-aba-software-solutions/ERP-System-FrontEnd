@@ -39,7 +39,9 @@ function createOrder(data) {
         });
       })
       .catch((error) => {
-
+        console.log("error.response");
+        console.log(error.response);
+        
         if(error.response && error.response.data){
         if (error.response.status == 404) {
           Swal.fire({
@@ -58,7 +60,8 @@ function createOrder(data) {
             focusConfirm: false,
             confirmButtonText: "OK!",
           });
-        } else {
+        } else {  
+
           dispatch({
             type: salesConstants.ORDER_FAILURE,
             payload: error.response.data,
