@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
+import { getInvoice } from "../../../store/Invoice/action";
 import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
 import { PDFDownloadLink } from "@react-pdf/renderer"
@@ -50,6 +51,7 @@ class ViewAllOrders extends Component {
 
   componentDidMount() {
     this.props.getOrders();
+    this.props.getInvoice(8);
   }
 
 
@@ -83,29 +85,11 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                {/* <Grid container>
-                              <Grid item>
-                                <IconButton>
-                                  <PrintIcon style={{
-                                    // color: '#E8E8E8'
-                                  }} />
-                                </IconButton>
-                              </Grid>
-                              <Grid item style={{
-                                marginTop: 5
-                              }}>
-                                <Typography variant='caption' style={{
-                                  color: '#686868'
-                                }}>
-                                  Generate Invoice
-                              </Typography>
-                              </Grid>
-                            </Grid> */}
                 <TableBody>
                   {deliveredOrders ? deliveredOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
-
+                      <TableCell>{order.orderName}</TableCell>
                       <TableCell>{order.description}</TableCell>
                       <TableCell>{order.company}</TableCell>
                       <TableCell>{order.salesPerson}</TableCell>
@@ -116,21 +100,17 @@ class ViewAllOrders extends Component {
                       </TableCell>
 
                       <TableCell>
-
-
-                        <PDFDownloadLink fileName="invoice.pdf" style={
-                          {
+                        <PDFDownloadLink
+                          document={<Invoice invoices={this.props.invoices} invoice_item={this.props.invoice_item} />}
+                          fileName="Invoice.pdf"
+                          style={{
                             textDecoration: "none",
-                            padding: "10px",
-                            color: "#4a4a4a"
-                          }
-                        }>
-                          {
-                            ({ loading }) => true ?
-                              <AutorenewIcon /> :
+                          }}
+                        >
+                          {({ blob, url, loading, error }) =>
+                            loading ? <AutorenewIcon /> :
                               <PrintIcon />
                           }
-
                         </PDFDownloadLink>
 
                       </TableCell>
@@ -150,8 +130,10 @@ class ViewAllOrders extends Component {
 const mapStateToProps = (state) => ({
   orders: state.ordersReducer.orders,
   status: state.ordersReducer.status,
+  invoices: state.invoiceReducer.invoices,
+  invoice_item: state.invoiceReducer.invoice_item,
 });
 
-export default connect(mapStateToProps, { getOrders })(
+export default connect(mapStateToProps, { getOrders, getInvoice })(
   withStyles(styles)(ViewAllOrders)
 );

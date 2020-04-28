@@ -17,9 +17,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SIV from './Printable_SIV';
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
-
-
-
+import VisibilityRoundedIcon from '@material-ui/icons/VisibilityRounded';
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -76,6 +74,10 @@ class ViewAllOrders extends Component {
                     <TableCell>Order Date</TableCell>
                     <TableCell align='center'>Status</TableCell>
                     <TableCell align='center'>Action</TableCell>
+                    <TableCell align='center'>Action</TableCell>
+                    <TableCell align='center'>View</TableCell>
+
+
                   </TableRow>
                 </TableHead>
 
@@ -128,8 +130,7 @@ class ViewAllOrders extends Component {
                               to={{
                                 pathname: "/siv",
                                 state: { order: order.orderNumber },
-                              }}
-                            >
+                              }}>
                               <PrintIcon />
                             </Link>
                           </IconButton>

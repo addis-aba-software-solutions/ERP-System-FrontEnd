@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper } from "@material-ui/core";
+import { Button, withStyles, Paper, Card } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,10 +10,10 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
+import SearchBar from '../../SearchBar/SearchBar'
 const styles = (theme) => ({
   table: {
-    maxHeight: 100,
-    // padding: 20
+    maxHeight: 800,
   },
   tableRow: {
     // padding: 15
@@ -49,6 +49,7 @@ class ViewAllOrders extends Component {
 
     return (
       <>
+      <SearchBar />
         <div className={classes.container}>
           <div>
             <Button variant="contained">
@@ -58,9 +59,9 @@ class ViewAllOrders extends Component {
             <br />
             {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
-            <Paper className={classes.paper}>
-              <TableContainer>
-                <Table stickyHeader aria-label="sticky table">
+            <Card className={classes.paper}>
+              <TableContainer className={classes.table}>
+                <Table  stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow className={classes.table}>
                       <TableCell>Order Number</TableCell>
@@ -90,7 +91,7 @@ class ViewAllOrders extends Component {
                   </TableBody>
                 </Table>
               </TableContainer>
-            </Paper>
+            </Card>
           </div>
         </div>
       </>

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   differenceIcon: {
     color: "#00970F",
-    marginLeft: 90
+    // marginLeft: 90
   },
   differenceValue: {
     color: "#00970F",
@@ -159,29 +159,33 @@ export default function HomeNavBar() {
               // marginLeft: 100
             }}>
 
-              <Typography style={{
+              <Typography align='right' style={{
                 fontSize: 20,
                 color: '#818181',
                 // marginLeft: 50
               }}>
                 Total Sales
-      </Typography>
-              <Typography style={{
+              </Typography>
+              <Typography align='right' style={{
                 fontSize: 30,
                 color: '#000000',
                 marginLeft: 50
               }}>
                 7,465,363.5 ETB
               </Typography>
-              <div className={classes.difference}>
+              <div style={{
+                marginLeft: 100
+              }} className={classes.difference}>
                 <ArrowUpwardIcon className={classes.differenceIcon} />
                 <Typography
+                align='right'
                   className={classes.differenceValue}
                   variant="body2"
                 >
                   87%
           </Typography>
                 <Typography
+
                   className={classes.caption}
                   variant="caption"
                 >
