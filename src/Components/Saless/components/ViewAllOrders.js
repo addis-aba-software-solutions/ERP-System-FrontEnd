@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper, IconButton, Grid, Typography } from "@material-ui/core";
+import { Button, withStyles, Paper } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,17 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import {
-  getOrders,
-  updateStatus,
-} from "../../../store/order/action";
-import SearchBar from '../../SearchBar/SearchBar';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-
-
-
-
+import { getOrders } from "../../../store/order/action";
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -53,13 +43,12 @@ class ViewAllOrders extends Component {
   componentDidMount() {
     this.props.getOrders();
   }
+
   render() {
     const { classes } = this.props;
-    
 
     return (
       <>
-        <SearchBar />
         <div className={classes.container}>
           <div>
             <Button variant="contained">
@@ -67,6 +56,7 @@ class ViewAllOrders extends Component {
               <Link to="/create_Order">Add New Order</Link>
             </Button>
             <br />
+            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
 
             <Paper className={classes.paper}>
               <TableContainer>
@@ -82,7 +72,6 @@ class ViewAllOrders extends Component {
                       <TableCell>Shipment Address</TableCell>
                       <TableCell>Order Date</TableCell>
                       <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -96,20 +85,6 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>{order.status}</TableCell>
-
-                        <TableCell>
-                          <button
-                            onClick={this.props.updateStatus.bind(
-                              this,
-                              order.orderNumber,
-                              {
-                                status: "Delivered",
-                              },
-                            )}
-                          >
-                            Delivered
-                          </button>
-                        </TableCell>
                       </TableRow>
                     )):""}
                   </TableBody>
@@ -128,6 +103,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders,updateStatus })(
+export default connect(mapStateToProps, { getOrders })(
   withStyles(styles)(ViewAllOrders)
 );

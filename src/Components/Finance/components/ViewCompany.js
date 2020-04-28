@@ -53,7 +53,6 @@ class ViewCompany extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      campanys: [],
       search: "",
     };
   }

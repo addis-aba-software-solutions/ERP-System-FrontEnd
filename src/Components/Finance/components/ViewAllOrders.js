@@ -7,11 +7,13 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { getOrders, getStatus } from "../../../store/order/action";
+import { getOrders } from "../../../store/order/action";
 import PrintIcon from "@material-ui/icons/Print";
+import Invoice from "./INVOICE"
+import { PDFDownloadLink} from "@react-pdf/renderer"
+import AutorenewIcon from "@material-ui/icons/Autorenew"
 import SearchBar from '../../SearchBar/SearchBar'
 
 const styles = (theme) => ({
@@ -40,14 +42,7 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "",
-      orders: [],
-    };
-    this.orderStatus = this.orderStatus.bind(this);
-  }
+  
   updateSearch(e) {
     this.setState({
       search: e.target.value.substr(0, 20),
@@ -56,21 +51,13 @@ class ViewAllOrders extends Component {
 
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
   }
 
-  orderStatus = (orderNumber, i) => {
-    this.props.status.find((status) => {
-      let orderstatus = "";
-      if (status.order === orderNumber) {
-        orderstatus = status.order;
-      }
-      return orderstatus;
-    });
-  };
 
   render() {
     const { classes } = this.props;
+    
+
     return (
       <>
         <SearchBar />
@@ -90,27 +77,7 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  {this.props.orders.map((order) => (
-                    <TableRow key={order.orderNumber}>
-                      <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell >{order.orderName}</TableCell>
-                      <TableCell align='center'>{order.company}</TableCell>
-                      <TableCell align='center'>{order.salesPerson}</TableCell>
-                      <TableCell align='center' >{order.shipmentAddress}</TableCell>
-                      <TableCell align='center'>{order.orderDate}</TableCell>
-                      <TableCell align='center'>
-                        {/* {this.orderStatus(order.orderNumber)} */}
-                        {order.orderDate}
-                      </TableCell>
-                      <TableCell align='right'>
-                        <IconButton>
-                          <Link
-                            to={{
-                              pathname: "/invoice",
-                              state: { order: order.orderNumber },
-                            }}>
-                            <Grid container>
+                            {/* <Grid container>
                               <Grid item>
                                 <IconButton>
                                   <PrintIcon style={{
@@ -127,17 +94,46 @@ class ViewAllOrders extends Component {
                                   Generate Invoice
                               </Typography>
                               </Grid>
-                            </Grid>
-                          </Link>
-                        </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-        </div>
+                            </Grid> */}
+                  <TableBody>
+                    {this.props.orders?this.props.orders.map((order) => (
+                      <TableRow key={order.orderNumber}>
+                        <TableCell>{order.orderNumber}</TableCell>
+                        <TableCell>{order.orderName}</TableCell>
+                        <TableCell>{order.description}</TableCell>
+                        <TableCell>{order.company}</TableCell>
+                        <TableCell>{order.salesPerson}</TableCell>
+                        <TableCell>{order.shipmentAddress}</TableCell>
+                        <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>
+                          {order.status}
+                        </TableCell>
+
+                        <TableCell>
+                          <IconButton>
+                            
+                            <PDFDownloadLink document ={<Invoice ordernumber= {order.orderNumber}/>} fileName ="SIV.pdf" style={
+                              {
+                                textDecoration:"none",
+                                padding:"10px",
+                                color:"#4a4a4a"
+                              }
+                            }>
+                              {
+                                ({loading})=> loading? <AutorenewIcon/>:<PrintIcon />
+                              }
+                              
+                            </PDFDownloadLink>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    )):""}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </div>
+       
       </>
     );
   }
@@ -148,6 +144,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus })(
+export default connect(mapStateToProps, { getOrders })(
   withStyles(styles)(ViewAllOrders)
 );

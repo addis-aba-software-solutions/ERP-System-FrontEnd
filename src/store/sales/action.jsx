@@ -40,7 +40,7 @@ function createOrder(data) {
       })
       .catch((error) => {
         console.log(error.response)
-        if (error.response.status == 404) {
+        if (error.response.status ==+ 404) {
           Swal.fire({
             title: "<strong>Error <u>info</u></strong><p>",
             icon: "error",

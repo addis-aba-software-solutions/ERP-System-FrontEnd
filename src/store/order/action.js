@@ -11,8 +11,10 @@ import API from "../../api/API";
 // GET ORDER
 export const getOrders = () => (dispatch) => {
   axios
-    .get(API + "order/")
+    .get(API + "orderstatus/")
     .then((res) => {
+      console.log("rsponse")
+      console.log(res)
       dispatch({
         type: GET_ORDER,
         payload: res.data,
@@ -55,7 +57,7 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
     }
   };
   axios
-    .put(API + `status/${orderNumber}/`, status,config)
+    .put(API + `status/${orderNumber}/`, status, config)
     .then((res) => {
       alert(orderNumber);
       alert(status);

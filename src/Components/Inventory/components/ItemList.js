@@ -54,7 +54,6 @@ class ItemList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      items: [],
       search: "",
     };
   }
@@ -147,7 +146,7 @@ class ItemList extends Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.props.items.map((item) => (
+                  {this.props.items?this.props.items.map((item) => (
                     <TableRow key={item.InventoryItemId}>
                       <TableCell align="left">
                         {item.InventoryItemId}
@@ -173,7 +172,7 @@ class ItemList extends Component {
                       </TableCell>
 
                     </TableRow>
-                  ))}
+                  )):""}
                 </TableBody>
               </Table>
             </TableContainer>

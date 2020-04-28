@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, withStyles, Paper, IconButton, Typography, Grid } from "@material-ui/core";
 
-import Table from "@material-ui/core/Table";
+import {Table} from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -11,15 +11,12 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
 import getSiv  from "../../../store/Siv/action";
+import PrintIcon from "@material-ui/icons/Print";
 import SearchBar from '../../SearchBar/SearchBar'
-import PrintIcon from '@material-ui/icons/Print';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SIV from './Printable_SIV';
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
-
-
-
 
 
 
@@ -52,25 +49,13 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  constructor() {
-    super();
-    this.state = {
-      search: "",
-      orders: [],
-    };
-  }
-
-
+  
   componentDidMount() {
     this.props.getOrders();
-    this.props.getStatus();
   }
-
-
 
   render() {
     const { classes } = this.props;
-  
 
     return (
       <>
@@ -92,77 +77,10 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                <TableBody>
-                  {this.props.orders.map((order) => (
-                    <TableRow key={order.orderNumber}>
-                      <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell>{order.orderName}</TableCell>
-                      <TableCell>{order.company}</TableCell>
-                      <TableCell>{order.salesPerson}</TableCell>
-                      <TableCell>{order.shipmentAddress}</TableCell>
-                      <TableCell>{order.orderDate}</TableCell>
-                      {/* <TableCell>
-                        {this.orderStatus(order.orderNumber)}
+                
 
 
-
-                      </TableCell> */}
-
-                      <TableCell align='center'>
-                        <Link
-                          to={{
-                            pathname: "/siv",
-                            state: { order: order.orderNumber },
-                          }} >
-                          <IconButton>
-                            <Grid container spacing={2}>
-                              <Grid item>
-                                <ShoppingCartIcon />
-
-                              </Grid>
-                              <Grid item>
-                                <Typography variant='caption'>
-
-                                  Issued
-
-                                </Typography>
-
-                              </Grid>
-
-                            </Grid>
-                          </IconButton>
-                        </Link>
-
-                      </TableCell>
-
-                      {/* <TableCell align='center'>
-                        <Link
-                          to={{
-                            pathname: "/siv",
-                            state: { order: order.orderNumber },
-                          }} >
-                          <IconButton>
-                            <Grid container spacing={2}>
-                              <Grid item>
-                                <PrintIcon />
-
-                              </Grid>
-                              <Grid item>
-                                <Typography variant='caption'>
-
-                                  Generate Invoice
-
-                                </Typography>
-
-                              </Grid>
-
-                            </Grid>
-                          </IconButton>
-                        </Link>
-                      </TableCell> */}
-
-
-                      <TableCell align="center">
+                      {/* <TableCell align="center">
                         <IconButton>
                           <Grid container spacing={2}>
                             <Grid item>
@@ -187,14 +105,42 @@ class ViewAllOrders extends Component {
                             </Grid>
                           </Grid>
                         </IconButton>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-          </Paper>
-        </div>
+                      </TableCell> */}
+                    
+                  <TableBody>
+                    {this.props.ordrs?this.props.orders.map((order) => (
+                      <TableRow key={order.orderNumber}>
+                        <TableCell>{order.orderNumber}</TableCell>
+                        <TableCell>{order.orderName}</TableCell>
+                        <TableCell>{order.description}</TableCell>
+                        <TableCell>{order.company}</TableCell>
+                        <TableCell>{order.salesPerson}</TableCell>
+                        <TableCell>{order.shipmentAddress}</TableCell>
+                        <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>
+                          {order.status}
+                        </TableCell>
+
+                        <TableCell>
+                          <IconButton>
+                            <Link
+                              to={{
+                                pathname: "/siv",
+                                state: { order: order.orderNumber },
+                              }}
+                            >
+                              <PrintIcon />
+                            </Link>
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    )):""}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Paper>
+          </div>
+        
       </>
     );
   }
