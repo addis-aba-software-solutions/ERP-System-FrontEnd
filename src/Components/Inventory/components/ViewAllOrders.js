@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
-import getSiv  from "../../../store/Siv/action";
+import {getSiv}  from "../../../store/Siv/action";
 import PrintIcon from "@material-ui/icons/Print";
 import SearchBar from '../../SearchBar/SearchBar'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -56,6 +56,7 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
+    const createdOrders = this.props.orders?this.props.orders.filter((order) => {return order.status === "Created"}):"";
 
     return (
       <>
@@ -108,7 +109,7 @@ class ViewAllOrders extends Component {
                       </TableCell> */}
                     
                   <TableBody>
-                    {this.props.ordrs?this.props.orders.map((order) => (
+                    {createdOrders?createdOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>

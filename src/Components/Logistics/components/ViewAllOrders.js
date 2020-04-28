@@ -14,8 +14,6 @@ import {
   updateStatus,
 } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
-import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
 
@@ -55,6 +53,7 @@ class ViewAllOrders extends Component {
   }
   render() {
     const { classes } = this.props;
+    const issuedOrders = this.props.orders.filter((order)=>{ return order.status ==="Issued"} )
     
 
     return (
@@ -86,7 +85,7 @@ class ViewAllOrders extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.orders?this.props.orders.map((order) => (
+                    {issuedOrders?issuedOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>

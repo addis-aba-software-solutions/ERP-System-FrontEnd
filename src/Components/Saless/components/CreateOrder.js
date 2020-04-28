@@ -397,6 +397,19 @@ class CreateOrder extends Component {
                           display="flex"
                           justify="space-between"
                         >
+                     
+                       {
+                         this.props.errors.item_order?this.props.errors.item_order.map((item) => (
+                          <Error
+                          error={
+                            item.InventoryItem
+                             
+                         }
+                         />
+                         )
+                         
+                         ):null
+                       }
                           <Button
                             variant="contained"
                             color="primary"
@@ -421,7 +434,6 @@ class CreateOrder extends Component {
                 </React.Fragment>
               </Paper>
             </MuiPickersUtilsProvider>
-
 
           </main>
         </React.Fragment>

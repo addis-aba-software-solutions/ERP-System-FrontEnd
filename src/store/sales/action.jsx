@@ -39,8 +39,9 @@ function createOrder(data) {
         });
       })
       .catch((error) => {
-        console.log(error.response)
-        if (error.response.status ==+ 404) {
+
+        if(error.response && error.response.data){
+        if (error.response.status == 404) {
           Swal.fire({
             title: "<strong>Error <u>info</u></strong><p>",
             icon: "error",
@@ -63,6 +64,9 @@ function createOrder(data) {
             payload: error.response.data,
           });
         }
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -89,10 +93,15 @@ function getAllCompany() {
         });
       })
       .catch((error) => {
+        if( error.response && error.response.data){
         dispatch({
           type: salesConstants.COMPANY_GETALL_FAILURE,
           payload: error.response.data.errors,
         });
+      }
+      else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -121,10 +130,15 @@ function getAllItem() {
         });
       })
       .catch((error) => {
+        if(error.response && error.response.data) {
         dispatch({
           type: salesConstants.ITEM_GETALL_FAILURE,
           payload: error.response.data.errors,
         });
+      }
+      else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }

@@ -44,10 +44,14 @@ function addNewEmployee(data) {
         });
       })
       .catch((error) => {
+        if( error.response && error.response.data){
         dispatch({
           type: appConstants.REGISTER_FAILURE,
           payload: error.response.data.errors,
         });
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -74,11 +78,18 @@ function getEmploye() {
         });
       })
       .catch((error) => {
-        console.log(error);
+        if( error.response && error.response.data) {
         dispatch({
           type: itConstants.GETALL_FAILURE,
-          payload: error.response.data,
+          payload: error.response.data.errors,
         });
+      }
+      else {
+        Swal.fire({
+          title: "Error", text:"Connection Problem",
+          icon: "Error",
+        });
+            }
       });
   };
 }
@@ -107,10 +118,14 @@ function deleteEmploye(employeId) {
       })
       .catch((error) => {
         Swal.fire("Error!", "Something went wrogn.", "error");
+        if(error.response && error.response.data){
         dispatch({
           type: appConstants.DELETE_FAILURE,
           payload: error.response.data.errors,
         });
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -143,10 +158,14 @@ function deleteAccount(email) {
       })
 
       .catch((error) => {
+        if (error.response && error.response.data){
         dispatch({
           type: itConstants.DELETE_FAILURE,
           payload: error.response.data.errors,
         });
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -198,10 +217,14 @@ function addAccount(employe) {
         .catch((error) => {
           console.log(error.response)
           Swal.fire("Error!", "Something went wrong.", "error");
+          if(error.response && error.response.data){
           dispatch({
             type: itConstants.REGISTER_FAILURE,
             payload: error.response.data.errors,
           });
+        }else{
+          Swal.fire("Error", "Connection Problem", "Error")
+        }
         });
     });
   };
@@ -230,10 +253,14 @@ function getEmployeDetail(employeId) {
         });
       })
       .catch((error) => {
+        if(error.response && error.response.data){
         dispatch({
           type: appConstants.FETCH_SINGLE_FAILURE,
           payload: error.response.data.errors,
         });
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }
@@ -260,10 +287,14 @@ function getDepartment() {
         });
       })
       .catch((error) => {
+        if(error.response && error.response.data){
         dispatch({
           type: appConstants.FETCH_DEPARTMENT_FAILURE,
           payload: error.response.data.errors,
         });
+      }else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
       });
   };
 }

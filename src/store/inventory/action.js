@@ -26,11 +26,17 @@ export const addItem = (item) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    } else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };
 // GET ITEM
@@ -44,11 +50,17 @@ export const getItems = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    } else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };
 
@@ -67,10 +79,16 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response && err.response.data) {
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    }  else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };

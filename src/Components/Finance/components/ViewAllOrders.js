@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper, Typography, Grid } from "@material-ui/core";
+import {  withStyles, Paper } from "@material-ui/core";
 
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
@@ -7,7 +7,6 @@ import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
 import PrintIcon from "@material-ui/icons/Print";
@@ -56,6 +55,7 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
+    const deliveredOrders = this.props.orders?this.props.orders.filter((order) => {return order.status === "Delivered"}):"";
     
 
     return (
@@ -96,7 +96,7 @@ class ViewAllOrders extends Component {
                               </Grid>
                             </Grid> */}
                   <TableBody>
-                    {this.props.orders?this.props.orders.map((order) => (
+                    {deliveredOrders?deliveredOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
@@ -112,7 +112,7 @@ class ViewAllOrders extends Component {
                         <TableCell>
                           <IconButton>
                             
-                            <PDFDownloadLink document ={<Invoice ordernumber= {order.orderNumber}/>} fileName ="SIV.pdf" style={
+                            <PDFDownloadLink document ={<Invoice />} fileName ="invoice.pdf" style={
                               {
                                 textDecoration:"none",
                                 padding:"10px",

@@ -1,6 +1,7 @@
 import { GET_INVOICE, errorsConstant } from "../../constant/constants";
 import axios from "axios";
 import API from "../../api/API";
+import Swal from "sweetalert2";
 
 // GET INVOICE TAKES ORDER NUMBNER
 export const getInvoice = (order) => (dispatch) => {
@@ -13,10 +14,16 @@ export const getInvoice = (order) => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      if( err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    }  else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };

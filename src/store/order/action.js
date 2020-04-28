@@ -21,12 +21,17 @@ export const getOrders = () => (dispatch) => {
       });
     })
     .catch((err) => {
-   
-      
+      if(err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    } else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };
 
@@ -41,11 +46,17 @@ export const getStatus = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    }else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };
 
@@ -59,22 +70,27 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
   axios
     .put(API + `status/${orderNumber}/`, status, config)
     .then((res) => {
-      alert(orderNumber);
-      alert(status);
-      Swal.fire({
-        title: "Success",
-        icon: "success",
-      });
+      
       dispatch({
         type: UPDATE_STATUS,
         payload: { orderNumber: orderNumber, data: res.data },
       });
+      Swal.fire({
+        title: "Success",
+        icon: "success",
+      });
     })
     .catch((err) => {
-      console.log(err);
+      if(err.response && err.response.data){
       dispatch({
         type: errorsConstant.GET_ERRORS,
         payload: err.response.data,
       });
+    }else {
+      Swal.fire({
+        title: "Error", text:"Connection Problem",
+        icon: "Error",
+      });
+    }
     });
 };

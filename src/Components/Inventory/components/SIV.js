@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withStyles, Box, Paper, Typography, Grid } from "@material-ui/core";
+import React from "react";
+import { withStyles, Box, Paper, Typography, Grid, Button } from "@material-ui/core";
 import Logo from "../../../Assets/Trial.jpg";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -8,7 +8,8 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
-import getSiv  from "../../../store/Siv/action";
+import { getSiv } from "./../../../store/Siv/action";
+import {SIVPdf} from "./Printable_SIV"
 
 const styles = {
   root: {
@@ -56,19 +57,15 @@ const styles = {
   },
 };
 
-class SIV extends Component {
- 
-  componentDidUpdate() {
-
-    // this.props.getSiv(this.props.location.state.order);
-  
+class SIV extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+    };
   }
-  componentDidMount() {
-    this.props.getSiv(1);
-    console.log("this.props.siv_itemxxxxxx")
-    console.log(this.props.siv_item)
   
-
+  componentDidMount() {
+    this.props.getSiv(this.props.location.state.order);
   }
   render() {
    
@@ -118,21 +115,21 @@ class SIV extends Component {
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>Warehouse Name : </b> {this.props.sivs.warehouseName} */}
+                  <b>Warehouse Name : </b> {this.props.sivs.warehouseName}
                 </Typography>
                 <Typography
                   className={classes.text}
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>Issued By :</b> Yelekal Solomon */}
+                  <b>Issued By :</b> {localStorage.getItem("username")}
                 </Typography>
                 <Typography
                   className={classes.text}
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>SIV Date :</b> {this.props.sivs.sivDate} */}
+                  <b>SIV Date :</b> {this.props.sivs.sivDate}
                 </Typography>
               </Grid>
             </Grid>
@@ -175,6 +172,9 @@ class SIV extends Component {
               </TableBody>
             </Table>
           </TableContainer>
+          <Button>
+            Approve
+          </Button>
 
           <Box
             style={{
@@ -223,8 +223,6 @@ class SIV extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log("state.invoiceReducer.siv_item")
-  console.log(state.invoiceReducer)
   return {
     sivs: state.sivReducer.sivs,
     siv_item: state.sivReducer.siv_item,
