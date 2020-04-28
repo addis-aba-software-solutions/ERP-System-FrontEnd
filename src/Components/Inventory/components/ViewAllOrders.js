@@ -17,11 +17,6 @@ import SIV from './Printable_SIV';
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 
-
-
-
-
-
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -58,6 +53,7 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
+    const createdOrders = this.props.orders?this.props.orders.filter((order) => {return order.status === "Created"}):"";
 
     return (
       <>
@@ -110,7 +106,7 @@ class ViewAllOrders extends Component {
                       </TableCell> */}
                     
                   <TableBody>
-                    {this.props.ordrs?this.props.orders.map((order) => (
+                    {createdOrders?createdOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
