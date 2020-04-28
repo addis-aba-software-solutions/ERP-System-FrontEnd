@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { withStyles, Box, Paper, Typography, Grid } from "@material-ui/core";
+import React from "react";
+import { withStyles, Box, Paper, Typography, Grid, Button } from "@material-ui/core";
 import Logo from "../../../Assets/Trial.jpg";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -9,6 +9,7 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
 import { getSiv } from "../../../store/Siv/action";
+import {SIVPdf} from "./Printable_SIV"
 
 const styles = {
   root: {
@@ -60,16 +61,11 @@ class SIV extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sivs: [],
-      siv_item: [],
     };
   }
-  componentDidUpdate() {
-    alert("updated");
-  }
+  
   componentDidMount() {
-    alert("the alert is");
-    this.props.getSiv(1);
+    this.props.getSiv(this.props.location.state.order);
   }
   render() {
     const { classes } = this.props;
@@ -124,21 +120,21 @@ class SIV extends React.Component {
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>Warehouse Name : </b> {this.props.sivs.warehouseName} */}
+                  <b>Warehouse Name : </b> {this.props.sivs.warehouseName}
                 </Typography>
                 <Typography
                   className={classes.text}
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>Issued By :</b> Yelekal Solomon */}
+                  <b>Issued By :</b> {localStorage.getItem("username")}
                 </Typography>
                 <Typography
                   className={classes.text}
                   variant="body2"
                   gutterBottom
                 >
-                  {/* <b>SIV Date :</b> {this.props.sivs.sivDate} */}
+                  <b>SIV Date :</b> {this.props.sivs.sivDate}
                 </Typography>
               </Grid>
             </Grid>
@@ -167,7 +163,7 @@ class SIV extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.siv_item.map((item) => (
+                {this.props.siv_item?this.props.siv_item.map((item) => (
                   <TableRow key={item.sivId}>
                     <TableCell component="th" scope="row">
                       {item.itemName}
@@ -175,10 +171,13 @@ class SIV extends React.Component {
                     <TableCell align="right">5</TableCell>
                     <TableCell align="right">{item.quantity}</TableCell>
                   </TableRow>
-                ))}
+                )):""}
               </TableBody>
             </Table>
           </TableContainer>
+          <Button>
+            Approve
+          </Button>
 
           <Box
             style={{
@@ -227,8 +226,8 @@ class SIV extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-  sivs: state.invoiceReducer.sivs,
-  siv_item: state.invoiceReducer.siv_item,
+  sivs: state.sivReducer.sivs,
+  siv_item: state.sivReducer.siv_item,
   errors: state.errorsReducer.errors,
 });
 

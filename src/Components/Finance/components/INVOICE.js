@@ -606,4 +606,4 @@ const mapStateToProps = (state) => ({
     errors: state.errorsReducer.errors,
   });
 
-export default connect(mapStateToProps, {getInvoice})(withStyles(styles)(Invoice));
+export default connect(mapStateToProps, {getInvoice})(Invoice);
