@@ -47,14 +47,14 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  
+
   componentDidMount() {
     this.props.getOrders();
   }
   render() {
     const { classes } = this.props;
-    const issuedOrders = this.props.orders.filter((order)=>{ return order.status ==="Issued"} )
-    
+    const issuedOrders = this.props.orders.filter((order) => { return order.status === "Issued" || order.status === "Delivered" })
+
 
     return (
       <>
@@ -85,7 +85,7 @@ class ViewAllOrders extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {issuedOrders?issuedOrders.map((order) => (
+                    {issuedOrders ? issuedOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
@@ -97,29 +97,36 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.status}</TableCell>
 
                         <TableCell>
-                          <button
-                            onClick={this.props.updateStatus.bind(
-                              this,
-                              order.orderNumber,
-                              {
-                                status: "Delivered",
-                              },
-                            )}
-                          >
-                            Delivered
-                          </button>
+                          {order.status === "Delivered" ? (
+                            <TableCell>{order.status}</TableCell>
+                          ) :
+                            (
+                              <button
+                                onClick={this.props.updateStatus.bind(
+                                  this,
+                                  order.orderNumber,
+                                  {
+                                    status: "Delivered",
+                                  },
+                                )}
+                              >
+                                Delivered
+                              </button>
+                            )
+                          }
+
                         </TableCell>
                         <TableCell>
                           <Link to='./ViewSingleOrder'>
-                          <Button
-                          >
-                            See More
+                            <Button
+                            >
+                              See More
                           </Button>
                           </Link>
 
                         </TableCell>
                       </TableRow>
-                    )):""}
+                    )) : ""}
                   </TableBody>
                 </Table>
               </TableContainer>
@@ -136,6 +143,6 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
 });
 
-export default connect(mapStateToProps, { getOrders,updateStatus })(
+export default connect(mapStateToProps, { getOrders, updateStatus })(
   withStyles(styles)(ViewAllOrders)
 );

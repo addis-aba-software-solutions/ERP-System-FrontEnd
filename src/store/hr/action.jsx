@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { appConstants, itConstants } from "../../constant/constants";
+import headers from "./../headers";
 
 function addNewEmployee(data) {
   return (dispatch) => {
@@ -30,10 +31,7 @@ function addNewEmployee(data) {
         method: "POST",
         url: API + "employe/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
         data: param,
       })
       .then((response) => {
@@ -44,14 +42,14 @@ function addNewEmployee(data) {
         });
       })
       .catch((error) => {
-        if( error.response && error.response.data){
-        dispatch({
-          type: appConstants.REGISTER_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: appConstants.REGISTER_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }
@@ -66,10 +64,7 @@ function getEmploye() {
         method: "GET",
         url: API + "employe/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
       })
       .then((response) => {
         dispatch({
@@ -78,18 +73,18 @@ function getEmploye() {
         });
       })
       .catch((error) => {
-        if( error.response && error.response.data) {
-        dispatch({
-          type: itConstants.GETALL_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }
-      else {
-        Swal.fire({
-          title: "Error", text:"Connection Problem",
-          icon: "Error",
-        });
-            }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: itConstants.GETALL_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "Error",
+          });
+        }
       });
   };
 }
@@ -104,10 +99,7 @@ function deleteEmploye(employeId) {
         method: "DELETE",
         url: API + "employe/" + employeId,
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
       })
       .then((response) => {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
@@ -118,14 +110,14 @@ function deleteEmploye(employeId) {
       })
       .catch((error) => {
         Swal.fire("Error!", "Something went wrogn.", "error");
-        if(error.response && error.response.data){
-        dispatch({
-          type: appConstants.DELETE_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: appConstants.DELETE_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }
@@ -141,10 +133,7 @@ function deleteAccount(email) {
         method: "DELETE",
         url: API + "account",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
         data: {
           email: email,
         },
@@ -158,14 +147,14 @@ function deleteAccount(email) {
       })
 
       .catch((error) => {
-        if (error.response && error.response.data){
-        dispatch({
-          type: itConstants.DELETE_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: itConstants.DELETE_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }
@@ -191,10 +180,7 @@ function addAccount(employe) {
           method: "POST",
           url: API + "account/",
           responseType: "json",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + localStorage.getItem("token"),
-          },
+          headers: headers,
           data: {
             username: employe.email,
             password: employe.email,
@@ -207,7 +193,6 @@ function addAccount(employe) {
           },
         })
         .then((response) => {
-         
           Swal.fire("created!", "Account has been added.", "success");
           dispatch({
             type: itConstants.REGISTER_SUCCESS,
@@ -215,16 +200,16 @@ function addAccount(employe) {
           });
         })
         .catch((error) => {
-          console.log(error.response)
+          console.log(error.response);
           Swal.fire("Error!", "Something went wrong.", "error");
-          if(error.response && error.response.data){
-          dispatch({
-            type: itConstants.REGISTER_FAILURE,
-            payload: error.response.data.errors,
-          });
-        }else{
-          Swal.fire("Error", "Connection Problem", "Error")
-        }
+          if (error.response && error.response.data) {
+            dispatch({
+              type: itConstants.REGISTER_FAILURE,
+              payload: error.response.data.errors,
+            });
+          } else {
+            Swal.fire("Error", "Connection Problem", "Error");
+          }
         });
     });
   };
@@ -241,10 +226,7 @@ function getEmployeDetail(employeId) {
         method: "GET",
         url: API + "employe/" + employeId,
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
       })
       .then((response) => {
         dispatch({
@@ -253,14 +235,14 @@ function getEmployeDetail(employeId) {
         });
       })
       .catch((error) => {
-        if(error.response && error.response.data){
-        dispatch({
-          type: appConstants.FETCH_SINGLE_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: appConstants.FETCH_SINGLE_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }
@@ -276,9 +258,7 @@ function getDepartment() {
         method: "GET",
         url: API + "department/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: headers,
       })
       .then((response) => {
         dispatch({
@@ -287,14 +267,14 @@ function getDepartment() {
         });
       })
       .catch((error) => {
-        if(error.response && error.response.data){
-        dispatch({
-          type: appConstants.FETCH_DEPARTMENT_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: appConstants.FETCH_DEPARTMENT_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }

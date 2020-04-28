@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {  withStyles, Paper } from "@material-ui/core";
+import { withStyles, Paper } from "@material-ui/core";
 
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
 import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
-import { PDFDownloadLink} from "@react-pdf/renderer"
+import { PDFDownloadLink } from "@react-pdf/renderer"
 import AutorenewIcon from "@material-ui/icons/Autorenew"
 import SearchBar from '../../SearchBar/SearchBar'
 
@@ -41,7 +41,7 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  
+
   updateSearch(e) {
     this.setState({
       search: e.target.value.substr(0, 20),
@@ -55,12 +55,15 @@ class ViewAllOrders extends Component {
 
   render() {
     const { classes } = this.props;
-    const deliveredOrders = this.props.orders?this.props.orders.filter((order) => {
-      return order.status === "Delivered"}):"";
-   
-    
-    
-    
+    const deliveredOrders = this.props.orders ? this.props.orders.filter((order) => {
+      console.log(order.status);
+
+      return (order.status === "Delivered") || (order.status === "Invoiced")
+    }) : "";
+
+
+
+
 
     return (
       <>
@@ -72,7 +75,6 @@ class ViewAllOrders extends Component {
                 <TableHead>
                   <TableRow className={classes.table}>
                     <TableCell>Order Number</TableCell>
-                    <TableCell>Order Name</TableCell>
                     <TableCell align='center'>Company</TableCell>
                     <TableCell align='center'>Sales Person</TableCell>
                     <TableCell align='center'>Shipment Address</TableCell>
@@ -81,7 +83,7 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                            {/* <Grid container>
+                {/* <Grid container>
                               <Grid item>
                                 <IconButton>
                                   <PrintIcon style={{
@@ -99,47 +101,47 @@ class ViewAllOrders extends Component {
                               </Typography>
                               </Grid>
                             </Grid> */}
-                  <TableBody>
-                    {deliveredOrders?deliveredOrders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {order.status}
-                        </TableCell>
+                <TableBody>
+                  {deliveredOrders ? deliveredOrders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
 
-                        <TableCell>
-                          
-                            
-                            <PDFDownloadLink  fileName ="invoice.pdf" style={
-                              {
-                                textDecoration:"none",
-                                padding:"10px",
-                                color:"#4a4a4a"
-                              }
-                            }>
-                              {
-                                ({loading})=> true?
-                                 <AutorenewIcon/>:
-                                <PrintIcon />
-                              }
-                              
-                            </PDFDownloadLink>
-                          
-                        </TableCell>
-                      </TableRow>
-                    )):""}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
-       
+                      <TableCell>{order.description}</TableCell>
+                      <TableCell>{order.company}</TableCell>
+                      <TableCell>{order.salesPerson}</TableCell>
+                      <TableCell>{order.shipmentAddress}</TableCell>
+                      <TableCell>{order.orderDate}</TableCell>
+                      <TableCell>
+                        {order.status}
+                      </TableCell>
+
+                      <TableCell>
+
+
+                        <PDFDownloadLink fileName="invoice.pdf" style={
+                          {
+                            textDecoration: "none",
+                            padding: "10px",
+                            color: "#4a4a4a"
+                          }
+                        }>
+                          {
+                            ({ loading }) => true ?
+                              <AutorenewIcon /> :
+                              <PrintIcon />
+                          }
+
+                        </PDFDownloadLink>
+
+                      </TableCell>
+                    </TableRow>
+                  )) : ""}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </div>
+
       </>
     );
   }

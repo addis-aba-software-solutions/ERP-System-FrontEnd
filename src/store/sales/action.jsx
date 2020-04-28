@@ -2,7 +2,10 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { salesConstants } from "../../constant/constants";
-
+const headers = {
+  "Content-Type": "application/json",
+  Authorization: "Bearer" + localStorage.getItem("token"),
+};
 function createOrder(data) {
   var params = {
     orderNumber: data.orderNumber,
@@ -25,10 +28,7 @@ function createOrder(data) {
         method: "POST",
         url: API + "order/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
         data: params,
       })
       .then((response) => {
@@ -41,35 +41,34 @@ function createOrder(data) {
       .catch((error) => {
         console.log("error.response");
         console.log(error.response);
-        
-        if(error.response && error.response.data){
-        if (error.response.status == 404) {
-          Swal.fire({
-            title: "<strong>Error <u>info</u></strong><p>",
-            icon: "error",
-            html:
-              "<p>" +
-              error.response.data.Error +
-              "</p><b>Item Name :</b>" +
-              error.response.data.item.itemName +
-              " <br/>" +
-              "<b>available quantity :</b> " +
-              error.response.data.item.available,
-            // showCloseButton: true,
-            showCancelButton: false,
-            focusConfirm: false,
-            confirmButtonText: "OK!",
-          });
-        } else {  
 
-          dispatch({
-            type: salesConstants.ORDER_FAILURE,
-            payload: error.response.data,
-          });
+        if (error.response && error.response.data) {
+          if (error.response.status == 404) {
+            Swal.fire({
+              title: "<strong>Error <u>info</u></strong><p>",
+              icon: "error",
+              html:
+                "<p>" +
+                error.response.data.Error +
+                "</p><b>Item Name :</b>" +
+                error.response.data.item.itemName +
+                " <br/>" +
+                "<b>available quantity :</b> " +
+                error.response.data.item.available,
+              // showCloseButton: true,
+              showCancelButton: false,
+              focusConfirm: false,
+              confirmButtonText: "OK!",
+            });
+          } else {
+            dispatch({
+              type: salesConstants.ORDER_FAILURE,
+              payload: error.response.data,
+            });
+          }
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
         }
-      }else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
       });
   };
 }
@@ -84,10 +83,7 @@ function getAllCompany() {
         method: "GET",
         url: API + "company/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
+        headers: headers,
       })
       .then((response) => {
         dispatch({
@@ -96,15 +92,14 @@ function getAllCompany() {
         });
       })
       .catch((error) => {
-        if( error.response && error.response.data){
-        dispatch({
-          type: salesConstants.COMPANY_GETALL_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }
-      else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: salesConstants.COMPANY_GETALL_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }
@@ -133,15 +128,14 @@ function getAllItem() {
         });
       })
       .catch((error) => {
-        if(error.response && error.response.data) {
-        dispatch({
-          type: salesConstants.ITEM_GETALL_FAILURE,
-          payload: error.response.data.errors,
-        });
-      }
-      else {
-        Swal.fire("Error", "Connection Problem", "Error")
-      }
+        if (error.response && error.response.data) {
+          dispatch({
+            type: salesConstants.ITEM_GETALL_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
       });
   };
 }

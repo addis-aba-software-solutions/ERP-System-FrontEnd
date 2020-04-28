@@ -24,9 +24,9 @@ import Select from "@material-ui/core/Select";
 import { connect } from "react-redux";
 import Error from "../../../error/error";
 import API from "../../../api/API";
-import { addItem, getItems } from "../../../store/inventory/action";
+import { addItem, getItems, updateItemQuantity } from "../../../store/inventory/action";
 import { getInvoice } from "../../../store/Invoice/action";
-import  {getSiv}  from "../../../store/Siv/action";
+import { getSiv } from "../../../store/Siv/action";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
@@ -74,11 +74,15 @@ class AddNewProduct extends Component {
       catagoryValue: "",
       catagoryList: [],
       items: [],
+      itemId: '',
+      item_quantity: '',
     };
 
     this.submit = this.submit.bind(this);
+    this.update = this.update.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.catagoryDropDown = this.catagoryDropDown.bind(this);
+    this.ItemDropDown = this.ItemDropDown.bind(this);
   }
 
   componentDidMount() {
@@ -92,13 +96,18 @@ class AddNewProduct extends Component {
       .catch((error) => {
         console.log(error);
       });
-    console.log(this.props.getItems());
+
     this.props.getItems();
-    
+
   }
   catagoryDropDown(e) {
     this.setState({
       catagoryValue: e.target.value,
+    });
+  }
+  ItemDropDown(e) {
+    this.setState({
+      itemId: e.target.value,
     });
   }
   submit = (e) => {
@@ -113,6 +122,14 @@ class AddNewProduct extends Component {
       catagory: this.state.catagoryValue,
     };
     this.props.addItem(newItem);
+  };
+
+  update = (e) => {
+    this.props.updateItemQuantity(
+      this.state.itemId,
+      this.state.item_quantity
+
+    );
   };
 
   handleChange(e) {
@@ -130,6 +147,8 @@ class AddNewProduct extends Component {
       quantity,
       catagoryValue,
       itemName,
+      itemId,
+      item_quantity,
     } = this.state;
     const { classes } = this.props;
 
@@ -137,8 +156,8 @@ class AddNewProduct extends Component {
       <div className={classes.recentOrders}>
         <React.Fragment>
 
-          <Grid container>
-            <Grid item>
+          <Grid container xs={12}>
+            <Grid item xs={8}>
               <div className={classes.container}>
                 <Paper className={classes.paper}>
                   <Typography
@@ -173,7 +192,6 @@ class AddNewProduct extends Component {
                         }
                       />
                     </Grid>
-
                     <Grid item xs={12} sm={6}></Grid>
 
                     <Grid item xs={12} sm={3}>
@@ -320,6 +338,96 @@ class AddNewProduct extends Component {
 
 
             </Grid>
+            <Grid item xs={4}>
+              <div className={classes.container}>
+                <Paper className={classes.paper}>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    style={{
+                      display: "flex",
+                      justify: "flex-start",
+                    }}
+                  >
+                    <b>Update Existing Item</b>
+                  </Typography>
+                  <Divider className={classes.spacer} />
+
+                  <Grid container spacing={3}>
+
+
+
+
+                    <Grid item xs={12} sm={12}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">
+                          Item
+                    </InputLabel>
+                        <Select
+                          onChange={this.ItemDropDown}
+                          value={itemId}
+                          native
+                          id="grouped-native-select"
+
+                        >
+                          <option aria-label="None" value="" />
+                          {this.props.items.map((item) => (
+                            <option
+                              value={item.InventoryItemId}
+                              key={item.InventoryItemId}
+                            >
+                              {item.itemName}
+                            </option>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      <Error
+                        error={
+                          this.props.errors.catagory
+                            ? this.props.errors.catagory
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={12}>
+                      <TextField
+                        required
+                        id="item_quantity"
+                        name="item_quantity"
+                        label="Discount"
+                        fullWidth
+                        autoComplete="Contract_Info"
+                        value={item_quantity}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.discount
+                            ? this.props.errors.discount
+                            : null
+                        }
+                      />
+                    </Grid>
+
+
+                    <Grid item xs={12} sm={12}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.update}
+                        className={classes.button}
+                      >
+                        Update
+                  </Button>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </div>
+
+
+
+            </Grid>
 
           </Grid>
 
@@ -419,7 +527,9 @@ const mapStateToProps = (state) => ({
 
 export default connect(mapStateToProps, {
   addItem,
+  updateItemQuantity,
   getItems,
   getInvoice,
   getSiv,
+
 })(withStyles(styles)(AddNewProduct));

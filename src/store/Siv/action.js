@@ -2,11 +2,12 @@ import { GET_SIV, UPDATE_SIV, errorsConstant } from "../../constant/constants";
 import axios from "axios";
 import Swal from "sweetalert2";
 import API from "../../api/API";
+import headers from "./../headers";
 
 // GET SIV TAKES ORDER NUMBER
 export const getSiv = (order) => (dispatch) => {
   axios
-    .get(API + `generatesiv/${order}`)
+    .get(API + `generatesiv/${order}`, headers)
     .then((res) => {
       dispatch({
         type: GET_SIV,
@@ -14,32 +15,30 @@ export const getSiv = (order) => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }else{
-      Swal.fire("Error", "Connection Problem", "Error")
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire("Error", "Connection Problem", "Error")
+      }
     });
 };
 
 // UPDATE siv Status
 export const updateSiv = (orderNumber, status) => (dispatch) => {
-  console.log("order");
-  console.log(orderNumber);
-  console.log(status);
-  
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+
+
+  const headers = {
+    'Content-Type': 'application/json',
+
+  }
+
   axios
-    .put(API + `generatesiv/${orderNumber}/`, status, config)
+    .put(API + `generatesiv/${orderNumber}/`, status, headers)
     .then((res) => {
-      
+
       dispatch({
         type: UPDATE_SIV,
         payload: { orderNumber: orderNumber, data: res.data },
@@ -50,16 +49,16 @@ export const updateSiv = (orderNumber, status) => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };

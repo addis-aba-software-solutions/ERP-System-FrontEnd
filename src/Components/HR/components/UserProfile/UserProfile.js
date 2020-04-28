@@ -99,6 +99,9 @@ class UserProfile extends Component {
 
   submit = () => {
     this.props.addNewEmployee(this.state);
+  
+ 
+   
   };
 
   departmentDropDown(e) {
@@ -487,10 +490,13 @@ class UserProfile extends Component {
 }
 
 function mapStateToProps(state) {
+
   return {
     loading: state.hrReducer.loading,
     users: state.hrReducer.users,
     errors: state.hrReducer.errors,
+    success:state.hrReducer.success,
+    clear:state.hrReducer.clear,
     department: state.hrReducer.department,
   };
 }

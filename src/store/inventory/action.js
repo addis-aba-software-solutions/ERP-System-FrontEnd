@@ -2,27 +2,20 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { inventoryConstant, errorsConstant } from "../../constant/constants";
-const headers= {
-    'Content-Type': 'application/json',
-    Authorization: "Bearer" + localStorage.getItem("token")
-  }
+import headers from "./../headers";
+
 
 
 // ADD ITEM
 export const addItem = (item) => (dispatch) => {
-  console.log("ddfff");
-  console.log("ddfff");
-  console.log(item);
-  
-  
   axios
-  .request({
-    method: "POST",
-    url: API + "item/",
-    responseType: "json",
-    headers: headers,
-    data: item,
-  }).then((res) => {
+    .request({
+      method: "POST",
+      url: API + "item/",
+      responseType: "json",
+      headers: headers,
+      data: item,
+    }).then((res) => {
       Swal.fire({
         title: "Success",
         icon: "success",
@@ -33,17 +26,17 @@ export const addItem = (item) => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    } else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };
 // GET ITEM
@@ -57,45 +50,92 @@ export const getItems = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    } else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };
 
-// DELETE ITEM
-export const deleteItem = (InventoryItemId) => (dispatch) => {
+export const updateItemQuantity = (itemId, quantity) => (dispatch) => {
   axios
-    .delete(API + `item/${InventoryItemId}/`,headers)
-    .then((res) => {
+    .request({
+      method: "PUT",
+      url: API + `item/${itemId}/`,
+      responseType: "json",
+      headers: headers,
+      data: {
+        quantity: quantity
+      },
+    }).then((res) => {
       Swal.fire({
         title: "Success",
         icon: "success",
       });
       dispatch({
-        type: inventoryConstant.DELETE_ITEM,
-        payload: InventoryItemId,
+        type: inventoryConstant.UDATE_ITEM,
+        payload: res.data,
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data) {
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }  else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
+};
+// DELETE ITEM
+export const deleteItem = (InventoryItemId) => (dispatch) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Are you not revert this action!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes,",
+    cancelButtonText: "no",
+  }).then((result) => {
+    if (result.value) {
+      axios
+        .delete(API + `item/${InventoryItemId}/`, headers)
+        .then((res) => {
+          Swal.fire({
+            title: "Success",
+            icon: "success",
+          });
+          dispatch({
+            type: inventoryConstant.DELETE_ITEM,
+            payload: InventoryItemId,
+          });
+        })
+        .catch((err) => {
+          if (err.response && err.response.data) {
+            dispatch({
+              type: errorsConstant.GET_ERRORS,
+              payload: err.response.data,
+            });
+          } else {
+            Swal.fire({
+              title: "Error", text: "Connection Problem",
+              icon: "Error",
+            });
+          }
+        });
+    }
+  });
 };

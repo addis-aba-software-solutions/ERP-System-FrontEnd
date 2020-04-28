@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button, withStyles, Paper, IconButton, Typography, Grid } from "@material-ui/core";
 
-import {Table} from "@material-ui/core";
+import { Table } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableContainer from "@material-ui/core/TableContainer";
@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
-import {getSiv}  from "../../../store/Siv/action";
+import { getSiv } from "../../../store/Siv/action";
 import PrintIcon from "@material-ui/icons/Print";
 import SearchBar from '../../SearchBar/SearchBar'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -49,14 +49,14 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-  
+
   componentDidMount() {
     this.props.getOrders();
   }
 
   render() {
     const { classes } = this.props;
-    const createdOrders = this.props.orders?this.props.orders.filter((order) => {return order.status === "Created"}):"";
+    const createdOrders = this.props.orders ? this.props.orders.filter((order) => { return order.status === "Created" || order.status === "Issued" }) : "";
 
     return (
       <>
@@ -78,10 +78,10 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                
 
 
-                      {/* <TableCell align="center">
+
+                {/* <TableCell align="center">
                         <IconButton>
                           <Grid container spacing={2}>
                             <Grid item>
@@ -107,21 +107,21 @@ class ViewAllOrders extends Component {
                           </Grid>
                         </IconButton>
                       </TableCell> */}
-                    
-                  <TableBody>
-                    {createdOrders?createdOrders.map((order) => (
-                      <TableRow key={order.orderNumber}>
-                        <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>
-                          {order.status}
-                        </TableCell>
 
+                <TableBody>
+                  {createdOrders ? createdOrders.map((order) => (
+                    <TableRow key={order.orderNumber}>
+                      <TableCell>{order.orderNumber}</TableCell>
+                      <TableCell>{order.orderName}</TableCell>
+                      <TableCell>{order.description}</TableCell>
+                      <TableCell>{order.company}</TableCell>
+                      <TableCell>{order.salesPerson}</TableCell>
+                      <TableCell>{order.shipmentAddress}</TableCell>
+                      <TableCell>{order.orderDate}</TableCell>
+                      <TableCell>
+                        {order.status}
+                      </TableCell>
+                      {order.status === "Issued" ? null : (
                         <TableCell>
                           <IconButton>
                             <Link
@@ -134,14 +134,16 @@ class ViewAllOrders extends Component {
                             </Link>
                           </IconButton>
                         </TableCell>
-                      </TableRow>
-                    )):""}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Paper>
-          </div>
-        
+                      )}
+
+                    </TableRow>
+                  )) : ""}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Paper>
+        </div>
+
       </>
     );
   }
@@ -154,6 +156,6 @@ const mapStateToProps = (state) => ({
   siv_item: state.invoiceReducer.siv_item,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus, getSiv})(
+export default connect(mapStateToProps, { getOrders, getStatus, getSiv })(
   withStyles(styles)(ViewAllOrders)
 );

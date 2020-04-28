@@ -2,7 +2,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { appConstants } from "../../constant/constants";
-
+import headers from "./../headers";
 function login(username, password) {
   return (dispatch) => {
     var data = {
@@ -19,9 +19,7 @@ function login(username, password) {
         method: "POST",
         url: API + "login/",
         responseType: "json",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: headers,
         data: data,
       })
       .then((user) => {
@@ -59,12 +57,11 @@ function logout() {
       confirmButtonText: "Yes",
     }).then((result) => {
       if (result.value) {
-        
         dispatch({
           type: appConstants.LOGOUT,
           payload: false,
         });
-        window.location.href = '/';
+        window.location.href = "/";
       }
     });
   };

@@ -69,14 +69,10 @@ class EmployeTable extends React.Component {
       }
     });
   }
-  updateSearch(e) {
-    this.setState({
-      search: e.target.value.substr(0, 20),
-    });
-  }
+
 
   render() {
-    const {  error } = this.state;
+    const { error } = this.state;
     const { classes } = this.props;
 
     // let filteredEmployee = employeeInfo.filter((employeeInfos) => {

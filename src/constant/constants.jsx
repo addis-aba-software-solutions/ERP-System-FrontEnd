@@ -30,6 +30,7 @@ export const appConstants = {
 
 export const inventoryConstant = {
   ADD_ITEM: "ADD_ITEM",
+  UDATE_ITEM: "UDATE_ITEM",
   GET_ITEMS: "GET_ITEMS",
   ERROR: "ERROR",
   ITEM_REQUEST: "ITEM_REQUEST",

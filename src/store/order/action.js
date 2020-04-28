@@ -8,6 +8,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import API from "../../api/API";
 
+
 // GET ORDER
 export const getOrders = () => (dispatch) => {
   axios
@@ -21,17 +22,17 @@ export const getOrders = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    } else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };
 
@@ -46,17 +47,17 @@ export const getStatus = () => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };
 
@@ -67,14 +68,12 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
       'Content-Type': 'application/json'
     }
   };
-  console.log("ggyhghg");
-  console.log(orderNumber);
-  console.log(status);
+
   axios
-  
+
     .put(API + `status/${orderNumber}/`, status, config)
     .then((res) => {
-      
+
       dispatch({
         type: UPDATE_STATUS,
         payload: { orderNumber: orderNumber, data: res.data },
@@ -85,16 +84,16 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
       });
     })
     .catch((err) => {
-      if(err.response && err.response.data){
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };

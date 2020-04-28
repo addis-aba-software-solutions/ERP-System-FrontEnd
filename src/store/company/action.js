@@ -2,13 +2,14 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { companyConstant, errorsConstant } from "../../constant/constants";
+import headers from './../headers'
 
 // ADD COMPANY
 export const addCompany = (company) => (dispatch) => {
   console.log("th item");
   console.log(company);
   axios
-    .post(API + "company/", company)
+    .post(API + "company/", company, headers)
     .then((res) => {
       Swal.fire({
         title: "Success",
@@ -34,7 +35,7 @@ export const addCompany = (company) => (dispatch) => {
 // GET COMPANYS
 export const getCompany = () => (dispatch) => {
   axios
-    .get(API + "company/")
+    .get(API + "company/", headers)
     .then((res) => {
       dispatch({
         type: companyConstant.GET_COMPANYS,
@@ -43,44 +44,58 @@ export const getCompany = () => (dispatch) => {
     })
     .catch((err) => {
       if (err.response && err.response.data) {
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }  else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
-    }
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "Error",
+        });
+      }
     });
 };
 
 // DELETE COMPANY
 export const deleteCompany = (companyId) => (dispatch) => {
-  axios
-    .delete(API + `company/${companyId}/`)
-    .then((res) => {
-      Swal.fire({
-        title: "Success",
-        icon: "success",
-      });
-      dispatch({
-        type: companyConstant.DELETE_COMPANY,
-        payload: companyId,
-      });
-    })
-    .catch((err) => {
-      if(err.response && err.response.data) {
-      dispatch({
-        type: errorsConstant.GET_ERRORS,
-        payload: err.response.data,
-      });
-    }  else {
-      Swal.fire({
-        title: "Error", text:"Connection Problem",
-        icon: "Error",
-      });
+  Swal.fire({
+    title: "Are you sure?",
+    text: "Are you not revert this action!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes,",
+    cancelButtonText: "no",
+  }).then((result) => {
+    if (result.value) {
+      axios
+        .delete(API + `company/${companyId}/`, headers)
+        .then((res) => {
+
+          Swal.fire({
+            title: "Success",
+            icon: "success",
+          });
+          dispatch({
+            type: companyConstant.DELETE_COMPANY,
+            payload: companyId,
+          });
+        })
+        .catch((err) => {
+          if (err.response && err.response.data) {
+            dispatch({
+              type: errorsConstant.GET_ERRORS,
+              payload: err.response.data,
+            });
+          } else {
+            Swal.fire({
+              title: "Error", text: "Connection Problem",
+              icon: "Error",
+            });
+          }
+        });
     }
-    });
+  });
 };
