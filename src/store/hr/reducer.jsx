@@ -210,39 +210,6 @@ export default function hrReducer(state = initialState, action) {
       };
     }
 
-    case itConstants.REGISTER_REQUEST: {
-      return {
-        ...state,
-        loading: true,
-      };
-    }
-
-    case itConstants.REGISTER_SUCCESS: {
-      const index = state.employees.findIndex(
-        (emp) => emp.email === action.payload
-      );
-      const employees = state.employees[index];
-      employees.has_account = true;
-
-      return {
-        ...state,
-        users: employees,
-        errors: [],
-        loading: false,
-        isLogin: true,
-        success: true,
-      };
-    }
-    case itConstants.REGISTER_FAILURE: {
-      return {
-        ...state,
-        errors: action.payload,
-        loading: false,
-        isLogin: false,
-        success: false,
-      };
-    }
-
     case itConstants.GETALL_REQUEST: {
       return {
         ...state,

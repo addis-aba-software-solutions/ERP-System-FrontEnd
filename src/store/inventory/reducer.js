@@ -16,6 +16,7 @@ export default function inventoryReducer(state = initialState, action) {
         ...state,
         items: [...state.items, action.payload],
         loading: false,
+        errors:[],
       };
 
     case inventoryConstant.DELETE_ITEM:
