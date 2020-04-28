@@ -94,6 +94,17 @@ class AddNewCompany extends Component {
       tinNumber: this.state.tinNumber,
     };
     this.props.addCompany(newCompany);
+    if(this.props.success){
+    this.setState({
+      companyName:"",
+      generalManger: "",
+      contactPerson: "",
+      workingField: "",
+      paymentOption: "",
+      email: "",
+      tinNumber: "",
+    });
+  };
   };
 
   handleChange(e) {
@@ -381,6 +392,7 @@ class AddNewCompany extends Component {
 const mapStateToProps = (state) => ({
   companys: state.companyReducer.companys,
   errors: state.errorsReducer.errors,
+  success:state.companyReducer.success
 });
 
 export default connect(mapStateToProps, { addCompany, getCompany })(

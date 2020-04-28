@@ -67,7 +67,11 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
       'Content-Type': 'application/json'
     }
   };
+  console.log("ggyhghg");
+  console.log(orderNumber);
+  console.log(status);
   axios
+  
     .put(API + `status/${orderNumber}/`, status, config)
     .then((res) => {
       

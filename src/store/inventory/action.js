@@ -2,20 +2,27 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
 import { inventoryConstant, errorsConstant } from "../../constant/constants";
-const config = {
-  headers: {
+const headers= {
     'Content-Type': 'application/json',
     Authorization: "Bearer" + localStorage.getItem("token")
   }
-};
+
 
 // ADD ITEM
 export const addItem = (item) => (dispatch) => {
+  console.log("ddfff");
+  console.log("ddfff");
+  console.log(item);
   
   
   axios
-    .post(API + "item/", config, item)
-    .then((res) => {
+  .request({
+    method: "POST",
+    url: API + "item/",
+    responseType: "json",
+    headers: headers,
+    data: item,
+  }).then((res) => {
       Swal.fire({
         title: "Success",
         icon: "success",
@@ -42,7 +49,7 @@ export const addItem = (item) => (dispatch) => {
 // GET ITEM
 export const getItems = () => (dispatch) => {
   axios
-    .get(API + "item/", config)
+    .get(API + "item/", headers)
     .then((res) => {
       dispatch({
         type: inventoryConstant.GET_ITEMS,
@@ -67,7 +74,7 @@ export const getItems = () => (dispatch) => {
 // DELETE ITEM
 export const deleteItem = (InventoryItemId) => (dispatch) => {
   axios
-    .delete(API + `item/${InventoryItemId}/`,config)
+    .delete(API + `item/${InventoryItemId}/`,headers)
     .then((res) => {
       Swal.fire({
         title: "Success",

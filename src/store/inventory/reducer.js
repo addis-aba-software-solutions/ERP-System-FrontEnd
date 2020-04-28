@@ -1,6 +1,7 @@
 import { inventoryConstant } from "../../constant/constants";
 const initialState = {
   items: [],
+  errors:[],
 };
 
 export default function inventoryReducer(state = initialState, action) {

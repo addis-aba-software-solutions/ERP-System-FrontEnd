@@ -1,6 +1,7 @@
 import { companyConstant } from "../../constant/constants";
 const initialState = {
   companys: [],
+  success:false,
 };
 
 export default function companyReducer(state = initialState, action) {
@@ -15,6 +16,7 @@ export default function companyReducer(state = initialState, action) {
       return {
         ...state,
         companys: [...state.companys, action.payload],
+        success:true,
       };
 
     case companyConstant.DELETE_COMPANY:

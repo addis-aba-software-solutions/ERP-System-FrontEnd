@@ -94,9 +94,7 @@ class AddNewProduct extends Component {
       });
     console.log(this.props.getItems());
     this.props.getItems();
-    // For checking the invoice is in the state
-    this.props.getInvoice(2);
-    this.props.getSiv(2);
+    
   }
   catagoryDropDown(e) {
     this.setState({

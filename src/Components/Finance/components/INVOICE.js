@@ -107,6 +107,12 @@ const styles = StyleSheet.create({
 class Invoice extends Component {
     componentDidMount() {
     this.props.getInvoice(this.props.orderNumber);
+    console.log("invoices");
+    console.log(this.props.orderNumber);
+
+    console.log(this.props.invoices);
+    
+
   }
     render() {
 

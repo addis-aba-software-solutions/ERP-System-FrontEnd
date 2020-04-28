@@ -8,8 +8,11 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { connect } from "react-redux";
-import { getSiv } from "./../../../store/Siv/action";
-import {SIVPdf} from "./Printable_SIV"
+import { getSiv, updateSiv } from "../../../store/Siv/action";
+import SIVPdf from "./Printable_SIV";
+import PrintIcon from "@material-ui/icons/Print";
+import { PDFDownloadLink} from "@react-pdf/renderer"
+import AutorenewIcon from "@material-ui/icons/Autorenew";
 
 const styles = {
   root: {
@@ -62,10 +65,17 @@ class SIV extends React.Component {
     super(props);
     this.state = {
     };
+    this.submit=this.submit.bind(this)
   }
   
   componentDidMount() {
     this.props.getSiv(this.props.location.state.order);
+  }
+  submit(e){
+    e.preventDefault()
+    
+
+
   }
   render() {
    
@@ -109,7 +119,13 @@ class SIV extends React.Component {
                 </Grid>
               </Grid>
               <Grid item>
-             
+                <Typography
+                  className={classes.text}
+                  variant="body2"
+                  gutterBottom
+                >
+                  <b>SIV Status : </b> {this.props.sivs.sivStatus}
+                </Typography>
                 <Typography
                   className={classes.text}
                   variant="body2"
@@ -172,8 +188,26 @@ class SIV extends React.Component {
               </TableBody>
             </Table>
           </TableContainer>
-          <Button>
+          <Button onClick={this.props.updateSiv.bind(
+                              this,
+                              this.props.location.state.order,
+                              {
+                                sivStatus: "Approved",
+                              },
+                            )}>
             Approve
+            {/* <PDFDownloadLink document ={<SIVPdf />} fileName ="invoice.pdf" style={
+                              {
+                                textDecoration:"none",
+                                padding:"10px",
+                                color:"#4a4a4a"
+                              }
+                            }>
+                              {
+                                ({loading})=> loading? <AutorenewIcon/>:<PrintIcon />
+                              }
+                              
+                            </PDFDownloadLink> */}
           </Button>
 
           <Box
@@ -229,13 +263,6 @@ function mapStateToProps(state) {
    
   };
 }
-const mapDispatchToProps = {
-  getSiv:getSiv,
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withStyles(styles)(SIV));
 
 
+export default connect(mapStateToProps, { getSiv, updateSiv })(withStyles(styles)(SIV));

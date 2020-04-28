@@ -1,4 +1,4 @@
-import { GET_SIV } from "../../constant/constants";
+import { GET_SIV, UPDATE_SIV } from "../../constant/constants";
 const initialState = {
   sivs: [],
   siv_item: [],
@@ -14,6 +14,12 @@ export default function sivReducer(state = initialState, action) {
         siv_item: action.payload.siv_item,
        
       };
+      case UPDATE_SIV:
+        return {
+          ...state,
+          sivs: action.payload.data,
+        };
+
     default:
       return state;
   }

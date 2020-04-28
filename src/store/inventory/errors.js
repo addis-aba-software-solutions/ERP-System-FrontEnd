@@ -1,6 +1,7 @@
 import { errorsConstant } from "../../constant/constants";
 const initialState = {
   errors: [],
+
 };
 
 export default function errorsReducer(state = initialState, action) {
@@ -9,6 +10,7 @@ export default function errorsReducer(state = initialState, action) {
       return {
         ...state,
         errors: action.payload,
+      
       };
 
     default:

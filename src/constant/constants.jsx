@@ -51,6 +51,7 @@ export const GET_SIV = "GET_SIV";
 export const GET_ORDER = "GET_ORDER";
 export const GET_STATUS = "GET_STATUS";
 export const UPDATE_STATUS = "UPDATE_STATUS";
+export const UPDATE_SIV = "UPDATE_SIV";
 
 export const itConstants = {
   REGISTER_REQUEST: "USERS_REGISTER_REQUEST",
