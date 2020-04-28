@@ -14,6 +14,7 @@ import {
   updateStatus,
 } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 
 
@@ -61,47 +62,46 @@ class ViewAllOrders extends Component {
         <SearchBar />
         <div className={classes.container}>
           <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-
             <Paper className={classes.paper}>
               <TableContainer>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
+                      <TableCell><b>Order Number</b></TableCell>
+                      <TableCell><b>Order Name</b></TableCell>
 
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
-                      <TableCell>Action</TableCell>
+                      <TableCell align='center'><b>Company</b></TableCell>
+                      <TableCell align='center'><b>Sales Person</b></TableCell>
+                      <TableCell align='center'><b>Shipment Address</b></TableCell>
+                      <TableCell align='center'><b>Order Date</b></TableCell>
+                      <TableCell align='center'><b>Status</b></TableCell>
+                      <TableCell align='center'><b>Action</b></TableCell>
+                      <TableCell align='center'>--</TableCell>
+
                     </TableRow>
                   </TableHead>
                   <TableBody>
                     {issuedOrders ? issuedOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
-                        <TableCell>{order.company}</TableCell>
-                        <TableCell>{order.salesPerson}</TableCell>
-                        <TableCell>{order.shipmentAddress}</TableCell>
-                        <TableCell>{order.orderDate}</TableCell>
-                        <TableCell>{order.status}</TableCell>
+                        <TableCell align='center'>{order.orderName}</TableCell>
+                        <TableCell align='center'>{order.company}</TableCell>
+                        <TableCell align='center'>{order.salesPerson}</TableCell>
+                        <TableCell align='center'>{order.shipmentAddress}</TableCell>
+                        <TableCell align='center'>{order.orderDate}</TableCell>
+                        <TableCell align='center'>{order.status}</TableCell>
 
                         <TableCell>
                           {order.status === "Delivered" ? (
                             <TableCell>{order.status}</TableCell>
                           ) :
                             (
-                              <button
+                              <Button
+                                style={{
+                                  backgroundColor: '#00970F',
+                                  color: '#FFFFFF'
+                                }}
+                                variant='contained'
                                 onClick={this.props.updateStatus.bind(
                                   this,
                                   order.orderNumber,
@@ -110,18 +110,19 @@ class ViewAllOrders extends Component {
                                   },
                                 )}
                               >
-                                Delivered
-                              </button>
+                                Delivered!
+                              </Button>
                             )
                           }
-
                         </TableCell>
-                        <TableCell>
+
+                        <TableCell align='center'>
                           <Link to='./ViewSingleOrder'>
-                            <Button
+
+                            <IconButton
                             >
-                              See More
-                          </Button>
+                              <VisibilityIcon />
+                            </IconButton>
                           </Link>
 
                         </TableCell>
