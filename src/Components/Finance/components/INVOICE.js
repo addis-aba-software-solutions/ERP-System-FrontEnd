@@ -105,23 +105,27 @@ const styles = StyleSheet.create({
 
 
 class Invoice extends Component {
-    componentDidMount() {
-    this.props.getInvoice(this.props.orderNumber);
-    console.log("invoices");
-    console.log(this.props.orderNumber);
+//     componentDidMount() {
+//     this.props.getInvoice(this.props.orderNumber);
+//     console.log("invoices");
+//     console.log(this.props.orderNumber);
 
-    console.log(this.props.invoices);
+//     console.log(this.props.invoices);
     
 
-  }
+//   }
     render() {
 
         return (
             <Document>
                 <Page size="A4" style={styles.pdf}>
 
+                    <Text>
+                        HEllo
+                    </Text>
+
                     {/* =========================Header========================== */}
-                    <View style={{
+                    {/* <View style={{
                         height: 40
                     }} />
 
@@ -175,7 +179,10 @@ class Invoice extends Component {
                         </View>
 
                     </View>
-                    {/* =========================Invoice Info========================== */}
+
+
+
+
                     <View style={{
                         height: 25
                     }} />
@@ -413,7 +420,8 @@ class Invoice extends Component {
                             </View>
                         </View>
                     </View>
-                    {/* ========================= Table ========================== */}
+
+
                     <View style={{
                         height: 20
                     }}>
@@ -471,7 +479,6 @@ class Invoice extends Component {
                             
                     </View>
 
-                    {/* ========================= Total ========================== */}
                     <View style={{
                         height: 40
                     }} />
@@ -577,7 +584,10 @@ class Invoice extends Component {
 
                     </View>
 
-                    {/* =========+=========================== footer========================== */}
+
+
+
+
 
                     <View style={{ height: 80 }} />
 
@@ -598,7 +608,7 @@ class Invoice extends Component {
                         <Text style={styles.textBody}>
                             Email : EastAfrican@gmail.com
                                         </Text>
-                    </View>
+                    </View> */}
                 </Page>
             </Document>
 
@@ -606,10 +616,11 @@ class Invoice extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({
-    invoices: state.invoiceReducer.invoices,
-    invoice_item: state.invoiceReducer.invoice_item,
-    errors: state.errorsReducer.errors,
-  });
+// const mapStateToProps = (state) => ({
+//     invoices: state.invoiceReducer.invoices,
+//     invoice_item: state.invoiceReducer.invoice_item,
+//     errors: state.errorsReducer.errors,
+//   });
+  export default Invoice;
 
-export default connect(mapStateToProps, {getInvoice})(Invoice);
+// export default connect(mapStateToProps, {getInvoice})(Invoice);
