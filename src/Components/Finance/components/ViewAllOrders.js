@@ -84,24 +84,6 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Action</TableCell>
                   </TableRow>
                 </TableHead>
-                {/* <Grid container>
-                              <Grid item>
-                                <IconButton>
-                                  <PrintIcon style={{
-                                    // color: '#E8E8E8'
-                                  }} />
-                                </IconButton>
-                              </Grid>
-                              <Grid item style={{
-                                marginTop: 5
-                              }}>
-                                <Typography variant='caption' style={{
-                                  color: '#686868'
-                                }}>
-                                  Generate Invoice
-                              </Typography>
-                              </Grid>
-                            </Grid> */}
                 <TableBody>
                   {deliveredOrders ? deliveredOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
@@ -117,37 +99,16 @@ class ViewAllOrders extends Component {
                       </TableCell>
 
                       <TableCell>
-                        {/* <PDFDownloadLink
-                          document={<Invoice />}
-                          fileName="invoice.pdf"
-                          style={
-                            {
-                              textDecoration: "none",
-                              padding: "10px",
-                              color: "#4a4a4a"
-                            }
-                          }>
-                          {
-                            ({ loading }) => true ?
-                              <AutorenewIcon /> :
-                              <PrintIcon />
-                          }
-
-                        </PDFDownloadLink> */}
                         <PDFDownloadLink
-                          document={<Invoice invoices={this.props.invoices } invoice_item ={this.props.invoice_item} />}
+                          document={<Invoice invoices={this.props.invoices} invoice_item={this.props.invoice_item} />}
                           fileName="Invoice.pdf"
                           style={{
                             textDecoration: "none",
-                            // padding: "10px",
-                            // color: "#4a4a4a",
-                            // backgroundColor: "#f2f2f2",
-                            // border: "1px solid #4a4a4a"
                           }}
                         >
                           {({ blob, url, loading, error }) =>
-                            loading ?  <AutorenewIcon /> :
-                            <PrintIcon />
+                            loading ? <AutorenewIcon /> :
+                              <PrintIcon />
                           }
                         </PDFDownloadLink>
 
@@ -168,10 +129,10 @@ class ViewAllOrders extends Component {
 const mapStateToProps = (state) => ({
   orders: state.ordersReducer.orders,
   status: state.ordersReducer.status,
-      invoices: state.invoiceReducer.invoices,
-      invoice_item: state.invoiceReducer.invoice_item,
+  invoices: state.invoiceReducer.invoices,
+  invoice_item: state.invoiceReducer.invoice_item,
 });
 
-export default connect(mapStateToProps, { getOrders,getInvoice })(
+export default connect(mapStateToProps, { getOrders, getInvoice })(
   withStyles(styles)(ViewAllOrders)
 );
