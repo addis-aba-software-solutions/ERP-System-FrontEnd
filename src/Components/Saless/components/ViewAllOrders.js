@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper, Card } from "@material-ui/core";
+import { Button, withStyles, Paper, IconButton, Card } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -11,6 +11,9 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar'
+import Icon from '@material-ui/core/Icon';
+import SaveIcon from '@material-ui/icons/Save';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 const styles = (theme) => ({
   table: {
     maxHeight: 800,
@@ -36,10 +39,13 @@ const styles = (theme) => ({
   header: {
     marginLeft: 100,
   },
+  button: {
+    marginBottom: 10
+  }
 });
 
 class ViewAllOrders extends Component {
-  
+
   componentDidMount() {
     this.props.getOrders();
   }
@@ -49,45 +55,67 @@ class ViewAllOrders extends Component {
 
     return (
       <>
-      <SearchBar />
+        <SearchBar />
         <div className={classes.container}>
           <div>
-            <Button variant="contained">
-              {" "}
-              <Link to="/create_Order">Add New Order</Link>
-            </Button>
-            <br />
-            {/* <input placeholder="search" value={this.state.search} onChange={this.updateSearch.bind(this)} /> */}
+            <Link to="/create_Order" style={{
+              padding: 30,
+            }}>
+
+              <Button
+                variant="contained"
+                size="large"
+                style={{
+                  backgroundColor: '#11669F',
+                  color: '#FFFFFF'
+                }}
+                className={classes.button}
+                startIcon={<SaveIcon style={{
+                  color: '#FFFFFF'
+                }} />}
+              >
+                Create An Order
+              </Button>
+            </Link>
+
 
             <Card className={classes.paper}>
               <TableContainer className={classes.table}>
-                <Table  stickyHeader aria-label="sticky table">
+                <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow className={classes.table}>
-                      <TableCell>Order Number</TableCell>
-                      <TableCell>Order Name</TableCell>
+                      <TableCell> <b>Order Number</b></TableCell>
+                      <TableCell><b>Order Name</b></TableCell>
 
-                      <TableCell>Description</TableCell>
-                      <TableCell>Company</TableCell>
-                      <TableCell>Sales Person</TableCell>
-                      <TableCell>Shipment Address</TableCell>
-                      <TableCell>Order Date</TableCell>
-                      <TableCell>Status</TableCell>
+                      <TableCell><b>Company</b></TableCell>
+                      <TableCell><b>Sales Person</b></TableCell>
+                      <TableCell><b>Shipment Address</b></TableCell>
+                      <TableCell><b>Order Date</b></TableCell>
+                      <TableCell><b>Status</b></TableCell>
+                      <TableCell><b>Actions</b></TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {this.props.orders?this.props.orders.map((order) => (
+                    {this.props.orders ? this.props.orders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
                         <TableCell>{order.orderName}</TableCell>
-                        <TableCell>{order.description}</TableCell>
                         <TableCell>{order.company}</TableCell>
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>{order.status}</TableCell>
+                        <TableCell>
+                          <Link to='./ViewSingleOrder'>
+                            <IconButton>
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Link>
+
+                        </TableCell>
+
                       </TableRow>
-                    )):""}
+                    )) : ""}
                   </TableBody>
                 </Table>
               </TableContainer>

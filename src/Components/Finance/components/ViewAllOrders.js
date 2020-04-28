@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles, Paper } from "@material-ui/core";
+import { withStyles,Grid, Typography, Paper } from "@material-ui/core";
 
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
@@ -89,29 +89,36 @@ class ViewAllOrders extends Component {
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
                       <TableCell>{order.orderName}</TableCell>
-                      <TableCell>{order.description}</TableCell>
-                      <TableCell>{order.company}</TableCell>
-                      <TableCell>{order.salesPerson}</TableCell>
-                      <TableCell>{order.shipmentAddress}</TableCell>
-                      <TableCell>{order.orderDate}</TableCell>
-                      <TableCell>
+                      <TableCell align='center'>{order.company}</TableCell>
+                      <TableCell align='center'>{order.salesPerson}</TableCell>
+                      <TableCell align='center'>{order.shipmentAddress}</TableCell>
+                      <TableCell align='center'>{order.orderDate}</TableCell>
+                      <TableCell align='center'>
                         {order.status}
                       </TableCell>
 
-                      <TableCell>
-                        <PDFDownloadLink
-                          document={<Invoice invoices={this.props.invoices} invoice_item={this.props.invoice_item} />}
-                          fileName="Invoice.pdf"
+                      <TableCell align='right'>
+                        <Grid container spacing={2}>
+                          <Grid item>
+                          <PDFDownloadLink
                           style={{
-                            textDecoration: "none",
+                            color: '#818181'
                           }}
+                          document={<Invoice  />}
+                          fileName="Invoice.pdf"
                         >
                           {({ blob, url, loading, error }) =>
                             loading ? <AutorenewIcon /> :
                               <PrintIcon />
                           }
                         </PDFDownloadLink>
-
+                          </Grid>
+                          <Grid item>
+                            <Typography variant='caption'>
+                              Generate Invoice
+                            </Typography>
+                          </Grid>
+                        </Grid>
                       </TableCell>
                     </TableRow>
                   )) : ""}

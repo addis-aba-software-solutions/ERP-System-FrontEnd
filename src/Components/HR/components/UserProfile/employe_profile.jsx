@@ -825,18 +825,13 @@ class Profile extends React.Component {
                             padding: 10,
                           }}
                         >
-                          The Random Word Generator is a tool to help you create
-                          a list of random words. There are many reasons one
-                          might be interested in doing this, and you're likely
-                          here because you're interested in creating a random
-                          word list. This tool can help you do exactly that. The
-                          tool is easy to use. All you need to do is choose the
-                          number of words you want to create (the default is
-                          five, but you can input any number you'd like) and the
-                          type of words you want. You can choose from all words,
-                          verbs only, nouns only or adjective only depending on
-                          which best meets your needs. Below you'll find some of
-                          the common ways this tool can be used.
+                          An Enterprise Resource Planning (ERP) refers to a type of software that organizations use to manage day-to-day business activities such as accounting, procurement, project management, inventory management, and supply chain operations.
+
+
+A complete ERP suite also includes enterprise performance management, software that helps plan, budget, predict, and report on an organization’s financial results. ERP systems tie together a multitude of business processes and enable the flow of data between them. By collecting an organization’s shared transactional data from multiple sources, ERP systems eliminate data duplication and provide data integrity with a single source of truth.
+
+
+Today, ERP systems are critical for managing thousands of businesses of all sizes and in all industries. To these companies, ERP is as indispensable as the electricity that keeps the lights on.
                         </Typography>
                       </CardActionArea>
                       <CardActions>
