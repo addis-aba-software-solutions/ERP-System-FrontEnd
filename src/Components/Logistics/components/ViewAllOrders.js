@@ -109,6 +109,15 @@ class ViewAllOrders extends Component {
                             Delivered
                           </button>
                         </TableCell>
+                        <TableCell>
+                          <Link to='./ViewSingleOrder'>
+                          <Button
+                          >
+                            See More
+                          </Button>
+                          </Link>
+
+                        </TableCell>
                       </TableRow>
                     )):""}
                   </TableBody>

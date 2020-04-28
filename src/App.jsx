@@ -24,7 +24,7 @@ import Siv from "./Components/Inventory/components/SIV";
 import ViewFinanceOrders from "./Components/Finance/components/ViewAllOrders";
 import ViewInventoryOrders from "./Components/Inventory/components/ViewAllOrders";
 import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders";
-import ViewSingleOrderFinance from './Components/Finance/components/ViewSingleOrder'
+import ViewSingleOrder from './Components/Finance/components/ViewSingleOrder'
 import ViewAccount from "./Components/HR/components/UsersTable/view_account"
 
 class App extends React.Component {
@@ -91,6 +91,13 @@ class App extends React.Component {
                   />
                   {/* finance Routes */}
                   <PrivateRoute
+                    path="/ViewSingleOrder"
+                    component={ViewSingleOrder}
+                    exact
+                    loggedIn={this.props.isLogin}
+                    
+                  />
+                  <PrivateRoute
                     path="/company"
                     component={AddNewCompany}
                     exact
@@ -122,13 +129,7 @@ class App extends React.Component {
                     exact
                     loggedIn={this.props.isLogin}
                   />
-                  <PrivateRoute
-                    path="/ViewSingleOrderFinance"
-                    component={ViewSingleOrderFinance}
-                    exact
-                    loggedIn={this.props.isLogin}
-                    
-                  />
+
                   {/* it department route */}
                   <PrivateRoute
                     path="/view_account"
