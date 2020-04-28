@@ -6,6 +6,7 @@ import {
   Grid,
   withStyles,
   Paper,
+  IconButton
 } from "@material-ui/core";
 import SearchBar from "../../SearchBar/SearchBar";
 
@@ -17,23 +18,24 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import { getCompany, deleteCompany } from "../../../store/company/action";
 import { connect } from "react-redux";
+import DeleteIcon from '@material-ui/icons/Delete';
+
+
 
 const styles = (theme) => ({
   table: {
-    // minWidth: 650,
     padding: 20,
   },
   tableRow: {
-    // minWidth: 650,
     padding: 15,
   },
   container: {
     padding: 20,
   },
   paper: {
-    padding: 40,
+    padding: 20,
     height: "auto",
-    bitemRadius: 20,
+    borderRadius: 20,
   },
   spacer: {
     margin: 20,
@@ -120,57 +122,62 @@ class ViewCompany extends Component {
                     <TableCell className={classes.table}>
                       <b>Company Name</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>General Manger</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>Contact Person</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>Working Field</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>Payment Option</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>Email</b>
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell align="center">
                       <b>Tin Number</b>
+                    </TableCell>
+                    <TableCell align="right">
+                      <b>Actions</b>
                     </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {this.props.companys.map((company) => (
                     <TableRow key={company.companyId}>
-                      <TableCell align="right">{company.companyId}</TableCell>
-                      <TableCell align="right">{company.companyName}</TableCell>
-                      <TableCell align="right">
+                      <TableCell align="left">{company.companyId}</TableCell>
+                      <TableCell align="left">{company.companyName}</TableCell>
+                      <TableCell align="left">
                         {company.generalManger}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {company.contactPerson}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {company.workingField}
                       </TableCell>
-                      <TableCell align="right">
+                      <TableCell align="center">
                         {company.paymentOption}
                       </TableCell>
-                      <TableCell align="right">{company.email}</TableCell>
-                      <TableCell align="right">{company.tinNumber}</TableCell>
-                      <Button
-                        align="right"
-                        variant="contained"
-                        color="primary"
-                        onClick={this.props.deleteCompany.bind(
-                          this,
-                          company.companyId
-                        )}
-                        className={classes.button}
-                      >
-                        Delete
-                      </Button>
+                      <TableCell align="center">{company.email}</TableCell>
+                      <TableCell align="center">{company.tinNumber}</TableCell>
+                      <TableCell align="right">
+                        <IconButton
+                          color="secondary"
+                          onClick={this.props.deleteCompany.bind(
+                            this,
+                            company.companyId
+                          )}
+                          className={classes.button}
+                        >
+                          <DeleteIcon />
+                      </IconButton>
+
+                      </TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>
