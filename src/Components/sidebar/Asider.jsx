@@ -24,8 +24,33 @@ class Asider extends React.Component {
             width: 150,
           }}
         >
+
           <ul className="sidebar-menu">
-            <li className="sub-menu">
+
+
+            {localStorage.getItem("department") === "Finance" ||
+              localStorage.getItem("is_superuser") === "true" ? (
+                <li className="sub-menu">
+                  <Link className="" to="/FinanceDashboard">
+                    <DashboardIcon
+                      style={{
+                        height: 40,
+                        width: 40,
+                        marginLeft: 40,
+                        color: "#818181",
+                      }}
+                    />
+                    <span
+                      style={{
+                        marginLeft: 15,
+                        color: "#818181",
+                      }}
+                    >
+                      Dashboard
+                </span>
+                  </Link>
+                </li>
+              ) :             <li className="sub-menu">
               <Link className="" to="/">
                 <DashboardIcon
                   style={{
@@ -44,28 +69,7 @@ class Asider extends React.Component {
                   Dashboard
                 </span>
               </Link>
-            </li>
-
-            <li className="sub-menu">
-              <Link className="" to="/FinanceDashboard">
-                <DashboardIcon
-                  style={{
-                    height: 40,
-                    width: 40,
-                    marginLeft: 40,
-                    color: "#818181",
-                  }}
-                />
-                <span
-                  style={{
-                    marginLeft: 15,
-                    color: "#818181",
-                  }}
-                >
-                  Finance Da
-                </span>
-              </Link>
-            </li>
+            </li>}
 
             {localStorage.getItem("department") === "HR" ||
               localStorage.getItem("is_superuser") === "true" ? (
