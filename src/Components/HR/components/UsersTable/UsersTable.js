@@ -99,22 +99,22 @@ class EmployeTable extends React.Component {
                         <b>Id</b>
                       </TableCell>
 
-                      <TableCell>
+                      <TableCell align="center">
                         <b>First Name</b>
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="center">
                         <b>Last Name</b>
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="center">
                         <b>Phone Number</b>
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="center">
                         <b>E-mail Address</b>
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="center">
                         <b>Department</b>
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="center">
                         <b>Role</b>
                       </TableCell>
                       <TableCell align="center">
@@ -126,14 +126,14 @@ class EmployeTable extends React.Component {
                     {this.props.employees.map((employeeInfos) => (
                       <TableRow key={employeeInfos.employeId}>
                         <TableCell>{employeeInfos.employeId}</TableCell>
-                        <TableCell>{employeeInfos.firstName}</TableCell>
-                        <TableCell>{employeeInfos.lastName}</TableCell>
-                        <TableCell>{employeeInfos.telephone}</TableCell>
-                        <TableCell>{employeeInfos.email}</TableCell>
-                        <TableCell>
+                        <TableCell align="center">{employeeInfos.firstName}</TableCell>
+                        <TableCell align="center">{employeeInfos.lastName}</TableCell>
+                        <TableCell align="center">{employeeInfos.telephone}</TableCell>
+                        <TableCell align="center">{employeeInfos.email}</TableCell>
+                        <TableCell align="center">
                           {employeeInfos.department.departmentName}
                         </TableCell>
-                        <TableCell>{employeeInfos.roles.role}</TableCell>
+                        <TableCell align="center">{employeeInfos.roles.role}</TableCell>
 
                         <TableCell align="center">
                           <Grid spacing={4}>

@@ -97,14 +97,20 @@ class ViewAllOrders extends Component {
                         </TableCell>
                         : (
                           <TableCell align='center'>
-                            <IconButton>
+                            <IconButton
+
+                            >
                               <Link
                                 to={{
                                   pathname: "/siv",
                                   state: { order: order.orderNumber },
                                 }}>
-                                <PrintIcon fontSize='large' />
-                                <Typography variant='body2'>
+                                <PrintIcon fontSize='large' style={{
+                                  color: '#818181'
+                                }} />
+                                <Typography variant='body2' style={{
+                                  color: '#818181'
+                                }} >
                                   Generate SIV
                             </Typography>
                               </Link>
@@ -112,9 +118,19 @@ class ViewAllOrders extends Component {
                           </TableCell>
 
                         )}
-                      <TableCell align='center'>
-                        <VisibilityRoundedIcon />
-                      </TableCell>
+                        <TableCell>
+                          <Link
+                            to={{
+                              pathname: "./salesOrder",
+                              state: { order: order.orderNumber, },
+                            }}>
+
+                            <IconButton>
+                              <VisibilityRoundedIcon />
+                            </IconButton>
+                          </Link>
+
+                        </TableCell>
 
 
                     </TableRow>
