@@ -3,15 +3,16 @@
 export const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'],
   datasets: [
+
     {
-      label: 'Last year',
-      backgroundColor: '#CECECE',
-      data: [11, 20, 12, 27, 30, 19, 13, 11, 20, 12, 20, 12]
-    },
-    {
-      label: 'This year',
+      label: 'Expenses',
       backgroundColor: '#11669F',
       data: [18, 5, 19, 29, 35, 25, 11, 20, 12, 29, 30, 35]
+    },
+    {
+      label: 'Income',
+      backgroundColor: '#CECECE',
+      data: [11, 20, 12, 27, 30, 19, 13, 11, 20, 12, 20, 12]
     }
 
   ]

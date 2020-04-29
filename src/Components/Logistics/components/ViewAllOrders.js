@@ -15,6 +15,7 @@ import {
 } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import DoneAllIcon from '@material-ui/icons/DoneAll';
 
 
 
@@ -68,7 +69,6 @@ class ViewAllOrders extends Component {
                   <TableHead>
                     <TableRow className={classes.table}>
                       <TableCell><b>Order Number</b></TableCell>
-                      <TableCell><b>Order Name</b></TableCell>
 
                       <TableCell align='center'><b>Company</b></TableCell>
                       <TableCell align='center'><b>Sales Person</b></TableCell>
@@ -76,7 +76,6 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'><b>Order Date</b></TableCell>
                       <TableCell align='center'><b>Status</b></TableCell>
                       <TableCell align='center'><b>Action</b></TableCell>
-                      <TableCell align='center'>--</TableCell>
 
                     </TableRow>
                   </TableHead>
@@ -84,16 +83,24 @@ class ViewAllOrders extends Component {
                     {issuedOrders ? issuedOrders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell align='center'>{order.orderName}</TableCell>
                         <TableCell align='center'>{order.company}</TableCell>
                         <TableCell align='center'>{order.salesPerson}</TableCell>
                         <TableCell align='center'>{order.shipmentAddress}</TableCell>
                         <TableCell align='center'>{order.orderDate}</TableCell>
                         <TableCell align='center'>{order.status}</TableCell>
 
-                        <TableCell>
+                        <TableCell align='center'>
                           {order.status === "Delivered" ? (
-                            <TableCell>{order.status}</TableCell>
+                            <Link
+                              to={{
+                                pathname: "./salesOrder",
+                                state: { order: order.orderNumber, },
+                              }}>
+
+                              <IconButton>
+                                <VisibilityIcon />
+                              </IconButton>
+                            </Link>
                           ) :
                             (
                               <Button
@@ -110,22 +117,12 @@ class ViewAllOrders extends Component {
                                   },
                                 )}
                               >
-                                Delivered!
+                                Deliver
                               </Button>
                             )
                           }
                         </TableCell>
 
-                        <TableCell align='center'>
-                          <Link to='./ViewSingleOrder'>
-
-                            <IconButton
-                            >
-                              <VisibilityIcon />
-                            </IconButton>
-                          </Link>
-
-                        </TableCell>
                       </TableRow>
                     )) : ""}
                   </TableBody>

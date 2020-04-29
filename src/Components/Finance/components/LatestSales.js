@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: 10,
     display: 'flex',
     overflow: 'auto',
-    height: 200,
+    height: 250,
     position: 'relative'
   },
   actions: {
@@ -32,7 +32,7 @@ const useStyles = makeStyles(() => ({
 }));
 
 const LatestSales = props => {
-  const { className, ...rest } = props;
+  const { className, ...rest } = props; 
 
   const classes = useStyles();
 
@@ -53,7 +53,7 @@ const LatestSales = props => {
             This Year <ArrowDropDownIcon />
           </Button>
         }
-        title="Yearly Sales"
+        title="Finance Transactions"
       />
       <Divider />
       <CardContent>

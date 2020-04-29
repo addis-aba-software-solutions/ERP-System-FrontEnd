@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import HomeNavBar from '../Dashboard/HomeNavBar';
-import { Paper, Grid } from '@material-ui/core'
+import { Paper, Card ,Grid } from '@material-ui/core'
 import Notification from './components/Notification';
 import Meetings from './components/Meetings';
 
@@ -39,6 +39,13 @@ export default function Sales() {
                     <HomeNavBar />
                 </Grid>
                 <Grid item xs={3}>
+                    <Card style={{
+                        height: 100,
+                        borderRadius: 20,
+                        marginBottom: 10
+                    }}>
+
+                    </Card>
                     <Paper style={{
                         borderRadius: 20,
                         padding: 20

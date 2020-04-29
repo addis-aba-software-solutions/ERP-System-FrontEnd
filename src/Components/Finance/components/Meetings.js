@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Title from './Title';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
@@ -23,7 +22,7 @@ const useStyles = makeStyles({
 });
 
 function generate(element) {
-    return [0, 1, 2, 3, 4, 5, 6,].map((value) =>
+    return [0, 1, 2, 3, 4, 5, 6, 6].map((value) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -36,9 +35,7 @@ export default function Meetings() {
     return (
 
         <React.Fragment>
-
-            <Title
-            > Upcoming Meetings  </Title>
+            Upcoming Meetings
             <Grid item xs={12} md={12}>
                 <div className={classes.notificationText}>
                     <List dense={dense}>
@@ -48,7 +45,7 @@ export default function Meetings() {
                                     <ListItemAvatar>
                                         <Avatar style={{
                                             background: '#FFE600',
-                                            fontSize: 20
+                                            fontSize: 15
                                         }}>
                                             <AlarmIcon />
                                         </Avatar>
@@ -58,12 +55,6 @@ export default function Meetings() {
                                         primary="Meeting At 3:30"
 
                                     />
-                                    {/* <ListItemSecondaryAction>
-                                        <IconButton edge="end" aria-label="delete">
-                                            <VisibilityIcon />
-                                        </IconButton>
-                                    </ListItemSecondaryAction> */}
-
                                 </ListItem>
                                 <Divider></Divider>
 

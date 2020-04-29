@@ -17,11 +17,11 @@ const useStyles = makeStyles({
         flex: 1,
     },
     notificationText: {
-        fontSize: 10
+        fontSize: 5
     }
 });
 function generate(element) {
-    return [0, 1, 2, 3, 4, 5, 6, 7].map((value) =>
+    return [0, 1, 2, 3, 4,7].map((value) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -46,7 +46,7 @@ export default function Notification() {
                                         <Badge color="secondary" variant="dot" >
                                             <Avatar style={{
                                                 background: '#11669F',
-                                                fontSize: 20
+                                                fontSize: 15
                                             }}>
                                                 <NotificationsIcon />
                                             </Avatar>
@@ -55,7 +55,6 @@ export default function Notification() {
 
                                     <ListItemText className={classes.notificationText}
                                         primary="Notification Goes Here"
-                                        secondary="Description Goes Here"
                                     />
 
                                 </ListItem>

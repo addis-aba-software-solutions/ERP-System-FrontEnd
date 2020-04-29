@@ -4,7 +4,7 @@ const initialState = {
   isLogin: false,
   success: false,
   errors: [],
-  order: [],
+  orders: [],
   companys: [],
   items: [],
 };
@@ -20,6 +20,25 @@ export default function salesReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
+      };
+    }
+    case salesConstants.ORDER_GETALL_SUCCESS: {
+      return {
+        ...state,
+        orders: action.payload,
+        // errors: [],
+        loading: false,
+        isLogin: true,
+        success: false,
+      };
+    }
+    case salesConstants.ORDER_GETALL_FAILURE: {
+      return {
+        ...state,
+        errors: action.payload,
+        loading: false,
+        isLogin: false,
+        success: false,
       };
     }
     case salesConstants.ORDER_SUCCESS: {

@@ -102,7 +102,7 @@ class ViewAllOrders extends Component {
                         {order.status}
                       </TableCell>
 
-                      <TableCell align='right'>
+                      <TableCell align='center'>
                         <Grid container spacing={2}>
                           <Grid item>
                             <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>

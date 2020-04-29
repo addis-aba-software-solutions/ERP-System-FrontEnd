@@ -2,25 +2,25 @@ import React from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-
-// import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
-
 import Grid from '@material-ui/core/Grid';
-import Paper from '@material-ui/core/Paper';
-
 import Chart from './Chart';
 import Deposits from './Deposits';
-import Orders from './Orders';
-
 import LatestSales from './LatestSales';
 import Budget from './Budget/Budget';
 import TotalUsers from './Budget/TotalUsers';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-// import UsersByDevice from '../Budget/UsersByDevice';
+import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 import TasksProgress from './Budget/TasksProgress';
 import Container from '@material-ui/core/Container';
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const drawerWidth = 280;
 
@@ -30,14 +30,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   difference: {
-    // marginTop: 10,
     marginLeft: 90,
     display: 'flex',
     alignItems: 'center'
   },
   differenceIcon: {
     color: "#00970F",
-    // marginLeft: 90
+    marginLeft: 90
   },
   differenceValue: {
     color: "#00970F",
@@ -62,7 +61,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    // background: '#11669F',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -137,87 +135,32 @@ export default function HomeNavBar() {
   const classes = useStyles();
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  function createData(name, calories, fat, carbs, protein) {
+    return { name, calories, fat, carbs, protein };
+  }
+
+  const rows = [
+    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+    createData('Eclair', 262, 16.0, 24, 6.0),
+    createData('Cupcake', 305, 3.7, 67, 4.3),
+  ];
+
+
   return (
     <div className={classes.root}>
 
       <main>
-        {/* <div className={classes.appBarSpacer} /> */}
         <Container>
           <Grid container spacing={2}>
-            {/* <Grid item xs={5}
-            >
-
-              <Typography style={{
-                fontSize: 30,
-                color: '#818181',
-              }}>
-                Sales Dashboard
-          </Typography>
-
-            </Grid>
-
-            <Grid item xs={12} style={{
-              // marginLeft: 100
-            }}>
-
-              <Typography align='right' style={{
-                fontSize: 20,
-                color: '#818181',
-                // marginLeft: 50
-              }}>
-                Total Sales
-              </Typography>
-              <Typography align='right' style={{
-                fontSize: 30,
-                color: '#000000',
-                marginLeft: 50
-              }}>
-                7,465,363.5 ETB
-              </Typography>
-
-              <Grid style={{
-                paddingLeft: 870
-              }} container>
-                <Grid >
-                  <ArrowUpwardIcon className={classes.differenceIcon} />
-
-                </Grid>
-                <Grid item>
-                  <Typography
-                    align='right'
-                    className={classes.differenceValue}
-                    variant="body2"
-                  >
-                    87%
-          </Typography>
-                </Grid>
-                <Grid item>
-
-                  <Typography
-
-                    className={classes.caption}
-                    variant="caption"
-                  >
-                    Compared to Last Year
-          </Typography>
-
-
-
-                </Grid>
-
-              </Grid>
-
-            </Grid>
- */}
-
-<Grid item xs={8}
+            <Grid item xs={8}
             >
 
               <Typography style={{
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Sales Dashboard
+                Finance Dashboard
               </Typography>
 
             </Grid>
@@ -231,7 +174,7 @@ export default function HomeNavBar() {
                   color: '#818181',
                   paddingRight: 10
                 }}>
-                  Total Sale :
+                  Cash Balance :
               </Typography>
                 <Typography align='right' style={{
                   fontSize: 20,
@@ -255,7 +198,7 @@ export default function HomeNavBar() {
                     className={classes.differenceValue}
                     variant="caption"
                   >
-                    56%
+                    In
                   </Typography>
                 </Grid>
                 <Grid item>
@@ -263,9 +206,40 @@ export default function HomeNavBar() {
                   <Typography
 
                     className={classes.caption}
+                    variant="body2"
+                  >
+                    6,476.00 ETB
+                  </Typography>
+
+
+                </Grid>
+
+              </Grid>
+
+              <Grid style={{
+                paddingLeft: 100
+              }} container>
+                <Grid >
+                  <ArrowDownwardIcon className={classes.differenceIcon} />
+
+                </Grid>
+                <Grid item>
+                  <Typography
+                    align='right'
+                    className={classes.differenceValue}
                     variant="caption"
                   >
-                     Compared to Last Year
+                    Out
+                  </Typography>
+                </Grid>
+                <Grid item>
+
+                  <Typography
+
+                    className={classes.caption}
+                    variant="body2"
+                  >
+                    2,476.00 ETB
                   </Typography>
 
 
@@ -274,8 +248,6 @@ export default function HomeNavBar() {
               </Grid>
 
             </Grid>
-
-
             <Grid item xs={12} >
 
               <LatestSales />
@@ -288,11 +260,9 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Sales By Category
+                Finance Requests Per-Department
           </Typography>
-
             </Grid>
-
             <Grid item>
               <Paper className={classes.budgetTracking}>
                 <Budget />
@@ -305,16 +275,15 @@ export default function HomeNavBar() {
             </Grid>
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <Budget />
+                <TotalUsers />
               </Paper>
             </Grid>
 
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <TotalUsers />
+                <Budget />
               </Paper>
             </Grid>
-
 
             <Grid item xs={12} >
 
@@ -322,20 +291,47 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Weekly Sales
+                Favorite Accounts
             </Typography>
+
             </Grid>
-            <Grid item xs={12} md={8} lg={9}>
-              <Paper className={fixedHeightPaper}>
-                <Chart />
-              </Paper>
-            </Grid>
-            <Grid item xs={12} md={1} lg={3}
-            >
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid>
+            <TableContainer style={{ maxHeight: 1000, padding: 20, borderRadius: 20 }} component={Paper}>
+              <Table stickyHeader className={classes.table} aria-label="simple table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>#</TableCell>
+                    <TableCell>Client ID</TableCell>
+
+                    <TableCell align="right">Client Name</TableCell>
+                    <TableCell align="right">Client Account</TableCell>
+                    <TableCell align="right">Something</TableCell>
+                    <TableCell align="right">Something</TableCell>
+                    <TableCell align="right">Actions</TableCell>
+
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {rows.map((row) => (
+                    <TableRow key={row.name}>
+                      <TableCell>
+                        #
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        {row.name}
+                      </TableCell>
+                      <TableCell align="right">{row.calories}</TableCell>
+                      <TableCell align="right">{row.fat}</TableCell>
+                      <TableCell align="right">{row.carbs}</TableCell>
+                      <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">
+                        <VisibilityIcon />
+                      </TableCell>
+
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
           </Grid>
         </Container>
       </main>
