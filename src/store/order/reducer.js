@@ -20,8 +20,6 @@ export default function ordersReducer(state = initialState, action) {
         items: action.payload.item_order ? action.payload.item_order : [],
       };
     case GET_ORDER:
-      console.log(action.payload);
-
       return {
         ...state,
         orders: action.payload,

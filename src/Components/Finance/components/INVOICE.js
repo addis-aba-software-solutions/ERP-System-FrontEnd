@@ -11,8 +11,6 @@ import {
 
 
 } from "@react-pdf/renderer";
-import { connect } from "react-redux"
-import { getInvoice } from "../../../store/Invoice/action"
 
 const styles = StyleSheet.create({
     root: {
@@ -102,517 +100,560 @@ const styles = StyleSheet.create({
     }
 });
 
+// export default Invoice
+
+// import React from "react";
+// import {
+//     Page,
+//     View,
+//     Document,
+//     StyleSheet,
+//     Text
+// } from "@react-pdf/renderer";
 
 
-class Invoice extends Component {
+// const styles = StyleSheet.create({
+//     page: {
+//         backgroundColor: "#ffffff"
+//     },
+//     section: {
+//         margin: 10,
+//         padding: 10,
+//         flexGrow: 1
+//     },
+//     movieContainer: {
+//         backgroundColor: "#f6f6f5",
+//         display: "flex",
+//         flexDirection: "row",
+//         padding: 5
+//     },
+//     movieDetails: {
+//         display: "flex",
+//         marginLeft: 5
+//     },
+//     movieTitle: {
+//         fontSize: 15,
+//         marginBottom: 10
+//     },
+//     movieOverview: {
+//         fontSize: 10
+//     },
 
-    render() {
+//     image: {
+//         height: 200,
+//         width: 150
+//     },
+//     subtitle: {
+//         display: "flex",
+//         justifyContent: "space-between",
+//         flexDirection: "row",
+//         width: 150,
+//         alignItems: "center",
+//         marginBottom: 12
+//     },
+//     vote: {
+//         display: "flex",
+//         flexDirection: "row"
+//     },
+//     rating: {
+//         height: 10,
+//         width: 10
+//     },
+//     vote_text: {
+//         fontSize: 10
+//     },
+//     vote_pop: {
+//         fontSize: 10,
+//         padding: 2,
+//         backgroundColor: "#61C74F",
+//         color: "#fff"
+//     },
+//     vote_pop_text: {
+//         fontSize: 10,
+//         marginLeft: 4
+//     },
+//     overviewContainer: {
+//         minHeight: 110
+//     },
+//     detailsFooter: {
+//         display: "flex",
+//         flexDirection: "row"
+//     },
+//     lang: {
+//         fontSize: 8,
+//         fontWeight: 700
+//     },
+//     vote_average: {
+//         fontSize: 8,
+//         marginLeft: 4,
+//         fontWeight: "bold"
+//     }
+// });
 
-        return (
-            <Document>
-                <Page size="A4" style={styles.pdf}>
+function PdfDocument(props) {
+    console.log("XXXXXXXXXXXXXXXXXXXxxxxxxxxxxx");
+    console.log(props);
 
-                    <Text>
-                        HEllo
-                    </Text>
+    return (
+        <Document>
+            <Page style={styles.pdf}>
+                <View style={{
+                    height: 40
+                }} />
+                {props.data
+                    ? [props.data].map((data) => {
+                        return (
+                            <>
 
-                    {/* =========================Header========================== */}
-                    {/* <View style={{
-                        height: 40
-                    }} />
-
-                    <View container style={styles.header}>
-                        <View item xs={6}>
-                            <Text style={styles.textBody}  >
-                                NAZO PLC
+                                <View container style={styles.header}>
+                                    <View item xs={6}>
+                                        <Text style={styles.textBody}  >
+                                            NAZO PLC
                                 </Text>
-                            <View style={{
-                                height: 10
-                            }}>
+                                        <View style={{
+                                            height: 10
+                                        }}>
 
-                            </View>
-                            <Text style={styles.textBody}  >
-                                Haile garment, Addis Ababa
+                                        </View>
+                                        <Text style={styles.textBody}  >
+                                            Haile garment, Addis Ababa
                                 </Text>
-                            <View style={{
-                                height: 10
-                            }}>
+                                        <View style={{
+                                            height: 10
+                                        }}>
 
-                            </View>
-                            <Text style={styles.textBody} >
-                                Mobile : +251 91 147 5672
+                                        </View>
+                                        <Text style={styles.textBody} >
+                                            Mobile : +251 91 147 5672
                                 </Text>
-                            <View style={{
-                                height: 10
-                            }}>
+                                        <View style={{
+                                            height: 10
+                                        }}>
 
-                            </View>
-                            <Text style={styles.textBody} >
-                                Website : nazoplcethio.com
+                                        </View>
+                                        <Text style={styles.textBody} >
+                                            Website : nazoplcethio.com
                                 </Text>
 
 
 
-                        </View>
+                                    </View>
 
-                        <View item xs={6}>
-                            <View container style={{
-                                // marginBottom: 100,
-                                marginLeft: 200,
-                                flexDirection: 'row'
+                                    <View item xs={6}>
+                                        <View container style={{
+                                            // marginBottom: 100,
+                                            marginLeft: 200,
+                                            flexDirection: 'row'
 
-                            }}>
+                                        }}>
 
-                                <Image source={Logo} alt='' style={styles.logo} />
+                                            <Image source={Logo} alt='' style={styles.logo} />
 
-                            </View>
-
-
-                        </View>
-
-                    </View>
+                                        </View>
 
 
+                                    </View>
 
+                                </View>
+                                <View style={{
+                                    height: 25
+                                }} />
 
-                    <View style={{
-                        height: 25
-                    }} />
+                                <View style={styles.line}>
+                                </View>
 
-                    <View style={styles.line}>
-                    </View>
+                                <View style={{
+                                    height: 25
+                                }}>
+                                </View>
 
-                    <View style={{
-                        height: 25
-                    }}>
-                    </View>
+                                <View container style={styles.header}>
 
-                    <View container style={styles.header}>
-
-                        <View item style={{
-                            // marginTop: 30
-                        }}>
-                            <Text align='left' style={styles.textBody} style={{ color: '#11669F' }} variant='body2' color=''>
-                                Invoice To
+                                    <View item style={{
+                                        // marginTop: 30
+                                    }}>
+                                        <Text align='left' style={styles.textBody} style={{ color: '#11669F' }} variant='body2' color=''>
+                                            Invoice To
                             </Text>
-                            <View style={{
-                                marginLeft: 10,
-                            }}>
-                                <View style={{
-                                    height: 10
-                                }}></View>
+                                        <View style={{
+                                            marginLeft: 10,
+                                        }}>
+                                            <View style={{
+                                                height: 10
+                                            }}></View>
 
-                                <Text align='left' style={styles.textBody} variant='body2' >
-                                    Samuel Kassa
+                                            <Text align='left' style={styles.textBody} variant='body2' >
+                                                Samuel Kassa
                                 </Text>
-                                <View style={{
-                                    height: 10
-                                }}>
+                                            <View style={{
+                                                height: 10
+                                            }}>
 
-                                </View>
-                                <Text align='left' style={styles.textBody} variant='body2' >
-                                    Military Tera (Merkato)
+                                            </View>
+                                            <Text align='left' style={styles.textBody} variant='body2' >
+                                                Military Tera (Merkato)
                                 </Text>
-                                <View style={{
-                                    height: 10
-                                }}>
+                                            <View style={{
+                                                height: 10
+                                            }}>
 
-                                </View>
+                                            </View>
 
-                                <View style={styles.contactInformation}>
-                                    <Text align='left' style={styles.textBody} variant='body2' >
-                                        +251 921-33-44-32
+                                            <View style={styles.contactInformation}>
+                                                <Text align='left' style={styles.textBody} variant='body2' >
+                                                    +251 921-33-44-32
                                     </Text>
+                                                <View style={{
+                                                    height: 10
+                                                }}>
+
+                                                </View>
+                                                <Text align='left' style={styles.textBody} variant='body2' >
+                                                    +251 921-33-44-32
+                                </Text>
+                                                <View style={{
+                                                    height: 10
+                                                }}>
+
+                                                </View>
+
+                                            </View>
+                                            <View style={styles.contactInformation}>
+                                                <Text align='right' style={styles.textBody} variant='body2' >
+                                                    SamuelKassa23@gmail.com
+                                </Text>
+                                                <Text align='right' style={styles.textBody} variant='body2' >
+                                                </Text>
+
+                                            </View>
+
+                                        </View>
+
+                                    </View>
+
+
+                                    <View item style={{
+                                        marginLeft: 200,
+                                        marginTop: 30
+                                    }}>
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Invoice No:{data.invoiceId}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+                                        </View>
+                                        <View style={{
+                                            height: 10
+                                        }}>
+
+                                        </View>
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Invoice Date :{data.date}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+                                        </View>
+                                        <View style={{
+                                            height: 10
+                                        }}>
+
+                                        </View>
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+
+                                        </View>
+                                        <View style={{
+                                            height: 10
+                                        }}>
+
+                                        </View>
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+
+                                            </View>
+
+                                            <View style={{
+                                                height: 10
+                                            }}>
+
+                                            </View>
+
+
+                                        </View>
+                                    </View>
+
                                     <View style={{
-                                        height: 10
+                                        height: 20
                                     }}>
 
                                     </View>
-                                    <Text align='left' style={styles.textBody} variant='body2' >
-                                        +251 921-33-44-32
-                                </Text>
+                                    <View style={styles.line}>
+                                    </View>
+
                                     <View style={{
-                                        height: 10
+                                        height: 20
                                     }}>
+                                    </View>
+
+                                    <View style={styles.table}>
+                                        <View style={styles.tableRow}>
+                                            <View style={styles.tableColHeader}>
+                                                <Text style={styles.tableCellHeader}>#</Text>
+                                            </View>
+                                            <View style={styles.tableColHeader}>
+                                                <Text style={styles.tableCellHeader}>Item Name</Text>
+                                            </View>
+                                            <View style={styles.tableColHeader}>
+                                                <Text style={styles.tableCellHeader}>Quantity</Text>
+                                            </View>
+                                            <View style={styles.tableColHeader}>
+                                                <Text style={styles.tableCellHeader}>Unit Price</Text>
+                                            </View>
+                                            <View style={styles.tableColHeader}>
+                                                <Text style={styles.tableCellHeader}>Amount</Text>
+                                            </View>
+                                        </View>
+
+
 
                                     </View>
 
-                                </View>
-                                <View style={styles.contactInformation}>
-                                    <Text align='right' style={styles.textBody} variant='body2' >
-                                        SamuelKassa23@gmail.com
-                                </Text>
-                                    <Text align='right' style={styles.textBody} variant='body2' >
-                                    </Text>
 
-                                </View>
+                                    {props.invoice_item ? props.invoice_item.map((item) => {
+                                        return (
+                                            <View style={styles.tableRow}>
+                                                <View style={styles.tableCol}>
+                                                    <Text style={styles.tableCell}>{item.itemName}</Text>
+                                                </View>
 
-                            </View>
+                                                <View style={styles.tableCol}>
+                                                    <Text style={styles.tableCell}>{item.itemName}</Text>
+                                                </View>
+                                                <View key={item.itemName} style={styles.movieContainer}>
+                                                    <View style={styles.tableCol}>
+                                                        <Text style={styles.tableCell}>{item.itemName}</Text>
+                                                    </View>
 
-                        </View>
+                                                    <View style={styles.movieContainer}>
+                                                        <Text style={styles.tableCell}>{item.quantity}</Text>
+                                                    </View>
+                                                    <View style={styles.movieContainer}>
+                                                        <Text style={styles.tableCell}>{item.unitPrice}</Text>
+                                                    </View>
+                                                    <View style={styles.movieContainer}>
+                                                        <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
+                                                    </View>
+                                                </View>
 
 
-                        <View item style={{
-                            marginLeft: 200,
-                            marginTop: 30
-                        }}>
-                            <View container style={{
-                                flexDirection: 'row',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <View item >
+                                            </View>
+                                        );
+                                    }) : null}
 
-                                    <Text align='right' style={{
-                                        color: '#11669F',
-                                        fontSize: 12
+
+                                    <View style={{
+                                        height: 40
+                                    }} />
+
+                                    <View key={data.itemName} style={styles.movieContainer}>
+
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Sub Total : {data.subTotal}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+
+                                        </View>
+
+                                        <View style={styles.line} />
+                                        <View style={{ height: 5 }} />
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Tax :{data.Tax}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+
+                                        </View>
+                                        <View style={styles.line} />
+                                        <View style={{ height: 5 }} />
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
+                                        }}>
+                                            <View item >
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Total :{data.Total}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+
+                                        </View>
+                                        <View style={styles.line} />
+
+
+
+                                    </View>
+
+
+
+                                    <View style={{ height: 80 }} />
+                                    <View style={styles.line} />
+                                    <View container style={{
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        justifyContent: 'space-between'
                                     }} >
-                                        Invoice No:
-                                </Text>
-                                </View>
-                                <View style={{
-                                    width: 10
-                                }}>
 
-                                </View>
-                                <View item>
-
-                                    <Text align='right' style={styles.textBody} >
-                                        {this.props.invoices.invoiceId}
-                                </Text>
-                                </View>
-                            </View>
-                            <View style={{
-                                height: 10
-                            }}>
-
-                            </View>
-
-                            <View container style={{
-                                flexDirection: 'row',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <View item >
-
-                                    <Text align='right' style={{
-                                        color: '#11669F',
-                                        fontSize: 12
-                                    }} >
-                                        Invoice Date :
-                                </Text>
-                                </View>
-                                <View style={{
-                                    width: 10
-                                }}>
-
-                                </View>
-                                <View item>
-
-                                    <Text align='right' style={styles.textBody} >
-                                        {this.props.invoices.date}
-                                </Text>
-                                </View>
-                            </View>
-                            <View style={{
-                                height: 10
-                            }}>
-
-                            </View>
-
-                            <View container style={{
-                                flexDirection: 'row',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <View item >
-
-                                    <Text align='right' style={{
-                                        color: '#11669F',
-                                        fontSize: 12
-                                    }} >
-                                        SO :
-                                </Text>
-                                </View>
-                                <View style={{
-                                    width: 10
-                                }}>
-
-                                </View>
-                                <View item>
-
-                                    <Text align='right' style={styles.textBody} >
-                                        SO013
-                                </Text>
-                                </View>
-                            </View>
-                            <View style={{
-                                height: 10
-                            }}>
-
-                            </View>
-
-                            <View container style={{
-                                flexDirection: 'row',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <View item >
-
-                                    <Text align='right' style={{
-                                        color: '#11669F',
-                                        fontSize: 12
-                                    }} >
-                                        Order Date :
-                                </Text>
-                                </View>
-                                <View style={{
-                                    width: 10
-                                }}>
-
-                                </View>
-                                <View item>
-
-                                    <Text align='right' style={styles.textBody} >
-                                        20-04-20
-                                </Text>
-                                </View>
-                            </View>
-
-                            <View style={{
-                                height: 10
-                            }}>
-
-                            </View>
-
-                            <View container style={{
-                                flexDirection: 'row',
-                                display: 'flex',
-                                justifyContent: 'space-between'
-                            }}>
-                                <View item >
-
-                                    <Text align='right' style={{
-                                        color: '#11669F',
-                                        fontSize: 12
-                                    }} >
-                                        Due Date :
-                                </Text>
-                                </View>
-                                <View style={{
-                                    width: 10
-                                }}>
-                                </View>
-                                <View item>
-
-                                    <Text align='right' style={styles.textBody} >
-                                        31-04-20
-                                </Text>
-                                </View>
-                            </View>
-                        </View>
-                    </View>
-
-
-                    <View style={{
-                        height: 20
-                    }}>
-
-                    </View>
-                    <View style={styles.line}>
-                    </View>
-
-                    <View style={{
-                        height: 20
-                    }}>
-                    </View>
-                    <View style={styles.table}>
-                        <View style={styles.tableRow}>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>#</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Item Name</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Quantity</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Unit Price</Text>
-                            </View>
-                            <View style={styles.tableColHeader}>
-                                <Text style={styles.tableCellHeader}>Amount</Text>
-                            </View>
-                        </View>
-                        <View style={styles.tableRow}>
-                            {this.props.invoice_item?this.props.invoice_item.map((item)=>{
-                                return(
-                                    <View key={item.itemName} style={styles.movieContainer}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.itemName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.itemName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.quantity}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.unitPrice}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
-                            </View>
-                            </View>
-                                );
-                            }):""}
-                            
-                        </View>
-                            
-                    </View>
-
-                    <View style={{
-                        height: 40
-                    }} />
-
-                    <View style={{
-                        marginLeft: 300
-                    }}>
-
-                        <View container style={{
-                            flexDirection: 'row',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingBottom: 5
-                        }}>
-                            <View item >
-
-                                <Text align='right' style={{
-                                    color: '#11669F',
-                                    fontSize: 12
-                                }} >
-                                    Sub Total :
-                                </Text>
-                            </View>
-                            <View style={{
-                                width: 10
-                            }}>
-
-                            </View>
-                            <View item>
-
-                                <Text align='right' style={styles.textBody} >
-                                    {this.props.invoices.subTotal}
-                                </Text>
-                            </View>
-
-                        </View>
-
-                        <View style={styles.line} />
-                        <View style={{ height: 5 }} />
-
-                        <View container style={{
-                            flexDirection: 'row',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingBottom: 5
-                        }}>
-                            <View item >
-
-                                <Text align='right' style={{
-                                    color: '#11669F',
-                                    fontSize: 12
-                                }} >
-                                    Tax :
-                                </Text>
-                            </View>
-                            <View style={{
-                                width: 10
-                            }}>
-
-                            </View>
-                            <View item>
-
-                                <Text align='right' style={styles.textBody} >
-                                    {this.props.invoices.Tax}
-                                </Text>
-                            </View>
-
-                        </View>
-                        <View style={styles.line} />
-                        <View style={{ height: 5 }} />
-
-                        <View container style={{
-                            flexDirection: 'row',
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            paddingBottom: 5
-                        }}>
-                            <View item >
-
-                                <Text align='right' style={{
-                                    color: '#11669F',
-                                    fontSize: 12
-                                }} >
-                                    Total :
+                                        <Text variant='caption' style={styles.textBody}>
+                                            Phone : +2519 1234 56 77
                             </Text>
-                            </View>
-                            <View style={{
-                                width: 10
-                            }}>
-
-                            </View>
-                            <View item>
-
-                                <Text align='right' style={styles.textBody} >
-                                    {this.props.invoices.Total} ETB
-                            </Text>
-                            </View>
-
-                        </View>
-                        <View style={styles.line} />
-
-
-
-                    </View>
-
-
-
-
-
-
-                    <View style={{ height: 80 }} />
-
-                    <View style={styles.line} />
-                    <View container style={{
-                        display: 'flex',
-                        flexDirection: 'row',
-                        justifyContent: 'space-between'
-                    }} >
-
-                        <Text variant='caption' style={styles.textBody}>
-                            Phone : +2519 1234 56 77
-                            </Text>
-                        <Text style={styles.textBody}>
-                            Website : EastAfrican.com
+                                        <Text style={styles.textBody}>
+                                            Website : EastAfrican.com
                                         </Text>
 
-                        <Text style={styles.textBody}>
-                            Email : EastAfrican@gmail.com
+                                        <Text style={styles.textBody}>
+                                            Email : EastAfrican@gmail.com
                                         </Text>
-                    </View> */}
-                </Page>
-            </Document>
+                                    </View>
+                                </View>
 
-        );
-    }
+
+
+
+                            </>
+                        )
+
+                    })
+                    : ""}
+
+                <View style={styles.tableRow}>
+
+                </View>
+
+
+
+
+            </Page>
+        </Document >
+    );
 }
-
-// const mapStateToProps = (state) => ({
-//     invoices: state.invoiceReducer.invoices,
-//     invoice_item: state.invoiceReducer.invoice_item,
-//     errors: state.errorsReducer.errors,
-//   });
-export default Invoice;
-
-// export default connect(mapStateToProps, {getInvoice})(Invoice);
+export default PdfDocument

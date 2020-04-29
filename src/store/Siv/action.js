@@ -6,6 +6,7 @@ import headers from "./../headers";
 
 // GET SIV TAKES ORDER NUMBER
 export const getSiv = (order) => (dispatch) => {
+
   axios
     .get(API + `generatesiv/${order}`, headers)
     .then((res) => {
@@ -21,7 +22,7 @@ export const getSiv = (order) => (dispatch) => {
           payload: err.response.data,
         });
       } else {
-        Swal.fire("Error", "Connection Problem", "Error")
+        Swal.fire("Error", "Connection Problem", "error")
       }
     });
 };
@@ -57,7 +58,7 @@ export const updateSiv = (orderNumber, status) => (dispatch) => {
       } else {
         Swal.fire({
           title: "Error", text: "Connection Problem",
-          icon: "Error",
+          icon: "error",
         });
       }
     });

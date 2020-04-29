@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { withStyles,Grid, Typography, Paper } from "@material-ui/core";
+import { withStyles, Grid, Typography, Paper } from "@material-ui/core";
 
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
@@ -13,7 +13,6 @@ import { getInvoice } from "../../../store/Invoice/action";
 import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
 import { PDFDownloadLink } from "@react-pdf/renderer"
-import AutorenewIcon from "@material-ui/icons/Autorenew"
 import SearchBar from '../../SearchBar/SearchBar'
 
 const styles = (theme) => ({
@@ -42,16 +41,26 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      show: false
+    }
 
-  updateSearch(e) {
-    this.setState({
-      search: e.target.value.substr(0, 20),
-    });
+
   }
 
+  handlePrint = (order) => {
+    this.props.getInvoice(order)
+    this.setState({
+      show: !this.state.show
+    })
+    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdddddddddddddddddxxxxxxxxxxxx")
+    console.log(this.props.invoices)
+  }
   componentDidMount() {
     this.props.getOrders();
-    this.props.getInvoice(8);
+
   }
 
 
@@ -62,10 +71,6 @@ class ViewAllOrders extends Component {
 
       return (order.status === "Delivered") || (order.status === "Invoiced")
     }) : "";
-
-
-
-
 
     return (
       <>
@@ -89,7 +94,6 @@ class ViewAllOrders extends Component {
                   {deliveredOrders ? deliveredOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell>{order.orderName}</TableCell>
                       <TableCell align='center'>{order.company}</TableCell>
                       <TableCell align='center'>{order.salesPerson}</TableCell>
                       <TableCell align='center'>{order.shipmentAddress}</TableCell>
@@ -101,18 +105,22 @@ class ViewAllOrders extends Component {
                       <TableCell align='right'>
                         <Grid container spacing={2}>
                           <Grid item>
-                          <PDFDownloadLink
-                          style={{
-                            color: '#818181'
-                          }}
-                          document={<Invoice  />}
-                          fileName="Invoice.pdf"
-                        >
-                          {({ blob, url, loading, error }) =>
-                            loading ? <AutorenewIcon /> :
-                              <PrintIcon />
-                          }
-                        </PDFDownloadLink>
+                            <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>
+
+                            {this.state.show && this.props.invoices && <PDFDownloadLink
+                              document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
+                              fileName="movielist.pdf"
+                              style={{
+                                textDecoration: "none",
+                                padding: "10px",
+                                color: "#4a4a4a",
+                                backgroundColor: "#f2f2f2",
+                                border: "1px solid #4a4a4a"
+                              }}
+                            >
+                              Download Pdf
+                            </PDFDownloadLink>
+                            }
                           </Grid>
                           <Grid item>
                             <Typography variant='caption'>

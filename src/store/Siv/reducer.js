@@ -12,7 +12,6 @@ export default function sivReducer(state = initialState, action) {
         errors: action.payload,
       };
     case GET_SIV:
-      console.log(action.payload);
       return {
         ...state,
         sivs: action.payload,

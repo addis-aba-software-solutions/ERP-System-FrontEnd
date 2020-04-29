@@ -7,7 +7,7 @@ import headers from "./../headers";
 // GET INVOICE TAKES ORDER NUMBNER
 export const getInvoice = (order) => (dispatch) => {
   axios
-    .get(API + `generateinvoice/${order}`, headers)
+    .get("http://0.0.0.0:8000/api/v1/generateinvoice/90/", headers)
     .then((res) => {
       dispatch({
         type: GET_INVOICE,

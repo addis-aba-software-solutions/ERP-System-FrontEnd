@@ -14,8 +14,8 @@ export default function invoiceReducer(state = initialState, action) {
     case "GET_INVOICE":
       return {
         ...state,
-        invoices: action.payload.siv,
-        invoice_item: action.payload.siv_item,
+        invoices: action.payload,
+        invoice_item: action.payload.invoice_item,
       };
     default:
       return state;
