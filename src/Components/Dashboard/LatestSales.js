@@ -20,8 +20,7 @@ const useStyles = makeStyles(() => ({
     flex: 1
   },
   chartContainer: {
-    boxShadow: 'none',
-    elevation: 0,
+    boxShadow: 10,
     display: 'flex',
     overflow: 'auto',
     height: 400,
@@ -54,7 +53,7 @@ const LatestSales = props => {
             This Year <ArrowDropDownIcon />
           </Button>
         }
-        title="Sales"
+        title="Yearly Sales"
       />
       <Divider />
       <CardContent>

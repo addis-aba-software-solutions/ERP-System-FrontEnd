@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     overflow: 'auto',
     flexDirection: 'column',
-    width: 290,
+    width: 250,
     borderRadius: 20
   },
   toolbar: {
@@ -151,11 +151,12 @@ export default function HomeNavBar() {
                 fontSize: 30,
                 color: '#818181',
               }}>
-                Some Category Goes Here
+                Sales Dashboard
           </Typography>
 
             </Grid>
-            <Grid item xs={6} style={{
+
+            <Grid item xs={12} style={{
               // marginLeft: 100
             }}>
 
@@ -173,25 +174,38 @@ export default function HomeNavBar() {
               }}>
                 7,465,363.5 ETB
               </Typography>
-              <div style={{
-                marginLeft: 100
-              }} className={classes.difference}>
-                <ArrowUpwardIcon className={classes.differenceIcon} />
-                <Typography
-                align='right'
-                  className={classes.differenceValue}
-                  variant="body2"
-                >
-                  87%
-          </Typography>
-                <Typography
 
-                  className={classes.caption}
-                  variant="caption"
-                >
-                  Compared to Last Year
+              <Grid style={{
+                paddingLeft: 870
+              }} container>
+                <Grid >
+                  <ArrowUpwardIcon className={classes.differenceIcon} />
+
+                </Grid>
+                <Grid item>
+                  <Typography
+                    align='right'
+                    className={classes.differenceValue}
+                    variant="body2"
+                  >
+                    87%
           </Typography>
-              </div>
+                </Grid>
+                <Grid item>
+
+                  <Typography
+
+                    className={classes.caption}
+                    variant="caption"
+                  >
+                    Compared to Last Year
+          </Typography>
+
+
+
+                </Grid>
+
+              </Grid>
 
             </Grid>
             <Grid item xs={12} >
@@ -206,7 +220,7 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Some Category Goes Here
+                Sales By Category
           </Typography>
 
             </Grid>
@@ -223,11 +237,6 @@ export default function HomeNavBar() {
             </Grid>
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <TasksProgress />
-              </Paper>
-            </Grid>
-            <Grid item>
-              <Paper className={classes.budgetTracking}>
                 <Budget />
               </Paper>
             </Grid>
@@ -238,11 +247,6 @@ export default function HomeNavBar() {
               </Paper>
             </Grid>
 
-            <Grid item>
-              <Paper className={classes.budgetTracking}>
-                <Budget />
-              </Paper>
-            </Grid>
 
             <Grid item xs={12} >
 
@@ -250,9 +254,8 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Some Category Goes Hereee
+                Weekly Sales
             </Typography>
-
             </Grid>
             <Grid item xs={12} md={8} lg={9}>
               <Paper className={fixedHeightPaper}>
@@ -263,12 +266,6 @@ export default function HomeNavBar() {
             >
               <Paper className={fixedHeightPaper}>
                 <Deposits />
-              </Paper>
-            </Grid>
-
-            <Grid item xs={12}>
-              <Paper className={classes.paper}>
-                <Orders />
               </Paper>
             </Grid>
           </Grid>
