@@ -23,7 +23,7 @@ const useStyles = makeStyles({
 });
 
 function generate(element) {
-    return [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((value) =>
+    return [0, 1, 2, 3, 4, 5, 6,].map((value) =>
         React.cloneElement(element, {
             key: value,
         }),
@@ -37,7 +37,7 @@ export default function Meetings() {
 
         <React.Fragment>
 
-        <Title
+            <Title
             > Upcoming Meetings  </Title>
             <Grid item xs={12} md={12}>
                 <div className={classes.notificationText}>
@@ -46,18 +46,17 @@ export default function Meetings() {
                             <>
                                 <ListItem>
                                     <ListItemAvatar>
-                                            <Avatar style={{
-                                                background: '#FFE600',
-                                                fontSize: 20
-                                            }}>
-                                                <AlarmIcon />
-                                            </Avatar>
+                                        <Avatar style={{
+                                            background: '#FFE600',
+                                            fontSize: 20
+                                        }}>
+                                            <AlarmIcon />
+                                        </Avatar>
                                     </ListItemAvatar>
-                                    
+
                                     <ListItemText className={classes.notificationText}
                                         primary="Meeting At 3:30"
-                                        
-                                        secondary="Today"
+
                                     />
                                     {/* <ListItemSecondaryAction>
                                         <IconButton edge="end" aria-label="delete">

@@ -20,7 +20,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TasksProgress from './Budget/TasksProgress';
 import Container from '@material-ui/core/Container';
-
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const drawerWidth = 280;
 
@@ -306,6 +306,8 @@ export default function HomeNavBar() {
                     <TableCell align="right">Client Account</TableCell>
                     <TableCell align="right">Something</TableCell>
                     <TableCell align="right">Something</TableCell>
+                    <TableCell align="right">Actions</TableCell>
+
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -321,19 +323,15 @@ export default function HomeNavBar() {
                       <TableCell align="right">{row.fat}</TableCell>
                       <TableCell align="right">{row.carbs}</TableCell>
                       <TableCell align="right">{row.protein}</TableCell>
+                      <TableCell align="right">
+                        <VisibilityIcon />
+                      </TableCell>
+
                     </TableRow>
                   ))}
                 </TableBody>
               </Table>
             </TableContainer>
-
-
-            {/* <Grid item xs={12} md={1} lg={3}
-            >
-              <Paper className={fixedHeightPaper}>
-                <Deposits />
-              </Paper>
-            </Grid> */}
           </Grid>
         </Container>
       </main>

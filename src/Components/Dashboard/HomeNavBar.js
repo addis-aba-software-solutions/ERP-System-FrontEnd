@@ -144,7 +144,7 @@ export default function HomeNavBar() {
         {/* <div className={classes.appBarSpacer} /> */}
         <Container>
           <Grid container spacing={2}>
-            <Grid item xs={5}
+            {/* <Grid item xs={5}
             >
 
               <Typography style={{
@@ -208,6 +208,74 @@ export default function HomeNavBar() {
               </Grid>
 
             </Grid>
+ */}
+
+<Grid item xs={8}
+            >
+
+              <Typography style={{
+                fontSize: 20,
+                color: '#818181',
+              }}>
+                Sales Dashboard
+              </Typography>
+
+            </Grid>
+
+            <Grid item xs={4} style={{
+              // marginLeft: 100
+            }}>
+              <Grid container>
+                <Typography align='right' style={{
+                  fontSize: 20,
+                  color: '#818181',
+                  paddingRight: 10
+                }}>
+                  Total Sale :
+              </Typography>
+                <Typography align='right' style={{
+                  fontSize: 20,
+                  color: '#000000',
+                  // marginLeft: 50
+                }}>
+                  7,465,363.5 ETB
+              </Typography>
+
+              </Grid>
+              <Grid style={{
+                paddingLeft: 100
+              }} container>
+                <Grid >
+                  <ArrowUpwardIcon className={classes.differenceIcon} />
+
+                </Grid>
+                <Grid item>
+                  <Typography
+                    align='right'
+                    className={classes.differenceValue}
+                    variant="caption"
+                  >
+                    56%
+                  </Typography>
+                </Grid>
+                <Grid item>
+
+                  <Typography
+
+                    className={classes.caption}
+                    variant="caption"
+                  >
+                     Compared to Last Year
+                  </Typography>
+
+
+                </Grid>
+
+              </Grid>
+
+            </Grid>
+
+
             <Grid item xs={12} >
 
               <LatestSales />

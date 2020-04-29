@@ -23,7 +23,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: 10,
     display: 'flex',
     overflow: 'auto',
-    height: 400,
+    height: 200,
     position: 'relative'
   },
   actions: {
