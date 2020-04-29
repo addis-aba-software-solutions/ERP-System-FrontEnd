@@ -66,7 +66,7 @@ class Nav extends React.Component {
               >
                 <li className="dropdown">
                   <a data-toggle="dropdown">
-                    <Badge badgeContent={4} color="secondary">
+                    <Badge badgeContent={3} color="secondary">
                       <NotificationsActiveIcon
                         style={{
                           color: "#FFFFFF",
@@ -86,7 +86,7 @@ class Nav extends React.Component {
                         <span className="label label-primary">
                           <i className="icon_profile"></i>
                         </span>
-                        Friend Request
+                        New Order Created
                         <span className="small italic pull-right">5 mins</span>
                       </a>
                     </li>
@@ -95,7 +95,7 @@ class Nav extends React.Component {
                         <span className="label label-warning">
                           <i className="icon_pin"></i>
                         </span>
-                        John location.
+                        Order Delivered
                         <span className="small italic pull-right">50 mins</span>
                       </a>
                     </li>
@@ -104,17 +104,8 @@ class Nav extends React.Component {
                         <span className="label label-danger">
                           <i className="icon_book_alt"></i>
                         </span>
-                        Project 3 Completed.
+                        Order Ready For Invoice
                         <span className="small italic pull-right">1 hr</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <span className="label label-success">
-                          <i className="icon_like"></i>
-                        </span>
-                        Mick appreciated your work.
-                        <span className="small italic pull-right"> Today</span>
                       </a>
                     </li>
                     <li>
@@ -164,11 +155,6 @@ class Nav extends React.Component {
                   </a>
                   <ul className="dropdown-menu extended logout">
                     <div className="log-arrow-up"></div>
-                    <li className="eborder-top">
-                      <a href="#">
-                        <i className="icon_profile"></i> My Profile
-                      </a>
-                    </li>
                     <li>
                       <Link onClick={(e) => this.logoutHandler(e)}>
                         <i className="icon_key_alt"></i> Log Out
