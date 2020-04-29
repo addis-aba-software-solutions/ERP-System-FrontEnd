@@ -11,15 +11,22 @@ import DateFnsUtils from "@date-io/date-fns";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableContainer from "@material-ui/core/TableContainer";
+import TableHead from "@material-ui/core/TableHead";
+import TableRow from "@material-ui/core/TableRow";
 
 import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 
-import { withStyles, IconButton, Box, Divider } from "@material-ui/core";
+import { withStyles, IconButton, Box, Divider, Card } from "@material-ui/core";
 import actions from "./../../../store/sales/action";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import Error from "../../../error/error";
 import HighlightOffIcon from "@material-ui/icons/HighlightOff";
-import ViewAllOrders from './ViewAllOrders';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 
 const styles = (theme) => ({
   appBar: {
@@ -32,7 +39,7 @@ const styles = (theme) => ({
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: "auto",
       maxWidth: 1000,
-      marginTop: 150,
+      marginTop: 50,
       marginLeft: "auto",
       marginRight: "auto",
     },
@@ -123,6 +130,7 @@ class CreateOrder extends Component {
   componentDidMount() {
     this.props.getAllCompany();
     this.props.getAllItem();
+    this.props.getAllOrder();
   }
   handleChange = (e) => {
     this.setState({
@@ -311,7 +319,7 @@ class CreateOrder extends Component {
                                     autoComplete="itemQuantity"
                                     value={item.quantity}
                                     onChange={this.ItemQuantityChange(idx)}
-                                    placeholder={`Item #${idx + 1} name`}
+                                    placeholder={`Item #${idx + 1} quantity`}
                                   />
                                 </Grid>
                                 <Grid item xs={12} sm={1}>
@@ -386,7 +394,53 @@ class CreateOrder extends Component {
 
           </main>
         </React.Fragment>
-        <ViewAllOrders />
+        {/* <ViewAllOrders /> */}
+        <Card className={classes.paper}>
+              <TableContainer className={classes.table}>
+                <Table stickyHeader aria-label="sticky table">
+                  <TableHead>
+                    <TableRow className={classes.table}>
+                      <TableCell> <b>Order Number</b></TableCell>
+
+                      <TableCell><b>Company</b></TableCell>
+                      <TableCell><b>Sales Person</b></TableCell>
+                      <TableCell><b>Shipment Address</b></TableCell>
+                      <TableCell><b>Order Date</b></TableCell>
+                      <TableCell><b>Status</b></TableCell>
+                      <TableCell><b>Actions</b></TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {this.props.orders ? this.props.orders.slice(0)
+                      .reverse().map((order) => (
+                      <TableRow key={order.orderNumber}>
+                        <TableCell>{order.orderNumber}</TableCell>
+                        <TableCell>{order.company}</TableCell>
+                        <TableCell>{order.salesPerson}</TableCell>
+                        <TableCell>{order.shipmentAddress}</TableCell>
+                        <TableCell>{order.orderDate}</TableCell>
+                        <TableCell>{order.status}</TableCell>
+                        <TableCell>
+                          <Link
+                            to={{
+                              pathname: "./salesOrder",
+                              state: { order: order.orderNumber, },
+                            }}>
+
+                            <IconButton>
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Link>
+
+                        </TableCell>
+
+                      </TableRow>
+                    )) : ""}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Card>
+
       </>
 
     );
@@ -400,12 +454,14 @@ function mapStateToProps(state) {
     items: state.salesReducer.items,
     companys: state.salesReducer.companys,
     success: state.salesReducer.success,
+    orders:state.salesReducer.orders,
   };
 }
 const mapDispatchToProps = {
   createOrder: actions.createOrder,
   getAllItem: actions.getAllItem,
   getAllCompany: actions.getAllCompany,
+  getAllOrder: actions.getAllOrder,
 };
 
 export default connect(

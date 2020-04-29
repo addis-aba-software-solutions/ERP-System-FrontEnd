@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, Paper, IconButton, Card } from "@material-ui/core";
+import { Button, withStyles, IconButton, Card } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -10,8 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders } from "../../../store/order/action";
-import SearchBar from '../../SearchBar/SearchBar'
-import Icon from '@material-ui/core/Icon';
+import SearchBar from '../../SearchBar/SearchBar';
 import SaveIcon from '@material-ui/icons/Save';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 const styles = (theme) => ({
@@ -85,7 +84,6 @@ class ViewAllOrders extends Component {
                   <TableHead>
                     <TableRow className={classes.table}>
                       <TableCell> <b>Order Number</b></TableCell>
-                      <TableCell><b>Order Name</b></TableCell>
 
                       <TableCell><b>Company</b></TableCell>
                       <TableCell><b>Sales Person</b></TableCell>
@@ -99,7 +97,6 @@ class ViewAllOrders extends Component {
                     {this.props.orders ? this.props.orders.map((order) => (
                       <TableRow key={order.orderNumber}>
                         <TableCell>{order.orderNumber}</TableCell>
-                        <TableCell>{order.orderName}</TableCell>
                         <TableCell>{order.company}</TableCell>
                         <TableCell>{order.salesPerson}</TableCell>
                         <TableCell>{order.shipmentAddress}</TableCell>

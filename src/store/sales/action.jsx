@@ -136,10 +136,48 @@ function getAllItem() {
       });
   };
 }
+// GET ALL ORDERS
+function getAllOrder() {
+  return (dispatch) => {
+    dispatch({
+      type: salesConstants.ITEM_GETALL_REQUEST,
+      payload: true,
+    });
+    axios
+      .request({
+        method: "GET",
+        url: API + "orderstatus/",
+        responseType: "json",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+
+        dispatch({
+          type: salesConstants.ORDER_GETALL_SUCCESS,
+          payload: response.data,
+        });
+      })
+      .catch((error) => {
+        if (error.response && error.response.data) {
+          dispatch({
+            type: salesConstants.ORDER_GETALL_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire("Error", "Connection Problem", "Error");
+        }
+      });
+  };
+}
 const actions = {
   createOrder,
   getAllCompany,
   getAllItem,
+  getAllOrder,
 };
 
 export default actions;
