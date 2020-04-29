@@ -61,70 +61,32 @@ class ViewAllOrders extends Component {
         <SearchBar />
         <div className={classes.container}>
           <Paper className={classes.paper}>
-            <TableContainer>
+            <TableContainer style={{
+              height: 900
+            }}>
               <Table stickyHeader>
                 <TableHead>
                   <TableRow className={classes.table}>
-                    <TableCell>Order #</TableCell>
-                    <TableCell>Order Name</TableCell>
-
-                    <TableCell>Company</TableCell>
-                    <TableCell>Sales Person</TableCell>
-                    <TableCell>Shipment Address</TableCell>
-                    <TableCell>Order Date</TableCell>
-                    <TableCell align='center'>Status</TableCell>
-                    <TableCell align='center'>Action</TableCell>
-                    <TableCell align='center'>Action</TableCell>
-                    <TableCell align='center'>View</TableCell>
-
-
+                    <TableCell><b>Order #</b></TableCell>
+                    <TableCell><b>Company</b></TableCell>
+                    <TableCell align='center'><b>Sales Person</b></TableCell>
+                    <TableCell align='center'><b>Shipment Address</b></TableCell>
+                    <TableCell align='center'><b>Order Date</b></TableCell>
+                    <TableCell align='center'><b>Status</b></TableCell>
+                    <TableCell align='center'><b>Action</b></TableCell>
                   </TableRow>
                 </TableHead>
-
-
-
-                {/* <TableCell align="center">
-                        <IconButton>
-                          <Grid container spacing={2}>
-                            <Grid item>
-                              <PDFDownloadLink
-                                document={<SIV />}
-                                fileName="SIV.pdf"
-                                style={{
-                                  textDecoration: "none",
-                                  padding: "10px",
-                                  color: "#4a4a4a",
-                                }}
-                              >
-                                {({ loading }) =>
-                                  loading ? <AutorenewIcon /> : <PrintIcon />
-                                }
-                              </PDFDownloadLink>
-
-
-                            </Grid>
-                            <Grid item>
-                              <Typography variant='caption'>Generate SIV</Typography>
-                            </Grid>
-                          </Grid>
-                        </IconButton>
-                      </TableCell> */}
 
                 <TableBody>
                   {createdOrders ? createdOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell>{order.orderName}</TableCell>
-                      <TableCell>{order.description}</TableCell>
                       <TableCell>{order.company}</TableCell>
-                      <TableCell>{order.salesPerson}</TableCell>
-                      <TableCell>{order.shipmentAddress}</TableCell>
-                      <TableCell>{order.orderDate}</TableCell>
-                      <TableCell>
-                        {order.status}
-                      </TableCell>
+                      <TableCell align='center'>{order.salesPerson}</TableCell>
+                      <TableCell align='center'>{order.shipmentAddress}</TableCell>
+                      <TableCell align='center' >{order.orderDate}</TableCell>
                       {order.status === "Issued" ? null : (
-                        <TableCell>
+                        <TableCell align='center'>
                           <IconButton>
                             <Link
                               to={{
@@ -135,7 +97,12 @@ class ViewAllOrders extends Component {
                             </Link>
                           </IconButton>
                         </TableCell>
+
                       )}
+                      <TableCell align='center'>
+                        <VisibilityRoundedIcon />
+                      </TableCell>
+
 
                     </TableRow>
                   )) : ""}

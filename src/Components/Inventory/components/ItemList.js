@@ -74,8 +74,8 @@ class ItemList extends Component {
             justify="space-between"
             xs={12}
             style={{
-              padding: 20,
-              paddingBottom: 20,
+              // padding: 20,
+              // marginTop: 60
             }}
           >
             <Grid item className={classes.header}>
@@ -85,15 +85,7 @@ class ItemList extends Component {
               <Typography variant="h5" color="textSecondary">
                 <b>Warehouse ID</b> : YTFHGFTY556HHG
               </Typography>
-              <Typography
-                style={{
-                  marginRight: 100,
-                }}
-                variant="h5"
-                color="textSecondary"
-              >
-                <b>Category</b> : Edibles
-              </Typography>
+
             </Grid>
             <Grid
               item
@@ -146,7 +138,7 @@ class ItemList extends Component {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {this.props.items?this.props.items.map((item) => (
+                  {this.props.items ? this.props.items.map((item) => (
                     <TableRow key={item.InventoryItemId}>
                       <TableCell align="left">
                         {item.InventoryItemId}
@@ -172,7 +164,7 @@ class ItemList extends Component {
                       </TableCell>
 
                     </TableRow>
-                  )):""}
+                  )) : ""}
                 </TableBody>
               </Table>
             </TableContainer>
