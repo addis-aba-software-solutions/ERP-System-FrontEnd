@@ -89,7 +89,7 @@ class ViewSingleOrder extends React.Component {
         return (
             <Grid xs={12}>
 
-<div style={{ marginTop: 10, padding: 20 }}>
+                    <div style={{ marginTop: 10, padding: 20 }}>
                         <Typography variant='h5'>
                             Order State
                     </Typography>
