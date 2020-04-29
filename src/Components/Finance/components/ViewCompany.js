@@ -173,7 +173,7 @@ class ViewCompany extends Component {
                           className={classes.button}
                         >
                           <DeleteIcon />
-                      </IconButton>
+                        </IconButton>
 
                       </TableCell>
 
@@ -191,7 +191,7 @@ class ViewCompany extends Component {
 
 const mapStateToProps = (state) => ({
   companys: state.companyReducer.companys,
-  errors: state.errorsReducer.errors,
+  errors: state.companyReducer.errors,
 });
 
 export default connect(mapStateToProps, { getCompany, deleteCompany })(

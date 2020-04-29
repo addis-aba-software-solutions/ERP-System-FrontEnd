@@ -14,7 +14,7 @@ export default combineReducers({
   hrReducer,
   inventoryReducer,
   companyReducer,
-  errorsReducer,
+  // errorsReducer,
   invoiceReducer,
   sivReducer,
   salesReducer,

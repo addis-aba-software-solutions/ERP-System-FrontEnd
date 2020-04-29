@@ -1,13 +1,16 @@
-import { GET_INVOICE } from "../../constant/constants";
+import { GET_INVOICE, errorsConstant } from "../../constant/constants";
 const initialState = {
   invoices: [],
   invoice_item: [],
 };
-export default function invoiceReducer(state = initialState, action) {    
-  console.log("action.payload");
-  console.log(action.payload);
-    
+export default function invoiceReducer(state = initialState, action) {
+
   switch (action.type) {
+    case errorsConstant.GET_ERRORS:
+      return {
+        ...state,
+        errors: action.payload,
+      };
     case "GET_INVOICE":
       return {
         ...state,

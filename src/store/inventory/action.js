@@ -8,6 +8,10 @@ import headers from "./../headers";
 
 // ADD ITEM
 export const addItem = (item) => (dispatch) => {
+  dispatch({
+    type: inventoryConstant.REQUEST_ITEM,
+    payload: true,
+  });
   axios
     .request({
       method: "POST",
@@ -34,7 +38,7 @@ export const addItem = (item) => (dispatch) => {
       } else {
         Swal.fire({
           title: "Error", text: "Connection Problem",
-          icon: "Error",
+          icon: "error",
         });
       }
     });
@@ -58,7 +62,7 @@ export const getItems = () => (dispatch) => {
       } else {
         Swal.fire({
           title: "Error", text: "Connection Problem",
-          icon: "Error",
+          icon: "error",
         });
       }
     });
@@ -75,25 +79,37 @@ export const updateItemQuantity = (itemId, quantity) => (dispatch) => {
         quantity: quantity
       },
     }).then((res) => {
+      dispatch({
+        type: inventoryConstant.UPDATE_ITEM,
+        payload: res.data,
+      });
       Swal.fire({
         title: "Success",
         icon: "success",
       });
-      dispatch({
-        type: inventoryConstant.UDATE_ITEM,
-        payload: res.data,
-      });
     })
     .catch((err) => {
+      console.log(err.response);
+
+
       if (err.response && err.response.data) {
         dispatch({
           type: errorsConstant.GET_ERRORS,
           payload: err.response.data,
         });
-      } else {
+      } else if (err.response) {
+        if (err.response.status === 404) {
+          Swal.fire({
+            title: "Error", text: "Please Select an item to update",
+            icon: "error",
+          });
+        }
+      }
+      else {
+
         Swal.fire({
           title: "Error", text: "Connection Problem",
-          icon: "Error",
+          icon: "error",
         });
       }
     });
@@ -132,7 +148,7 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
           } else {
             Swal.fire({
               title: "Error", text: "Connection Problem",
-              icon: "Error",
+              icon: "error",
             });
           }
         });

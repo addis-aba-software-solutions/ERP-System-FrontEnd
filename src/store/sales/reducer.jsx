@@ -1,8 +1,8 @@
-import { salesConstants } from "../../constant/constants";
+import { salesConstants, errorsConstant } from "../../constant/constants";
 const initialState = {
   loading: false,
   isLogin: false,
-  success: true,
+  success: false,
   errors: [],
   order: [],
   companys: [],
@@ -10,6 +10,12 @@ const initialState = {
 };
 export default function salesReducer(state = initialState, action) {
   switch (action.type) {
+    case errorsConstant.GET_ERRORS:
+      return {
+        ...state,
+        errors: action.payload,
+        success: false,
+      };
     case salesConstants.ORDER_REQUEST: {
       return {
         ...state,
@@ -20,9 +26,10 @@ export default function salesReducer(state = initialState, action) {
       return {
         ...state,
         errors: [],
+        items: [...state.items, action.payload],
         loading: false,
         isLogin: true,
-        success: false,
+        success: true,
       };
     }
     case salesConstants.ORDER_FAILURE: {

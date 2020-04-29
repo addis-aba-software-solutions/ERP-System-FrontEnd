@@ -10,9 +10,7 @@ export default function errorsReducer(state = initialState, action) {
       return {
         ...state,
         errors: action.payload,
-      
       };
-
     default:
       return state;
   }

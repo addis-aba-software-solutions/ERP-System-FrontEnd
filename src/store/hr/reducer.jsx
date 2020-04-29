@@ -4,12 +4,11 @@ const initialState = {
   loading: false,
   isLogin: false,
   success: false,
-  clear:false,
+  clear: false,
   errors: [],
   employees: [],
   employee: [],
   department: [],
-
 };
 export default function hrReducer(state = initialState, action) {
   switch (action.type) {
@@ -17,10 +16,9 @@ export default function hrReducer(state = initialState, action) {
       return {
         ...state,
         loading: true,
-        
       };
     }
-    case itConstants.REGISTER_SUCCESS: { 
+    case itConstants.REGISTER_SUCCESS: {
       const index = state.employees.findIndex(
         (emp) => emp.email === action.payload
       );
@@ -34,7 +32,7 @@ export default function hrReducer(state = initialState, action) {
         loading: false,
         isLogin: true,
         success: true,
-        clear:true,
+        clear: true,
       };
     }
     case itConstants.REGISTER_FAILURE: {
@@ -44,7 +42,7 @@ export default function hrReducer(state = initialState, action) {
         loading: false,
         isLogin: false,
         success: false,
-        clear:false,
+        clear: false,
       };
     }
 
@@ -63,7 +61,7 @@ export default function hrReducer(state = initialState, action) {
         loading: false,
         isLogin: true,
         success: true,
-        clear:true,
+        clear: true,
       };
     }
     case appConstants.REGISTER_FAILURE: {
@@ -73,7 +71,7 @@ export default function hrReducer(state = initialState, action) {
         loading: false,
         isLogin: false,
         success: false,
-        clear:false,
+        clear: false,
       };
     }
 
@@ -199,6 +197,7 @@ export default function hrReducer(state = initialState, action) {
         (emp) => emp.email === action.payload
       );
       state.employees[index].has_account = false;
+
       return {
         ...state,
         employees: state.employees,

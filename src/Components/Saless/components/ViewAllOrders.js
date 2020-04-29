@@ -106,7 +106,12 @@ class ViewAllOrders extends Component {
                         <TableCell>{order.orderDate}</TableCell>
                         <TableCell>{order.status}</TableCell>
                         <TableCell>
-                          <Link to='./ViewSingleOrder'>
+                          <Link
+                            to={{
+                              pathname: "./salesOrder",
+                              state: { order: order.orderNumber, },
+                            }}>
+
                             <IconButton>
                               <VisibilityIcon />
                             </IconButton>

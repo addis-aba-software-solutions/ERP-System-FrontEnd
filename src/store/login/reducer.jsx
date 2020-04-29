@@ -14,8 +14,6 @@ export default function loginReducer(state = initialState, action) {
       };
     }
     case appConstants.LOGIN_SUCCESS: {
-
-    
       return {
         ...state,
         users: action.payload,
@@ -28,6 +26,14 @@ export default function loginReducer(state = initialState, action) {
       return {
         ...state,
         errors: action.payload,
+        loading: false,
+        isLogin: false,
+      };
+    }
+
+    case appConstants.LOGIN_FAILURE_NETWORK: {
+      return {
+        ...state,
         loading: false,
         isLogin: false,
       };

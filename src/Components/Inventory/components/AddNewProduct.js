@@ -94,7 +94,7 @@ class AddNewProduct extends Component {
         });
       })
       .catch((error) => {
-        console.log(error);
+
       });
 
     this.props.getItems();
@@ -130,6 +130,7 @@ class AddNewProduct extends Component {
       this.state.item_quantity
 
     );
+
   };
 
   handleChange(e) {
@@ -276,7 +277,7 @@ class AddNewProduct extends Component {
                         required
                         id="discount"
                         name="discount"
-                        label="Discount"
+                        label="Discount(%)"
                         fullWidth
                         autoComplete="Contract_Info"
                         value={discount}
@@ -355,9 +356,6 @@ class AddNewProduct extends Component {
 
                   <Grid container spacing={3}>
 
-
-
-
                     <Grid item xs={12} sm={12}>
                       <FormControl className={classes.formControl} fullWidth>
                         <InputLabel htmlFor="grouped-native-select">
@@ -381,13 +379,7 @@ class AddNewProduct extends Component {
                           ))}
                         </Select>
                       </FormControl>
-                      <Error
-                        error={
-                          this.props.errors.catagory
-                            ? this.props.errors.catagory
-                            : null
-                        }
-                      />
+
                     </Grid>
 
                     <Grid item xs={12} sm={12}>
@@ -395,7 +387,7 @@ class AddNewProduct extends Component {
                         required
                         id="item_quantity"
                         name="item_quantity"
-                        label="Discount"
+                        label="Quantity"
                         fullWidth
                         autoComplete="Contract_Info"
                         value={item_quantity}
@@ -403,8 +395,8 @@ class AddNewProduct extends Component {
                       />
                       <Error
                         error={
-                          this.props.errors.discount
-                            ? this.props.errors.discount
+                          this.props.errors.item_quantity
+                            ? this.props.errors.item_quantity
                             : null
                         }
                       />
@@ -522,14 +514,16 @@ class AddNewProduct extends Component {
 
 const mapStateToProps = (state) => ({
   items: state.inventoryReducer.items,
-  errors: state.errorsReducer.errors,
+  errors: state.inventoryReducer.errors,
+  success: state.inventoryReducer.success,
 });
 
 export default connect(mapStateToProps, {
   addItem,
-  updateItemQuantity,
+
   getItems,
   getInvoice,
   getSiv,
+  updateItemQuantity,
 
 })(withStyles(styles)(AddNewProduct));

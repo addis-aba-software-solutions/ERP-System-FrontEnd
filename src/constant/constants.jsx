@@ -2,6 +2,7 @@ export const appConstants = {
   LOGIN_REQUEST: "USERS_LOGIN_REQUEST",
   LOGIN_SUCCESS: "USERS_LOGIN_SUCCESS",
   LOGIN_FAILURE: "USERS_LOGIN_FAILURE",
+  LOGIN_FAILURE_NETWORK: "LOGIN_FAILURE_NETWORK",
   SUCCESS: "ALERT_SUCCESS",
   ERROR: "ALERT_ERROR",
   CLEAR: "ALERT_CLEAR",
@@ -30,7 +31,8 @@ export const appConstants = {
 
 export const inventoryConstant = {
   ADD_ITEM: "ADD_ITEM",
-  UDATE_ITEM: "UDATE_ITEM",
+  REQUEST_ITEM: "REQUEST_ITEM",
+  UPDATE_ITEM: "UPDATE_ITEM",
   GET_ITEMS: "GET_ITEMS",
   ERROR: "ERROR",
   ITEM_REQUEST: "ITEM_REQUEST",
@@ -50,6 +52,7 @@ export const errorsConstant = {
 export const GET_INVOICE = "GET_INVOICE";
 export const GET_SIV = "GET_SIV";
 export const GET_ORDER = "GET_ORDER";
+export const GET_SINGLE_ORDER = "GET_SINGLE_ORDER";
 export const GET_STATUS = "GET_STATUS";
 export const UPDATE_STATUS = "UPDATE_STATUS";
 export const UPDATE_SIV = "UPDATE_SIV";

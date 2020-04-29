@@ -2,17 +2,19 @@ import {
   GET_ORDER,
   GET_STATUS,
   UPDATE_STATUS,
+  GET_SINGLE_ORDER,
   errorsConstant,
 } from "../../constant/constants";
 import axios from "axios";
 import Swal from "sweetalert2";
 import API from "../../api/API";
+import headers from './../headers'
 
 
 // GET ORDER
 export const getOrders = () => (dispatch) => {
   axios
-    .get(API + "orderstatus/")
+    .get(API + "orderstatus/", headers)
     .then((res) => {
       console.log("rsponse")
       console.log(res)
@@ -31,6 +33,35 @@ export const getOrders = () => (dispatch) => {
         Swal.fire({
           title: "Error", text: "Connection Problem",
           icon: "Error",
+        });
+      }
+    });
+};
+
+// GET ORDER
+export const getSingleOrder = (orderNumber) => (dispatch) => {
+  console.log("ccccccccccccccccccc");
+  console.log(orderNumber);
+  axios
+    .get(API + `order/${orderNumber}/`, headers)
+    .then((res) => {
+
+
+      dispatch({
+        type: GET_SINGLE_ORDER,
+        payload: res.data,
+      });
+    })
+    .catch((err) => {
+      if (err.response && err.response.data) {
+        dispatch({
+          type: errorsConstant.GET_ERRORS,
+          payload: err.response.data,
+        });
+      } else {
+        Swal.fire({
+          title: "Error", text: "Connection Problem",
+          icon: "error",
         });
       }
     });
@@ -63,15 +94,11 @@ export const getStatus = () => (dispatch) => {
 
 // UPDATE STATUS
 export const updateStatus = (orderNumber, status) => (dispatch) => {
-  const config = {
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  };
+
 
   axios
 
-    .put(API + `status/${orderNumber}/`, status, config)
+    .put(API + `status/${orderNumber}/`, status, headers)
     .then((res) => {
 
       dispatch({

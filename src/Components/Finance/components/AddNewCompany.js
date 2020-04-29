@@ -94,17 +94,17 @@ class AddNewCompany extends Component {
       tinNumber: this.state.tinNumber,
     };
     this.props.addCompany(newCompany);
-    if(this.props.success){
-    this.setState({
-      companyName:"",
-      generalManger: "",
-      contactPerson: "",
-      workingField: "",
-      paymentOption: "",
-      email: "",
-      tinNumber: "",
-    });
-  };
+    if (this.props.success) {
+      this.setState({
+        companyName: "",
+        generalManger: "",
+        contactPerson: "",
+        workingField: "",
+        paymentOption: "",
+        email: "",
+        tinNumber: "",
+      });
+    };
   };
 
   handleChange(e) {
@@ -130,167 +130,177 @@ class AddNewCompany extends Component {
         <React.Fragment>
           <Grid container xs={12}>
             <Grid item xs={12}>
-            <div className={classes.container}>
-            <Paper className={classes.paper}>
-              <Typography
-                variant="h6"
-                gutterBottom
-                style={{
-                  display: "flex",
-                  justify: "flex-start",
-                }}
-              >
-                <b>Add New Company To Work With</b>
-              </Typography>
-              <Divider className={classes.spacer} />
-
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="companyName"
-                    name="companyName"
-                    label="Company Name"
-                    fullWidth
-                    autoComplete="companyName"
-                    value={companyName}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.companyName
-                        ? this.props.errors.companyName
-                        : null
-                    }
-                  />
-                </Grid>
-
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="generalManger"
-                    name="generalManger"
-                    label="General Manger"
-                    fullWidth
-                    autoComplete="generalManger"
-                    value={generalManger}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.generalManger
-                        ? this.props.errors.generalManger
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="contactPerson"
-                    name="contactPerson"
-                    label="Contact Person"
-                    fullWidth
-                    autoComplete="contactPerson"
-                    value={contactPerson}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.contactPerson
-                        ? this.props.errors.contactPerson
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={6}>
-                  <TextField
-                    required
-                    id="workingField"
-                    name="workingField"
-                    label="Working Field"
-                    fullWidth
-                    autoComplete="workingField"
-                    value={workingField}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.workingField
-                        ? this.props.errors.workingField
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={3}>
-                  <TextField
-                    required
-                    id="paymentOption"
-                    name="paymentOption"
-                    label="Payment Option"
-                    fullWidth
-                    value={paymentOption}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.paymentOption
-                        ? this.props.errors.paymentOption
-                        : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="email"
-                    name="email"
-                    label="Company Email"
-                    fullWidth
-                    value={email}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.email ? this.props.errors.email : null
-                    }
-                  />
-                </Grid>
-
-                <Grid item xs={12} sm={6}>
-                  <TextField
-                    required
-                    id="tinNumber"
-                    name="tinNumber"
-                    label="Tin Number"
-                    fullWidth
-                    value={tinNumber}
-                    onChange={this.handleChange}
-                  />
-                  <Error
-                    error={
-                      this.props.errors.tinNumber
-                        ? this.props.errors.tinNumber
-                        : null
-                    }
-                  />
-                </Grid>
-                <Grid item xs={12} sm={12}>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={this.submit}
-                    className={classes.button}
+              <div className={classes.container}>
+                <Paper className={classes.paper}>
+                  <Typography
+                    variant="h6"
+                    gutterBottom
+                    style={{
+                      display: "flex",
+                      justify: "flex-start",
+                    }}
                   >
-                    Save
+                    <b>Add New Company To Work With</b>
+                  </Typography>
+                  <Divider className={classes.spacer} />
+
+                  <Grid container spacing={2}>
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="companyName"
+                        name="companyName"
+                        label="Company Name"
+                        fullWidth
+                        autoComplete="companyName"
+                        value={companyName}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.companyName
+                            ? this.props.errors.companyName
+                            : null
+                        }
+                      />
+                    </Grid>
+
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="generalManger"
+                        name="generalManger"
+                        label="General Manger"
+                        fullWidth
+                        autoComplete="generalManger"
+                        value={generalManger}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.generalManger
+                            ? this.props.errors.generalManger
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <TextField
+                        required
+                        id="contactPerson"
+                        name="contactPerson"
+                        label="Contact Person"
+                        fullWidth
+                        autoComplete="contactPerson"
+                        value={contactPerson}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.contactPerson
+                            ? this.props.errors.contactPerson
+                            : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={4}>
+                      <TextField
+                        required
+                        id="workingField"
+                        name="workingField"
+                        label="Working Field"
+                        fullWidth
+                        autoComplete="workingField"
+                        value={workingField}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.workingField
+                            ? this.props.errors.workingField
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={4}>
+                      <FormControl className={classes.formControl} fullWidth>
+                        <InputLabel htmlFor="grouped-native-select">
+                          Payment Option
+                      </InputLabel>
+                        <Select
+                          native
+                          defaultValue=""
+                          id="paymentOption"
+                          name="paymentOption"
+                          onChange={this.handleChange}
+                          value={paymentOption}
+                        >
+                          <option aria-label="None" value="" />
+                          <option>TOT</option>
+                          <option>VAT</option>
+
+                        </Select>
+                        <Error
+                          error={
+                            this.props.errors.paymentOption
+                              ? this.props.errors.paymentOption
+                              : null
+                          }
+                        />
+                      </FormControl>
+                    </Grid>
+
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="email"
+                        name="email"
+                        label="Company Email"
+                        fullWidth
+                        value={email}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.email ? this.props.errors.email : null
+                        }
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} sm={6}>
+                      <TextField
+                        required
+                        id="tinNumber"
+                        name="tinNumber"
+                        label="Tin Number"
+                        fullWidth
+                        value={tinNumber}
+                        onChange={this.handleChange}
+                      />
+                      <Error
+                        error={
+                          this.props.errors.tinNumber
+                            ? this.props.errors.tinNumber
+                            : null
+                        }
+                      />
+                    </Grid>
+                    <Grid item xs={12} sm={12}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.submit}
+                        className={classes.button}
+                      >
+                        Save
                   </Button>
-                </Grid>
-              </Grid>
-            </Paper>
-          </div>
+                    </Grid>
+                  </Grid>
+                </Paper>
+              </div>
 
 
 
@@ -391,8 +401,8 @@ class AddNewCompany extends Component {
 
 const mapStateToProps = (state) => ({
   companys: state.companyReducer.companys,
-  errors: state.errorsReducer.errors,
-  success:state.companyReducer.success
+  errors: state.companyReducer.errors,
+  success: state.companyReducer.success
 });
 
 export default connect(mapStateToProps, { addCompany, getCompany })(

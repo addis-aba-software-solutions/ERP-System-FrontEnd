@@ -72,11 +72,8 @@ class CreateOrder extends Component {
       company: "",
       description: "",
       discount: "",
-      salesPerson: "",
       itemQuantity: 0,
       InventoryItem: "",
-
-      // order_items: [],
       shipmentAddress: "",
       order_items: [{ InventoryItem: "", quantity: 1 }],
     };
@@ -135,6 +132,20 @@ class CreateOrder extends Component {
   submit = () => {
     this.props.createOrder(this.state);
     this.componentDidMount();
+    if (this.props.success) {
+      this.setState({
+        fieldName: "",
+        orderNumber: "",
+        orderName: "",
+        company: "",
+        description: "",
+        discount: "",
+
+        itemQuantity: 0,
+        InventoryItem: "",
+        shipmentAddress: "",
+      })
+    }
 
   };
 
@@ -180,10 +191,7 @@ class CreateOrder extends Component {
                         </Typography>
                       </Grid>
 
-              
-                
-
-                      <Grid item xs={12} sm={6}>
+                      <Grid item xs={12} sm={12}>
                         <FormControl className={classes.formControl} fullWidth>
                           <InputLabel htmlFor="grouped-native-select">
                             Company
@@ -211,25 +219,7 @@ class CreateOrder extends Component {
                           }
                         />
                       </Grid>
-                      <Grid item xs={12} sm={6}>
-                        <TextField
-                          required
-                          id="salesPerson"
-                          name="salesPerson"
-                          label="Sales Person"
-                          fullWidth
-                          autoComplete="salesPerson"
-                          value={this.state.salesPerson}
-                          onChange={this.handleChange}
-                        />
-                        <Error
-                          error={
-                            this.props.errors.salesPerson
-                              ? this.props.errors.salesPerson
-                              : null
-                          }
-                        />
-                      </Grid>
+
                       <Grid item xs={12} sm={12}>
                         <TextField
                           required
@@ -249,7 +239,7 @@ class CreateOrder extends Component {
                           }
                         />
                       </Grid>
-                   
+
 
                       <Grid item xs={12} sm={12}>
                         <TextField
@@ -347,19 +337,28 @@ class CreateOrder extends Component {
                           display="flex"
                           justify="space-between"
                         >
-                     
-                       {
-                         this.props.errors.item_order?this.props.errors.item_order.map((item) => (
+
+                          {
+                            this.props.errors.item_order ? this.props.errors.item_order.map((item) => (
+                              <Error
+                                error={
+                                  item.InventoryItem
+
+                                }
+                              />
+                            )
+
+                            ) : null
+                          }
+
                           <Error
-                          error={
-                            item.InventoryItem
-                             
-                         }
-                         />
-                         )
-                         
-                         ):null
-                       }
+                            error={
+                              this.props.errors.itemName
+                                ? this.props.errors.itemName
+                                : null
+                            }
+                          />
+
                           <Button
                             variant="contained"
                             color="primary"
@@ -400,6 +399,7 @@ function mapStateToProps(state) {
     errors: state.salesReducer.errors,
     items: state.salesReducer.items,
     companys: state.salesReducer.companys,
+    success: state.salesReducer.success,
   };
 }
 const mapDispatchToProps = {

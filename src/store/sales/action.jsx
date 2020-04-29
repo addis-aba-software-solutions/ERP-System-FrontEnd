@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
-import { salesConstants } from "../../constant/constants";
+import { salesConstants, errorsConstant } from "../../constant/constants";
 const headers = {
   "Content-Type": "application/json",
   Authorization: "Bearer" + localStorage.getItem("token"),
@@ -9,12 +9,11 @@ const headers = {
 function createOrder(data) {
   var params = {
     orderNumber: data.orderNumber,
-    orderName: data.orderName,
     company: data.company,
     quantity: data.itemQuantity,
     description: data.description,
     discount: data.discount,
-    salesPerson: data.salesPerson,
+    salesPerson: localStorage.getItem("username"),
     item_order: data.order_items,
     shipmentAddress: data.shipmentAddress,
   };
@@ -39,9 +38,6 @@ function createOrder(data) {
         });
       })
       .catch((error) => {
-        console.log("error.response");
-        console.log(error.response);
-
         if (error.response && error.response.data) {
           if (error.response.status == 404) {
             Swal.fire({
@@ -72,6 +68,7 @@ function createOrder(data) {
       });
   };
 }
+
 function getAllCompany() {
   return (dispatch) => {
     dispatch({

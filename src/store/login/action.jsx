@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import axios from "axios";
 import API from "../../api/API";
-import { appConstants } from "../../constant/constants";
+import { appConstants, errorsConstant } from "../../constant/constants";
 import headers from "./../headers";
 function login(username, password) {
   return (dispatch) => {
@@ -27,7 +27,13 @@ function login(username, password) {
         localStorage.setItem("id", user.data.user.id);
         localStorage.setItem("email", user.data.user.email);
         localStorage.setItem("username", user.data.user.username);
-        localStorage.setItem("department", user.data.user.department);
+        localStorage.setItem("is_superuser", user.data.user.is_superuser);
+        localStorage.setItem(
+          "department",
+          user.data.user.department
+            ? user.data.user.department.departmentName
+            : ""
+        );
         localStorage.setItem("role", user.data.user.role);
         localStorage.setItem("level", user.data.user.level);
         dispatch({
@@ -36,10 +42,22 @@ function login(username, password) {
         });
       })
       .catch((error) => {
-        dispatch({
-          type: appConstants.LOGIN_FAILURE,
-          payload: error.response.data.errors,
-        });
+        if (error.response && error.response.data) {
+          dispatch({
+            type: appConstants.LOGIN_FAILURE,
+            payload: error.response.data.errors,
+          });
+        } else {
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "error",
+          });
+          dispatch({
+            type: appConstants.LOGIN_FAILURE_NETWORK,
+            payload: false,
+          });
+        }
       });
   };
 }

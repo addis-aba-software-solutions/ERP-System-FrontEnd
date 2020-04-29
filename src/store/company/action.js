@@ -6,8 +6,7 @@ import headers from './../headers'
 
 // ADD COMPANY
 export const addCompany = (company) => (dispatch) => {
-  console.log("th item");
-  console.log(company);
+
   axios
     .post(API + "company/", company, headers)
     .then((res) => {

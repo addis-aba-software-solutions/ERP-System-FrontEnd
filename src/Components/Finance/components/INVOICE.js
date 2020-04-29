@@ -11,8 +11,8 @@ import {
 
 
 } from "@react-pdf/renderer";
-import {connect} from "react-redux"
-import { getInvoice} from "../../../store/Invoice/action"
+import { connect } from "react-redux"
+import { getInvoice } from "../../../store/Invoice/action"
 
 const styles = StyleSheet.create({
     root: {
@@ -105,15 +105,7 @@ const styles = StyleSheet.create({
 
 
 class Invoice extends Component {
-//     componentDidMount() {
-//     this.props.getInvoice(this.props.orderNumber);
-//     console.log("invoices");
-//     console.log(this.props.orderNumber);
 
-//     console.log(this.props.invoices);
-    
-
-//   }
     render() {
 
         return (
@@ -621,6 +613,6 @@ class Invoice extends Component {
 //     invoice_item: state.invoiceReducer.invoice_item,
 //     errors: state.errorsReducer.errors,
 //   });
-  export default Invoice;
+export default Invoice;
 
 // export default connect(mapStateToProps, {getInvoice})(Invoice);

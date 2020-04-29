@@ -24,8 +24,9 @@ import Siv from "./Components/Inventory/components/SIV";
 import ViewFinanceOrders from "./Components/Finance/components/ViewAllOrders";
 import ViewInventoryOrders from "./Components/Inventory/components/ViewAllOrders";
 import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders";
-import ViewSingleOrder from './Components/Finance/components/ViewSingleOrder'
-import ViewAccount from "./Components/HR/components/UsersTable/view_account"
+import ViewSingleOrder from "./Components/Finance/components/ViewSingleOrder";
+import Sales_ViewSingleOrder from "./Components/Saless/components/ViewSingleOrder";
+import ViewAccount from "./Components/HR/components/UsersTable/view_account";
 
 class App extends React.Component {
   render() {
@@ -52,7 +53,12 @@ class App extends React.Component {
                     exact
                   />
                   <PrivateRoute path="/list_item" component={ViewItem} exact />
-                  <PrivateRoute path="/siv" component={Siv} exact  loggedIn={this.props.isLogin}/>
+                  <PrivateRoute
+                    path="/siv"
+                    component={Siv}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
                   <PrivateRoute
                     path="/inventoryOrders"
                     component={ViewInventoryOrders}
@@ -64,7 +70,7 @@ class App extends React.Component {
                     component={ViewLogisticsOrders}
                     exact
                   />
-                
+
                   {/* employee routes */}
                   <PrivateRoute
                     path="/add_employe"
@@ -90,7 +96,6 @@ class App extends React.Component {
                     component={ViewSingleOrder}
                     exact
                     loggedIn={this.props.isLogin}
-                    
                   />
                   <PrivateRoute
                     path="/company"
@@ -119,19 +124,23 @@ class App extends React.Component {
                     loggedIn={this.props.isLogin}
                   />
                   <PrivateRoute
+                    path="/salesOrder"
+                    component={Sales_ViewSingleOrder}
+                    exact
+                    loggedIn={this.props.isLogin}
+                  />
+                  <PrivateRoute
                     path="/salesOrders"
                     component={ViewAllOrders}
                     exact
                     loggedIn={this.props.isLogin}
                   />
-
                   {/* it department route */}
                   <PrivateRoute
                     path="/view_account"
                     component={ViewAccount}
                     exact
                     loggedIn={this.props.isLogin}
-                    
                   />
                 </section>
               </section>
@@ -140,14 +149,12 @@ class App extends React.Component {
         </Switch>
       </BrowserRouter>
     );
-
-}
+  }
 }
 function mapStateToProps(state) {
   return {
     isLogin: state.loginReducer.isLogin,
   };
 }
-
 
 export default connect(mapStateToProps)(App);
