@@ -363,17 +363,14 @@ class ViewSingleOrder extends React.Component {
                                                 <Grid item>
                                                     <Button variant="contained" color="primary">
                                                         Edit
-               </Button>
+                                                    </Button>
                                                 </Grid>
                                                 <Grid item>
                                                     <Button variant="contained" color="secondary">
                                                         Delete
-                       </Button>
+                                                    </Button>
                                                 </Grid>
                                                 <Grid item>
-                                                    <Button variant="contained" color="primary">
-                                                        Print Document
-                       </Button>
                                                 </Grid>
                                             </Grid>
                                         </Card>

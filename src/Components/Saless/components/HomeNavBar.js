@@ -141,16 +141,13 @@ export default function HomeNavBar() {
       <main>
         <Container>
           <Grid container spacing={2}>
-            <Grid item xs={5}
-            >
-
+            <Grid item xs={5}>
               <Typography style={{
                 fontSize: 30,
                 color: '#818181',
               }}>
                 Some Category Goes Here
-          </Typography>
-
+              </Typography>
             </Grid>
             <Grid item xs={6} style={{
               // marginLeft: 100
@@ -162,7 +159,7 @@ export default function HomeNavBar() {
                 // marginLeft: 50
               }}>
                 Total Sales
-      </Typography>
+              </Typography>
               <Typography style={{
                 fontSize: 30,
                 color: '#000000',
@@ -177,13 +174,13 @@ export default function HomeNavBar() {
                   variant="body2"
                 >
                   87%
-          </Typography>
+                </Typography>
                 <Typography
                   className={classes.caption}
                   variant="caption"
                 >
                   Compared to Last Year
-          </Typography>
+                </Typography>
               </div>
 
             </Grid>
