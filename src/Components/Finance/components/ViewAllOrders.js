@@ -89,7 +89,6 @@ class ViewAllOrders extends Component {
                   {deliveredOrders ? deliveredOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell>{order.orderName}</TableCell>
                       <TableCell align='center'>{order.company}</TableCell>
                       <TableCell align='center'>{order.salesPerson}</TableCell>
                       <TableCell align='center'>{order.shipmentAddress}</TableCell>
@@ -98,7 +97,7 @@ class ViewAllOrders extends Component {
                         {order.status}
                       </TableCell>
 
-                      <TableCell align='right'>
+                      <TableCell align='center'>
                         <Grid container spacing={2}>
                           <Grid item>
                           <PDFDownloadLink

@@ -66,7 +66,6 @@ class ViewAllOrders extends Component {
                 <TableHead>
                   <TableRow className={classes.table}>
                     <TableCell>Order #</TableCell>
-                    <TableCell>Order Name</TableCell>
 
                     <TableCell>Company</TableCell>
                     <TableCell>Sales Person</TableCell>
@@ -114,7 +113,6 @@ class ViewAllOrders extends Component {
                   {createdOrders ? createdOrders.map((order) => (
                     <TableRow key={order.orderNumber}>
                       <TableCell>{order.orderNumber}</TableCell>
-                      <TableCell>{order.orderName}</TableCell>
                       <TableCell>{order.description}</TableCell>
                       <TableCell>{order.company}</TableCell>
                       <TableCell>{order.salesPerson}</TableCell>
