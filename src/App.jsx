@@ -1,6 +1,5 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-
 import SignIn from "./Components/SignIn/SignIn";
 import PrivateRoute from "./auth/private_route";
 import PublicRoute from "./auth/public_route";
@@ -11,7 +10,6 @@ import AllEmploye from "./Components/HR/components/UsersTable/UsersTable";
 import EmployeProfile from "./Components/HR/components/UserProfile/employe_profile";
 import Asider from "./Components/sidebar/Asider";
 import Nav from "./Components/nav/nav";
-// import Dashboard from "./Components/Dashboard/HomeNavBar";
 import AddNewProduct from "./Components/Inventory/components/AddNewProduct";
 import ViewItem from "./Components/Inventory/components/ItemList";
 import CreateOrder from "./Components/Saless/components/CreateOrder";
@@ -27,6 +25,7 @@ import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders
 import ViewSingleOrder from "./Components/Finance/components/ViewSingleOrder";
 import Sales_ViewSingleOrder from "./Components/Saless/components/ViewSingleOrder";
 import ViewAccount from "./Components/HR/components/UsersTable/view_account";
+import FinanceDashboard from './Components/Finance/Finance';
 
 class App extends React.Component {
   render() {
@@ -50,6 +49,11 @@ class App extends React.Component {
                   <PrivateRoute
                     path="/add_item"
                     component={AddNewProduct}
+                    exact
+                  />
+                  <PrivateRoute
+                    path="/FinanceDashboard"
+                    component={FinanceDashboard}
                     exact
                   />
                   <PrivateRoute path="/list_item" component={ViewItem} exact />
