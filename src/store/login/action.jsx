@@ -64,7 +64,7 @@ function login(username, password) {
 
 function logout() {
   return (dispatch) => {
-    removeStorage();
+    
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -79,6 +79,7 @@ function logout() {
           type: appConstants.LOGOUT,
           payload: false,
         });
+        removeStorage();
         window.location.href = "/";
       }
     });
