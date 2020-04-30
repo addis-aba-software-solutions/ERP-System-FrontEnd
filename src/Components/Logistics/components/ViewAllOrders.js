@@ -74,6 +74,8 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'><b>Order Date</b></TableCell>
                       <TableCell align='center'><b>Status</b></TableCell>
                       <TableCell align='center'><b>Action</b></TableCell>
+                      <TableCell align='center'><b>View</b></TableCell>
+
 
                     </TableRow>
                   </TableHead>
@@ -85,13 +87,15 @@ class ViewAllOrders extends Component {
                         <TableCell align='center'>{order.salesPerson}</TableCell>
                         <TableCell align='center'>{order.shipmentAddress}</TableCell>
                         <TableCell align='center'>{order.orderDate}</TableCell>
-                        {/* <TableCell align='center'>{order.status}</TableCell> */}
+                        <TableCell align='center'>{order.status}</TableCell>
 
                         <TableCell align='center'>
                           {order.status === "Delivered" ?
-                            <Typography>
-                              {order.status}
-                            </Typography>
+                            <IconButton>
+                              <DoneAllIcon style={{
+                                color: '#00AF58'
+                              }} fontSize='large' />
+                            </IconButton>
                             :
                             (
                               <Button
