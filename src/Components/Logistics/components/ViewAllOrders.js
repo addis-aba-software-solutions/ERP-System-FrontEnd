@@ -103,7 +103,7 @@ class ViewAllOrders extends Component {
                             (
                               <Button
                                 style={{
-                                  backgroundColor: '#00970F',
+                                  backgroundColor: '#11669F',
                                   color: '#FFFFFF'
                                 }}
                                 variant='contained'
