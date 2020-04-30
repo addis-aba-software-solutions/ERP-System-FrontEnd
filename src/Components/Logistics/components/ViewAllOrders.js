@@ -85,21 +85,14 @@ class ViewAllOrders extends Component {
                         <TableCell align='center'>{order.salesPerson}</TableCell>
                         <TableCell align='center'>{order.shipmentAddress}</TableCell>
                         <TableCell align='center'>{order.orderDate}</TableCell>
-                        <TableCell align='center'>{order.status}</TableCell>
+                        {/* <TableCell align='center'>{order.status}</TableCell> */}
 
                         <TableCell align='center'>
-                          {order.status === "Delivered" ? (
-                            <Link
-                              to={{
-                                pathname: "./salesOrder",
-                                state: { order: order.orderNumber,  status: order.status  },
-                              }}>
-
-                              <IconButton>
-                                <VisibilityIcon />
-                              </IconButton>
-                            </Link>
-                          ) :
+                          {order.status === "Delivered" ?
+                            <Typography>
+                              {order.status}
+                            </Typography>
+                            :
                             (
                               <Button
                                 style={{
@@ -119,6 +112,18 @@ class ViewAllOrders extends Component {
                               </Button>
                             )
                           }
+                        </TableCell>
+                        <TableCell>
+                          <Link
+                            to={{
+                              pathname: "./salesOrder",
+                              state: { order: order.orderNumber, status: order.status },
+                            }}>
+
+                            <IconButton>
+                              <VisibilityIcon />
+                            </IconButton>
+                          </Link>
                         </TableCell>
 
                       </TableRow>
