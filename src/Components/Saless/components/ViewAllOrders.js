@@ -106,7 +106,7 @@ class ViewAllOrders extends Component {
                           <Link
                             to={{
                               pathname: "./salesOrder",
-                              state: { order: order.orderNumber, },
+                              state: { order: order.orderNumber, status: order.status },
                             }}>
 
                             <IconButton>

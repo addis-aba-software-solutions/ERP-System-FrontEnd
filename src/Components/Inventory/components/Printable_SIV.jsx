@@ -165,26 +165,22 @@ class SIVPdf extends Component {
               </View>
             </View>
             {this.props.siv_item
-                ? this.props.siv_item.map((item) => {
+              ? this.props.siv_item.map((item) => {
                   return (
-
-            <View key={item.itemName}  style={styles.tableRow}>
-
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>{1}</Text>
-                        </View>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>{item.itemName}</Text>
-                        </View>
-                        <View style={styles.tableCol}>
-                          <Text style={styles.tableCell}>{item.quantity}</Text>
-                        </View>
-
-            </View>
-                                );
-                              }
-            ): null}
-
+                    <View key={item.itemName} style={styles.tableRow}>
+                      <View style={styles.tableCol}>
+                        <Text style={styles.tableCell}>{1}</Text>
+                      </View>
+                      <View style={styles.tableCol}>
+                        <Text style={styles.tableCell}>{item.itemName}</Text>
+                      </View>
+                      <View style={styles.tableCol}>
+                        <Text style={styles.tableCell}>{item.quantity}</Text>
+                      </View>
+                    </View>
+                  );
+                })
+              : null}
           </View>
           <View
             style={{
