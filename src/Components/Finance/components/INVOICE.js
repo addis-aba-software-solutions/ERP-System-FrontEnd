@@ -53,11 +53,11 @@ const styles = StyleSheet.create({
         borderBottomWidth: 0
     },
     tableRow: {
-        margin: "auto",
+        // margin: "auto",
         flexDirection: "row"
     },
     tableColHeader: {
-        width: "25%",
+        width: "20%",
         borderStyle: "solid",
         borderColor: '#686868',
         borderBottomColor: '#000',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 0
     },
     tableCol: {
-        width: "25%",
+        width: "20%",
         borderStyle: "solid",
         borderColor: '#686868',
         borderWidth: 1,
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
     tableCell: {
         margin: "auto",
         color: '#686868',
-        fontSize: 10
+        fontSize: 12
     },
     line: {
         width: "auto",
@@ -129,7 +129,6 @@ function PdfDocument(props) {
                                         <View style={{
                                             height: 10
                                         }}>
-
                                         </View>
                                         <Text style={styles.textBody} >
                                             Mobile : +251 91 147 5672
@@ -319,91 +318,90 @@ function PdfDocument(props) {
                                         </View>
                                         <View style={{
                                             height: 10
-                                        }}>
+                                        }} />
 
-                                        </View>
 
                                     </View>
 
-                                    <View style={{
-                                        height: 20
-                                    }} />
-                                    {/* <View style={styles.line} /> */}
 
-                                    <View style={{
-                                        height: 20
-                                    }}>
-                                    </View>
 
 
                                 </View>
-
                                 <View style={{
-                                    height: 40
-                                }} />
+                                        height: 20
+                                    }} />
 
                                 <View style={styles.line} />
 
                                 <View style={{
-                                    height: 40
+                                    height: 20
                                 }} />
-                                
-                                    <View style={styles.table}>
-                                        <View style={styles.tableRow}>
-                                            {/* <View style={styles.tableColHeader}>
+
+                                <View style={styles.table}>
+                                    <View style={styles.tableRow}>
+                                        {/* <View style={styles.tableColHeader}>
                                                 <Text style={styles.tableCellHeader}>#</Text>
                                             </View> */}
-                                            <View style={styles.tableColHeader}>
-                                                <Text style={styles.tableCellHeader}>Item Name</Text>
-                                            </View>
-                                            <View style={styles.tableColHeader}>
-                                                <Text style={styles.tableCellHeader}>Quantity</Text>
-                                            </View>
-                                            <View style={styles.tableColHeader}>
-                                                <Text style={styles.tableCellHeader}>Unit Price</Text>
-                                            </View>
-                                            <View style={styles.tableColHeader}>
-                                                <Text style={styles.tableCellHeader}>Amount</Text>
-                                            </View>
+                                        <View style={styles.tableColHeader}>
+                                            <Text style={styles.tableCellHeader}>#</Text>
                                         </View>
-
-
-
+                                        <View style={styles.tableColHeader}>
+                                            <Text style={styles.tableCellHeader}>Item Name</Text>
+                                        </View>
+                                        <View style={styles.tableColHeader}>
+                                            <Text style={styles.tableCellHeader}>Quantity</Text>
+                                        </View>
+                                        <View style={styles.tableColHeader}>
+                                            <Text style={styles.tableCellHeader}>Unit Price</Text>
+                                        </View>
+                                        <View style={styles.tableColHeader}>
+                                            <Text style={styles.tableCellHeader}>Amount</Text>
+                                        </View>
                                     </View>
 
 
-                                    {props.invoice_item ? props.invoice_item.map((item) => {
-                                        return (
-                                            <View key={item.itemName} style={styles.tableRow}>
-                                                    <View style={styles.tableCol}>
-                                                        <Text style={styles.tableCell}>{item.itemName}</Text>
-                                                    </View>
-                                                    <View style={styles.tableCol}>
-                                                        <Text style={styles.tableCell}>{item.quantity}</Text>
-                                                    </View>
-                                                    <View style={styles.tableCol}>
-                                                        <Text style={styles.tableCell}>{item.unitPrice}</Text>
-                                                    </View>
-                                                    <View style={styles.tableCol}>
-                                                        <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
-                                                    </View>
+
+                                </View>
 
 
+                                {props.invoice_item ? props.invoice_item.map((item) => {
+                                    return (
+                                        <View key={item.itemName} style={styles.tableRow}>
+                                            <View style={styles.tableCol}>
+                                                <Text style={styles.tableCell}>#</Text>
                                             </View>
-                                        );
-                                    }) : null}
+                                            <View style={styles.tableCol}>
+                                                <Text style={styles.tableCell}>{item.itemName}</Text>
+                                            </View>
+                                            <View style={styles.tableCol}>
+                                                <Text style={styles.tableCell}>{item.quantity}</Text>
+                                            </View>
+                                            <View style={styles.tableCol}>
+                                                <Text style={styles.tableCell}>{item.unitPrice}</Text>
+                                            </View>
+                                            <View style={styles.tableCol}>
+                                                <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
+                                            </View>
+
+
+                                        </View>
+                                    );
+                                }) : null}
 
                                 <View style={{
                                     height: 40
                                 }} />
 
 
-                                <View key={data.itemName} style={styles.movieContainer}>
+                                <View key={data.itemName} style={{
+                                    marginLeft: 300
+
+                                }}>
                                     <View container style={{
                                         flexDirection: 'row',
                                         display: 'flex',
                                         justifyContent: 'space-between',
-                                        paddingBottom: 5
+                                        paddingBottom: 5,
                                     }}>
                                         <View item >
 
@@ -488,14 +486,11 @@ function PdfDocument(props) {
 
                                     </View>
                                     <View style={styles.line} />
-
-
-
                                 </View>
 
 
 
-                                <View style={{ height: 80 }} />
+                                <View style={{ height: 100 }} />
                                 <View style={styles.line} />
                                 <View container style={{
                                     display: 'flex',
@@ -519,14 +514,8 @@ function PdfDocument(props) {
 
                     })
                     : ""}
-
                 <View style={styles.tableRow}>
-
                 </View>
-
-
-
-
             </Page>
         </Document >
     );
