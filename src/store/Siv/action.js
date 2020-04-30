@@ -29,13 +29,6 @@ export const getSiv = (order) => (dispatch) => {
 
 // UPDATE siv Status
 export const updateSiv = (orderNumber, status) => (dispatch) => {
-
-
-  const headers = {
-    'Content-Type': 'application/json',
-
-  }
-
   axios
     .put(API + `generatesiv/${orderNumber}/`, status, headers)
     .then((res) => {

@@ -1,6 +1,5 @@
-import React, { Component } from "react";
-import Logo from "../../../Assets/NAZO.png";
-import { getSiv } from "../../../store/Siv/action";
+import React, { Component } from 'react';
+import Logo from '../../../Assets/NAZO.png';
 import {
   Page,
   Text,
@@ -8,19 +7,18 @@ import {
   Document,
   StyleSheet,
   Image,
-} from "@react-pdf/renderer";
-import { connect } from "react-redux";
+} from '@react-pdf/renderer';
 
 const styles = StyleSheet.create({
   root: {
-    width: "100vh",
-    height: "100vh",
-    backgroundColor: "#d1d1d1",
+    width: '100vh',
+    height: '100vh',
+    backgroundColor: '#d1d1d1',
     padding: 10,
   },
 
   text: {
-    color: "#686868",
+    color: '#686868',
   },
   Header: {
     fontSize: 13,
@@ -40,60 +38,57 @@ const styles = StyleSheet.create({
   },
   textBody: {
     fontSize: 12,
-    color: "#686868",
+    color: '#686868',
   },
   tableRow: {
-    margin: "auto",
-    flexDirection: "row",
+    margin: 'auto',
+    flexDirection: 'row',
   },
   tableColHeader: {
-    width: "16.8%",
-    borderStyle: "solid",
-    borderColor: "#686868",
-    borderBottomColor: "#000",
-    backgroundColor: "#11669F",
+    width: '16.8%',
+    borderStyle: 'solid',
+    borderColor: '#686868',
+    borderBottomColor: '#000',
+    backgroundColor: '#11669F',
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
   },
   tableCol: {
-    width: "16.8%",
-    borderStyle: "solid",
-    borderColor: "#686868",
+    width: '16.8%',
+    borderStyle: 'solid',
+    borderColor: '#686868',
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
   },
   tableCellHeader: {
-    margin: "auto",
+    margin: 'auto',
     fontSize: 12,
     // fontWeight: 500,
-    color: "#FFFFFF",
+    color: '#FFFFFF',
   },
   tableCell: {
-    margin: "auto",
-    color: "#686868",
+    margin: 'auto',
+    color: '#686868',
     fontSize: 10,
   },
   line: {
-    width: "auto",
-    borderStyle: "solid",
-    borderColor: "#11669F",
+    width: 'auto',
+    borderStyle: 'solid',
+    borderColor: '#11669F',
     borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
   },
   total: {
     fontSize: 12,
-    color: "#686868",
+    color: '#686868',
     marginLeft: 400,
   },
 });
 
 class SIVPdf extends Component {
-  componentDidMount() {
-    this.props.getSiv(this.props.orderNumber);
-  }  
   render() {
     return (
       <Document>
@@ -107,21 +102,20 @@ class SIVPdf extends Component {
             <View
               container
               style={{
-                flexDirection: "row",
+                flexDirection: 'row',
                 marginTop: 100,
               }}
             >
               <View item>
-                
                 <View style={{ height: 5 }} />
 
                 <Text style={styles.text} variant="body2" gutterBottom>
-                  Warehouse Name {this.props.sivs.warehouseName}
+                  Warehouse Name: {this.props.sivs.warehouseName}
                 </Text>
                 <View style={{ height: 5 }} />
 
                 <Text style={styles.text} variant="body2" gutterBottom>
-                  Issued By : {localStorage.getItem("username")}
+                  Issued By : {localStorage.getItem('username')}
                 </Text>
                 <View style={{ height: 5 }} />
 
@@ -144,15 +138,14 @@ class SIVPdf extends Component {
 
           <View
             style={{
-              display: "flex",
-              justifyContent: "flex-start",
+              display: 'flex',
+              justifyContent: 'flex-start',
               padding: 20,
             }}
           >
             <Text style={styles.textBody} variant="body2" color="">
-              Order Number : {this.props.siv.order}
+              Order Number : {this.props.sivs.order}
             </Text>
-            
           </View>
 
           <View
@@ -166,47 +159,40 @@ class SIVPdf extends Component {
                 <Text style={styles.tableCellHeader}>#</Text>
               </View>
               <View style={styles.tableColHeader}>
-                <Text style={styles.tableCellHeader}>Item ID</Text>
-              </View>
-              <View style={styles.tableColHeader}>
                 <Text style={styles.tableCellHeader}>ItemName</Text>
               </View>
               <View style={styles.tableColHeader}>
                 <Text style={styles.tableCellHeader}>Quantity</Text>
               </View>
             </View>
-            
+
             <View style={styles.tableRow}>
-                            {this.props.siv_item?this.props.siv_item.map((item)=>{
-                                return(
-                                    <View key={item.itemName} style={styles.movieContainer}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.itemName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.quantity}</Text>
-                            </View>
-                            
-                            </View>
-                                );
-                            }):""}
-                            
+              {this.props.siv_item
+                ? this.props.siv_item.map((item) => {
+                    return (
+                      <View key={item.itemName} style={styles.movieContainer}>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>{1}</Text>
                         </View>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>{item.itemName}</Text>
+                        </View>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>{item.quantity}</Text>
+                        </View>
+                      </View>
+                    );
+                  })
+                : ''}
+            </View>
           </View>
           <View
             style={{
-              display: "flex",
+              display: 'flex',
               paddingTop: 20,
               marginLeft: 450,
             }}
-          >
-            <Text style={styles.textBody} variant="body2" color="">
-              Total : 67
-            </Text>
-          </View>
+          ></View>
           <View
             style={{
               paddingLeft: 20,
@@ -214,8 +200,8 @@ class SIVPdf extends Component {
           >
             <View
               style={{
-                display: "flex",
-                justifyContent: "flex-start",
+                display: 'flex',
+                justifyContent: 'flex-start',
               }}
             >
               <Text style={styles.textBody} variant="body2" color="">
@@ -224,8 +210,8 @@ class SIVPdf extends Component {
             </View>
             <View
               style={{
-                display: "flex",
-                justifyContent: "flex-start",
+                display: 'flex',
+                justifyContent: 'flex-start',
                 paddingTop: 15,
               }}
             >
@@ -242,10 +228,12 @@ class SIVPdf extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  sivs: state.sivReducer.sivs,
-  siv_item: state.sivReducer.siv_item,
-  errors: state.errorsReducer.errors,
-});
+// const mapStateToProps = (state) => ({
+//   sivs: state.sivReducer.sivs,
+//   siv_item: state.sivReducer.siv_item,
+//   errors: state.errorsReducer.errors,
+// });
 
-export default connect(mapStateToProps, { getSiv } )(SIVPdf);
+export default SIVPdf;
+
+// export default connect(mapStateToProps, { getSiv } )(SIVPdf);
