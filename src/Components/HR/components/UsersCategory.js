@@ -170,26 +170,25 @@ export default function UsersCategory() {
                     margin: 20
                 }}>
                     <Grid container display='flex' justify='space-between' className={classes.header}>
-                    <Grid item style={{
-                        paddingLeft:50,
-                        // marginTop:5
-                    }}>
-                        <Typography variant='h4' color='textSecondary'>
-                            <b>Employee List</b>
+                        <Grid item style={{
+                            paddingLeft: 50,
+                        }}>
+                            <Typography variant='h4' color='textSecondary'>
+                                <b>Employee List</b>
+                            </Typography>
+                            <Typography variant='h6'>
+                                Random Selection
                         </Typography>
-                        <Typography variant='h6'>
-                            Random Selection
+                            <Typography variant='h6'>
+                                Finance
                         </Typography>
-                        <Typography variant='h6'>
-                            Finance
-                        </Typography>
-                        
+
                         </Grid>
                         <Grid item style={{
                             marginTop: 15,
-                            marginRight:20
+                            marginRight: 20
                         }}>
-                        <SearchBar />
+                            <SearchBar />
                         </Grid>
 
 
@@ -202,7 +201,6 @@ export default function UsersCategory() {
                 <Divider></Divider>
 
                 <main className={classes.root}>
-                    {/* <div className={classes.appbarShift}></div> */}
                     <Paper className={classes.root}>
                         <TableContainer className={classes.container}>
                             <Table stickyHeader className={classes.table} aria-label="sticky table">

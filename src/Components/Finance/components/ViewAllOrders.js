@@ -47,8 +47,6 @@ class ViewAllOrders extends Component {
       show: false,
       order: '',
     }
-
-
   }
 
   handlePrint = (order) => {
@@ -136,7 +134,6 @@ class ViewAllOrders extends Component {
             </TableContainer>
           </Paper>
         </div>
-
       </>
     );
   }

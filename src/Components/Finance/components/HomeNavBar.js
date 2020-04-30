@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
 
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',
@@ -291,7 +291,7 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Favorite Accounts
+                Reccuring Accounts
             </Typography>
 
             </Grid>
@@ -301,7 +301,6 @@ export default function HomeNavBar() {
                   <TableRow>
                     <TableCell>#</TableCell>
                     <TableCell>Client ID</TableCell>
-
                     <TableCell align="right">Client Name</TableCell>
                     <TableCell align="right">Client Account</TableCell>
                     <TableCell align="right">Something</TableCell>

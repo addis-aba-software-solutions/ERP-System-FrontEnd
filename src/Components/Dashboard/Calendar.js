@@ -10,7 +10,6 @@ import {
 } from '@material-ui/pickers';
 
 export default function Calendar() {
-  // The first commit of Material-UI
   const [selectedDate, setSelectedDate] = React.useState(new Date('2014-08-18T21:11:54'));
 
   const handleDateChange = (date) => {
@@ -39,9 +38,7 @@ export default function Calendar() {
             fullWidth
             margin="normal"
             variant="outlined"
-            label="Start date"
-          // value={this.state.startDate}
-          // onChange={this.handleDateChange}
+
           />
         </div>
         <KeyboardDatePicker

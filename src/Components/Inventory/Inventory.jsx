@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     backgroundColor: "#11669F",
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24, 
   },
   toolbarIcon: {
     display: "flex",
@@ -245,12 +245,10 @@ function Inventory() {
                 <ListItemIcon>
                   <PeopleIcon />
                 </ListItemIcon>
-                {/* <ListItemText primary="Hollup" /> */}
               </ListItem>
             </Link>
           </List>
           <Divider />
-          {/* <List>{secondaryListItems}</List> */}
         </Drawer>
 
         <main

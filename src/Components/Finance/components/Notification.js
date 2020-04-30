@@ -55,10 +55,8 @@ export default function Notification() {
                                     <ListItemText className={classes.notificationText}
                                         primary="Notification Goes Here"
                                     />
-
                                 </ListItem>
                                 <Divider></Divider>
-
                             </>
                         )}
                     </List>

@@ -23,10 +23,8 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
-    // padding: 20
   },
   tableRow: {
-    // padding: 15
   },
   container: {
     padding: 20,

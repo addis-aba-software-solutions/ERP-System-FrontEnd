@@ -28,16 +28,13 @@ import { addCompany, getCompany } from "../../../store/company/action";
 const styles = (theme) => ({
   container: {
     paddingLeft: 20,
-    // marginRight: 200,
     paddingTop: 40,
-    // paddingBottom: 40,
     height: "auto",
   },
   paper: {
     padding: 60,
     height: "auto",
     borderRadius: 20,
-    // minWidth: 400
   },
   spacer: {
     margin: 20,
@@ -322,13 +319,11 @@ class AddNewCompany extends Component {
             >
               Recent Imports
             </Typography>
-            {/* <RecentOrders /> */}
             <Paper className={classes.paper}>
               <TableContainer>
                 <Table
                   className={classes.table}
-                // size="small"
-                // aria-label="a dense table"
+
                 >
                   <TableHead>
                     <TableRow className={classes.table}>

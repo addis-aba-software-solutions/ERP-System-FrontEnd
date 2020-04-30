@@ -8,7 +8,6 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import SearchBar from "../../SearchBar/SearchBar";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
-// import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
@@ -110,57 +109,6 @@ const handlePopUp = () => {
   let value = this.state.setOpen;
   this.setState({ setOpen: !value });
 };
-
-// class PopUp extends React.Component {
-
-//     constructor() {
-//         super();
-//         this.state = {
-//             open: true,
-//             setOpen: true,
-//             redirect: false
-//         }
-//     }
-
-//     handlePopUp = () => {
-//         let value = this.state.setOpen
-//         this.setState({ setOpen: !value });
-//     };
-//  showDialog(){
-//      return <PopUp />
-//  }
-//     render() {
-
-//         return (
-//             <Dialog open={true} aria-labelledby="form-dialog-title">
-//                 <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-//                 <DialogContent>
-//                     <DialogContentText>
-//                         To subscribe to this website, please enter your email address here. We will send updates
-//                         occasionally.
-//       </DialogContentText>
-//                     <TextField
-//                         autoFocus
-//                         margin="dense"
-//                         id="name"
-//                         label="Email Address"
-//                         type="email"
-//                         fullWidth
-//                     />
-//                 </DialogContent>
-//                 <DialogActions>
-//                     <Button onClick={this.handlePopUp} color="primary">
-//                         Cancel
-//       </Button>
-//                     <Button onClick={this.handlePopUp} color="primary">
-//                         Subscribe
-//       </Button>
-//                 </DialogActions>
-//             </Dialog>
-//         )
-//     }
-
-// }
 
 class viewAllEmployees extends React.Component {
   constructor() {

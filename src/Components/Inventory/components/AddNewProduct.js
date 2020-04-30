@@ -36,14 +36,12 @@ const styles = (theme) => ({
     paddingLeft: 20,
     paddingRight: 20,
     paddingTop: 40,
-    // paddingBottom: 40,
     height: "auto",
   },
   paper: {
     padding: 60,
     height: "auto",
     borderRadius: 20,
-    // minWidth: 400
   },
   spacer: {
     margin: 20,
@@ -433,7 +431,6 @@ class AddNewProduct extends Component {
             >
               Recently Added Items
             </Typography>
-            {/* <RecentOrders /> */}
 
 
             <Paper className={classes.paper}>

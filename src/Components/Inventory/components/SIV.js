@@ -26,8 +26,6 @@ const styles = {
     height: "450px",
     backgroundColor: "#FFFFFF",
     marginLeft: 100,
-
-    // margin: 10,
     padding: 5,
   },
   Paper: {
@@ -35,7 +33,6 @@ const styles = {
     height: 130,
     borderRadius: 0,
     padding: 10,
-    // boxShadow: {0},
   },
   text: {
     color: "#FFFFFF",
@@ -158,11 +155,9 @@ class SIV extends React.Component {
             }}
           >
             <Typography className={classes.textBody} variant="body2" color="">
-              {/* <b>Order Number :</b> {this.props.sivs.order} */}
             </Typography>
           </Box>
 
-          {/* <Paper className={classes.table} > */}
 
           <TableContainer>
             <Table size="small" aria-label="a dense table">
@@ -196,18 +191,7 @@ class SIV extends React.Component {
             },
           )}>
             Approve
-            {/* <PDFDownloadLink document ={<SIVPdf />} fileName ="invoice.pdf" style={
-                              {
-                                textDecoration:"none",
-                                padding:"10px",
-                                color:"#4a4a4a"
-                              }
-                            }>
-                              {
-                                ({loading})=> loading? <AutorenewIcon/>:<PrintIcon />
-                              }
-                              
-                            </PDFDownloadLink> */}
+
           </Button>
 
           <Box
@@ -249,7 +233,6 @@ class SIV extends React.Component {
             </Box>
           </div>
 
-          {/* </Paper> */}
         </div>
       </div>
     );

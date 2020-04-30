@@ -30,7 +30,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 80,
     marginTop: 10,
-    // borderRadius: 50
   },
   SIVStyling: {
     padding: 30,
@@ -67,7 +66,6 @@ const styles = StyleSheet.create({
   tableCellHeader: {
     margin: "auto",
     fontSize: 12,
-    // fontWeight: 500,
     color: "#FFFFFF",
   },
   tableCell: {
@@ -93,7 +91,7 @@ const styles = StyleSheet.create({
 class SIVPdf extends Component {
   componentDidMount() {
     this.props.getSiv(this.props.orderNumber);
-  }  
+  }
   render() {
     return (
       <Document>
@@ -112,7 +110,6 @@ class SIVPdf extends Component {
               }}
             >
               <View item>
-                
                 <View style={{ height: 5 }} />
 
                 <Text style={styles.text} variant="body2" gutterBottom>
@@ -152,7 +149,6 @@ class SIVPdf extends Component {
             <Text style={styles.textBody} variant="body2" color="">
               Order Number : {this.props.siv.order}
             </Text>
-            
           </View>
 
           <View
@@ -175,26 +171,26 @@ class SIVPdf extends Component {
                 <Text style={styles.tableCellHeader}>Quantity</Text>
               </View>
             </View>
-            
+
             <View style={styles.tableRow}>
-                            {this.props.siv_item?this.props.siv_item.map((item)=>{
-                                return(
-                                    <View key={item.itemName} style={styles.movieContainer}>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.itemName}</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>4</Text>
-                            </View>
-                            <View style={styles.tableCol}>
-                                <Text style={styles.tableCell}>{item.quantity}</Text>
-                            </View>
-                            
-                            </View>
-                                );
-                            }):""}
-                            
+              {this.props.siv_item
+                ? this.props.siv_item.map((item) => {
+                    return (
+                      <View key={item.itemName} style={styles.movieContainer}>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>{item.itemName}</Text>
                         </View>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>4</Text>
+                        </View>
+                        <View style={styles.tableCol}>
+                          <Text style={styles.tableCell}>{item.quantity}</Text>
+                        </View>
+                      </View>
+                    );
+                  })
+                : ""}
+            </View>
           </View>
           <View
             style={{
@@ -248,4 +244,4 @@ const mapStateToProps = (state) => ({
   errors: state.errorsReducer.errors,
 });
 
-export default connect(mapStateToProps, { getSiv } )(SIVPdf);
+export default connect(mapStateToProps, { getSiv })(SIVPdf);

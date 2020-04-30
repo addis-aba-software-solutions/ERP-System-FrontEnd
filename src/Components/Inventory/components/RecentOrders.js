@@ -31,9 +31,6 @@ class RecentOrders extends React.Component {
       search: "",
     };
   }
-  //   componentDidMount() {
-  //     this.props.getItems();
-  //   }
   render() {
     const { classes } = this.props;
     return (

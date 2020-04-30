@@ -2,7 +2,6 @@ import React from 'react';
 import { useTheme } from '@material-ui/core/styles';
 import { LineChart, Line, XAxis, YAxis, Label, ResponsiveContainer } from 'recharts';
 
-// Generate Sales Data
 function createData(time, amount) {
   return { time, amount };
 }
@@ -22,7 +21,7 @@ export default function Chart() {
 
   return (
     <React.Fragment>
- Sales This Week 
+        Sales This Week 
       <ResponsiveContainer>
         <LineChart
           data={data}

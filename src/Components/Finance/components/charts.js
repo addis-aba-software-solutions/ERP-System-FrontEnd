@@ -1,4 +1,3 @@
-// import palette from 'theme/palette';
 
 export const data = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November'],

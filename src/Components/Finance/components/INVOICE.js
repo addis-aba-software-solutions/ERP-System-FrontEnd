@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
     tableCellHeader: {
         margin: "auto",
         fontSize: 12,
-        // fontWeight: 500,
         color: '#FFFFFF'
     },
     tableCell: {
@@ -99,96 +98,6 @@ const styles = StyleSheet.create({
         marginLeft: 400
     }
 });
-
-// export default Invoice
-
-// import React from "react";
-// import {
-//     Page,
-//     View,
-//     Document,
-//     StyleSheet,
-//     Text
-// } from "@react-pdf/renderer";
-
-
-// const styles = StyleSheet.create({
-//     page: {
-//         backgroundColor: "#ffffff"
-//     },
-//     section: {
-//         margin: 10,
-//         padding: 10,
-//         flexGrow: 1
-//     },
-//     movieContainer: {
-//         backgroundColor: "#f6f6f5",
-//         display: "flex",
-//         flexDirection: "row",
-//         padding: 5
-//     },
-//     movieDetails: {
-//         display: "flex",
-//         marginLeft: 5
-//     },
-//     movieTitle: {
-//         fontSize: 15,
-//         marginBottom: 10
-//     },
-//     movieOverview: {
-//         fontSize: 10
-//     },
-
-//     image: {
-//         height: 200,
-//         width: 150
-//     },
-//     subtitle: {
-//         display: "flex",
-//         justifyContent: "space-between",
-//         flexDirection: "row",
-//         width: 150,
-//         alignItems: "center",
-//         marginBottom: 12
-//     },
-//     vote: {
-//         display: "flex",
-//         flexDirection: "row"
-//     },
-//     rating: {
-//         height: 10,
-//         width: 10
-//     },
-//     vote_text: {
-//         fontSize: 10
-//     },
-//     vote_pop: {
-//         fontSize: 10,
-//         padding: 2,
-//         backgroundColor: "#61C74F",
-//         color: "#fff"
-//     },
-//     vote_pop_text: {
-//         fontSize: 10,
-//         marginLeft: 4
-//     },
-//     overviewContainer: {
-//         minHeight: 110
-//     },
-//     detailsFooter: {
-//         display: "flex",
-//         flexDirection: "row"
-//     },
-//     lang: {
-//         fontSize: 8,
-//         fontWeight: 700
-//     },
-//     vote_average: {
-//         fontSize: 8,
-//         marginLeft: 4,
-//         fontWeight: "bold"
-//     }
-// });
 
 function PdfDocument(props) {
     console.log("XXXXXXXXXXXXXXXXXXXxxxxxxxxxxx");
@@ -241,7 +150,6 @@ function PdfDocument(props) {
 
                                     <View item xs={6}>
                                         <View container style={{
-                                            // marginBottom: 100,
                                             marginLeft: 200,
                                             flexDirection: 'row'
 
@@ -270,7 +178,6 @@ function PdfDocument(props) {
                                 <View container style={styles.header}>
 
                                     <View item style={{
-                                        // marginTop: 30
                                     }}>
                                         <Text align='left' style={styles.textBody} style={{ color: '#11669F' }} variant='body2' color=''>
                                             Invoice To

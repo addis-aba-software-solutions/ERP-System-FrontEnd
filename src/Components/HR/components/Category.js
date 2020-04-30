@@ -1,17 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
-// import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import { Card, CardContent, Grid, Divider, Typography, Avatar } from '@material-ui/core';
-// import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
-// import MoneyIcon from '@material-ui/icons/Money';
+
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import SearchBar from '../../SearchBar/SearchBar'
 
 
 const useStyles = makeStyles(theme => ({
     root: {
-        // height: '100%',
         padding: 10
 
     },
@@ -39,7 +36,6 @@ const useStyles = makeStyles(theme => ({
     Card: {
         borderRadius: 15,
         width: 460,
-        // padding: 20,
         display: 'flex',
         justify: 'center',
         marginLeft: 30,
@@ -55,7 +51,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Category = props => {
-    // const { className, } = props;
 
     const classes = useStyles();
 
@@ -112,7 +107,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >
@@ -148,7 +142,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >
@@ -184,7 +177,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >
@@ -197,7 +189,8 @@ const Category = props => {
 
 
                     </CardContent>
-                </Card>      <Card className={classes.Card}
+                </Card>      
+                <Card className={classes.Card}
                 >
                     <CardContent>
 
@@ -218,7 +211,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >
@@ -252,7 +244,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >
@@ -288,7 +279,6 @@ const Category = props => {
                                 <Typography
                                     className={classes.title}
                                     color="textSecondary"
-                                    // gutterBottom
                                     variant="h5"
 
                                 >

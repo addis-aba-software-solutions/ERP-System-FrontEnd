@@ -96,8 +96,6 @@ class ViewAllOrders extends React.Component {
                               textDecoration: "none",
                               padding: "10px",
                               color: "#4a4a4a",
-                              // backgroundColor: "#f2f2f2",
-                              // border: "1px solid #4a4a4a",
                             }}
                           >
                             {({ loading }) =>
