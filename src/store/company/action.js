@@ -13,6 +13,8 @@ export const addCompany = (company) => (dispatch) => {
       Swal.fire({
         title: "Success",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1000
       });
       dispatch({
         type: companyConstant.ADD_COMPANY,
@@ -51,6 +53,8 @@ export const getCompany = () => (dispatch) => {
         Swal.fire({
           title: "Error", text: "Connection Problem",
           icon: "Error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -74,8 +78,10 @@ export const deleteCompany = (companyId) => (dispatch) => {
         .then((res) => {
 
           Swal.fire({
-            title: "Success",
+            title: "Deleted",
             icon: "success",
+            showConfirmButton: false,
+            timer: 1000
           });
           dispatch({
             type: companyConstant.DELETE_COMPANY,
@@ -92,6 +98,8 @@ export const deleteCompany = (companyId) => (dispatch) => {
             Swal.fire({
               title: "Error", text: "Connection Problem",
               icon: "Error",
+              showConfirmButton: false,
+              timer: 1000
             });
           }
         });

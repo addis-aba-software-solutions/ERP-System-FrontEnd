@@ -35,7 +35,12 @@ function addNewEmployee(data) {
         data: param,
       })
       .then((response) => {
-        Swal.fire("Created!", "New employee added.", "success");
+        Swal.fire({
+          title: "Created",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
         dispatch({
           type: appConstants.REGISTER_SUCCESS,
           payload: response.data,
