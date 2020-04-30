@@ -8,7 +8,6 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    // height: '100%',
     padding: 10
 
   },
@@ -55,7 +54,6 @@ const useStyles = makeStyles(theme => ({
 
 
 const Category = props => {
-  // const { className, } = props;
 
   const classes = useStyles();
 
@@ -83,7 +81,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -92,7 +89,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -126,7 +122,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -135,7 +130,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -169,7 +163,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -178,7 +171,6 @@ const Category = props => {
               <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -210,7 +202,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -219,7 +210,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -251,7 +241,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -260,7 +249,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -294,7 +282,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -303,7 +290,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -337,7 +323,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -346,7 +331,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690
@@ -357,7 +341,8 @@ const Category = props => {
 
 
         </CardContent>
-      </Card>      <Card className={classes.Card}
+      </Card>     
+       <Card className={classes.Card}
       >
         <CardContent>
 
@@ -378,7 +363,6 @@ const Category = props => {
               <Typography
                 className={classes.title}
                 color="textSecondary"
-                // gutterBottom
                 variant="h5"
 
               >
@@ -387,7 +371,6 @@ const Category = props => {
             <Typography
                 className={classes.subtitle}
                 color="textSecondary"
-                // gutterBottom
                 variant="h9"
               >
                <b>in Stock</b> 2690

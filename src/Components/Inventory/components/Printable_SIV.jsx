@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 80,
     marginTop: 10,
-    // borderRadius: 50
   },
   SIVStyling: {
     padding: 30,
@@ -228,12 +227,4 @@ class SIVPdf extends Component {
   }
 }
 
-// const mapStateToProps = (state) => ({
-//   sivs: state.sivReducer.sivs,
-//   siv_item: state.sivReducer.siv_item,
-//   errors: state.errorsReducer.errors,
-// });
-
 export default SIVPdf;
-
-// export default connect(mapStateToProps, { getSiv } )(SIVPdf);

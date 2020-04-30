@@ -15,7 +15,6 @@ import List from "@material-ui/core/List";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
-// import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import IconButton from "@material-ui/core/IconButton";
@@ -25,39 +24,18 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-// import InboxIcon from "@material-ui/icons/MoveToInbox";
-// import MailIcon from "@material-ui/icons/Mail";
+
 import Notification from '../Dashboard/Notification';
 import DashboardIcon from '@material-ui/icons/Dashboard';
 import PeopleIcon from '@material-ui/icons/People';
-// import Contents from './HRContents';
 import HomeNavBar from './HomeNavBar';
 import SearchBar from '../SearchBar/SearchBar';
-// import UsersCategory from '../HR/UsersCategory';
 import UserProfile from '../HR/components/UserProfile/UserProfile';
 import Profile from '../HR/components/UserProfile/Profile';
 
 import HRHome from '../HR/HRhome';
 
-
-// import Chart from './Chart';
-// import Deposits from './Deposits';
-// import Orders from './Orders';
-// import Box from '@material-ui/core/Box';
-
 import Meetings from './Meetings';
-
-// import LatestSales from './LatestSales';
-// import Budget from './Budget/Budget';
-// import TotalUsers from './Budget/TotalUsers';
-// import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-// import UsersByDevice from '../Budget/UsersByDevice';
-// import TasksProgress from './Budget/TasksProgress';
-
-// import UserList from '../HR/UserList'
-
-// import classes from "*.module.css";
-// mport AssignmentIcon from "@material-ui/icons/AssignmentIcon";
 
 const drawerWidth = 240;
 
@@ -118,7 +96,6 @@ const useStyles = makeStyles(theme => ({
         }
     },
     toolbar: {
-        // backgroundColor: '#11669F',s
 
         display: "flex",
         alignItems: "center",
@@ -170,7 +147,6 @@ export const routes = [
             <SearchBar />
             <HRHome />
 
-            {/* <Contents /> */}
 
         </div>
     },
@@ -180,7 +156,6 @@ export const routes = [
         main: () => <div>
             <Grid container spacing={2} >
                 <Grid item xs={9}>
-                    {/* <UsersCategory /> */}
                 </Grid>
                 <Grid item xs={3}>
                     <Paper style={{

@@ -23,10 +23,8 @@ import DoneAllIcon from '@material-ui/icons/DoneAll';
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
-    // padding: 20
   },
   tableRow: {
-    // padding: 15
   },
   container: {
     padding: 20,
@@ -105,7 +103,7 @@ class ViewAllOrders extends Component {
                             (
                               <Button
                                 style={{
-                                  backgroundColor: '#00970F',
+                                  backgroundColor: '#11669F',
                                   color: '#FFFFFF'
                                 }}
                                 variant='contained'

@@ -6,7 +6,6 @@ import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 const useStyles = makeStyles(theme => ({
     root: {
-        // height: '100%',
         padding: 10
 
     },
@@ -78,7 +77,6 @@ const Level = props => {
                             <Typography
                                 className={classes.title}
                                 color="textSecondary"
-                                // gutterBottom
                                 variant="h4"
                             >
                                 Junior
@@ -109,7 +107,6 @@ const Level = props => {
                             <Typography
                                 className={classes.title}
                                 color="textSecondary"
-                                // gutterBottom
                                 variant="h4"
                             >
                                 Senior
@@ -144,7 +141,6 @@ const Level = props => {
                             <Typography
                                 className={classes.title}
                                 color="textSecondary"
-                                // gutterBottom
                                 variant="h4"
                             >
                                 Someth
@@ -174,7 +170,6 @@ const Level = props => {
                             <Typography
                                 className={classes.title}
                                 color="textSecondary"
-                                // gutterBottom
                                 variant="h4"
                             >
                                 Someth

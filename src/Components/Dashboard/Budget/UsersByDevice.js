@@ -10,10 +10,7 @@ import {
   IconButton,
   Divider,
 } from '@material-ui/core';
-// import LaptopMacIcon from '@material-ui/icons/LaptopMac';
-// import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import RefreshIcon from '@material-ui/icons/Refresh';
-// import TabletMacIcon from '@material-ui/icons/TabletMac';
 
 const useStyles = makeStyles( ({
   root: {
@@ -81,27 +78,6 @@ const UsersByDevice = props => {
       footerFontColor: '#FFFFFF',
     }
   };
-
-  // const devices = [
-  //   {
-  //     title: 'Desktop',
-  //     value: '63',
-  //     icon: <LaptopMacIcon />,
-  //     color: '#11669F',
-  //   },
-  //   {
-  //     title: 'Tablet',
-  //     value: '15',
-  //     icon: <TabletMacIcon />,
-  //     color: '#11669F',
-  //   },
-  //   {
-  //     title: 'Mobile',
-  //     value: '23',
-  //     icon: <PhoneIphoneIcon />,
-  //     color: '#11669F',
-  //   }
-  // ];
 
   return (
     <Card

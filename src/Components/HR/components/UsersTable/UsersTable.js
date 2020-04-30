@@ -1,6 +1,5 @@
 import React from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-// import { makeStyles } from '@material-ui/styles';
 import { withStyles, Grid, IconButton } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
@@ -75,13 +74,6 @@ class EmployeTable extends React.Component {
     const { error } = this.state;
     const { classes } = this.props;
 
-    // let filteredEmployee = employeeInfo.filter((employeeInfos) => {
-    //   return (
-    //     employeeInfos.firstName
-    //       .toLowerCase()
-    //       .indexOf(this.state.search.toLowerCase()) !== -1
-    //   );
-    // });
     if (error) {
       return <div>Error:{error.message}</div>;
     } else {
@@ -165,7 +157,6 @@ class EmployeTable extends React.Component {
                   </TableBody>
                 </Table>
 
-                {/* </div> */}
               </PerfectScrollbar>
             </CardContent>
           </Card>

@@ -161,7 +161,6 @@ class UserProfile extends Component {
               <Typography component="h1" variant="h4" align="center">
                 Employee Registration
               </Typography>
-
               <React.Fragment>
                 <Typography variant="h6" gutterBottom>
                   Employee Information
@@ -178,7 +177,6 @@ class UserProfile extends Component {
                       onChange={this.handleChange}
                       value={firstValue}
                     />
-
                     <Error
                       error={
                         this.props.errors.firstName

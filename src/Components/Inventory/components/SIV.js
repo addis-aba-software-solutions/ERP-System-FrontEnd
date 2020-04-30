@@ -33,8 +33,6 @@ const styles = {
     height: '450px',
     backgroundColor: '#FFFFFF',
     marginLeft: 100,
-
-    // margin: 10,
     padding: 5,
   },
   Paper: {
@@ -42,7 +40,6 @@ const styles = {
     height: 130,
     borderRadius: 0,
     padding: 10,
-    // boxShadow: {0},
   },
   text: {
     color: '#FFFFFF',
@@ -275,7 +272,6 @@ class SIV extends React.Component {
             {/* </Paper> */}
           </div>
         </div>
-        <div></div>
       </>
     );
   }

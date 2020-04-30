@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withStyles, Grid, Typography, Paper } from "@material-ui/core";
-
+import { withStyles, Grid, Typography, Button, Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,9 +12,11 @@ import { getOrders } from "../../../store/order/action";
 import { getInvoice } from "../../../store/Invoice/action";
 import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
-import { PDFDownloadLink } from "@react-pdf/renderer"
-import SearchBar from '../../SearchBar/SearchBar'
-
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import SearchBar from '../../SearchBar/SearchBar';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import GetAppIcon from '@material-ui/icons/GetApp';
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -44,19 +46,17 @@ class ViewAllOrders extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      order: '',
     }
-
-
   }
 
   handlePrint = (order) => {
     this.props.getInvoice(order)
     this.setState({
-      show: !this.state.show
+      show: true,
+      order: order
     })
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdddddddddddddddddxxxxxxxxxxxx")
-    console.log(this.props.invoices)
   }
   componentDidMount() {
     this.props.getOrders();
@@ -87,7 +87,9 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Shipment Address</TableCell>
                     <TableCell align='center'>Order Date</TableCell>
                     <TableCell align='center'>Status</TableCell>
-                    <TableCell align='center'>Action</TableCell>
+                    <TableCell align='center'>Invoice</TableCell>
+                    <TableCell align='center'>Actions</TableCell>
+
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -101,34 +103,42 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'>
                         {order.status}
                       </TableCell>
-
                       <TableCell align='center'>
-                        <Grid container spacing={2}>
-                          <Grid item>
-                            <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>
+                        {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
+                          document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
+                          fileName={`order_${order.orderNumber}.pdf`}>
+                          <IconButton style={{
+                            color: '#11669F'
+                          }}>
+                            <Grid>
+                              <GetAppIcon fontSize='large' />
+                              {/* <Typography variant='body2'>
+                                Download Invoice
+                                </Typography> */}
+                            </Grid>
 
-                            {this.state.show && this.props.invoices && <PDFDownloadLink
-                              document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
-                              fileName="movielist.pdf"
-                              style={{
-                                textDecoration: "none",
-                                padding: "10px",
-                                color: "#4a4a4a",
-                                backgroundColor: "#f2f2f2",
-                                border: "1px solid #4a4a4a"
-                              }}
-                            >
-                              Download Pdf
-                            </PDFDownloadLink>
-                            }
-                          </Grid>
-                          <Grid item>
-                            <Typography variant='caption'>
-                              Generate Invoice
-                            </Typography>
-                          </Grid>
-                        </Grid>
+                          </IconButton>
+                        </PDFDownloadLink> :
+                          <IconButton onClick={() => this.handlePrint(order.orderNumber)}>
+                            <PrintIcon fontSize='large' />
+                          </IconButton>
+
+                        }
                       </TableCell>
+                      <TableCell>
+
+                        <Link
+                          to={{
+                            pathname: "./salesOrder",
+                            state: { order: order.orderNumber, },
+                          }}>
+
+                          <IconButton>
+                            <VisibilityIcon />
+                          </IconButton>
+                        </Link>
+                      </TableCell>
+
                     </TableRow>
                   )) : ""}
                 </TableBody>
@@ -136,7 +146,6 @@ class ViewAllOrders extends Component {
             </TableContainer>
           </Paper>
         </div>
-
       </>
     );
   }

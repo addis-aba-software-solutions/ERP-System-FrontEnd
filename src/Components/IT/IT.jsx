@@ -34,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
     backgroundColor: "#11669F",
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: "flex",
@@ -135,7 +135,6 @@ export const routes = [
         <PopUp />
       </div>
     ),
-    // <ScheduleDelievery />
   },
   {
     path: "/CategoryListView",
@@ -143,7 +142,6 @@ export const routes = [
     sidebar: () => "",
     main: () => <div></div>,
 
-    // <ItemList />
   },
 ];
 
@@ -159,7 +157,6 @@ export default function Logistics() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            // onClick={handleDrawerOpen}
             className={clsx(classes.menuButton)}
           >
             <MenuIcon />
@@ -230,7 +227,6 @@ export default function Logistics() {
                 <Grid xs={12}>
                   <Typography
                     style={{
-                      // fontSize: 40,
                       marginLeft: 5,
                     }}
                     variant="caption"
@@ -258,7 +254,6 @@ export default function Logistics() {
                 <Grid
                   xs={12}
                   style={{
-                    // fontSize: 40,
                     marginLeft: 7,
                   }}
                 >
@@ -287,7 +282,6 @@ export default function Logistics() {
                 <Grid
                   xs={12}
                   style={{
-                    // fontSize: 40,
                     marginLeft: 4,
                   }}
                 >
@@ -298,15 +292,6 @@ export default function Logistics() {
                 </Grid>
               </Grid>
             </ListItem>
-
-            {/* <Link to="/CategoryListView">
-                            <ListItem button>
-                                <ListItemIcon>
-                                    <PeopleIcon />
-                                </ListItemIcon>
-                                <ListItemText primary="Employee List View" />
-                            </ListItem>
-                        </Link> */}
           </List>
           <Divider />
         </Drawer>
@@ -314,7 +299,6 @@ export default function Logistics() {
         <main className={classes.content}>
           <div className={classes.toolbar} />
           <div className={classes.appBarSpacer} />
-          {/* <div className={classes.appBarSpacer} /> */}
 
           <Switch>
             {routes.map((route, index) => (

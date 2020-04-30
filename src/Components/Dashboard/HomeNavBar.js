@@ -3,7 +3,6 @@ import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 
-// import List from '@material-ui/core/List';
 import Typography from '@material-ui/core/Typography';
 
 import Grid from '@material-ui/core/Grid';
@@ -17,7 +16,6 @@ import LatestSales from './LatestSales';
 import Budget from './Budget/Budget';
 import TotalUsers from './Budget/TotalUsers';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
-// import UsersByDevice from '../Budget/UsersByDevice';
 import TasksProgress from './Budget/TasksProgress';
 import Container from '@material-ui/core/Container';
 
@@ -30,14 +28,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   difference: {
-    // marginTop: 10,
     marginLeft: 90,
     display: 'flex',
     alignItems: 'center'
   },
   differenceIcon: {
     color: "#00970F",
-    // marginLeft: 90
   },
   differenceValue: {
     color: "#00970F",
@@ -52,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbar: {
 
-    paddingRight: 24, // keep right padding when drawer closed
+    paddingRight: 24,
   },
   toolbarIcon: {
     display: 'flex',
@@ -62,7 +58,6 @@ const useStyles = makeStyles((theme) => ({
     ...theme.mixins.toolbar,
   },
   appBar: {
-    // background: '#11669F',
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(['width', 'margin'], {
       easing: theme.transitions.easing.sharp,
@@ -141,76 +136,9 @@ export default function HomeNavBar() {
     <div className={classes.root}>
 
       <main>
-        {/* <div className={classes.appBarSpacer} /> */}
         <Container>
           <Grid container spacing={2}>
-            {/* <Grid item xs={5}
-            >
-
-              <Typography style={{
-                fontSize: 30,
-                color: '#818181',
-              }}>
-                Sales Dashboard
-          </Typography>
-
-            </Grid>
-
-            <Grid item xs={12} style={{
-              // marginLeft: 100
-            }}>
-
-              <Typography align='right' style={{
-                fontSize: 20,
-                color: '#818181',
-                // marginLeft: 50
-              }}>
-                Total Sales
-              </Typography>
-              <Typography align='right' style={{
-                fontSize: 30,
-                color: '#000000',
-                marginLeft: 50
-              }}>
-                7,465,363.5 ETB
-              </Typography>
-
-              <Grid style={{
-                paddingLeft: 870
-              }} container>
-                <Grid >
-                  <ArrowUpwardIcon className={classes.differenceIcon} />
-
-                </Grid>
-                <Grid item>
-                  <Typography
-                    align='right'
-                    className={classes.differenceValue}
-                    variant="body2"
-                  >
-                    87%
-          </Typography>
-                </Grid>
-                <Grid item>
-
-                  <Typography
-
-                    className={classes.caption}
-                    variant="caption"
-                  >
-                    Compared to Last Year
-          </Typography>
-
-
-
-                </Grid>
-
-              </Grid>
-
-            </Grid>
- */}
-
-<Grid item xs={8}
+            <Grid item xs={8}
             >
 
               <Typography style={{
@@ -222,9 +150,7 @@ export default function HomeNavBar() {
 
             </Grid>
 
-            <Grid item xs={4} style={{
-              // marginLeft: 100
-            }}>
+            <Grid item xs={4}>
               <Grid container>
                 <Typography align='right' style={{
                   fontSize: 20,
@@ -236,7 +162,6 @@ export default function HomeNavBar() {
                 <Typography align='right' style={{
                   fontSize: 20,
                   color: '#000000',
-                  // marginLeft: 50
                 }}>
                   7,465,363.5 ETB
               </Typography>
@@ -265,7 +190,7 @@ export default function HomeNavBar() {
                     className={classes.caption}
                     variant="caption"
                   >
-                     Compared to Last Year
+                    Compared to Last Year
                   </Typography>
 
 
