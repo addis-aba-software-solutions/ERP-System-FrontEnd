@@ -7,7 +7,7 @@ import {
   Grid,
   Button,
 } from '@material-ui/core';
-import Logo from '../../../Assets/Trial.jpg';
+import Logo from '../../../Assets/NAZO.png';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -22,12 +22,7 @@ import { PDFDownloadLink } from '@react-pdf/renderer';
 import AutorenewIcon from '@material-ui/icons/Autorenew';
 
 const styles = {
-  root: {
-    width: '100vh',
-    height: '100vh',
-    backgroundColor: '#d1d1d1',
-    padding: 10,
-  },
+
   pdf: {
     width: '792px',
     height: '450px',
@@ -49,9 +44,8 @@ const styles = {
   },
   logo: {
     height: 50,
-    width: 50,
+    width: 80,
     marginTop: 10,
-    borderRadius: 50,
   },
   SIVStyling: {
     padding: 30,
@@ -61,6 +55,47 @@ const styles = {
   },
   textBody: {
     color: '#686868',
+  },
+  table: {
+    display: "table",
+    width: "auto",
+    borderStyle: "solid",
+    borderColor: '#686868',
+    borderWidth: 1,
+    borderRightWidth: 0,
+    borderBottomWidth: 0
+  },
+  tableRow: {
+    // margin: "auto",
+    flexDirection: "row"
+  },
+  tableColHeader: {
+    width: "20%",
+    borderStyle: "solid",
+    borderColor: '#686868',
+    borderBottomColor: '#000',
+    backgroundColor: '#11669F',
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0
+  },
+  tableCol: {
+    width: "20%",
+    borderStyle: "solid",
+    borderColor: '#686868',
+    borderWidth: 1,
+    borderLeftWidth: 0,
+    borderTopWidth: 0
+  },
+  tableCellHeader: {
+    margin: "auto",
+    fontSize: 12,
+    color: '#FFFFFF'
+  },
+  tableCell: {
+    margin: "auto",
+    color: '#686868',
+    fontSize: 12
   },
 };
 
@@ -89,189 +124,213 @@ class SIV extends React.Component {
 
     return (
       <>
-        <Button
-          onClick={this.props.updateSiv.bind(
-            this,
-            this.props.location.state.order,
-            {
-              sivStatus: 'Approved',
-            }
-          )}
-        >
-          Approve
-        </Button>
-        <button onClick={() => this.handlePrint()}>Print</button>
-        {this.state.show && (
-          <PDFDownloadLink
-            document={
-              <SIVPdf siv_item={this.props.siv_item} sivs={this.props.sivs} />
-            }
-            fileName="invoice.pdf"
-            style={{
-              textDecoration: 'none',
-              padding: '10px',
-              color: '#4a4a4a',
-            }}
-          >
-            {({ loading }) => (loading ? <AutorenewIcon /> : <PrintIcon />)}
-          </PDFDownloadLink>
-        )}
-
-        <div className={classes.root}>
-          <Box
-            style={{
-              height: 100,
-            }}
-          ></Box>
-          <div className={classes.pdf}>
-            <Paper className={classes.Paper}>
-              <Grid
-                container
-                xs={12}
-                display="flex"
-                justify="space-between"
-                className={classes.Header}
-              >
-                <Grid item>
-                  <Grid
-                    container
+        <Box
+          style={{
+            height: 100,
+          }}
+        ></Box>
+        <div className={classes.pdf}>
+          <Paper className={classes.Paper}>
+            <Grid
+              container
+              xs={12}
+              display="flex"
+              justify="space-between"
+              className={classes.Header}
+            >
+              <Grid item>
+                <Grid
+                  container
+                  style={{
+                    marginTop: 10,
+                    marginLeft: 10,
+                  }}
+                >
+                  <img src={Logo} alt="" className={classes.logo} />
+                  <Typography
+                    className={classes.text}
+                    variant="h6"
                     style={{
-                      marginTop: 10,
+                      marginTop: 20,
                       marginLeft: 10,
                     }}
                   >
-                    <img src={Logo} alt="" className={classes.logo} />
-                    <Typography
-                      className={classes.text}
-                      variant="h6"
-                      style={{
-                        marginTop: 20,
-                        marginLeft: 10,
-                      }}
-                    >
-                      EATH
+                    NAZO
                     </Typography>
-                  </Grid>
-                </Grid>
-                <Grid item>
-                  <Typography
-                    className={classes.text}
-                    variant="body2"
-                    gutterBottom
-                  >
-                    <b>SIV Status : </b> {this.props.sivs.sivStatus}
-                  </Typography>
-                  <Typography
-                    className={classes.text}
-                    variant="body2"
-                    gutterBottom
-                  >
-                    <b>Warehouse Name : </b> {this.props.sivs.warehouseName}
-                  </Typography>
-                  <Typography
-                    className={classes.text}
-                    variant="body2"
-                    gutterBottom
-                  >
-                    <b>Issued By :</b> {localStorage.getItem('username')}
-                  </Typography>
-                  <Typography
-                    className={classes.text}
-                    variant="body2"
-                    gutterBottom
-                  >
-                    <b>SIV Date :</b> {this.props.sivs.sivDate}
-                  </Typography>
                 </Grid>
               </Grid>
-            </Paper>
+              <Grid item>
+                <Typography
+                  className={classes.text}
+                  variant="body2"
+                  gutterBottom
+                >
+                  <b>SIV Status : </b> {this.props.sivs.sivStatus}
+                </Typography>
+                <Typography
+                  className={classes.text}
+                  variant="body2"
+                  gutterBottom
+                >
+                  <b>Warehouse Name : </b> {this.props.sivs.warehouseName}
+                </Typography>
+                <Typography
+                  className={classes.text}
+                  variant="body2"
+                  gutterBottom
+                >
+                  <b>Issued By :</b> {localStorage.getItem('username')}
+                </Typography>
+                <Typography
+                  className={classes.text}
+                  variant="body2"
+                  gutterBottom
+                >
+                  <b>SIV Date :</b> {this.props.sivs.sivDate}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Paper>
+          <Box
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              padding: 20,
+            }}
+          >
+            <Typography className={classes.textBody} variant="body2" color="">
+              {/* <b>Order Number :</b> {this.props.sivs.order} */}
+            </Typography>
+          </Box>
+
+          {/* <Paper className={classes.table} > */}
+
+          <TableContainer>
+            <Table size="small" aria-label="a dense table">
+              <TableHead>
+                <TableRow>
+
+                  <TableCell>Item Name</TableCell>
+                  <TableCell align="right">Quantity</TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {this.props.siv_item
+                  ? this.props.siv_item.map((item) => (
+                    <TableRow key={item.sivId}>
+                      <TableCell component="th" scope="row">
+                        {item.itemName}
+                      </TableCell>
+                      <TableCell align="right">{item.quantity}</TableCell>
+                    </TableRow>
+                  ))
+                  : null}
+              </TableBody>
+            </Table>
+          </TableContainer>
+
+          <Box
+            style={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              paddingTop: 10,
+            }}
+          >
+          </Box>
+          <div
+            style={{
+              paddingLeft: 20,
+            }}
+          >
             <Box
               style={{
                 display: 'flex',
                 justifyContent: 'flex-start',
-                padding: 20,
               }}
             >
-              <Typography className={classes.textBody} variant="body2" color="">
-                {/* <b>Order Number :</b> {this.props.sivs.order} */}
-              </Typography>
+              <Typography
+                className={classes.textBody}
+                variant="body2"
+                color=""
+              >
+                <b>Recipient Name :</b> _______________________
+                </Typography>
             </Box>
-
-            {/* <Paper className={classes.table} > */}
-
-            <TableContainer>
-              <Table size="small" aria-label="a dense table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Item Name</TableCell>
-                    <TableCell align="right">Quantity</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {this.props.siv_item
-                    ? this.props.siv_item.map((item) => (
-                        <TableRow key={item.sivId}>
-                          <TableCell component="th" scope="row">
-                            {item.itemName}
-                          </TableCell>
-                          <TableCell align="right">{item.quantity}</TableCell>
-                        </TableRow>
-                      ))
-                    : null}
-                </TableBody>
-              </Table>
-            </TableContainer>
-
             <Box
               style={{
                 display: 'flex',
-                justifyContent: 'flex-end',
-                paddingTop: 10,
+                justifyContent: 'flex-start',
+                paddingTop: 15,
               }}
             >
-              {/* <Typography className={classes.textBody} variant="body2" color="">
-              <b>Total :</b> 67
-            </Typography> */}
+              <Typography
+                className={classes.textBody}
+                variant="body2"
+                color=""
+              >
+                <b>Recipient Signature :</b> _______________________
+                </Typography>
             </Box>
-            <div
-              style={{
-                paddingLeft: 20,
-              }}
-            >
-              <Box
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                }}
-              >
-                <Typography
-                  className={classes.textBody}
-                  variant="body2"
-                  color=""
-                >
-                  <b>Recipient Name :</b> _______________________
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: 'flex',
-                  justifyContent: 'flex-start',
-                  paddingTop: 15,
-                }}
-              >
-                <Typography
-                  className={classes.textBody}
-                  variant="body2"
-                  color=""
-                >
-                  <b>Recipient Signature :</b> _______________________
-                </Typography>
-              </Box>
-            </div>
-
-            {/* </Paper> */}
           </div>
+
         </div>
+        <div style={{
+          marginLeft: 400,
+          paddingTop: 20
+        }}>
+
+          <Typography>
+            Approve This Document
+        </Typography>
+          <Button variant='contained' size='large' style={{
+            backgroundColor: '#11669F',
+            color: '#FFFFFF',
+            marginLeft: 25
+          }} onClick={() => this.handlePrint()}>Approve</Button>
+
+          <Grid item style={{
+            marginLeft: 60,
+            paddingTop: 10,
+          }}>
+
+
+            {this.state.show && (
+              <PDFDownloadLink
+                document={
+                  <SIVPdf siv_item={this.props.siv_item} sivs={this.props.sivs} />
+                }
+                fileName="SIV.pdf"
+                style={{
+                  textDecoration: 'none',
+
+                }}
+              >
+                {({ loading }) => (loading ?
+                  <AutorenewIcon fontSize='large' /> :
+                  <Grid >
+                    <PrintIcon style={{
+                      marginLeft: 8,
+                      color: '#818181'
+
+                    }} fontSize='large' />
+                    <Typography style={{
+                      color: '#818181'
+
+                    }}>
+                      Print SIV
+                  </Typography>
+                  </Grid>
+                )}
+              </PDFDownloadLink>
+            )}
+
+          </Grid>
+
+
+
+
+        </div>
+
       </>
     );
   }

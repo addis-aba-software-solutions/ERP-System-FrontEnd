@@ -52,7 +52,7 @@ export const getCompany = () => (dispatch) => {
       } else {
         Swal.fire({
           title: "Error", text: "Connection Problem",
-          icon: "Error",
+          icon: "error",
           showConfirmButton: false,
           timer: 1000
         });
@@ -97,7 +97,7 @@ export const deleteCompany = (companyId) => (dispatch) => {
           } else {
             Swal.fire({
               title: "Error", text: "Connection Problem",
-              icon: "Error",
+              icon: "error",
               showConfirmButton: false,
               timer: 1000
             });

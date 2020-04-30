@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import Logo from '../../../Assets/NAZO.png';
+import React, { Component } from "react";
+import Logo from "../../../Assets/NAZO.png";
 import {
   Page,
   Text,
@@ -7,18 +7,18 @@ import {
   Document,
   StyleSheet,
   Image,
-} from '@react-pdf/renderer';
+} from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
   root: {
-    width: '100vh',
-    height: '100vh',
-    backgroundColor: '#d1d1d1',
+    width: "100vh",
+    height: "100vh",
+    backgroundColor: "#d1d1d1",
     padding: 10,
   },
 
   text: {
-    color: '#686868',
+    color: "#686868",
   },
   Header: {
     fontSize: 13,
@@ -37,52 +37,52 @@ const styles = StyleSheet.create({
   },
   textBody: {
     fontSize: 12,
-    color: '#686868',
+    color: "#686868",
   },
   tableRow: {
-    margin: 'auto',
-    flexDirection: 'row',
+    // margin: "auto",
+    flexDirection: "row",
   },
   tableColHeader: {
-    width: '16.8%',
-    borderStyle: 'solid',
-    borderColor: '#686868',
-    borderBottomColor: '#000',
-    backgroundColor: '#11669F',
+    width: "33.34%",
+    borderStyle: "solid",
+    borderColor: "#686868",
+    borderBottomColor: "#000",
+    backgroundColor: "#11669F",
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
   },
   tableCol: {
-    width: '16.8%',
-    borderStyle: 'solid',
-    borderColor: '#686868',
+    width: "33.34%",
+    borderStyle: "solid",
+    borderColor: "#686868",
     borderWidth: 1,
     borderLeftWidth: 0,
     borderTopWidth: 0,
   },
   tableCellHeader: {
-    margin: 'auto',
+    margin: "auto",
     fontSize: 12,
     // fontWeight: 500,
-    color: '#FFFFFF',
+    color: "#FFFFFF",
   },
   tableCell: {
-    margin: 'auto',
-    color: '#686868',
+    // margin: "auto",
+    color: "#686868",
     fontSize: 10,
   },
   line: {
-    width: 'auto',
-    borderStyle: 'solid',
-    borderColor: '#11669F',
+    width: "auto",
+    borderStyle: "solid",
+    borderColor: "#11669F",
     borderWidth: 1,
     borderRightWidth: 0,
     borderBottomWidth: 0,
   },
   total: {
     fontSize: 12,
-    color: '#686868',
+    color: "#686868",
     marginLeft: 400,
   },
 });
@@ -101,7 +101,7 @@ class SIVPdf extends Component {
             <View
               container
               style={{
-                flexDirection: 'row',
+                flexDirection: "row",
                 marginTop: 100,
               }}
             >
@@ -114,7 +114,7 @@ class SIVPdf extends Component {
                 <View style={{ height: 5 }} />
 
                 <Text style={styles.text} variant="body2" gutterBottom>
-                  Issued By : {localStorage.getItem('username')}
+                  Issued By : {localStorage.getItem("username")}
                 </Text>
                 <View style={{ height: 5 }} />
 
@@ -137,8 +137,8 @@ class SIVPdf extends Component {
 
           <View
             style={{
-              display: 'flex',
-              justifyContent: 'flex-start',
+              display: "flex",
+              justifyContent: "flex-start",
               padding: 20,
             }}
           >
@@ -164,12 +164,12 @@ class SIVPdf extends Component {
                 <Text style={styles.tableCellHeader}>Quantity</Text>
               </View>
             </View>
-
-            <View style={styles.tableRow}>
-              {this.props.siv_item
+            {this.props.siv_item
                 ? this.props.siv_item.map((item) => {
-                    return (
-                      <View key={item.itemName} style={styles.movieContainer}>
+                  return (
+
+            <View key={item.itemName}  style={styles.tableRow}>
+
                         <View style={styles.tableCol}>
                           <Text style={styles.tableCell}>{1}</Text>
                         </View>
@@ -179,15 +179,16 @@ class SIVPdf extends Component {
                         <View style={styles.tableCol}>
                           <Text style={styles.tableCell}>{item.quantity}</Text>
                         </View>
-                      </View>
-                    );
-                  })
-                : ''}
+
             </View>
+                                );
+                              }
+            ): null}
+
           </View>
           <View
             style={{
-              display: 'flex',
+              display: "flex",
               paddingTop: 20,
               marginLeft: 450,
             }}
@@ -199,8 +200,8 @@ class SIVPdf extends Component {
           >
             <View
               style={{
-                display: 'flex',
-                justifyContent: 'flex-start',
+                display: "flex",
+                justifyContent: "flex-start",
               }}
             >
               <Text style={styles.textBody} variant="body2" color="">
@@ -209,8 +210,8 @@ class SIVPdf extends Component {
             </View>
             <View
               style={{
-                display: 'flex',
-                justifyContent: 'flex-start',
+                display: "flex",
+                justifyContent: "flex-start",
                 paddingTop: 15,
               }}
             >

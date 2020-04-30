@@ -55,7 +55,7 @@ function addNewEmployee(data) {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -91,7 +91,7 @@ function getEmploye() {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -127,7 +127,7 @@ function deleteEmploye(employeId) {
       .catch((error) => {
         Swal.fire({
           title: "Error", text: "Something Went Wrong",
-          icon: "Error",
+          icon: "error",
           showConfirmButton: false,
           timer: 1000
         });
@@ -139,7 +139,7 @@ function deleteEmploye(employeId) {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -187,7 +187,7 @@ function deleteAccount(email) {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -246,7 +246,7 @@ function addAccount(employe) {
           console.log(error.response);
           Swal.fire({
             title: "Error", text: "Something Went Wrong",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -258,7 +258,7 @@ function addAccount(employe) {
           } else {
             Swal.fire({
               title: "Error", text: "Connection Problem",
-              icon: "Error",
+              icon: "error",
               showConfirmButton: false,
               timer: 1000
             });
@@ -296,7 +296,7 @@ function getEmployeDetail(employeId) {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });
@@ -333,7 +333,7 @@ function getDepartment() {
         } else {
           Swal.fire({
             title: "Error", text: "Connection Problem",
-            icon: "Error",
+            icon: "error",
             showConfirmButton: false,
             timer: 1000
           });

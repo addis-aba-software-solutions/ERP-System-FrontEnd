@@ -65,6 +65,8 @@ export const getItems = () => (dispatch) => {
         Swal.fire({
           title: "Error", text: "Connection Problem",
           icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -139,12 +141,12 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
       axios
         .delete(API + `item/${InventoryItemId}/`, headers)
         .then((res) => {
-        Swal.fire({
-          title: "Success",
-          icon: "success",
-          showConfirmButton: false,
-          timer: 1000
-        });
+          Swal.fire({
+            title: "Success",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000
+          });
           dispatch({
             type: inventoryConstant.DELETE_ITEM,
             payload: InventoryItemId,
