@@ -22,7 +22,13 @@ export const getSiv = (order) => (dispatch) => {
           payload: err.response.data,
         });
       } else {
-        Swal.fire("Error", "Connection Problem", "error")
+        Swal.fire({
+          title: "Error",
+          text: "Connection Problem",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       }
     });
 };
@@ -40,6 +46,8 @@ export const updateSiv = (orderNumber, status) => (dispatch) => {
       Swal.fire({
         title: "Success",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1000,
       });
     })
     .catch((err) => {
@@ -50,8 +58,11 @@ export const updateSiv = (orderNumber, status) => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
+          title: "Error",
+          text: "Connection Problem",
           icon: "error",
+          showConfirmButton: false,
+          timer: 1000,
         });
       }
     });

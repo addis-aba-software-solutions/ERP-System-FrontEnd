@@ -31,7 +31,13 @@ function createOrder(data) {
         data: params,
       })
       .then((response) => {
-        Swal.fire("Created!", "New order created.", "success");
+        Swal.fire({
+          title: "Order Created",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+
         dispatch({
           type: salesConstants.ORDER_SUCCESS,
           payload: response.data,
@@ -51,7 +57,6 @@ function createOrder(data) {
                 " <br/>" +
                 "<b>available quantity :</b> " +
                 error.response.data.item.available,
-              // showCloseButton: true,
               showCancelButton: false,
               focusConfirm: false,
               confirmButtonText: "OK!",
@@ -63,7 +68,13 @@ function createOrder(data) {
             });
           }
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       });
   };
@@ -95,7 +106,13 @@ function getAllCompany() {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       });
   };
@@ -131,7 +148,13 @@ function getAllItem() {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       });
   };
@@ -168,7 +191,13 @@ function getAllOrder() {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error",
+            text: "Connection Problem",
+            icon: "error",
+            showConfirmButton: false,
+            timer: 1000,
+          });
         }
       });
   };

@@ -516,21 +516,12 @@ function PdfDocument(props) {
 
                                             </View>
                                             <View item>
-
                                                 <Text align='right' style={styles.textBody} >
-
                                                 </Text>
                                             </View>
-
                                         </View>
                                         <View style={styles.line} />
-
-
-
                                     </View>
-
-
-
                                     <View style={{ height: 80 }} />
                                     <View style={styles.line} />
                                     <View container style={{
@@ -541,7 +532,7 @@ function PdfDocument(props) {
 
                                         <Text variant='caption' style={styles.textBody}>
                                             Phone : +2519 1234 56 77
-                            </Text>
+                                        </Text>
                                         <Text style={styles.textBody}>
                                             Website : EastAfrican.com
                                         </Text>

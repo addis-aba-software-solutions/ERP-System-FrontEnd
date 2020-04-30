@@ -52,6 +52,8 @@ function login(username, password) {
             title: "Error",
             text: "Connection Problem",
             icon: "error",
+            showConfirmButton: false,
+            timer: 1000
           });
           dispatch({
             type: appConstants.LOGIN_FAILURE_NETWORK,
@@ -66,8 +68,7 @@ function logout() {
   return (dispatch) => {
     
     Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
+      title: "Logging Out?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

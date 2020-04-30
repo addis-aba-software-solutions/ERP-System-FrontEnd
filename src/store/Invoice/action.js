@@ -25,8 +25,11 @@ export const getInvoice = (order) => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
-          icon: "Error",
+          title: "Error",
+          text: "Connection Problem",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });

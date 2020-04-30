@@ -53,7 +53,12 @@ function addNewEmployee(data) {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error", text: "Connection Problem",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
       });
   };
@@ -85,9 +90,10 @@ function getEmploye() {
           });
         } else {
           Swal.fire({
-            title: "Error",
-            text: "Connection Problem",
+            title: "Error", text: "Connection Problem",
             icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
           });
         }
       });
@@ -107,21 +113,36 @@ function deleteEmploye(employeId) {
         headers: headers,
       })
       .then((response) => {
-        Swal.fire("Deleted!", "Your file has been deleted.", "success");
+        Swal.fire({
+          title: "Deleted",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
         dispatch({
           type: appConstants.DELETE_SUCCESS,
           payload: employeId,
         });
       })
       .catch((error) => {
-        Swal.fire("Error!", "Something went wrogn.", "error");
+        Swal.fire({
+          title: "Error", text: "Something Went Wrong",
+          icon: "Error",
+          showConfirmButton: false,
+          timer: 1000
+        });
         if (error.response && error.response.data) {
           dispatch({
             type: appConstants.DELETE_FAILURE,
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error", text: "Connection Problem",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
       });
   };
@@ -148,7 +169,13 @@ function deleteAccount(email) {
           type: itConstants.DELETE_SUCCESS,
           payload: email,
         });
-        Swal.fire("Deleted!", "Account deleted!", "success");
+        Swal.fire({
+          title: "Deleted",
+          text: "Account Has Been Deleted",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
       })
 
       .catch((error) => {
@@ -158,7 +185,12 @@ function deleteAccount(email) {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error", text: "Connection Problem",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
       });
   };
@@ -171,8 +203,8 @@ function addAccount(employe) {
       payload: true,
     });
     Swal.fire({
-      title: "Admin?",
-      text: "Do you need this user act as admin?",
+      title: "Is this User An Admin?",
+      text: "YES-(Make Admin), NO-(Create Basic Account)",
       icon: "info",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -198,7 +230,13 @@ function addAccount(employe) {
           },
         })
         .then((response) => {
-          Swal.fire("created!", "Account has been added.", "success");
+          Swal.fire({
+            title: "Created",
+            text: "Account Has Been Created",
+            icon: "success",
+            showConfirmButton: false,
+            timer: 1000
+          });
           dispatch({
             type: itConstants.REGISTER_SUCCESS,
             payload: response.data.email,
@@ -206,14 +244,24 @@ function addAccount(employe) {
         })
         .catch((error) => {
           console.log(error.response);
-          Swal.fire("Error!", "Something went wrong.", "error");
+          Swal.fire({
+            title: "Error", text: "Something Went Wrong",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
           if (error.response && error.response.data) {
             dispatch({
               type: itConstants.REGISTER_FAILURE,
               payload: error.response.data.errors,
             });
           } else {
-            Swal.fire("Error", "Connection Problem", "Error");
+            Swal.fire({
+              title: "Error", text: "Connection Problem",
+              icon: "Error",
+              showConfirmButton: false,
+              timer: 1000
+            });
           }
         });
     });
@@ -246,7 +294,12 @@ function getEmployeDetail(employeId) {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error", text: "Connection Problem",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
       });
   };
@@ -278,7 +331,12 @@ function getDepartment() {
             payload: error.response.data.errors,
           });
         } else {
-          Swal.fire("Error", "Connection Problem", "Error");
+          Swal.fire({
+            title: "Error", text: "Connection Problem",
+            icon: "Error",
+            showConfirmButton: false,
+            timer: 1000
+          });
         }
       });
   };

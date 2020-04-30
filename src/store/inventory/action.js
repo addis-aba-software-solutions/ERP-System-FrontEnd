@@ -21,8 +21,10 @@ export const addItem = (item) => (dispatch) => {
       data: item,
     }).then((res) => {
       Swal.fire({
-        title: "Success",
+        title: "Item Created",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1000
       });
       dispatch({
         type: inventoryConstant.ADD_ITEM,
@@ -84,8 +86,10 @@ export const updateItemQuantity = (itemId, quantity) => (dispatch) => {
         payload: res.data,
       });
       Swal.fire({
-        title: "Success",
+        title: "Item Created",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1000
       });
     })
     .catch((err) => {
@@ -100,16 +104,21 @@ export const updateItemQuantity = (itemId, quantity) => (dispatch) => {
       } else if (err.response) {
         if (err.response.status === 404) {
           Swal.fire({
-            title: "Error", text: "Please Select an item to update",
+            title: "Error",
+            text: "Please Select an item to be updated.",
             icon: "error",
+            showConfirmButton: false,
+            timer: 1000
           });
         }
       }
       else {
-
         Swal.fire({
-          title: "Error", text: "Connection Problem",
+          title: "Error",
+          text: "Connection Problem",
           icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -118,7 +127,7 @@ export const updateItemQuantity = (itemId, quantity) => (dispatch) => {
 export const deleteItem = (InventoryItemId) => (dispatch) => {
   Swal.fire({
     title: "Are you sure?",
-    text: "Are you not revert this action!",
+    text: "You can not revert this Action!",
     icon: "warning",
     showCancelButton: true,
     confirmButtonColor: "#3085d6",
@@ -130,10 +139,12 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
       axios
         .delete(API + `item/${InventoryItemId}/`, headers)
         .then((res) => {
-          Swal.fire({
-            title: "Success",
-            icon: "success",
-          });
+        Swal.fire({
+          title: "Success",
+          icon: "success",
+          showConfirmButton: false,
+          timer: 1000
+        });
           dispatch({
             type: inventoryConstant.DELETE_ITEM,
             payload: InventoryItemId,
@@ -147,8 +158,11 @@ export const deleteItem = (InventoryItemId) => (dispatch) => {
             });
           } else {
             Swal.fire({
-              title: "Error", text: "Connection Problem",
+              title: "Error",
+              text: "Connection Problem",
               icon: "error",
+              showConfirmButton: false,
+              timer: 1000
             });
           }
         });

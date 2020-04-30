@@ -31,8 +31,11 @@ export const getOrders = () => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
-          icon: "Error",
+          title: "Error",
+          text: "Connection Problem",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -60,8 +63,11 @@ export const getSingleOrder = (orderNumber) => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
+          title: "Error",
+          text: "Connection Problem",
           icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -85,8 +91,11 @@ export const getStatus = () => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
-          icon: "Error",
+          title: "Error",
+          text: "Connection Problem",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
@@ -106,8 +115,10 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
         payload: { orderNumber: orderNumber, data: res.data },
       });
       Swal.fire({
-        title: "Success",
+        title: "Updated",
         icon: "success",
+        showConfirmButton: false,
+        timer: 1000
       });
     })
     .catch((err) => {
@@ -118,8 +129,11 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
         });
       } else {
         Swal.fire({
-          title: "Error", text: "Connection Problem",
-          icon: "Error",
+          title: "Error",
+          text: "Connection Problem",
+          icon: "error",
+          showConfirmButton: false,
+          timer: 1000
         });
       }
     });
