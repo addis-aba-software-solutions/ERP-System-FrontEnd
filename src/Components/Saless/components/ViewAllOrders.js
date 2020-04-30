@@ -76,15 +76,12 @@ class ViewAllOrders extends Component {
                 Create An Order
               </Button>
             </Link>
-
-
             <Card className={classes.paper}>
               <TableContainer className={classes.table}>
                 <Table stickyHeader aria-label="sticky table">
                   <TableHead>
                     <TableRow className={classes.table}>
                       <TableCell> <b>Order Number</b></TableCell>
-
                       <TableCell><b>Company</b></TableCell>
                       <TableCell><b>Sales Person</b></TableCell>
                       <TableCell><b>Shipment Address</b></TableCell>

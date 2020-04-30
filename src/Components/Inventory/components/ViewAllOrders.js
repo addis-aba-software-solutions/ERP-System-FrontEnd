@@ -60,9 +60,7 @@ class ViewAllOrders extends Component {
         <SearchBar />
         <div className={classes.container}>
           <Paper className={classes.paper}>
-            <TableContainer style={{
-              height: 900
-            }}>
+            <TableContainer >
               <Table stickyHeader>
                 <TableHead>
                   <TableRow className={classes.table}>
@@ -73,6 +71,8 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'><b>Order Date</b></TableCell>
                     <TableCell align='center'><b>Status</b></TableCell>
                     <TableCell align='center'><b>Action</b></TableCell>
+                    <TableCell align='center'><b>View</b></TableCell>
+
                   </TableRow>
                 </TableHead>
 
@@ -95,40 +95,48 @@ class ViewAllOrders extends Component {
                         </TableCell>
                         : (
                           <TableCell align='center'>
-                            <IconButton
-
-                            >
-                              <Link
-                                to={{
-                                  pathname: "/siv",
-                                  state: { order: order.orderNumber },
-                                }}>
-                                <PrintIcon fontSize='large' style={{
-                                  color: '#818181'
-                                }} />
-                                <Typography variant='body2' style={{
-                                  color: '#818181'
-                                }} >
-                                  Generate SIV
-                            </Typography>
-                              </Link>
-                            </IconButton>
+                            <Typography>
+                              {order.status}
+                                </Typography>
                           </TableCell>
 
                         )}
-                        <TableCell>
+                      <TableCell align='center'>
+
+                        <IconButton
+
+                        >
                           <Link
                             to={{
-                              pathname: "./salesOrder",
-                              state: { order: order.orderNumber, status: order.status  },
+                              pathname: "/siv",
+                              state: { order: order.orderNumber },
                             }}>
-
-                            <IconButton>
-                              <VisibilityRoundedIcon />
-                            </IconButton>
+                            <PrintIcon fontSize='large' style={{
+                              color: '#818181'
+                            }} />
+                            <Typography variant='body2' style={{
+                              color: '#818181'
+                            }} >
+                              Generate SIV
+</Typography>
                           </Link>
+                        </IconButton>
 
-                        </TableCell>
+
+                      </TableCell>
+                      <TableCell align='center'>
+                        <Link
+                          to={{
+                            pathname: "./salesOrder",
+                            state: { order: order.orderNumber, status: order.status },
+                          }}>
+
+                          <IconButton>
+                            <VisibilityRoundedIcon />
+                          </IconButton>
+                        </Link>
+
+                      </TableCell>
 
 
                     </TableRow>
