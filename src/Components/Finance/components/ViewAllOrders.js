@@ -44,7 +44,8 @@ class ViewAllOrders extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      show: false
+      show: false,
+      order: '',
     }
 
 
@@ -53,10 +54,9 @@ class ViewAllOrders extends Component {
   handlePrint = (order) => {
     this.props.getInvoice(order)
     this.setState({
-      show: !this.state.show
+      show: true,
+      order: order
     })
-    console.log("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxdddddddddddddddddxxxxxxxxxxxx")
-    console.log(this.props.invoices)
   }
   componentDidMount() {
     this.props.getOrders();
@@ -105,21 +105,21 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'>
                         <Grid container spacing={2}>
                           <Grid item>
-                            <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>
 
-                            {this.state.show && this.props.invoices && <PDFDownloadLink
+
+                            {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
                               document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
-                              fileName="movielist.pdf"
+                              fileName={`order_${order.orderNumber}.pdf`}
                               style={{
                                 textDecoration: "none",
                                 padding: "10px",
-                                color: "#4a4a4a",
+                                color: "#456456",
                                 backgroundColor: "#f2f2f2",
                                 border: "1px solid #4a4a4a"
                               }}
                             >
                               Download Pdf
-                            </PDFDownloadLink>
+                            </PDFDownloadLink> : <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>
                             }
                           </Grid>
                           <Grid item>

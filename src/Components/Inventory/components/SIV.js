@@ -11,7 +11,7 @@ import { connect } from "react-redux";
 import { getSiv, updateSiv } from "../../../store/Siv/action";
 import SIVPdf from "./Printable_SIV";
 import PrintIcon from "@material-ui/icons/Print";
-import { PDFDownloadLink} from "@react-pdf/renderer"
+import { PDFDownloadLink } from "@react-pdf/renderer"
 import AutorenewIcon from "@material-ui/icons/Autorenew";
 
 const styles = {
@@ -65,20 +65,20 @@ class SIV extends React.Component {
     super(props);
     this.state = {
     };
-    this.submit=this.submit.bind(this)
+    this.submit = this.submit.bind(this)
   }
-  
+
   componentDidMount() {
     this.props.getSiv(this.props.location.state.order);
   }
-  submit(e){
+  submit(e) {
     e.preventDefault()
-    
+
 
 
   }
   render() {
-   
+
     const { classes } = this.props;
 
     return (
@@ -174,27 +174,27 @@ class SIV extends React.Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {this.props.siv_item?this.props.siv_item.map((item) => (
-              
+                {this.props.siv_item ? this.props.siv_item.map((item) => (
+
                   <TableRow key={item.sivId}>
-                    
+
                     <TableCell component="th" scope="row">
                       {item.itemName}
                     </TableCell>
                     <TableCell align="right">5</TableCell>
                     <TableCell align="right">{item.quantity}</TableCell>
                   </TableRow>
-                )):null}
+                )) : null}
               </TableBody>
             </Table>
           </TableContainer>
           <Button onClick={this.props.updateSiv.bind(
-                              this,
-                              this.props.location.state.order,
-                              {
-                                sivStatus: "Approved",
-                              },
-                            )}>
+            this,
+            this.props.location.state.order,
+            {
+              sivStatus: "Approved",
+            },
+          )}>
             Approve
             {/* <PDFDownloadLink document ={<SIVPdf />} fileName ="invoice.pdf" style={
                               {
@@ -217,9 +217,9 @@ class SIV extends React.Component {
               paddingTop: 10,
             }}
           >
-            <Typography className={classes.textBody} variant="body2" color="">
-              <b>Total :</b> 67
-            </Typography>
+            {/* <Typography className={classes.textBody} variant="body2" color="">
+              <b>Total :</b> {}
+            </Typography> */}
           </Box>
           <div
             style={{
@@ -260,7 +260,7 @@ function mapStateToProps(state) {
   return {
     sivs: state.sivReducer.sivs,
     siv_item: state.sivReducer.siv_item,
-   
+
   };
 }
 
