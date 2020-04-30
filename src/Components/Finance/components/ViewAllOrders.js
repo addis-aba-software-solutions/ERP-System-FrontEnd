@@ -15,7 +15,8 @@ import PrintIcon from "@material-ui/icons/Print";
 import { PDFDownloadLink } from "@react-pdf/renderer";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import SearchBar from '../../SearchBar/SearchBar';
-
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import GetAppIcon from '@material-ui/icons/GetApp';
 const styles = (theme) => ({
   table: {
     maxHeight: 100,
@@ -105,14 +106,15 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'>
                         {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
                           document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
-                          fileName={`order_${order.orderNumber}.pdf`}
-                        >
-                          <IconButton>
+                          fileName={`order_${order.orderNumber}.pdf`}>
+                          <IconButton style={{
+                            color: '#11669F'
+                          }}>
                             <Grid>
-                              <PrintIcon fontSize='large' />
-                              <Typography variant='body2'>
-                                Generate Invoice
-                                </Typography>
+                              <GetAppIcon fontSize='large' />
+                              {/* <Typography variant='body2'>
+                                Download Invoice
+                                </Typography> */}
                             </Grid>
 
                           </IconButton>
