@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { withStyles, Grid, Typography, Paper } from "@material-ui/core";
-
+import { withStyles, Grid, Typography, Button, Paper } from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { Table, IconButton } from "@material-ui/core";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -12,8 +12,9 @@ import { getOrders } from "../../../store/order/action";
 import { getInvoice } from "../../../store/Invoice/action";
 import Invoice from "./INVOICE";
 import PrintIcon from "@material-ui/icons/Print";
-import { PDFDownloadLink } from "@react-pdf/renderer"
-import SearchBar from '../../SearchBar/SearchBar'
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import SearchBar from '../../SearchBar/SearchBar';
 
 const styles = (theme) => ({
   table: {
@@ -85,7 +86,9 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Shipment Address</TableCell>
                     <TableCell align='center'>Order Date</TableCell>
                     <TableCell align='center'>Status</TableCell>
-                    <TableCell align='center'>Action</TableCell>
+                    <TableCell align='center'>Invoice</TableCell>
+                    <TableCell align='center'>Actions</TableCell>
+
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -99,34 +102,41 @@ class ViewAllOrders extends Component {
                       <TableCell align='center'>
                         {order.status}
                       </TableCell>
-
                       <TableCell align='center'>
-                        <Grid container spacing={2}>
-                          <Grid item>
+                        {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
+                          document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
+                          fileName={`order_${order.orderNumber}.pdf`}
+                        >
+                          <IconButton>
+                            <Grid>
+                              <PrintIcon fontSize='large' />
+                              <Typography variant='body2'>
+                                Generate Invoice
+                                </Typography>
+                            </Grid>
 
+                          </IconButton>
+                        </PDFDownloadLink> :
+                          <IconButton onClick={() => this.handlePrint(order.orderNumber)}>
+                            <PrintIcon fontSize='large' />
+                          </IconButton>
 
-                            {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
-                              document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
-                              fileName={`order_${order.orderNumber}.pdf`}
-                              style={{
-                                textDecoration: "none",
-                                padding: "10px",
-                                color: "#456456",
-                                backgroundColor: "#f2f2f2",
-                                border: "1px solid #4a4a4a"
-                              }}
-                            >
-                              Download Pdf
-                            </PDFDownloadLink> : <button onClick={() => this.handlePrint(order.orderNumber)} >Print</button>
-                            }
-                          </Grid>
-                          <Grid item>
-                            <Typography variant='caption'>
-                              Generate Invoice
-                            </Typography>
-                          </Grid>
-                        </Grid>
+                        }
                       </TableCell>
+                      <TableCell>
+
+                        <Link
+                          to={{
+                            pathname: "./salesOrder",
+                            state: { order: order.orderNumber, },
+                          }}>
+
+                          <IconButton>
+                            <VisibilityIcon />
+                          </IconButton>
+                        </Link>
+                      </TableCell>
+
                     </TableRow>
                   )) : ""}
                 </TableBody>
