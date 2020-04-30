@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         flexDirection: "row"
     },
     tableColHeader: {
-        width: "25%",
+        width: "20%",
         borderStyle: "solid",
         borderColor: '#686868',
         borderBottomColor: '#000',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 0
     },
     tableCol: {
-        width: "25%",
+        width: "20%",
         borderStyle: "solid",
         borderColor: '#686868',
         borderWidth: 1,
@@ -113,6 +113,7 @@ function PdfDocument(props) {
                     ? [props.data].map((data) => {
                         return (
                             <>
+
                                 <View container style={styles.header}>
                                     <View item xs={6}>
                                         <Text style={styles.textBody}  >
@@ -142,6 +143,9 @@ function PdfDocument(props) {
                                         <Text style={styles.textBody} >
                                             Website : nazoplcethio.com
                                 </Text>
+
+
+
                                     </View>
 
                                     <View item xs={6}>
@@ -159,32 +163,31 @@ function PdfDocument(props) {
                                     </View>
 
                                 </View>
-
-                                {/* =============================== HEADER =++++++++============== */}
-
-
                                 <View style={{
                                     height: 25
                                 }} />
 
-                                <View style={styles.line} />
+                                <View style={styles.line}>
+                                </View>
 
                                 <View style={{
                                     height: 25
-                                }} />
+                                }}>
+                                </View>
 
                                 <View container style={styles.header}>
 
-                                    <View item >
+                                    <View item style={{
+                                    }}>
                                         <Text align='left' style={styles.textBody} style={{ color: '#11669F' }} variant='body2' color=''>
                                             Invoice To
-                                        </Text>
+                            </Text>
                                         <View style={{
                                             marginLeft: 10,
                                         }}>
                                             <View style={{
                                                 height: 10
-                                            }} />
+                                            }}></View>
 
                                             <Text align='left' style={styles.textBody} variant='body2' >
                                                 Samuel Kassa
@@ -234,6 +237,8 @@ function PdfDocument(props) {
                                         </View>
 
                                     </View>
+
+
                                     <View item style={{
                                         marginLeft: 200,
                                         marginTop: 30
@@ -249,7 +254,7 @@ function PdfDocument(props) {
                                                     color: '#11669F',
                                                     fontSize: 12
                                                 }} >
-                                                    Invoice No:
+                                                    Invoice No:{data.invoiceId}
                                                 </Text>
                                             </View>
                                             <View style={{
@@ -260,13 +265,15 @@ function PdfDocument(props) {
                                             <View item>
 
                                                 <Text align='right' style={styles.textBody} >
-                                                    {data.invoiceId}
+
                                                 </Text>
                                             </View>
                                         </View>
                                         <View style={{
                                             height: 10
-                                        }} />
+                                        }}>
+
+                                        </View>
 
                                         <View container style={{
                                             flexDirection: 'row',
@@ -279,7 +286,7 @@ function PdfDocument(props) {
                                                     color: '#11669F',
                                                     fontSize: 12
                                                 }} >
-                                                    Invoice Date :
+                                                    Invoice Date :{data.date}
                                                 </Text>
                                             </View>
                                             <View style={{
@@ -290,15 +297,10 @@ function PdfDocument(props) {
                                             <View item>
 
                                                 <Text align='right' style={styles.textBody} >
-                                                    {data.date}
+
                                                 </Text>
                                             </View>
                                         </View>
-                                    </View>
-                                    <View>
-
-
-
                                         <View style={{
                                             height: 10
                                         }}>
@@ -313,8 +315,9 @@ function PdfDocument(props) {
 
                                             <View style={{
                                                 width: 10
-                                            }} />
+                                            }}>
 
+                                            </View>
 
                                         </View>
                                         <View style={{
@@ -323,36 +326,47 @@ function PdfDocument(props) {
 
                                         </View>
 
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+
+                                            </View>
+
+                                            <View style={{
+                                                height: 10
+                                            }}>
+
+                                            </View>
+
+
+                                        </View>
                                     </View>
 
                                     <View style={{
                                         height: 20
-                                    }} />
-                                    {/* <View style={styles.line} /> */}
+                                    }}>
+
+                                    </View>
+                                    <View style={styles.line}>
+                                    </View>
 
                                     <View style={{
                                         height: 20
                                     }}>
                                     </View>
-
-
-                                </View>
-
-                                <View style={{
-                                    height: 40
-                                }} />
-
-                                <View style={styles.line} />
-
-                                <View style={{
-                                    height: 40
-                                }} />
-                                
+{/* 
                                     <View style={styles.table}>
                                         <View style={styles.tableRow}>
-                                            {/* <View style={styles.tableColHeader}>
+                                            <View style={styles.tableColHeader}>
                                                 <Text style={styles.tableCellHeader}>#</Text>
-                                            </View> */}
+                                            </View>
                                             <View style={styles.tableColHeader}>
                                                 <Text style={styles.tableCellHeader}>Item Name</Text>
                                             </View>
@@ -374,146 +388,173 @@ function PdfDocument(props) {
 
                                     {props.invoice_item ? props.invoice_item.map((item) => {
                                         return (
-                                            <View key={item.itemName} style={styles.tableRow}>
+                                            <View style={styles.tableRow}>
+                                                <View style={styles.tableCol}>
+                                                    <Text style={styles.tableCell}>{item.itemName}</Text>
+                                                </View>
+
+                                                <View style={styles.tableCol}>
+                                                    <Text style={styles.tableCell}>{item.itemName}</Text>
+                                                </View>
+                                                <View key={item.itemName} style={styles.movieContainer}>
                                                     <View style={styles.tableCol}>
                                                         <Text style={styles.tableCell}>{item.itemName}</Text>
                                                     </View>
-                                                    <View style={styles.tableCol}>
+
+                                                    <View style={styles.movieContainer}>
                                                         <Text style={styles.tableCell}>{item.quantity}</Text>
                                                     </View>
-                                                    <View style={styles.tableCol}>
+                                                    <View style={styles.movieContainer}>
                                                         <Text style={styles.tableCell}>{item.unitPrice}</Text>
                                                     </View>
-                                                    <View style={styles.tableCol}>
+                                                    <View style={styles.movieContainer}>
                                                         <Text style={styles.tableCell}>{item.quantity * item.unitPrice}</Text>
                                                     </View>
+                                                </View>
 
 
                                             </View>
                                         );
-                                    }) : null}
-
-                                <View style={{
-                                    height: 40
-                                }} />
+                                    }) : null} */}
 
 
-                                <View key={data.itemName} style={styles.movieContainer}>
-                                    <View container style={{
-                                        flexDirection: 'row',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        paddingBottom: 5
-                                    }}>
-                                        <View item >
+                                    <View style={{
+                                        height: 40
+                                    }} />
 
-                                            <Text align='right' style={{
-                                                color: '#11669F',
-                                                fontSize: 12
-                                            }} >
-                                                Sub Total :
-                                            </Text>
-                                        </View>
-                                        <View style={{
-                                            width: 10
+                                    <View key={data.itemName} style={styles.movieContainer}>
+
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
                                         }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Sub Total : {data.subTotal}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+                                                                                            <View item >
+
+<Text align='right' style={{
+    color: '#11669F',
+    fontSize: 12
+}} >
+    Sub Total : {data.subTotal}
+</Text>
+</View>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
 
                                         </View>
-                                        <View item>
-                                            <Text align='right' style={styles.textBody} >
-                                                {data.subTotal}
-                                            </Text>
+
+                                        <View style={styles.line} />
+                                        <View style={{ height: 5 }} />
+
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Tax :{data.Tax}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+
                                         </View>
+                                        <View style={styles.line} />
+                                        <View style={{ height: 5 }} />
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between',
+                                            paddingBottom: 5
+                                        }}>
+                                            <View item >
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Total :{data.Total}
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10
+                                            }}>
+
+                                            </View>
+                                            <View item>
+
+                                                <Text align='right' style={styles.textBody} >
+
+                                                </Text>
+                                            </View>
+
+                                        </View>
+                                        <View style={styles.line} />
+
+
 
                                     </View>
 
-                                    <View style={styles.line} />
-                                    <View style={{ height: 5 }} />
 
+
+                                    <View style={{ height: 80 }} />
+                                    <View style={styles.line} />
                                     <View container style={{
-                                        flexDirection: 'row',
                                         display: 'flex',
-                                        justifyContent: 'space-between',
-                                        paddingBottom: 5
-                                    }}>
-                                        <View item >
-
-                                            <Text align='right' style={{
-                                                color: '#11669F',
-                                                fontSize: 12
-                                            }} >
-                                                Tax :
-                                            </Text>
-                                        </View>
-                                        <View style={{
-                                            width: 10
-                                        }}>
-
-                                        </View>
-                                        <View item>
-
-                                            <Text align='right' style={styles.textBody} >
-                                                {data.Tax}
-                                            </Text>
-                                        </View>
-
-                                    </View>
-                                    <View style={styles.line} />
-                                    <View style={{ height: 5 }} />
-                                    <View container style={{
                                         flexDirection: 'row',
-                                        display: 'flex',
-                                        justifyContent: 'space-between',
-                                        paddingBottom: 5
-                                    }}>
-                                        <View item >
-                                            <Text align='right' style={{
-                                                color: '#11669F',
-                                                fontSize: 12
-                                            }} >
-                                                Total :
-                                            </Text>
-                                        </View>
-                                        <View style={{
-                                            width: 10
-                                        }}>
+                                        justifyContent: 'space-between'
+                                    }} >
 
-                                        </View>
-                                        <View item>
-
-                                            <Text align='right' style={styles.textBody} >
-                                                {data.Total}
-                                            </Text>
-                                        </View>
-
-                                    </View>
-                                    <View style={styles.line} />
-
-
-
-                                </View>
-
-
-
-                                <View style={{ height: 80 }} />
-                                <View style={styles.line} />
-                                <View container style={{
-                                    display: 'flex',
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between'
-                                }} >
-
-                                    <Text variant='caption' style={styles.textBody}>
-                                        Phone : +2519 1234 56 77
+                                        <Text variant='caption' style={styles.textBody}>
+                                            Phone : +2519 1234 56 77
                             </Text>
-                                    <Text style={styles.textBody}>
-                                        Website : EastAfrican.com
+                                        <Text style={styles.textBody}>
+                                            Website : EastAfrican.com
                                         </Text>
 
-                                    <Text style={styles.textBody}>
-                                        Email : EastAfrican@gmail.com
+                                        <Text style={styles.textBody}>
+                                            Email : EastAfrican@gmail.com
                                         </Text>
+                                    </View>
                                 </View>
+
+
+
+
                             </>
                         )
 
