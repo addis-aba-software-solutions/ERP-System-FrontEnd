@@ -18,6 +18,9 @@ import TotalUsers from './Budget/TotalUsers';
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import TasksProgress from './Budget/TasksProgress';
 import Container from '@material-ui/core/Container';
+import Blah from './Budget/blah';
+import Blah2 from './Budget/blah2';
+
 
 
 const drawerWidth = 280;
@@ -230,13 +233,13 @@ export default function HomeNavBar() {
             </Grid>
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <Budget />
+                <Blah />
               </Paper>
             </Grid>
 
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <TotalUsers />
+                <Blah2 />
               </Paper>
             </Grid>
 

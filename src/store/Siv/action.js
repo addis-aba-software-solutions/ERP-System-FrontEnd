@@ -35,13 +35,13 @@ export const getSiv = (order) => (dispatch) => {
 
 // UPDATE siv Status
 export const updateSiv = (orderNumber, status) => (dispatch) => {
+
   axios
     .put(API + `generatesiv/${orderNumber}/`, status, headers)
     .then((res) => {
-
       dispatch({
         type: UPDATE_SIV,
-        payload: { orderNumber: orderNumber, data: res.data },
+        payload: { orderNumber: orderNumber, status: "Approved" },
       });
       Swal.fire({
         title: "Success",

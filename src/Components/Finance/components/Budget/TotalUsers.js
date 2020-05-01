@@ -62,9 +62,9 @@ const TotalUsers = props => {
               gutterBottom
               variant="body2"
             >
-              Category 2
+              Pending Invoices
             </Typography>
-            <Typography variant="h3">00,000</Typography>
+            <Typography variant="h3">9</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>

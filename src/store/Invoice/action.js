@@ -1,4 +1,4 @@
-import { GET_INVOICE, errorsConstant } from "../../constant/constants";
+import { GET_INVOICE, errorsConstant, UPDATE_ORDER } from "../../constant/constants";
 import axios from "axios";
 import API from "../../api/API";
 import Swal from "sweetalert2";
@@ -9,12 +9,13 @@ export const getInvoice = (order) => (dispatch) => {
   axios
     .get(API + `generateinvoice/${order}/`, headers)
     .then((res) => {
-      console.log("gebbbbbbbbbbbbbbbbbbbbbb");
-      console.log(res.data);
-
+      dispatch({
+        type: UPDATE_ORDER,
+        payload: { order: res.data.order, status: "Invoiced" }
+      });
       dispatch({
         type: GET_INVOICE,
-        payload: res.data,
+        payload: res.data.order,
       });
     })
     .catch((err) => {

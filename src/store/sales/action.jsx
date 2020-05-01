@@ -134,8 +134,6 @@ function getAllItem() {
         },
       })
       .then((response) => {
-        console.log(response.data);
-
         dispatch({
           type: salesConstants.ITEM_GETALL_SUCCESS,
           payload: response.data,

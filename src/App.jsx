@@ -25,7 +25,7 @@ import ViewLogisticsOrders from "./Components/Logistics/components/ViewAllOrders
 import ViewSingleOrder from "./Components/Finance/components/ViewSingleOrder";
 import Sales_ViewSingleOrder from "./Components/Saless/components/ViewSingleOrder";
 import ViewAccount from "./Components/HR/components/UsersTable/view_account";
-import FinanceDashboard from './Components/Finance/Finance';
+import FinanceDashboard from "./Components/Finance/Finance";
 
 class App extends React.Component {
   render() {
@@ -40,7 +40,7 @@ class App extends React.Component {
               <section id="main-content">
                 <section className="wrapper">
                   <PrivateRoute
-                    path="/"
+                    path="/Dashboard"
                     component={Dashboard}
                     exact
                     loggedIn={this.props.isLogin}

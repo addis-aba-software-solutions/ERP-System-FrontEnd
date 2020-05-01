@@ -21,6 +21,9 @@ import Paper from '@material-ui/core/Paper';
 import TasksProgress from './Budget/TasksProgress';
 import Container from '@material-ui/core/Container';
 import VisibilityIcon from '@material-ui/icons/Visibility';
+import Blah from './Budget/Blah';
+import Blah2 from './Budget/Blah2';
+
 
 const drawerWidth = 280;
 
@@ -260,7 +263,7 @@ export default function HomeNavBar() {
                 fontSize: 20,
                 color: '#818181',
               }}>
-                Finance Requests Per-Department
+                Follow-ups
           </Typography>
             </Grid>
             <Grid item>
@@ -275,13 +278,13 @@ export default function HomeNavBar() {
             </Grid>
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <TotalUsers />
+                <Blah />
               </Paper>
             </Grid>
 
             <Grid item>
               <Paper className={classes.budgetTracking}>
-                <Budget />
+                <Blah2 />
               </Paper>
             </Grid>
 

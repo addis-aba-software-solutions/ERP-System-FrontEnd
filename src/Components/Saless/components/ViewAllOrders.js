@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, withStyles, IconButton, Card } from "@material-ui/core";
+import { Button, withStyles, Grid, Typography, IconButton, Card } from "@material-ui/core";
 
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -54,7 +54,24 @@ class ViewAllOrders extends Component {
 
     return (
       <>
-        <SearchBar />
+        <Grid container xs={12} display='flex' justify='space-between'>
+          <Grid item xs={6}>
+            <Typography variant='h4' style={{
+              marginTop: 30,
+              marginLeft: 30
+            }}>
+              List Of Orders
+
+            </Typography>
+
+          </Grid>
+          <Grid item xs={6}>
+            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          </Grid>
+
+        </Grid>
+        {/* <SearchBar /> */}
         <div className={classes.container}>
           <div>
             <Link to="/create_Order" style={{

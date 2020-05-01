@@ -67,14 +67,30 @@ class ViewAllOrders extends Component {
   render() {
     const { classes } = this.props;
     const deliveredOrders = this.props.orders ? this.props.orders.filter((order) => {
-      console.log(order.status);
 
       return (order.status === "Delivered") || (order.status === "Invoiced")
     }) : "";
 
     return (
       <>
-        <SearchBar />
+        <Grid container xs={12} display='flex' justify='space-between'>
+          <Grid item xs={6}>
+            <Typography variant='h4' style={{
+              marginTop: 30,
+              marginLeft: 30
+            }}>
+              List Of Orders
+
+            </Typography>
+
+          </Grid>
+          <Grid item xs={6}>
+            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          </Grid>
+
+        </Grid>
+        {/* <SearchBar /> */}
         <div className={classes.container}>
           <Paper className={classes.paper}>
             <TableContainer>
@@ -87,7 +103,7 @@ class ViewAllOrders extends Component {
                     <TableCell align='center'>Shipment Address</TableCell>
                     <TableCell align='center'>Order Date</TableCell>
                     <TableCell align='center'>Status</TableCell>
-                    <TableCell align='center'>Invoice</TableCell>
+                    <TableCell align='center'>Generate invoice</TableCell>
                     <TableCell align='center'>Actions</TableCell>
 
                   </TableRow>
@@ -112,9 +128,7 @@ class ViewAllOrders extends Component {
                           }}>
                             <Grid>
                               <GetAppIcon fontSize='large' />
-                              {/* <Typography variant='body2'>
-                                Download Invoice
-                                </Typography> */}
+
                             </Grid>
 
                           </IconButton>
@@ -130,7 +144,7 @@ class ViewAllOrders extends Component {
                         <Link
                           to={{
                             pathname: "./salesOrder",
-                            state: { order: order.orderNumber,  status: order.status  },
+                            state: { order: order.orderNumber, status: order.status },
                           }}>
 
                           <IconButton>

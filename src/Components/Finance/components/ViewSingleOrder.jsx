@@ -552,7 +552,6 @@ class ViewSingleOrder extends React.Component {
               </Card>
             </Grid>
           </Grid>
-
         </div>
       </Grid>
     );

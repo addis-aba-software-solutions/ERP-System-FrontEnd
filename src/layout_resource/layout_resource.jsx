@@ -1,4 +1,4 @@
-import Cover from "./../Assets/Trial.jpg";
+import Cover from "./../Assets/Background.jpg";
 const classes = {
   root: {
     display: 1,

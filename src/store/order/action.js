@@ -16,8 +16,7 @@ export const getOrders = () => (dispatch) => {
   axios
     .get(API + "orderstatus/", headers)
     .then((res) => {
-      console.log("rsponse")
-      console.log(res)
+
       dispatch({
         type: GET_ORDER,
         payload: res.data,
@@ -43,8 +42,6 @@ export const getOrders = () => (dispatch) => {
 
 // GET ORDER
 export const getSingleOrder = (orderNumber) => (dispatch) => {
-  console.log("ccccccccccccccccccc");
-  console.log(orderNumber);
   axios
     .get(API + `order/${orderNumber}/`, headers)
     .then((res) => {
@@ -103,10 +100,7 @@ export const getStatus = () => (dispatch) => {
 
 // UPDATE STATUS
 export const updateStatus = (orderNumber, status) => (dispatch) => {
-
-
   axios
-
     .put(API + `status/${orderNumber}/`, status, headers)
     .then((res) => {
 

@@ -100,23 +100,19 @@ const styles = {
 };
 
 class SIV extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      show: false,
-    };
-  }
+
 
   componentDidMount() {
     this.props.getSiv(this.props.location.state.order);
+
   }
   submit(e) {
     e.preventDefault();
   }
   handlePrint = () => {
-    this.setState({
-      show: !this.state.show,
-    });
+    this.props.updateSiv(this.props.location.state.order, {
+      'sivStatus': 'Approved',
+    })
   };
 
   render() {
@@ -279,22 +275,8 @@ class SIV extends React.Component {
           paddingTop: 20
         }}>
 
-          <Typography>
-            Approve This Document
-        </Typography>
-          <Button variant='contained' size='large' style={{
-            backgroundColor: '#11669F',
-            color: '#FFFFFF',
-            marginLeft: 25
-          }} onClick={() => this.handlePrint()}>Approve</Button>
-
-          <Grid item style={{
-            marginLeft: 60,
-            paddingTop: 10,
-          }}>
-
-
-            {this.state.show && (
+          {
+            this.props.sivs.sivStatus === "Approved" ? (
               <PDFDownloadLink
                 document={
                   <SIVPdf siv_item={this.props.siv_item} sivs={this.props.sivs} />
@@ -318,11 +300,28 @@ class SIV extends React.Component {
 
                     }}>
                       Print SIV
-                  </Typography>
+  </Typography>
                   </Grid>
                 )}
               </PDFDownloadLink>
-            )}
+
+
+            ) : (
+                <Button variant='contained' size='large' style={{
+                  backgroundColor: '#11669F',
+                  color: '#FFFFFF',
+                  marginLeft: 25
+                }} onClick={() => this.handlePrint()}>Approve</Button>
+              )
+          }
+
+          <Grid item style={{
+            marginLeft: 60,
+            paddingTop: 10,
+          }}>
+
+
+
 
           </Grid>
 
@@ -340,6 +339,8 @@ function mapStateToProps(state) {
   return {
     sivs: state.sivReducer.sivs,
     siv_item: state.sivReducer.siv_item,
+    success: state.sivReducer.success,
+
   };
 }
 

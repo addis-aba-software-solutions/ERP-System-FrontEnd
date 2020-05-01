@@ -2,6 +2,7 @@ import { GET_SIV, UPDATE_SIV, errorsConstant } from "../../constant/constants";
 const initialState = {
   sivs: [],
   siv_item: [],
+  success: false,
 };
 
 export default function sivReducer(state = initialState, action) {
@@ -18,11 +19,15 @@ export default function sivReducer(state = initialState, action) {
         siv_item: action.payload.siv_item,
 
       };
-    case UPDATE_SIV:
+    case UPDATE_SIV: {
+      state.sivs.sivStatus = action.payload.status;
+      console.log(state.sivs)
       return {
         ...state,
-        sivs: action.payload.data,
+        sivs: state.sivs,
+        success: true
       };
+    }
 
     default:
       return state;

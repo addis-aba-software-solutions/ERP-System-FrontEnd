@@ -11,7 +11,7 @@ export default function invoiceReducer(state = initialState, action) {
         ...state,
         errors: action.payload,
       };
-    case "GET_INVOICE":
+    case GET_INVOICE:
       return {
         ...state,
         invoices: action.payload,

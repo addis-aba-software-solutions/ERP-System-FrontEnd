@@ -68,34 +68,22 @@ class ItemList extends Component {
     return (
       <>
         <div className={classes.container}>
-          <Grid
-            container
-            display="flex"
-            justify="space-between"
-            xs={12}
-            style={{
-              // padding: 20,
-              // marginTop: 60
-            }}
-          >
-            <Grid item className={classes.header}>
-              <Typography variant="h5" color="textSecondary">
-                <b>Warehouse Name</b> : GurdSholla Warehouse
-              </Typography>
-              <Typography variant="h5" color="textSecondary">
-                <b>Warehouse ID</b> : YTFHGFTY556HHG
-              </Typography>
+          <Grid container xs={12} display='flex' justify='space-between'>
+            <Grid item xs={6}>
+              <Typography variant='h4' style={{
+                marginTop: 30,
+                marginLeft: 30
+              }}>
+                List of Items (Inventory Status)
+
+            </Typography>
 
             </Grid>
-            <Grid
-              item
-              style={{
-                display: "flex",
-                justify: "flex-end",
-              }}
-            >
-              <SearchBar />
+            <Grid item xs={6}>
+              <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
             </Grid>
+
           </Grid>
           <div></div>
           <Divider className={classes.spacer}></Divider>

@@ -53,7 +53,7 @@ function login(username, password) {
             text: "Connection Problem",
             icon: "error",
             showConfirmButton: false,
-            timer: 1000
+            timer: 1000,
           });
           dispatch({
             type: appConstants.LOGIN_FAILURE_NETWORK,
@@ -66,7 +66,6 @@ function login(username, password) {
 
 function logout() {
   return (dispatch) => {
-    
     Swal.fire({
       title: "Logging Out?",
       icon: "warning",
@@ -81,7 +80,7 @@ function logout() {
           payload: false,
         });
         removeStorage();
-        window.location.href = "/";
+        window.location.href = "/Dashboard";
       }
     });
   };

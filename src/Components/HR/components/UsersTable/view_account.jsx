@@ -10,6 +10,8 @@ import {
   TableCell,
   TableHead,
   TableRow,
+  Grid,
+  Typography,
   IconButton,
 } from "@material-ui/core";
 import SearchBar from "../../../SearchBar/SearchBar";
@@ -97,7 +99,25 @@ class UsersTable extends React.Component {
     } else {
       return (
         <>
-          <SearchBar />
+          <Grid container xs={12} display="flex" justify="space-between">
+            <Grid item xs={6}>
+              <Typography
+                variant="h4"
+                style={{
+                  marginTop: 30,
+                  marginLeft: 30,
+                }}
+              >
+                List Of Users
+              </Typography>
+            </Grid>
+            <Grid item xs={6}>
+              <SearchBar
+                search={this.search}
+                updateSearch={this.updateSearch}
+              />
+            </Grid>
+          </Grid>
           <Card className={classes.root}>
             <CardContent className={classes.content}>
               <PerfectScrollbar>

@@ -57,7 +57,24 @@ class ViewAllOrders extends Component {
 
     return (
       <>
-        <SearchBar />
+        <Grid container xs={12} display='flex' justify='space-between'>
+          <Grid item xs={6}>
+            <Typography variant='h4' style={{
+              marginTop: 30,
+              marginLeft: 30
+            }}>
+              List Of Orders
+
+            </Typography>
+
+          </Grid>
+          <Grid item xs={6}>
+            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          </Grid>
+
+        </Grid>
+        {/* <SearchBar /> */}
         <div className={classes.container}>
           <Paper className={classes.paper}>
             <TableContainer style={{
@@ -88,7 +105,13 @@ class ViewAllOrders extends Component {
                         <TableCell align='center' style={{
                           color: '#00AF58'
                         }}>
-                          <DoneAllIcon fontSize='large' />
+                          <Link
+                            to={{
+                              pathname: "/siv",
+                              state: { order: order.orderNumber },
+                            }}
+                          > <DoneAllIcon fontSize='large' /></Link>
+
                           <Typography variant='body2'>
                             SIV Issued
                             </Typography>
@@ -116,19 +139,19 @@ class ViewAllOrders extends Component {
                           </TableCell>
 
                         )}
-                        <TableCell>
-                          <Link
-                            to={{
-                              pathname: "./salesOrder",
-                              state: { order: order.orderNumber, status: order.status  },
-                            }}>
+                      <TableCell>
+                        <Link
+                          to={{
+                            pathname: "./salesOrder",
+                            state: { order: order.orderNumber, status: order.status },
+                          }}>
 
-                            <IconButton>
-                              <VisibilityRoundedIcon />
-                            </IconButton>
-                          </Link>
+                          <IconButton>
+                            <VisibilityRoundedIcon />
+                          </IconButton>
+                        </Link>
 
-                        </TableCell>
+                      </TableCell>
 
 
                     </TableRow>

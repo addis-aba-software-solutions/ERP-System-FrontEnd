@@ -62,9 +62,9 @@ const Budget = props => {
               gutterBottom
               variant="body2"
             >
-              SOMETHING
+              Today
             </Typography>
-            <Typography variant="h3">000</Typography>
+            <Typography variant="h3">3900</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
@@ -84,7 +84,7 @@ const Budget = props => {
             className={classes.caption}
             variant="caption"
           >
-            Since SOMETHING
+            Since Yesterday
           </Typography>
         </div>
       </CardContent>

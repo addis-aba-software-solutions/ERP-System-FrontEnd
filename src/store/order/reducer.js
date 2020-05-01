@@ -1,9 +1,10 @@
-import { GET_ORDER, GET_SINGLE_ORDER, GET_STATUS, UPDATE_STATUS, errorsConstant } from "../../constant/constants";
+import { GET_ORDER, UPDATE_ORDER, GET_SINGLE_ORDER, GET_STATUS, UPDATE_STATUS, errorsConstant } from "../../constant/constants";
 const initialState = {
   orders: [],
   status: {},
   order: [],
-  items: []
+  items: [],
+  success: false,
 };
 
 export default function ordersReducer(state = initialState, action) {
@@ -19,28 +20,42 @@ export default function ordersReducer(state = initialState, action) {
         order: action.payload,
         items: action.payload.item_order ? action.payload.item_order : [],
       };
-    case GET_ORDER:
+    case GET_ORDER: {
       return {
         ...state,
         orders: action.payload,
 
+
       };
+    }
+
+    case UPDATE_ORDER: {
+      const index = state.orders.findIndex(
+        (item) => item.orderNumber === action.payload.order
+      );
+      state.orders[index].status = action.payload.status;
+
+      return {
+        ...state,
+        orders: state.orders,
+
+      };
+    }
     case GET_STATUS:
       return {
         ...state,
         status: action.payload,
       };
-    case UPDATE_STATUS:
+    case UPDATE_STATUS: {
+      state.order.status = action.payload.status;
       return {
         ...state,
-        // orders: state.orders.map((order) =>
-        //   order.orderNumber === action.payload.orderNumber
-        //     ? [...order, action.payload.data]
-        //     : order
-        // ),
+        success: true,
+        orders: state.orders,
+        order: state.order,
         status: action.payload,
       };
-
+    }
     default:
       return state;
   }

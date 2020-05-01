@@ -1,6 +1,6 @@
 import React from "react";
 import PerfectScrollbar from "react-perfect-scrollbar";
-import { withStyles, Grid, IconButton } from "@material-ui/core";
+import { withStyles, Grid, Typography, IconButton } from "@material-ui/core";
 
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
@@ -79,7 +79,25 @@ class EmployeTable extends React.Component {
     } else {
       return (
         <>
-          <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          <Grid container xs={12} display='flex' justify='space-between'>
+            <Grid item xs={6}>
+              <Typography variant='h4' style={{
+                marginTop: 30,
+                marginLeft: 30
+              }}>
+                List Of Users
+
+            </Typography>
+
+            </Grid>
+            <Grid item xs={6}>
+              <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+            </Grid>
+
+          </Grid>
+          {/* <SearchBar search={this.search} updateSearch={this.updateSearch} /> */}
 
           <Card className={classes.root}>
             <CardContent className={classes.content}>

@@ -47,10 +47,25 @@ const styles = (theme) => ({
 });
 
 class ViewAllOrders extends Component {
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+    };
+  }
   componentDidMount() {
     this.props.getOrders();
   }
+  handleClick = (order) => {
+    this.props.updateStatus(
+      order,
+      {
+        status: "Delivered",
+      },
+    )
+
+
+  };
   render() {
     const { classes } = this.props;
     const issuedOrders = this.props.orders.filter((order) => { return order.status === "Issued" || order.status === "Delivered" })
@@ -58,7 +73,23 @@ class ViewAllOrders extends Component {
 
     return (
       <>
-        <SearchBar />
+        <Grid container xs={12} display='flex' justify='space-between'>
+          <Grid item xs={6}>
+            <Typography variant='h4' style={{
+              marginTop: 30,
+              marginLeft: 30
+            }}>
+              List Of Orders
+
+            </Typography>
+
+          </Grid>
+          <Grid item xs={6}>
+            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+
+          </Grid>
+
+        </Grid>
         <div className={classes.container}>
           <div>
             <Paper className={classes.paper}>
@@ -100,18 +131,13 @@ class ViewAllOrders extends Component {
                                   color: '#FFFFFF'
                                 }}
                                 variant='contained'
-                                onClick={this.props.updateStatus.bind(
-                                  this,
-                                  order.orderNumber,
-                                  {
-                                    status: "Delivered",
-                                  },
-                                )}
+                                onClick={() => this.handleClick(order.orderNumber)}
                               >
                                 Deliver
                               </Button>
                             )
                           }
+
                         </TableCell>
                         <TableCell>
                           <Link
@@ -142,6 +168,8 @@ class ViewAllOrders extends Component {
 const mapStateToProps = (state) => ({
   orders: state.ordersReducer.orders,
   status: state.ordersReducer.status,
+  success: state.ordersReducer.success,
+
 });
 
 export default connect(mapStateToProps, { getOrders, updateStatus })(

@@ -165,11 +165,11 @@ class SIVPdf extends Component {
               </View>
             </View>
             {this.props.siv_item
-              ? this.props.siv_item.map((item) => {
+              ? this.props.siv_item.map((item, index) => {
                   return (
                     <View key={item.itemName} style={styles.tableRow}>
                       <View style={styles.tableCol}>
-                        <Text style={styles.tableCell}>{1}</Text>
+                        <Text style={styles.tableCell}>{index + 1}</Text>
                       </View>
                       <View style={styles.tableCol}>
                         <Text style={styles.tableCell}>{item.itemName}</Text>

@@ -139,6 +139,22 @@ class viewAllEmployees extends React.Component {
   render() {
     return (
       <>
+        <Grid container xs={12} display="flex" justify="space-between">
+          <Grid item xs={6}>
+            <Typography
+              variant="h4"
+              style={{
+                marginTop: 30,
+                marginLeft: 30,
+              }}
+            >
+              List Of Companies
+            </Typography>
+          </Grid>
+          <Grid item xs={6}>
+            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+          </Grid>
+        </Grid>
         <div
           style={{
             padding: 40,

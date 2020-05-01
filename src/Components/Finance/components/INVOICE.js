@@ -100,8 +100,6 @@ const styles = StyleSheet.create({
 });
 
 function PdfDocument(props) {
-    console.log("XXXXXXXXXXXXXXXXXXXxxxxxxxxxxx");
-    console.log(props);
 
     return (
         <Document>
@@ -328,8 +326,8 @@ function PdfDocument(props) {
 
                                 </View>
                                 <View style={{
-                                        height: 20
-                                    }} />
+                                    height: 20
+                                }} />
 
                                 <View style={styles.line} />
 
@@ -339,9 +337,7 @@ function PdfDocument(props) {
 
                                 <View style={styles.table}>
                                     <View style={styles.tableRow}>
-                                        {/* <View style={styles.tableColHeader}>
-                                                <Text style={styles.tableCellHeader}>#</Text>
-                                            </View> */}
+
                                         <View style={styles.tableColHeader}>
                                             <Text style={styles.tableCellHeader}>#</Text>
                                         </View>
@@ -364,11 +360,11 @@ function PdfDocument(props) {
                                 </View>
 
 
-                                {props.invoice_item ? props.invoice_item.map((item) => {
+                                {props.invoice_item ? props.invoice_item.map((item, index) => {
                                     return (
                                         <View key={item.itemName} style={styles.tableRow}>
                                             <View style={styles.tableCol}>
-                                                <Text style={styles.tableCell}>#</Text>
+                                                <Text style={styles.tableCell}>{index + 1}</Text>
                                             </View>
                                             <View style={styles.tableCol}>
                                                 <Text style={styles.tableCell}>{item.itemName}</Text>

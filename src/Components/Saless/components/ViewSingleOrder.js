@@ -14,7 +14,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import ScreenShareRoundedIcon from "@material-ui/icons/ScreenShareRounded";
 import ReceiptRoundedIcon from "@material-ui/icons/ReceiptRounded";
 import DoneAllRoundedIcon from "@material-ui/icons/DoneAllRounded";
-
+import { Redirect } from "react-router-dom";
 const styles = ({
     paper: {
         maxWidth: 700,
@@ -74,14 +74,32 @@ const rows = [
 ];
 
 class ViewSingleOrder extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            redirect: false
+        }
+    }
 
     componentDidMount() {
-        this.props.getSingleOrder(this.props.location.state.order)
+        console.log("ccccccccccccccccccccccccccccccccc");
+        console.log(this.props.location.state);
+
+        if (this.props.location.state) {
+            this.props.getSingleOrder(this.props.location.state.order)
+        }
+        else {
+            this.setState({
+                redirect: true
+            })
+        }
 
     }
     render() {
         const { classes } = this.props;
-
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
 
         return (
             <>
@@ -95,159 +113,256 @@ class ViewSingleOrder extends React.Component {
 
                 <div className={classes.progressDiv}>
 
-                {this.props.location.state.status === 'Created' ? (
-                        <Grid container>
-                            <Grid item>
-                                <Paper className={classes.Progresspaper} style={{
-                                    backgroundColor: "#11669F",
-                                }}>
-                                    <CreateIcon style={{
-                                        color: "#FFFFFF",
-                                    }} fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        color: "#FFFFFF",
-                                        marginLeft: 35
+                    {
+                        this.props.location.state ? (
+                            this.props.location.state.status === 'Created' ? (
+                                <Grid container>
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper} style={{
+                                            backgroundColor: "#11669F",
+                                        }}>
+                                            <CreateIcon style={{
+                                                color: "#FFFFFF",
+                                            }} fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                color: "#FFFFFF",
+                                                marginLeft: 35
 
-                                    }} variant="body2">Created</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider style={{
-                                    // backgroundColor: "#11669F",
-                                }} className={classes.progress} />
+                                            }} variant="body2">Created</Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item>
+                                        <Divider style={{
+                                            // backgroundColor: "#11669F",
+                                        }} className={classes.progress} />
 
-                            </Grid>
+                                    </Grid>
 
-                            <Grid item>
-                                <Paper
-                                    className={classes.Progresspaper}
-                                    style={{
-                                        // backgroundColor: "#11669F",
-                                    }}
-                                >
-                                    <ScreenShareRoundedIcon
-                                        style={{
-                                            // color: "#FFFFFF",
-                                        }}
-                                        fontSize="large"
-                                        className={classes.icons}
-                                    />
-                                    <Typography
-                                        style={{
-                                            // color: "#FFFFFF",
-                                            marginLeft: 39
-                                        }}
-                                        variant="body2"
-                                    >
-                                        Issued
+                                    <Grid item>
+                                        <Paper
+                                            className={classes.Progresspaper}
+                                            style={{
+                                                // backgroundColor: "#11669F",
+                                            }}
+                                        >
+                                            <ScreenShareRoundedIcon
+                                                style={{
+                                                    // color: "#FFFFFF",
+                                                }}
+                                                fontSize="large"
+                                                className={classes.icons}
+                                            />
+                                            <Typography
+                                                style={{
+                                                    // color: "#FFFFFF",
+                                                    marginLeft: 39
+                                                }}
+                                                variant="body2"
+                                            >
+                                                Issued
                                     </Typography>
-                                </Paper>
-                            </Grid>
-                            <Divider className={classes.progress} />
-                            <Grid item>
-                                <Paper className={classes.Progresspaper}>
-                                    <DoneAllRoundedIcon fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        marginLeft: 30
+                                        </Paper>
+                                    </Grid>
+                                    <Divider className={classes.progress} />
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper}>
+                                            <DoneAllRoundedIcon fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                marginLeft: 30
 
-                                    }} variant="body2">Delievered</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider className={classes.progress} />
-                            </Grid>
+                                            }} variant="body2">Delievered</Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item>
+                                        <Divider className={classes.progress} />
+                                    </Grid>
 
-                            <Grid item>
-                                <Paper className={classes.Progresspaper}>
-                                    <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
-                                    <Typography
-                                        style={{
-                                            marginLeft: 35
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper}>
+                                            <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
+                                            <Typography
+                                                style={{
+                                                    marginLeft: 35
 
-                                        }} variant="body2">Invoiced</Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    ) : null
+                                                }} variant="body2">Invoiced</Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
+                            ) : null
+                        ) : null
                     }
 
-                    {this.props.location.state.status === 'Issued' ? (
-                        <Grid container>
-                            <Grid item>
-                                <Paper className={classes.Progresspaper} style={{
-                                    backgroundColor: "#11669F",
-                                }}>
-                                    <CreateIcon style={{
-                                        color: "#FFFFFF",
-                                    }} fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        color: "#FFFFFF",
-                                        marginLeft: 35
+                    {
+                        this.props.location.state ? (
 
-                                    }} variant="body2">Created</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider style={{
-                                    backgroundColor: "#11669F",
-                                }} className={classes.progress} />
 
-                            </Grid>
+                            this.props.location.state.status === 'Issued' ? (
+                                <Grid container>
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper} style={{
+                                            backgroundColor: "#11669F",
+                                        }}>
+                                            <CreateIcon style={{
+                                                color: "#FFFFFF",
+                                            }} fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                color: "#FFFFFF",
+                                                marginLeft: 35
 
-                            <Grid item>
-                                <Paper
-                                    className={classes.Progresspaper}
-                                    style={{
-                                        backgroundColor: "#11669F",
-                                    }}
-                                >
-                                    <ScreenShareRoundedIcon
-                                        style={{
-                                            color: "#FFFFFF",
-                                        }}
-                                        fontSize="large"
-                                        className={classes.icons}
-                                    />
-                                    <Typography
-                                        style={{
-                                            color: "#FFFFFF",
-                                            marginLeft: 39
-                                        }}
-                                        variant="body2"
-                                    >
-                                        Issued
+                                            }} variant="body2">Created</Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item>
+                                        <Divider style={{
+                                            backgroundColor: "#11669F",
+                                        }} className={classes.progress} />
+
+                                    </Grid>
+
+                                    <Grid item>
+                                        <Paper
+                                            className={classes.Progresspaper}
+                                            style={{
+                                                backgroundColor: "#11669F",
+                                            }}
+                                        >
+                                            <ScreenShareRoundedIcon
+                                                style={{
+                                                    color: "#FFFFFF",
+                                                }}
+                                                fontSize="large"
+                                                className={classes.icons}
+                                            />
+                                            <Typography
+                                                style={{
+                                                    color: "#FFFFFF",
+                                                    marginLeft: 39
+                                                }}
+                                                variant="body2"
+                                            >
+                                                Issued
                                     </Typography>
-                                </Paper>
-                            </Grid>
-                            <Divider className={classes.progress} />
-                            <Grid item>
-                                <Paper className={classes.Progresspaper}>
-                                    <DoneAllRoundedIcon fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        marginLeft: 30
+                                        </Paper>
+                                    </Grid>
+                                    <Divider className={classes.progress} />
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper}>
+                                            <DoneAllRoundedIcon fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                marginLeft: 30
 
-                                    }} variant="body2">Delievered</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider className={classes.progress} />
-                            </Grid>
+                                            }} variant="body2">Delievered</Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item>
+                                        <Divider className={classes.progress} />
+                                    </Grid>
 
-                            <Grid item>
-                                <Paper className={classes.Progresspaper}>
-                                    <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
-                                    <Typography
-                                        style={{
-                                            marginLeft: 35
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper}>
+                                            <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
+                                            <Typography
+                                                style={{
+                                                    marginLeft: 35
 
-                                        }} variant="body2">Invoiced</Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    ) : null
+                                                }} variant="body2">Invoiced</Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
+                            ) : null
+                        ) : null
                     }
 
-                    {this.props.location.state.status === 'Delivered' ? (
+                    {
+                        this.props.location.state ? (
+                            this.props.location.state.status === 'Delivered' ? (
+                                <Grid container>
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper} style={{
+                                            backgroundColor: "#11669F",
+                                        }}>
+                                            <CreateIcon style={{
+                                                color: "#FFFFFF",
+                                            }} fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                color: "#FFFFFF",
+                                                marginLeft: 35
+
+                                            }} variant="body2">Created</Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Grid item>
+                                        <Divider style={{
+                                            backgroundColor: "#11669F",
+                                        }} className={classes.progress} />
+
+                                    </Grid>
+
+                                    <Grid item>
+                                        <Paper
+                                            className={classes.Progresspaper}
+                                            style={{
+                                                backgroundColor: "#11669F",
+                                            }}
+                                        >
+                                            <ScreenShareRoundedIcon
+                                                style={{
+                                                    color: "#FFFFFF",
+                                                }}
+                                                fontSize="large"
+                                                className={classes.icons}
+                                            />
+                                            <Typography
+                                                style={{
+                                                    color: "#FFFFFF",
+                                                    marginLeft: 39
+                                                }}
+                                                variant="body2"
+                                            >
+                                                Issued
+                                    </Typography>
+                                        </Paper>
+                                    </Grid>
+                                    <Divider className={classes.progress} style={{
+                                        backgroundColor: '#11669F',
+
+                                    }} />
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper} style={{
+                                            backgroundColor: '#11669F',
+                                            color: '#FFFFFF'
+
+                                        }}>
+                                            <DoneAllRoundedIcon style={{
+                                                color: '#FFFFFF'
+                                            }} fontSize="large" className={classes.icons} />
+                                            <Typography style={{
+                                                marginLeft: 30
+
+                                            }} variant="body2">Delievered</Typography>
+                                        </Paper>
+                                    </Grid>
+
+                                    <Grid item>
+                                        <Divider className={classes.progress} />
+                                    </Grid>
+
+                                    <Grid item>
+                                        <Paper className={classes.Progresspaper}>
+                                            <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
+                                            <Typography
+                                                style={{
+                                                    marginLeft: 35
+
+                                                }} variant="body2">Invoiced</Typography>
+                                        </Paper>
+                                    </Grid>
+                                </Grid>
+                            ) : null
+                        ) : null
+                    }
+
+                    {this.props.location.state ? (this.props.location.state.status === 'Invoiced' ? (
                         <Grid container>
                             <Grid item>
                                 <Paper className={classes.Progresspaper} style={{
@@ -297,7 +412,6 @@ class ViewSingleOrder extends React.Component {
                             </Grid>
                             <Divider className={classes.progress} style={{
                                 backgroundColor: '#11669F',
-
                             }} />
                             <Grid item>
                                 <Paper className={classes.Progresspaper} style={{
@@ -315,89 +429,9 @@ class ViewSingleOrder extends React.Component {
                                 </Paper>
                             </Grid>
                             <Grid item>
-                                <Divider className={classes.progress} />
-                            </Grid>
-
-                            <Grid item>
-                                <Paper className={classes.Progresspaper}>
-                                    <ReceiptRoundedIcon fontSize="large" className={classes.icons} />
-                                    <Typography
-                                        style={{
-                                            marginLeft: 35
-
-                                        }} variant="body2">Invoiced</Typography>
-                                </Paper>
-                            </Grid>
-                        </Grid>
-                    ) : null
-                    }
-
-                    {this.props.location.state.status === 'Invoiced' ? (
-                        <Grid container>
-                            <Grid item>
-                                <Paper className={classes.Progresspaper} style={{
-                                    backgroundColor: "#11669F",
-                                }}>
-                                    <CreateIcon style={{
-                                        color: "#FFFFFF",
-                                    }} fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        color: "#FFFFFF",
-                                        marginLeft: 35
-
-                                    }} variant="body2">Created</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider style={{
-                                    backgroundColor: "#11669F",
-                                }} className={classes.progress} />
-
-                            </Grid>
-
-                            <Grid item>
-                                <Paper
-                                    className={classes.Progresspaper}
-                                    style={{
-                                        backgroundColor: "#11669F",
-                                    }}
-                                >
-                                    <ScreenShareRoundedIcon
-                                        style={{
-                                            color: "#FFFFFF",
-                                        }}
-                                        fontSize="large"
-                                        className={classes.icons}
-                                    />
-                                    <Typography
-                                        style={{
-                                            color: "#FFFFFF",
-                                            marginLeft: 39
-                                        }}
-                                        variant="body2"
-                                    >
-                                        Issued
-                                    </Typography>
-                                </Paper>
-                            </Grid>
-                            <Divider className={classes.progress} />
-                            <Grid item>
-                                <Paper className={classes.Progresspaper} style={{
+                                <Divider className={classes.progress} style={{
                                     backgroundColor: '#11669F',
-                                    color: '#FFFFFF'
-
-                                }}>
-                                    <DoneAllRoundedIcon style={{
-                                        color: '#FFFFFF'
-                                    }} fontSize="large" className={classes.icons} />
-                                    <Typography style={{
-                                        marginLeft: 30
-
-                                    }} variant="body2">Delievered</Typography>
-                                </Paper>
-                            </Grid>
-                            <Grid item>
-                                <Divider className={classes.progress} />
+                                }} />
                             </Grid>
 
                             <Grid item>
@@ -416,6 +450,7 @@ class ViewSingleOrder extends React.Component {
                                 </Paper>
                             </Grid>
                         </Grid>
+                    ) : null
                     ) : null
                     }
 
@@ -584,7 +619,7 @@ class ViewSingleOrder extends React.Component {
                                                             <TableHead>
                                                                 <TableRow>
 
-                                                                    <TableCell align="right"><b>Item Name</b></TableCell>
+                                                                    <TableCell align="left"><b>Item Name</b></TableCell>
                                                                     <TableCell align="right"><b>Quantity</b></TableCell>
 
 
@@ -614,16 +649,8 @@ class ViewSingleOrder extends React.Component {
                                                 paddingLeft: 100,
                                                 paddingRight: 100,
                                             }} display="flex" justify="space-between" >
-                                                <Grid item>
-                                                    <Button variant="contained" color="primary">
-                                                        Edit
-                                                    </Button>
-                                                </Grid>
-                                                <Grid item>
-                                                    <Button variant="contained" color="secondary">
-                                                        Delete
-                                                    </Button>
-                                                </Grid>
+
+
                                                 <Grid item>
                                                 </Grid>
                                             </Grid>

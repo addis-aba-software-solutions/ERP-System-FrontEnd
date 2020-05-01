@@ -62,9 +62,9 @@ const Budget = props => {
               gutterBottom
               variant="body2"
             >
-              Category 1
+              Un-Paid Invoices
             </Typography>
-            <Typography variant="h3">000</Typography>
+            <Typography variant="h3">14</Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
