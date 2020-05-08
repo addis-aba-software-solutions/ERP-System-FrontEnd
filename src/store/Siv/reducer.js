@@ -16,12 +16,12 @@ export default function sivReducer(state = initialState, action) {
       return {
         ...state,
         sivs: action.payload,
+        success: true,
         siv_item: action.payload.siv_item,
 
       };
     case UPDATE_SIV: {
       state.sivs.sivStatus = action.payload.status;
-      console.log(state.sivs)
       return {
         ...state,
         sivs: state.sivs,

@@ -90,7 +90,7 @@ class Asider extends React.Component {
                   </Grid>
                 </a>
 
-                <ul className="sub-menu" style={{}}>
+                <ul className="sub-menu">
                   <li>
                     <Link
                       style={{
@@ -103,13 +103,12 @@ class Asider extends React.Component {
                         style={{
                           height: 35,
                           width: 35,
-                          // marginLeft: 40,
+
                           color: "#11669F",
                         }}
                       />
                       <span
                         style={{
-                          // marginLeft: 15,
                           color: "#11669F",
                         }}
                       >
@@ -117,6 +116,7 @@ class Asider extends React.Component {
                       </span>
                     </Link>
                   </li>
+
                   <li
                     style={{
                       backgroundColor: "#FFFFFF",

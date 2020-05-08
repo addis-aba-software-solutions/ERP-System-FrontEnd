@@ -1,5 +1,6 @@
 import {
   GET_ORDER,
+  UPDATE_ORDER,
   GET_STATUS,
   UPDATE_STATUS,
   GET_SINGLE_ORDER,
@@ -103,19 +104,16 @@ export const updateStatus = (orderNumber, status) => (dispatch) => {
   axios
     .put(API + `status/${orderNumber}/`, status, headers)
     .then((res) => {
-
       dispatch({
         type: UPDATE_STATUS,
-        payload: { orderNumber: orderNumber, data: res.data },
+        payload: { order: orderNumber, status: res.data.status },
       });
-      Swal.fire({
-        title: "Updated",
-        icon: "success",
-        showConfirmButton: false,
-        timer: 1000
-      });
+
+
     })
     .catch((err) => {
+
+
       if (err.response && err.response.data) {
         dispatch({
           type: errorsConstant.GET_ERRORS,

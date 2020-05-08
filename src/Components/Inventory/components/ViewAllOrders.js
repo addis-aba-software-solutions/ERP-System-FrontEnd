@@ -10,7 +10,7 @@ import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { getOrders, getStatus } from "../../../store/order/action";
-import { getSiv } from "../../../store/Siv/action";
+import { getSiv, updateSiv } from '../../../store/Siv/action';
 import PrintIcon from "@material-ui/icons/Print";
 import SearchBar from '../../SearchBar/SearchBar'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -51,6 +51,13 @@ class ViewAllOrders extends Component {
     this.props.getOrders();
   }
 
+  handleApprove = (order) => {
+
+    this.props.updateSiv(order, {
+      'sivStatus': 'Approved',
+    })
+    this.props.getSiv(order);
+  };
   render() {
     const { classes } = this.props;
     const createdOrders = this.props.orders ? this.props.orders.filter((order) => { return order.status === "Created" || order.status === "Issued" }) : "";
@@ -117,25 +124,20 @@ class ViewAllOrders extends Component {
                             </Typography>
                         </TableCell>
                         : (
-                          <TableCell align='center'>
-                            <IconButton
 
+
+                          <TableCell align='center'>
+                            <Button
+                              style={{
+                                backgroundColor: '#11669F',
+                                color: '#FFFFFF'
+                              }}
+                              variant='contained'
+                              onClick={() => this.handleApprove(order.orderNumber)}
                             >
-                              <Link
-                                to={{
-                                  pathname: "/siv",
-                                  state: { order: order.orderNumber },
-                                }}>
-                                <PrintIcon fontSize='large' style={{
-                                  color: '#818181'
-                                }} />
-                                <Typography variant='body2' style={{
-                                  color: '#818181'
-                                }} >
-                                  Generate SIV
-                            </Typography>
-                              </Link>
-                            </IconButton>
+                              Approve
+                        </Button>
+
                           </TableCell>
 
                         )}
@@ -174,6 +176,6 @@ const mapStateToProps = (state) => ({
   siv_item: state.invoiceReducer.siv_item,
 });
 
-export default connect(mapStateToProps, { getOrders, getStatus, getSiv })(
+export default connect(mapStateToProps, { getOrders, getStatus, getSiv, updateSiv })(
   withStyles(styles)(ViewAllOrders)
 );

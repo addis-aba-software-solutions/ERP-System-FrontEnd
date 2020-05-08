@@ -8,8 +8,6 @@ import {
     Document,
     StyleSheet,
     Image,
-
-
 } from "@react-pdf/renderer";
 
 const styles = StyleSheet.create({
@@ -101,6 +99,7 @@ const styles = StyleSheet.create({
 
 function PdfDocument(props) {
 
+
     return (
         <Document>
             <Page style={styles.pdf}>
@@ -108,10 +107,10 @@ function PdfDocument(props) {
                     height: 40
                 }} />
                 {props.data
-                    ? [props.data].map((data) => {
+                    ? [props.data].map((data, index) => {
                         return (
                             <>
-                                <View container style={styles.header}>
+                                <View container style={styles.header} key={index}>
                                     <View item xs={6}>
                                         <Text style={styles.textBody}  >
                                             NAZO PLC
@@ -177,64 +176,257 @@ function PdfDocument(props) {
                                             Invoice To
                                         </Text>
                                         <View style={{
+                                            height: 10
+                                        }} />
+                                        <View style={{
                                             marginLeft: 10,
                                         }}>
                                             <View style={{
                                                 height: 10
                                             }} />
 
-                                            <Text align='left' style={styles.textBody} variant='body2' >
-                                                Samuel Kassa
-                                </Text>
-                                            <View style={{
-                                                height: 10
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
                                             }}>
+                                                <View item >
 
-                                            </View>
-                                            <Text align='left' style={styles.textBody} variant='body2' >
-                                                Military Tera (Merkato)
-                                </Text>
-                                            <View style={{
-                                                height: 10
-                                            }}>
-
-                                            </View>
-
-                                            <View style={styles.contactInformation}>
-                                                <Text align='left' style={styles.textBody} variant='body2' >
-                                                    +251 921-33-44-32
-                                    </Text>
-                                                <View style={{
-                                                    height: 10
-                                                }}>
-
-                                                </View>
-                                                <Text align='left' style={styles.textBody} variant='body2' >
-                                                    +251 921-33-44-32
-                                </Text>
-                                                <View style={{
-                                                    height: 10
-                                                }}>
-
-                                                </View>
-
-                                            </View>
-                                            <View style={styles.contactInformation}>
-                                                <Text align='right' style={styles.textBody} variant='body2' >
-                                                    SamuelKassa23@gmail.com
-                                </Text>
-                                                <Text align='right' style={styles.textBody} variant='body2' >
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        Company name :
                                                 </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
 
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.companyName}
+                                                    </Text>
+                                                </View>
                                             </View>
+
+                                            <View style={{
+                                                height: 10
+                                            }} />
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        Working field :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.workingField}
+                                                    </Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={{
+                                                height: 10
+                                            }} />
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        General manager :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.generalManger}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <View style={{
+                                                height: 10
+                                            }} />
+
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        Contact person :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.contactPerson}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <View style={{
+                                                height: 10
+                                            }} />
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        E-mail Address :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.email}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <View style={{
+                                                height: 10
+                                            }} />
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        Tin number :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.tinNumber}
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <View style={{
+                                                height: 10
+                                            }} />
+                                            <View container style={{
+                                                flexDirection: 'row',
+                                                display: 'flex',
+                                                justifyContent: 'space-between'
+                                            }}>
+                                                <View item >
+
+                                                    <Text align='right' style={{
+                                                        color: '#11669F',
+                                                        fontSize: 12
+                                                    }} >
+                                                        Payment option :
+                                                </Text>
+                                                </View>
+                                                <View style={{
+                                                    width: 10
+                                                }}>
+
+                                                </View>
+                                                <View item>
+
+                                                    <Text align='right' style={styles.textBody} >
+                                                        {data.company.paymentOption}
+                                                    </Text>
+                                                </View>
+                                            </View>
+
+                                            <View style={{
+                                                height: 10
+                                            }} />
 
                                         </View>
-
                                     </View>
                                     <View item style={{
-                                        marginLeft: 200,
+                                        marginLeft: 150,
                                         marginTop: 30
                                     }}>
+                                        <View container style={{
+                                            flexDirection: 'row',
+                                            display: 'flex',
+                                            justifyContent: 'space-between'
+                                        }}>
+                                            <View item >
+
+                                                <Text align='right' style={{
+                                                    color: '#11669F',
+                                                    fontSize: 12
+                                                }} >
+                                                    Order no:
+                                                </Text>
+                                            </View>
+                                            <View style={{
+                                                width: 10,
+
+                                            }}>
+
+                                            </View>
+                                            <View item >
+
+                                                <Text align='right' style={styles.textBody} >
+                                                    {data.order}
+                                                </Text>
+                                            </View>
+                                        </View>
+
                                         <View container style={{
                                             flexDirection: 'row',
                                             display: 'flex',
@@ -301,7 +493,9 @@ function PdfDocument(props) {
                                         }}>
 
                                         </View>
-
+                                        <View style={{
+                                            width: 10
+                                        }} />
                                         <View container style={{
                                             flexDirection: 'row',
                                             display: 'flex',
@@ -362,7 +556,7 @@ function PdfDocument(props) {
 
                                 {props.invoice_item ? props.invoice_item.map((item, index) => {
                                     return (
-                                        <View key={item.itemName} style={styles.tableRow}>
+                                        <View key={index} style={styles.tableRow}>
                                             <View style={styles.tableCol}>
                                                 <Text style={styles.tableCell}>{index + 1}</Text>
                                             </View>

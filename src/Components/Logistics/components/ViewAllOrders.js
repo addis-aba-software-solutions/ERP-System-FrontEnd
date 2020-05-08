@@ -15,10 +15,6 @@ import {
 } from "../../../store/order/action";
 import SearchBar from '../../SearchBar/SearchBar';
 import VisibilityIcon from '@material-ui/icons/Visibility';
-import DoneAllIcon from '@material-ui/icons/DoneAll';
-
-
-
 
 const styles = (theme) => ({
   table: {
@@ -63,6 +59,7 @@ class ViewAllOrders extends Component {
         status: "Delivered",
       },
     )
+
 
 
   };
@@ -119,10 +116,13 @@ class ViewAllOrders extends Component {
                         {/* <TableCell align='center'>{order.status}</TableCell> */}
 
                         <TableCell align='center'>
-                          {order.status === "Delivered" ?
-                            <Typography>
+
+                          {order.status === 'Delivered' ? (
+                            < Typography >
                               {order.status}
                             </Typography>
+
+                          )
                             :
                             (
                               <Button

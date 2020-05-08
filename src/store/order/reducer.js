@@ -24,17 +24,10 @@ export default function ordersReducer(state = initialState, action) {
       return {
         ...state,
         orders: action.payload,
-
-
       };
     }
 
     case UPDATE_ORDER: {
-      const index = state.orders.findIndex(
-        (item) => item.orderNumber === action.payload.order
-      );
-      state.orders[index].status = action.payload.status;
-
       return {
         ...state,
         orders: state.orders,
@@ -47,7 +40,10 @@ export default function ordersReducer(state = initialState, action) {
         status: action.payload,
       };
     case UPDATE_STATUS: {
-      state.order.status = action.payload.status;
+      const index = state.orders.findIndex(
+        (item) => item.orderNumber === action.payload.order
+      );
+      state.orders[index].status = action.payload.status;
       return {
         ...state,
         success: true,

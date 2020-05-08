@@ -120,7 +120,7 @@ class ViewAllOrders extends Component {
                         {order.status}
                       </TableCell>
                       <TableCell align='center'>
-                        {this.state.show && this.state.order === order.orderNumber && this.props.invoices ? <PDFDownloadLink
+                        {this.props.success && (this.state.order === order.orderNumber) && this.props.invoices ? <PDFDownloadLink
                           document={<Invoice data={this.props.invoices} invoice_item={this.props.invoice_item} />}
                           fileName={`order_${order.orderNumber}.pdf`}>
                           <IconButton style={{
@@ -170,6 +170,7 @@ const mapStateToProps = (state) => ({
   status: state.ordersReducer.status,
   invoices: state.invoiceReducer.invoices,
   invoice_item: state.invoiceReducer.invoice_item,
+  success: state.invoiceReducer.success,
 });
 
 export default connect(mapStateToProps, { getOrders, getInvoice })(

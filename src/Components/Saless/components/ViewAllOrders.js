@@ -66,7 +66,7 @@ class ViewAllOrders extends Component {
 
           </Grid>
           <Grid item xs={6}>
-            <SearchBar search={this.search} updateSearch={this.updateSearch} />
+            <SearchBar />
 
           </Grid>
 
